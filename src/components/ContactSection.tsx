@@ -1,118 +1,42 @@
-import { Instagram, Linkedin, Youtube, Mail } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
+import SectionHeader from "./SectionHeader";
 
-const socialLinks = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/lizhhsu/",
-    icon: <Instagram size={28} strokeWidth={1.5} />,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/lizhhsu",
-    icon: <Linkedin size={28} strokeWidth={1.5} />,
-  },
-  {
-    label: "YouTube",
-    href: "https://www.youtube.com/@lizhhsu",
-    icon: <Youtube size={28} strokeWidth={1.5} />,
-  },
-  {
-    label: "TikTok",
-    href: "https://www.tiktok.com/@user8655827344228",
-    icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
-      </svg>
-    ),
-  },
+const links = [
+  { label: "Email", value: "lchsu@andrew.cmu.edu", href: "mailto:lchsu@andrew.cmu.edu", icon: Mail },
+  { label: "LinkedIn", value: "linkedin.com/in/lizhhsu", href: "https://www.linkedin.com/in/lizhhsu", icon: Linkedin },
 ];
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-[100px] px-6">
+    <section id="contact" className="py-20 md:py-24 px-6">
       <div className="max-w-6xl mx-auto">
-        {/* Headline block */}
-        <div className="mb-14">
-          <h2 className="font-display text-[36px] md:text-[42px] leading-tight text-[#181818] mt-3">
-            Contact
-          </h2>
-          <p className="font-body text-muted-foreground mt-4 max-w-xl text-[15px]">
-            Let's chat! Open to brand partnerships, creator collaborations, and ambassador opportunities.
-          </p>
-        </div>
+        <SectionHeader
+          label="§09"
+          title="Get in Touch"
+          italicWord="Touch"
+          description="Open to internships, research opportunities, and collaborations in product, AI, and venture."
+        />
 
-        {/* Email button */}
-        <a
-          href="mailto:lchsu@andrew.cmu.edu"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "10px",
-            width: "100%",
-            height: "64px",
-            backgroundColor: "#6b0909",
-            border: "none",
-            borderRadius: "8px",
-            color: "white",
-            fontSize: "14px",
-            fontWeight: 600,
-            letterSpacing: "0.1em",
-            textTransform: "uppercase",
-            transition: "background 0.2s ease",
-            marginBottom: "40px",
-            textDecoration: "none",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#181818")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#6b0909")}
-        >
-          <Mail size={20} color="white" />
-          lchsu@andrew.cmu.edu
-        </a>
-
-        {/* Social icon tiles — 4-column grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "10px" }}>
-          {socialLinks.map(({ label, href, icon }) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {links.map(({ label, value, href, icon: Icon }) => (
             <a
               key={label}
               href={href}
-              target="_blank"
+              target={href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              aria-label={label}
-              style={{
-                width: "100%",
-                padding: "24px 16px",
-                background: "transparent",
-                border: "1.5px solid #181818",
-                borderRadius: "8px",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: "12px",
-                color: "#181818",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#181818";
-                e.currentTarget.style.color = "#F2EFE9";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.color = "#181818";
-              }}
+              className="group flex items-center justify-between gap-4 border border-border hover:border-accent bg-card/30 hover:bg-card/60 transition-all duration-200 px-6 py-6"
             >
-              {icon}
-              <span
-                style={{
-                  fontSize: "10px",
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: "inherit",
-                }}
-              >
-                {label}
+              <div className="flex items-center gap-4">
+                <Icon size={20} className="text-accent" strokeWidth={1.5} />
+                <div>
+                  <p className="font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
+                    {label}
+                  </p>
+                  <p className="font-body text-[14px] text-foreground">{value}</p>
+                </div>
+              </div>
+              <span className="font-body text-[11px] tracking-[0.18em] uppercase text-foreground/40 group-hover:text-accent transition-colors">
+                →
               </span>
             </a>
           ))}
