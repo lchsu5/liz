@@ -31,7 +31,7 @@ export default function AboutView() {
           transition={{ duration: 0.6 }}
         >
           <p className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6">
-            § About
+            § Overview
           </p>
           <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
             The <span className="italic text-accent">essentials</span>.

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
+import TiltCard from "../TiltCard";
 
 const roles = [
   {
@@ -91,7 +92,41 @@ export default function CurrentlyView() {
         </div>
 
         <div className="mt-24">
-          <SectionHeader label="§ 02" title="Projects & Ventures" italicWord="Ventures" />
+          <SectionHeader label="§ 02" title="Latest Build" italicWord="Build" />
+          <TiltCard maxDeg={3}>
+            <a
+              href="https://trae4d3ed8mx.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group border border-border bg-card/40 hover:bg-card/70 transition-colors duration-300 p-8 md:p-12"
+            >
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex-1">
+                  <p className="font-body text-[11px] tracking-[0.18em] uppercase text-accent mb-3">
+                    SecondLook · Jan 2026
+                  </p>
+                  <h3 className="font-display text-[34px] md:text-[48px] text-foreground leading-[1.05] mb-4">
+                    A vision-powered{" "}
+                    <span className="italic text-accent">STEM tutor</span> that
+                    catches mistakes as you make them.
+                  </h3>
+                  <p className="font-body text-[15px] text-foreground/75 leading-relaxed max-w-2xl">
+                    Watches handwritten math over a live iPad screen share,
+                    pinpoints where reasoning breaks down, and intervenes
+                    without giving away the answer.
+                  </p>
+                </div>
+                <ArrowUpRight
+                  size={28}
+                  className="text-foreground/50 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                />
+              </div>
+            </a>
+          </TiltCard>
+        </div>
+
+        <div className="mt-24">
+          <SectionHeader label="§ 03" title="Projects & Ventures" italicWord="Ventures" />
           <div className="space-y-px">
             {ventures.map((v) => (
               <a
