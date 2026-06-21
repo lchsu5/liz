@@ -1,4 +1,16 @@
 import SectionHeader from "./SectionHeader";
+import adobeLogo from "../assets/adobe.jpg";
+import workivaLogo from "../assets/workiva.avif";
+import btgLogo from "../assets/btg.jpeg";
+import foundryLogo from "../assets/foundry.jpeg";
+import handshakeLogo from "../assets/handshake.jpg";
+import cmuLogo from "../assets/cmu.png";
+import superworldLogo from "../assets/superworld.jpg";
+import projectDestinedLogo from "../assets/project-destined-logo.png";
+import consortiumLogo from "../assets/consortium.jpg";
+import kumonLogo from "../assets/kumon.jpg";
+import eyLogo from "../assets/ey.jpg";
+import deloitteLogo from "../assets/deliotte.jpg";
 
 type Role = {
   title: string;
@@ -9,20 +21,24 @@ type Role = {
 
 type Experience = {
   company: string;
+  logo: string;
   roles: Role[];
 };
 
 const experiences: Experience[] = [
   {
     company: "Adobe",
+    logo: adobeLogo,
     roles: [{ title: "Student Ambassador", dates: "Jun 2026 — Present" }],
   },
   {
     company: "Workiva",
+    logo: workivaLogo,
     roles: [{ title: "Product Manager Intern", dates: "May 2026 — Present", type: "Internship" }],
   },
   {
     company: "CMU Business Technology Group",
+    logo: btgLogo,
     roles: [
       { title: "Head of Outreach", dates: "Apr 2026 — Present" },
       { title: "Product Analyst", dates: "Sep 2025 — Present" },
@@ -30,14 +46,17 @@ const experiences: Experience[] = [
   },
   {
     company: "Foundry by ScottyLabs",
+    logo: foundryLogo,
     roles: [{ title: "Talent Subcommittee Chair, Executive Board", dates: "Apr 2026 — Present" }],
   },
   {
     company: "Handshake",
+    logo: handshakeLogo,
     roles: [{ title: "LLM & Multimodal AI Research Fellow", dates: "Nov 2025 — Jun 2026" }],
   },
   {
     company: "Carnegie Mellon University",
+    logo: cmuLogo,
     roles: [
       {
         title: "Undergraduate Research Assistant, LLM Safety & Evaluation",
@@ -48,18 +67,22 @@ const experiences: Experience[] = [
   },
   {
     company: "SuperWorld",
+    logo: superworldLogo,
     roles: [{ title: "Product Manager Intern", dates: "Feb 2026 — May 2026", type: "Internship" }],
   },
   {
     company: "Project Destined",
+    logo: projectDestinedLogo,
     roles: [{ title: "Real Estate Private Equity Intern", dates: "May 2025 — Oct 2025" }],
   },
   {
     company: "Consortium Research Group",
+    logo: consortiumLogo,
     roles: [{ title: "FIG Analyst", dates: "Jun 2025 — Aug 2025" }],
   },
   {
     company: "Kumon North America, Inc.",
+    logo: kumonLogo,
     roles: [
       {
         title: "Teacher, Receptionist, and Translator",
@@ -71,6 +94,7 @@ const experiences: Experience[] = [
   },
   {
     company: "EY",
+    logo: eyLogo,
     roles: [
       {
         title: "Sustainability Consultant Intern",
@@ -82,6 +106,7 @@ const experiences: Experience[] = [
   },
   {
     company: "Deloitte",
+    logo: deloitteLogo,
     roles: [
       {
         title: "Academy Attendant",
@@ -108,7 +133,12 @@ export default function ExperienceSection() {
               key={exp.company}
               className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-6 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
             >
-              <div className="md:col-span-4">
+              <div className="md:col-span-4 flex items-center gap-3">
+                <img
+                  src={exp.logo}
+                  alt={`${exp.company} logo`}
+                  className="w-10 h-10 object-contain rounded-sm flex-shrink-0"
+                />
                 <h3 className="font-display text-[20px] md:text-[22px] text-foreground leading-tight">
                   {exp.company}
                 </h3>
