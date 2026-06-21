@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-export type ViewKey = "overview" | "currently" | "before" | "research" | "about";
+export type ViewKey = "overview" | "currently" | "before" | "research";
 
 const items: { key: ViewKey; label: string }[] = [
-  { key: "about", label: "Overview" },
+  { key: "overview", label: "Overview" },
   { key: "currently", label: "Currently" },
   { key: "before", label: "Before" },
   { key: "research", label: "Research" },

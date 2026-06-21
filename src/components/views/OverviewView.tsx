@@ -18,6 +18,11 @@ const honors = [
   },
 ];
 
+const languages = [
+  { name: "English", level: "Native or Bilingual" },
+  { name: "Chinese (Mandarin)", level: "Limited Working" },
+];
+
 
 export default function OverviewView() {
   const ref = useRef<HTMLElement>(null);
@@ -122,10 +127,40 @@ export default function OverviewView() {
         </div>
       </section>
 
+      {/* EDUCATION */}
+      <section className="px-6 md:px-12 py-24">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader label="§ 02" title="Education" italicWord="Education" />
+          <div className="border-y border-border py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6">
+            <div className="md:col-span-5">
+              <h3 className="font-display text-[26px] md:text-[34px] text-foreground leading-tight">
+                Carnegie Mellon University
+              </h3>
+              <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground mt-3">
+                Tepper School of Business · Pittsburgh, PA
+              </p>
+            </div>
+            <div className="md:col-span-7">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                <p className="font-body text-[15px] text-foreground/90">
+                  B.S. Business Administration · Concentration in Artificial Intelligence
+                </p>
+                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
+                  Expected May 2029
+                </p>
+              </div>
+              <p className="font-body text-[13px] text-foreground/65 mt-4 leading-relaxed">
+                Coursework spanning business analytics, computer science, and applied AI.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* HONORS */}
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 02" title="Honors & Awards" italicWord="Awards" />
+          <SectionHeader label="§ 03" title="Honors & Awards" italicWord="Awards" />
           <div className="divide-y divide-border border-y border-border">
             {honors.map((h) => (
               <div
@@ -154,10 +189,30 @@ export default function OverviewView() {
       {/* CAMPUS LEADERSHIP */}
       <CampusSection />
 
+      {/* LANGUAGES */}
+      <section className="px-6 md:px-12 py-24">
+        <div className="max-w-6xl mx-auto">
+          <SectionHeader label="§ 05" title="Languages" italicWord="Languages" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+            {languages.map((l) => (
+              <div
+                key={l.name}
+                className="bg-background py-7 px-7 flex items-baseline justify-between gap-4"
+              >
+                <span className="font-display text-[28px] text-foreground">{l.name}</span>
+                <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+                  {l.level}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CONTACT */}
       <section className="px-6 md:px-12 py-24 pb-40">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 04" title="Get in Touch" italicWord="Touch" />
+          <SectionHeader label="§ 06" title="Get in Touch" italicWord="Touch" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <a
               href="mailto:lchsu@andrew.cmu.edu"

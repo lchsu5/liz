@@ -6,7 +6,6 @@ import OverviewView from "@/components/views/OverviewView";
 import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
 import ResearchView from "@/components/views/ResearchView";
-import AboutView from "@/components/views/AboutView";
 
 const Index = () => {
   const [view, setView] = useState<ViewKey>("overview");
@@ -26,8 +25,6 @@ const Index = () => {
         return <BeforeView />;
       case "research":
         return <ResearchView />;
-      case "about":
-        return <AboutView />;
     }
   };
 
