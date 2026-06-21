@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx vite *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Read(//c/Users/lizhs/AppData/Local/Temp/claude/bundled-skills/2.1.183/eb5bd8b8ca23ad6213aa7703f14db221/run/examples/**)",
+      "Bash(chromium-cli --session portfolio)",
+      "Bash(npx playwright *)",
+      "Bash(node -e ' *)",
+      "Read(//tmp/**)",
+      "Read(//c/tmp/**)"
+    ]
+  }
+}

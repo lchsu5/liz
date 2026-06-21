@@ -14,26 +14,22 @@ const past = [
     company: "SuperWorld",
     title: "Product Manager Intern",
     dates: "Feb 2026 — May 2026",
+    location: "",
     note: "Spec'd consumer features for a virtual-world platform; ran user interviews and prioritization.",
-  },
-  {
-    company: "Project Destined",
-    title: "Real Estate Private Equity Intern",
-    dates: "May 2025 — Oct 2025",
-    note: "Underwrote multifamily acquisitions; presented investment memos to industry mentors.",
   },
   {
     company: "Consortium Research Group",
     title: "FIG Analyst",
     dates: "Jun 2025 — Aug 2025",
+    location: "",
     note: "Published initiating-coverage reports on $HOOD and $PYPL covering the FinTech vertical.",
   },
   {
-    company: "Kumon North America",
-    title: "Teacher, Receptionist & Translator",
-    dates: "Feb 2023 — Apr 2025",
-    location: "Tustin, CA",
-    note: "Two years of one-on-one math instruction — quietly the most formative role on this list.",
+    company: "Project Destined",
+    title: "Real Estate Private Equity Intern",
+    dates: "May 2025 — Oct 2025",
+    location: "",
+    note: "Underwrote multifamily acquisitions; presented investment memos to industry mentors.",
   },
   {
     company: "EY",
@@ -48,6 +44,13 @@ const past = [
     dates: "Jul 2024",
     location: "Costa Mesa, CA",
     note: "Selected participant — case studies, professional skills, and partner shadowing.",
+  },
+  {
+    company: "Kumon North America",
+    title: "Teacher, Receptionist & Translator",
+    dates: "Feb 2023 — Apr 2025",
+    location: "Tustin, CA",
+    note: "Two years of one-on-one math instruction — quietly the most formative role on this list.",
   },
 ];
 
@@ -65,7 +68,7 @@ export default function BeforeView() {
             § Before
           </p>
           <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
-            Where I've <span className="italic text-accent">been</span>.
+            Where I’ve <span className="italic text-accent">been</span>.
           </h1>
           <p className="font-body text-[15px] md:text-[16px] text-foreground/70 mt-6 max-w-2xl leading-relaxed">
             Past roles across research, real estate, consulting, and the
@@ -87,7 +90,9 @@ export default function BeforeView() {
                   </h3>
                   <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-2">
                     {p.dates}
-                    {p.location && <span className="ml-2 text-foreground/40">· {p.location}</span>}
+                    {p.location && (
+                      <span className="ml-2 text-foreground/40">· {p.location}</span>
+                    )}
                   </p>
                 </div>
                 <div className="md:col-span-8">

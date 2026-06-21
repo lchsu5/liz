@@ -3,29 +3,36 @@ import { useRef } from "react";
 import { ArrowUpRight, Mail, Linkedin, MapPin } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
+import TiltCard from "../TiltCard";
 
 const honors = [
-  { title: "2026 Zappurtunity Scholar", issuer: "Zappurtunity", date: "Mar 2026" },
-  { title: "Dean's List", issuer: "Carnegie Mellon University", date: "Jan 2026" },
-  { title: "Dean's Scholarship", issuer: "Northeastern University", date: "Apr 2025" },
-  { title: "Caldwell Scholarship", issuer: "UC Santa Cruz", date: "Mar 2025" },
+  {
+    title: "Zappurtunity Scholar",
+    issuer: "Zappurtunity — selected from 300+ applicants",
+    date: "Mar 2026",
+  },
+  {
+    title: "Dean’s List",
+    issuer: "Carnegie Mellon University",
+    date: "Jan 2026",
+  },
 ];
 
 const clubs = [
   {
     name: "Business Technology Group",
-    role: "Head of Outreach · Product Analyst",
-    note: "Building CMUsed — a campus secondhand marketplace.",
+    role: "Product Analyst '25–26 · Head of Outreach '26–27",
+    note: "1 of 2 freshmen selected to build CMUsed — a campus secondhand marketplace. Led cross-functional feature development with engineers and designers.",
   },
   {
     name: "Taiwanese Student Association",
-    role: "Public Relations Chair",
-    note: "Culture Night logistics for 300+ attendees.",
+    role: "Freshman Rep '25–26 · PR Chair '26–27",
+    note: "Culture Night logistics for 300+ attendees across 20+ orgs; organised a 40+ person ski trip.",
   },
   {
     name: "Foundry by ScottyLabs",
-    role: "Talent Subcommittee Chair, Executive Board",
-    note: "Founder referrals supporting $11M raised across 8 months.",
+    role: "Talent Subcommittee Chair, Executive Board '26–27",
+    note: "Built a 7-category venture-metrics framework; founder referrals to a16z, Sequoia, and Khosla — supporting $11M raised over 8 months.",
   },
 ];
 
@@ -63,7 +70,7 @@ export default function OverviewView() {
         />
       </div>
 
-      {/* HERO — dark on load */}
+      {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-32">
         <div className="max-w-6xl mx-auto w-full">
           <motion.p
@@ -89,11 +96,20 @@ export default function OverviewView() {
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-body text-[16px] md:text-[20px] text-foreground/80 mt-8 max-w-2xl leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="font-body text-[13px] md:text-[15px] tracking-[0.18em] uppercase text-accent mt-8 mb-4"
           >
-            Business + AI @ Carnegie Mellon. I work at the seam of product, research,
-            and venture — currently shipping with Adobe, Workiva, and Handshake.
+            Business + AI @ Carnegie Mellon
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="font-body text-[16px] md:text-[20px] text-foreground/80 max-w-2xl leading-relaxed"
+          >
+            I work at the seam of product, research, and venture — currently
+            shipping with Adobe, Workiva, and Handshake.
           </motion.p>
 
           <motion.div
@@ -105,9 +121,20 @@ export default function OverviewView() {
             <span className="inline-flex items-center gap-2">
               <MapPin size={13} className="text-accent" /> Irvine, CA
             </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-accent" /> Scroll
-            </span>
+            <a
+              href="mailto:lchsu@andrew.cmu.edu"
+              className="inline-flex items-center gap-2 hover:text-accent transition-colors"
+            >
+              <Mail size={13} className="text-accent" /> lchsu@andrew.cmu.edu
+            </a>
+            <a
+              href="https://www.linkedin.com/in/lizhhsu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 hover:text-accent transition-colors"
+            >
+              <Linkedin size={13} className="text-accent" /> linkedin.com/in/lizhhsu
+            </a>
           </motion.div>
         </div>
       </section>
@@ -130,7 +157,7 @@ export default function OverviewView() {
                     {h.issuer}
                   </p>
                 </div>
-                <div className="md:col-span-4 md:text-right">
+                <div className="md:col-span-4 md:text-right self-center">
                   <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
                     {h.date}
                   </p>
@@ -141,7 +168,7 @@ export default function OverviewView() {
         </div>
       </section>
 
-      {/* CAMPUS */}
+      {/* CAMPUS LEADERSHIP */}
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader
@@ -151,7 +178,11 @@ export default function OverviewView() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
             {clubs.map((c) => (
-              <div key={c.name} className="bg-background p-7 flex flex-col">
+              <TiltCard
+                key={c.name}
+                className="bg-background p-7 flex flex-col"
+                maxDeg={4}
+              >
                 <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-4">
                   {c.role}
                 </p>
@@ -161,7 +192,7 @@ export default function OverviewView() {
                 <p className="font-body text-[13px] text-foreground/70 leading-relaxed mt-auto">
                   {c.note}
                 </p>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </div>
@@ -171,32 +202,36 @@ export default function OverviewView() {
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader label="§ 04" title="Latest Build" italicWord="Build" />
-          <a
-            href="https://trae4d3ed8mx.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block group border border-border bg-card/40 hover:bg-card/70 transition-colors duration-300 p-8 md:p-12"
-          >
-            <div className="flex items-start justify-between gap-6">
-              <div className="flex-1">
-                <p className="font-body text-[11px] tracking-[0.18em] uppercase text-accent mb-3">
-                  SecondLook · Jan 2026
-                </p>
-                <h3 className="font-display text-[34px] md:text-[48px] text-foreground leading-[1.05] mb-4">
-                  A vision-powered <span className="italic text-accent">STEM tutor</span> that
-                  catches mistakes as you make them.
-                </h3>
-                <p className="font-body text-[15px] text-foreground/75 leading-relaxed max-w-2xl">
-                  Watches handwritten math over a live iPad screen share, pinpoints where
-                  reasoning breaks down, and intervenes without giving away the answer.
-                </p>
+          <TiltCard maxDeg={3}>
+            <a
+              href="https://trae4d3ed8mx.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group border border-border bg-card/40 hover:bg-card/70 transition-colors duration-300 p-8 md:p-12"
+            >
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex-1">
+                  <p className="font-body text-[11px] tracking-[0.18em] uppercase text-accent mb-3">
+                    SecondLook · Jan 2026
+                  </p>
+                  <h3 className="font-display text-[34px] md:text-[48px] text-foreground leading-[1.05] mb-4">
+                    A vision-powered{" "}
+                    <span className="italic text-accent">STEM tutor</span> that
+                    catches mistakes as you make them.
+                  </h3>
+                  <p className="font-body text-[15px] text-foreground/75 leading-relaxed max-w-2xl">
+                    Watches handwritten math over a live iPad screen share,
+                    pinpoints where reasoning breaks down, and intervenes
+                    without giving away the answer.
+                  </p>
+                </div>
+                <ArrowUpRight
+                  size={28}
+                  className="text-foreground/50 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                />
               </div>
-              <ArrowUpRight
-                size={28}
-                className="text-foreground/50 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
-              />
-            </div>
-          </a>
+            </a>
+          </TiltCard>
         </div>
       </section>
 

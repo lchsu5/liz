@@ -2,17 +2,22 @@ import { motion } from "framer-motion";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 
-const languages = [
-  { name: "English", level: "Native or Bilingual" },
-  { name: "Chinese", level: "Limited Working" },
+const honors = [
+  {
+    title: "Zappurtunity Scholar",
+    detail: "Selected from 300+ applicants",
+    date: "Mar 2026",
+  },
+  {
+    title: "Dean's List",
+    detail: "Carnegie Mellon University",
+    date: "Jan 2026",
+  },
 ];
 
-const courses = [
-  "Prompt Engineering & AI Fundamentals",
-  "JLL Data Centers Workshop Series",
-  "Real Estate Capital Markets Workshop",
-  "ICSC Retail Real Estate Bridge Program",
-  "Commercial Real Estate Fundamentals Certificate",
+const languages = [
+  { name: "English", level: "Native or Bilingual" },
+  { name: "Chinese (Mandarin)", level: "Limited Working" },
 ];
 
 export default function AboutView() {
@@ -48,7 +53,7 @@ export default function AboutView() {
             <div className="md:col-span-7">
               <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
                 <p className="font-body text-[15px] text-foreground/90">
-                  B.S. Business Administration · Concentration in AI
+                  B.S. Business Administration · Concentration in Artificial Intelligence
                 </p>
                 <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
                   Expected May 2029
@@ -56,15 +61,41 @@ export default function AboutView() {
               </div>
               <p className="font-body text-[13px] text-foreground/65 mt-4 leading-relaxed">
                 Coursework spanning business analytics, computer science, and applied AI.
-                Dean's List, January 2026.
               </p>
             </div>
           </div>
         </div>
 
+        {/* HONORS */}
+        <div className="mt-24">
+          <SectionHeader label="§ 02" title="Honors & Awards" italicWord="Awards" />
+          <div className="divide-y divide-border border-y border-border">
+            {honors.map((h) => (
+              <div
+                key={h.title}
+                className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-6"
+              >
+                <div className="md:col-span-8">
+                  <h3 className="font-display text-[22px] md:text-[26px] text-foreground leading-tight">
+                    {h.title}
+                  </h3>
+                  <p className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground mt-2">
+                    {h.detail}
+                  </p>
+                </div>
+                <div className="md:col-span-4 md:text-right self-center">
+                  <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
+                    {h.date}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* LANGUAGES */}
         <div className="mt-24">
-          <SectionHeader label="§ 02" title="Languages" italicWord="Languages" />
+          <SectionHeader label="§ 03" title="Languages" italicWord="Languages" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
             {languages.map((l) => (
               <div
@@ -78,28 +109,6 @@ export default function AboutView() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* COURSES */}
-        <div className="mt-24">
-          <SectionHeader
-            label="§ 03"
-            title="Courses & Certificates"
-            italicWord="Certificates"
-          />
-          <ul className="border-y border-border">
-            {courses.map((c, i) => (
-              <li
-                key={c}
-                className="flex items-baseline gap-6 py-5 border-b border-border/60 last:border-b-0"
-              >
-                <span className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground w-10">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="font-body text-[15px] text-foreground/85">{c}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </main>
