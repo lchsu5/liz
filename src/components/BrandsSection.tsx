@@ -2,10 +2,10 @@ import bigFutureLogo from "@/assets/bigfuture-logo.png";
 import projectDestinedLogo from "@/assets/project-destined-logo.png";
 import redbullLogo from "@/assets/redbull-logo.svg";
 import princessPollyLogo from "@/assets/princess-polly-logo.webp";
-import adobeLogo from "@/assets/adobe-logo.png.asset.json";
+import adobeLogo from "@/assets/adobe.jpg";
 
 const brands = [
-  { logo: adobeLogo.url,       name: "Adobe",            role: "Student Ambassador",  href: "#" },
+  { logo: adobeLogo,           name: "Adobe",            role: "Student Ambassador",  href: "#" },
   { logo: princessPollyLogo,   name: "Princess Polly",   role: "Ambassador",          href: "#" },
   { logo: bigFutureLogo,       name: "BigFuture",        role: "Ambassador",          href: "#" },
   { logo: projectDestinedLogo, name: "Project Destined", role: "Ambassador",          href: "#" },

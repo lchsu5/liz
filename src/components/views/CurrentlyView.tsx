@@ -3,6 +3,8 @@ import { ArrowUpRight } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import TiltCard from "../TiltCard";
+import adobeLogo from "@/assets/adobe.jpg";
+import workivaLogo from "@/assets/workiva.avif";
 
 const roles = [
   {
@@ -10,14 +12,14 @@ const roles = [
     title: "Student Ambassador",
     dates: "Jun 2026 — Present",
     note: "Representing Adobe on campus; connecting students with the creative & AI toolchain.",
-    logo: null as string | null,
+    logo: adobeLogo as string | null,
   },
   {
     company: "Workiva",
     title: "Product Manager Intern",
     dates: "May 2026 — Present",
     note: "Internship on a product team building enterprise reporting workflows.",
-    logo: null as string | null,
+    logo: workivaLogo as string | null,
   },
 ];
 
