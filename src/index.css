@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+@font-face {
+  font-family: 'Sunday Masthead';
+  src: url('/fonts/SundayMasthead-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Editorial off-white palette */
+    --background: 45 25% 95%;        /* #F5F4F0 warm off-white */
+    --foreground: 0 0% 7%;           /* #111111 */
+
+    --card: 60 7% 91%;               /* #EBEBE7 surface */
+    --card-foreground: 0 0% 7%;
+
+    --popover: 45 25% 95%;
+    --popover-foreground: 0 0% 7%;
+
+    --primary: 0 0% 7%;
+    --primary-foreground: 45 25% 95%;
+
+    --secondary: 45 20% 93%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 45 15% 92%;
+    --muted-foreground: 0 0% 53%;    /* #888 */
+
+    --accent: 0 84% 23%;             /* #6b0909 */
+    --accent-foreground: 45 25% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 45 12% 86%;
+    --input: 45 12% 86%;
+    --ring: 0 0% 7%;
+
+    --radius: 1rem;
+
+    --warm-cream: 45 25% 95%;
+    --warm-beige: 60 7% 91%;
+    --warm-tan: 17 35% 75%;
+    --warm-brown: 17 44% 59%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 30 10% 8%;
+    --foreground: 40 20% 90%;
+    --card: 30 10% 12%;
+    --card-foreground: 40 20% 90%;
+    --popover: 30 10% 8%;
+    --popover-foreground: 40 20% 90%;
+    --primary: 40 20% 90%;
+    --primary-foreground: 30 10% 8%;
+    --secondary: 30 10% 18%;
+    --secondary-foreground: 40 20% 90%;
+    --muted: 30 10% 18%;
+    --muted-foreground: 30 10% 55%;
+    --accent: 30 10% 18%;
+    --accent-foreground: 40 20% 90%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 30 10% 20%;
+    --input: 30 10% 20%;
+    --ring: 40 20% 80%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sunday Masthead', serif;
+    font-weight: 400;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Sunday Masthead', serif;
+  }
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+  .text-accent-warm {
+    color: hsl(var(--accent));
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media print {
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Remove min-h-screen so the page doesn't force extra blank pages */
+  .min-h-screen {
+    min-height: 0 !important;
+  }
+
+  /* Collapse oversized bottom padding on the last sections */
+  section:last-of-type {
+    padding-bottom: 2rem !important;
+  }
+
+  footer {
+    padding-bottom: 1rem !important;
+    page-break-after: avoid !important;
+  }
+
+  /* Prevent blank pages from page-break artifacts */
+  * {
+    page-break-after: auto;
+  }
+}
