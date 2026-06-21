@@ -131,22 +131,25 @@ export default function ExperienceSection() {
           {experiences.map((exp) => (
             <div
               key={exp.company}
-              className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-6 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
+              className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 py-5 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
             >
-              <div className="md:col-span-4 flex items-center gap-3">
+              {/* Logo + company name — always horizontal, never stacked */}
+              <div className="flex items-center gap-3 md:w-[260px] md:flex-shrink-0">
                 <img
                   src={exp.logo}
                   alt={`${exp.company} logo`}
-                  className="w-10 h-10 object-contain rounded-sm flex-shrink-0"
+                  className="w-9 h-9 object-contain rounded flex-shrink-0"
                 />
-                <h3 className="font-display text-[20px] md:text-[22px] text-foreground leading-tight">
+                <h3 className="font-display text-[17px] md:text-[18px] text-foreground leading-snug">
                   {exp.company}
                 </h3>
               </div>
-              <div className="md:col-span-8 space-y-3">
+
+              {/* Roles — indented on mobile to align under company name */}
+              <div className="flex-1 space-y-2 pl-12 md:pl-0">
                 {exp.roles.map((r, i) => (
                   <div key={i} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                    <div className="font-body text-[14px] text-foreground/85">
+                    <div className="font-body text-[13px] text-foreground/85">
                       {r.title}
                       {r.type && (
                         <span className="text-foreground/45 font-normal"> · {r.type}</span>
