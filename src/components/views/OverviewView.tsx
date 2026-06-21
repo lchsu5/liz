@@ -4,6 +4,7 @@ import { ArrowUpRight, Mail, Linkedin, MapPin } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import TiltCard from "../TiltCard";
+import CampusSection from "../CampusSection";
 
 const honors = [
   {
@@ -18,23 +19,6 @@ const honors = [
   },
 ];
 
-const clubs = [
-  {
-    name: "Business Technology Group",
-    role: "Product Analyst '25–26 · Head of Outreach '26–27",
-    note: "1 of 2 freshmen selected to build CMUsed — a campus secondhand marketplace. Led cross-functional feature development with engineers and designers.",
-  },
-  {
-    name: "Taiwanese Student Association",
-    role: "Freshman Rep '25–26 · PR Chair '26–27",
-    note: "Culture Night logistics for 300+ attendees across 20+ orgs; organised a 40+ person ski trip.",
-  },
-  {
-    name: "Foundry by ScottyLabs",
-    role: "Talent Subcommittee Chair, Executive Board '26–27",
-    note: "Built a 7-category venture-metrics framework; founder referrals to a16z, Sequoia, and Khosla — supporting $11M raised over 8 months.",
-  },
-];
 
 export default function OverviewView() {
   const ref = useRef<HTMLElement>(null);
@@ -169,34 +153,7 @@ export default function OverviewView() {
       </section>
 
       {/* CAMPUS LEADERSHIP */}
-      <section className="px-6 md:px-12 py-24">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader
-            label="§ 03"
-            title="Campus Leadership"
-            italicWord="Leadership"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
-            {clubs.map((c) => (
-              <TiltCard
-                key={c.name}
-                className="bg-background p-7 flex flex-col"
-                maxDeg={4}
-              >
-                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-4">
-                  {c.role}
-                </p>
-                <h3 className="font-display text-[22px] text-foreground leading-tight mb-4">
-                  {c.name}
-                </h3>
-                <p className="font-body text-[13px] text-foreground/70 leading-relaxed mt-auto">
-                  {c.note}
-                </p>
-              </TiltCard>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CampusSection />
 
       {/* SECONDLOOK HIGHLIGHT */}
       <section className="px-6 md:px-12 py-24">

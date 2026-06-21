@@ -8,7 +8,8 @@
       "Bash(npx playwright *)",
       "Bash(node -e ' *)",
       "Read(//tmp/**)",
-      "Read(//c/tmp/**)"
+      "Read(//c/tmp/**)",
+      "Bash('.grid > div:first-child')"
     ]
   }
 }

@@ -1,76 +1,191 @@
-import SectionHeader from "./SectionHeader";
+import btgImg from "@/assets/btg.jpeg";
+import tsaImg from "@/assets/taiwanese_student_association.jpeg";
+import foundryImg from "@/assets/foundry.jpeg";
 
-const clubs = [
+const CRIMSON = "#6b0909";
+
+const orgs = [
   {
-    club: "Business Technology Group",
+    name: "Business Technology Group",
+    image: btgImg,
     roles: [
-      { year: "2026–2027", title: "Product Analyst & Head of Outreach" },
-      { year: "2025–2026", title: "Product Analyst" },
+      { title: "Head of Outreach", years: "2026–27" },
+      { title: "Product Analyst", years: "2025–26" },
     ],
     bullets: [
-      "Selected as 1 of 2 freshmen to build CMUsed, a secondhand marketplace addressing resale friction.",
+      "Selected as 1 of 2 freshmen to build CMUsed, a secondhand marketplace addressing resale friction on campus.",
       "Led cross-functional feature development with engineers and designers, refining listing flow and search UX.",
     ],
   },
   {
-    club: "Taiwanese Student Association",
+    name: "Taiwanese Student Association",
+    image: tsaImg,
     roles: [
-      { year: "2026–2027", title: "Public Relations Chair" },
-      { year: "2025–2026", title: "Freshman Representative" },
+      { title: "Public Relations Chair", years: "2026–27" },
+      { title: "Freshman Representative", years: "2025–26" },
     ],
     bullets: [
-      "Coordinated Culture Night logistics for 300+ attendees, aligning 20+ student organizations on scheduling.",
-      "Planned and executed a 40+ person ski trip, managing transportation, budgeting, and logistics.",
+      "Coordinated Culture Night logistics for 300+ attendees, aligning 20+ student organizations.",
+      "Planned and executed a 40+ person ski trip, managing transportation, budgeting, and ops.",
     ],
   },
   {
-    club: "Foundry by ScottyLabs",
-    roles: [{ year: "2026–2027", title: "Talent Subcommittee Chair, Executive Board" }],
+    name: "Foundry by ScottyLabs",
+    image: foundryImg,
+    roles: [
+      { title: "Talent Subcommittee Chair, Executive Board", years: "2026–27" },
+    ],
     bullets: [
       "Designed a 7-category framework analyzing critical venture metrics to identify high-signal builders.",
-      "Facilitated founder referrals to top VCs (a16z, Sequoia, Khosla), supporting $11M raised over 8 months.",
+      "Facilitated founder referrals to a16z, Sequoia, and Khosla — supporting $11M raised over 8 months.",
     ],
   },
 ];
 
 export default function CampusSection() {
   return (
-    <section id="campus" className="py-20 md:py-24 px-6">
+    <section className="py-[100px] px-6">
       <div className="max-w-6xl mx-auto">
-        <SectionHeader
-          label="§08"
-          title="Campus Leadership"
-          italicWord="Leadership"
-          description="Involvement across product, culture, and venture at Carnegie Mellon."
-        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
-          {clubs.map((c) => (
-            <div key={c.club} className="bg-background p-6 md:p-7 flex flex-col">
-              <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-4">
-                {c.club}
-              </p>
-              <div className="space-y-1 mb-5">
-                {c.roles.map((r) => (
-                  <div key={r.year} className="font-body text-[13px] text-foreground/85">
-                    <span className="font-medium">{r.title}</span>
-                    <span className="text-muted-foreground"> · {r.year}</span>
+        {/* Section header */}
+        <div className="mb-8">
+          <h2
+            className="font-display tracking-tight text-foreground"
+            style={{ fontSize: 44, lineHeight: 1.1 }}
+          >
+            Campus Leadership
+          </h2>
+          <p
+            className="font-body mt-3"
+            style={{ fontSize: 14, color: "#888" }}
+          >
+            Involvement across product, culture, and venture at CMU.
+          </p>
+        </div>
+
+        {/* Card grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {orgs.map((org) => (
+            <div
+              key={org.name}
+              className="relative"
+              style={{ transition: "transform 300ms ease-out", zIndex: 1 }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.25)";
+                (e.currentTarget as HTMLDivElement).style.zIndex = "10";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                (e.currentTarget as HTMLDivElement).style.zIndex = "1";
+              }}
+            >
+              {/* Card inner — overflow-hidden keeps image inside rounded corners */}
+              <div
+                className="flex flex-col h-full"
+                style={{
+                  background: "#fff",
+                  borderRadius: 16,
+                  overflow: "hidden",
+                }}
+              >
+                {/* Photo */}
+                <div style={{ height: 200, flexShrink: 0 }}>
+                  <img
+                    src={org.image}
+                    alt={org.name}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
+                </div>
+
+                {/* Content */}
+                <div
+                  className="flex flex-col flex-1"
+                  style={{ padding: 24 }}
+                >
+                  {/* Organization name */}
+                  <p
+                    style={{
+                      fontSize: 10,
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      color: CRIMSON,
+                      marginBottom: 8,
+                      fontFamily: "Inter, sans-serif",
+                    }}
+                  >
+                    {org.name}
+                  </p>
+
+                  {/* Roles */}
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 3,
+                      marginBottom: 20,
+                    }}
+                  >
+                    {org.roles.map((r) => (
+                      <div
+                        key={r.title}
+                        style={{ fontFamily: "Inter, sans-serif", fontSize: 11 }}
+                      >
+                        <span style={{ fontWeight: 600, color: "#181818" }}>
+                          {r.title}
+                        </span>
+                        <span style={{ color: "#aaa" }}> · {r.years}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
+
+                  {/* Bullets */}
+                  <ul
+                    style={{
+                      marginTop: "auto",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: 10,
+                      listStyle: "none",
+                      padding: 0,
+                      margin: 0,
+                      marginTop: "auto",
+                    }}
+                  >
+                    {org.bullets.map((b, i) => (
+                      <li
+                        key={i}
+                        style={{ display: "flex", gap: 10, alignItems: "flex-start" }}
+                      >
+                        <span
+                          style={{
+                            color: CRIMSON,
+                            fontSize: 12,
+                            flexShrink: 0,
+                            marginTop: 1,
+                            fontFamily: "Inter, sans-serif",
+                          }}
+                        >
+                          —
+                        </span>
+                        <span
+                          style={{
+                            fontSize: 12,
+                            color: "#555",
+                            lineHeight: 1.6,
+                            fontFamily: "Inter, sans-serif",
+                          }}
+                        >
+                          {b}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <ul className="space-y-3 mt-auto">
-                {c.bullets.map((b, i) => (
-                  <li key={i} className="flex gap-3 items-start">
-                    <span className="text-accent flex-shrink-0 text-[11px] mt-1">—</span>
-                    <span className="font-body text-[13px] text-foreground/70 leading-relaxed">
-                      {b}
-                    </span>
-                  </li>
-                ))}
-              </ul>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
