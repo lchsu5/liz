@@ -4,6 +4,13 @@ import SectionHeader from "../SectionHeader";
 
 const past = [
   {
+    company: "Handshake",
+    title: "LLM & Multimodal AI Research Fellow",
+    dates: "Nov 2025 — Jun 2026",
+    location: "",
+    note: "Applied research on multimodal models for early-career hiring signals.",
+  },
+  {
     company: "Carnegie Mellon University",
     title: "Undergraduate Research Assistant — LLM Safety & Evaluation",
     dates: "Mar 2026 — May 2026",

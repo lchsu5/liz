@@ -17,12 +17,6 @@ const roles = [
     dates: "May 2026 — Present",
     note: "Internship on a product team building enterprise reporting workflows.",
   },
-  {
-    company: "Handshake",
-    title: "LLM & Multimodal AI Research Fellow",
-    dates: "Nov 2025 — Jun 2026",
-    note: "Applied research on multimodal models for early-career hiring signals.",
-  },
 ];
 
 const ventures = [
