@@ -14,39 +14,41 @@
 
 @layer base {
   :root {
-    /* Editorial off-white palette */
-    --background: 45 25% 95%;        /* #F5F4F0 warm off-white */
-    --foreground: 0 0% 7%;           /* #111111 */
+    /* Default to DARK palette on load — ThemeController morphs it on scroll. */
+    --background: 20 14% 6%;
+    --foreground: 35 30% 92%;
 
-    --card: 60 7% 91%;               /* #EBEBE7 surface */
-    --card-foreground: 0 0% 7%;
+    --card: 20 10% 11%;
+    --card-foreground: 35 30% 92%;
 
-    --popover: 45 25% 95%;
-    --popover-foreground: 0 0% 7%;
+    --popover: 20 14% 6%;
+    --popover-foreground: 35 30% 92%;
 
-    --primary: 0 0% 7%;
-    --primary-foreground: 45 25% 95%;
+    --primary: 35 30% 92%;
+    --primary-foreground: 20 14% 6%;
 
-    --secondary: 45 20% 93%;
-    --secondary-foreground: 0 0% 15%;
+    --secondary: 20 10% 11%;
+    --secondary-foreground: 35 30% 92%;
 
-    --muted: 45 15% 92%;
-    --muted-foreground: 0 0% 53%;    /* #888 */
+    --muted: 20 8% 14%;
+    --muted-foreground: 30 8% 62%;
 
-    --accent: 0 84% 23%;             /* #6b0909 */
-    --accent-foreground: 45 25% 95%;
+    --accent: 355 50% 70%;
+    --accent-foreground: 20 14% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 45 12% 86%;
-    --input: 45 12% 86%;
-    --ring: 0 0% 7%;
+    --border: 20 8% 18%;
+    --input: 20 8% 18%;
+    --ring: 355 50% 70%;
+
+    --cursor-glow: 355 70% 70%;
 
     --radius: 1rem;
 
-    --warm-cream: 45 25% 95%;
-    --warm-beige: 60 7% 91%;
+    --warm-cream: 37 35% 94%;
+    --warm-beige: 37 18% 89%;
     --warm-tan: 17 35% 75%;
     --warm-brown: 17 44% 59%;
 
@@ -59,6 +61,7 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
 
   .dark {
     --background: 30 10% 8%;
