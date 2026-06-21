@@ -131,38 +131,37 @@ export default function ExperienceSection() {
           {experiences.map((exp) => (
             <div
               key={exp.company}
-              className="flex flex-col md:flex-row md:items-center gap-3 md:gap-8 py-5 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
+              className="flex items-start gap-4 py-5 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
             >
-              {/* Logo + company name — always horizontal, never stacked */}
-              <div className="flex items-center gap-3 md:w-[260px] md:flex-shrink-0">
-                <img
-                  src={exp.logo}
-                  alt={`${exp.company} logo`}
-                  className="w-9 h-9 object-contain rounded flex-shrink-0"
-                />
-                <h3 className="font-display text-[17px] md:text-[18px] text-foreground leading-snug">
+              {/* Logo square */}
+              <img
+                src={exp.logo}
+                alt={`${exp.company} logo`}
+                className="w-10 h-10 object-contain rounded flex-shrink-0 mt-0.5"
+              />
+
+              {/* Separator */}
+              <div className="w-px self-stretch bg-border flex-shrink-0" />
+
+              {/* Company + roles */}
+              <div className="flex-1 min-w-0">
+                <h3 className="font-display text-[16px] md:text-[17px] text-foreground leading-snug mb-1">
                   {exp.company}
                 </h3>
-              </div>
-
-              {/* Roles — indented on mobile to align under company name */}
-              <div className="flex-1 space-y-2 pl-12 md:pl-0">
-                {exp.roles.map((r, i) => (
-                  <div key={i} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-                    <div className="font-body text-[13px] text-foreground/85">
-                      {r.title}
-                      {r.type && (
-                        <span className="text-foreground/45 font-normal"> · {r.type}</span>
-                      )}
-                      {r.location && (
-                        <span className="text-foreground/45 font-normal"> · {r.location}</span>
-                      )}
+                <div className="space-y-0.5">
+                  {exp.roles.map((r, i) => (
+                    <div key={i} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4">
+                      <div className="font-body text-[12px] text-foreground/60">
+                        {r.title}
+                        {r.type && <span className="text-foreground/40"> · {r.type}</span>}
+                        {r.location && <span className="text-foreground/40"> · {r.location}</span>}
+                      </div>
+                      <div className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
+                        {r.dates}
+                      </div>
                     </div>
-                    <div className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
-                      {r.dates}
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           ))}
