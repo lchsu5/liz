@@ -1,11 +1,12 @@
 export default function Footer() {
   return (
-    <footer className="py-10 px-6">
-      <div className="max-w-5xl mx-auto flex items-center justify-center">
-        <p className="font-body text-xs text-muted-foreground flex items-center gap-2">
-          <span>© 2026 Elizabeth Hsu</span>
-          <span className="text-accent">✦</span>
-          <span>Made with care in LA</span>
+    <footer className="py-10 px-6 border-t border-border mt-10">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
+        <p className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+          © 2026 Elizabeth Hsu
+        </p>
+        <p className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+          Last updated June 2026
         </p>
       </div>
     </footer>
