@@ -34,8 +34,11 @@ export default function AboutView() {
             § Overview
           </p>
           <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
-            The <span className="italic text-accent">essentials</span>.
+            Elizabeth <span className="italic text-accent">Hsu</span>.
           </h1>
+          <p className="font-body text-[13px] md:text-[15px] tracking-[0.18em] uppercase text-accent mt-4">
+            Business + AI @ Carnegie Mellon
+          </p>
         </motion.div>
 
         {/* EDUCATION */}
