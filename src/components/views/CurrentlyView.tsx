@@ -10,12 +10,14 @@ const roles = [
     title: "Student Ambassador",
     dates: "Jun 2026 — Present",
     note: "Representing Adobe on campus; connecting students with the creative & AI toolchain.",
+    logo: null as string | null,
   },
   {
     company: "Workiva",
     title: "Product Manager Intern",
     dates: "May 2026 — Present",
     note: "Internship on a product team building enterprise reporting workflows.",
+    logo: null as string | null,
   },
 ];
 
@@ -67,6 +69,15 @@ export default function CurrentlyView() {
                 className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-8"
               >
                 <div className="md:col-span-4">
+                  <div className="w-10 h-10 border border-border flex items-center justify-center mb-3 overflow-hidden">
+                    {r.logo ? (
+                      <img src={r.logo} alt={r.company} className="w-full h-full object-contain p-1" />
+                    ) : (
+                      <span className="font-body text-[11px] tracking-[0.1em] uppercase text-muted-foreground">
+                        {r.company[0]}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
                     {r.company}
                   </h3>

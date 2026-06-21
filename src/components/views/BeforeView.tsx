@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
+import projectDestinedLogo from "@/assets/project-destined-logo.png";
 
 const past = [
   {
@@ -9,6 +10,7 @@ const past = [
     dates: "Nov 2025 — Jun 2026",
     location: "",
     note: "Applied research on multimodal models for early-career hiring signals.",
+    logo: null as string | null,
   },
   {
     company: "Carnegie Mellon University",
@@ -16,6 +18,7 @@ const past = [
     dates: "Mar 2026 — May 2026",
     location: "Pittsburgh, PA",
     note: "Evaluated frontier LLM behavior under adversarial prompts; contributed to safety benchmark design.",
+    logo: null as string | null,
   },
   {
     company: "SuperWorld",
@@ -23,6 +26,7 @@ const past = [
     dates: "Feb 2026 — May 2026",
     location: "",
     note: "Spec'd consumer features for a virtual-world platform; ran user interviews and prioritization.",
+    logo: null as string | null,
   },
   {
     company: "Consortium Research Group",
@@ -30,6 +34,7 @@ const past = [
     dates: "Jun 2025 — Aug 2025",
     location: "",
     note: "Published initiating-coverage reports on $HOOD and $PYPL covering the FinTech vertical.",
+    logo: null as string | null,
   },
   {
     company: "Project Destined",
@@ -37,6 +42,7 @@ const past = [
     dates: "May 2025 — Oct 2025",
     location: "",
     note: "Underwrote multifamily acquisitions; presented investment memos to industry mentors.",
+    logo: projectDestinedLogo,
   },
   {
     company: "EY",
@@ -44,6 +50,7 @@ const past = [
     dates: "May 2024 — Aug 2024",
     location: "Orange County, CA",
     note: "Supported ESG disclosure modeling for a Fortune 500 client.",
+    logo: null as string | null,
   },
   {
     company: "Deloitte",
@@ -51,6 +58,7 @@ const past = [
     dates: "Jul 2024",
     location: "Costa Mesa, CA",
     note: "Selected participant — case studies, professional skills, and partner shadowing.",
+    logo: null as string | null,
   },
   {
     company: "Kumon North America",
@@ -58,6 +66,7 @@ const past = [
     dates: "Feb 2023 — Apr 2025",
     location: "Tustin, CA",
     note: "Two years of one-on-one math instruction — quietly the most formative role on this list.",
+    logo: null as string | null,
   },
 ];
 
@@ -92,6 +101,15 @@ export default function BeforeView() {
                 className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-7 hover:bg-card/40 transition-colors px-2 -mx-2"
               >
                 <div className="md:col-span-4">
+                  <div className="w-10 h-10 border border-border flex items-center justify-center mb-3 overflow-hidden">
+                    {p.logo ? (
+                      <img src={p.logo} alt={p.company} className="w-full h-full object-contain p-1" />
+                    ) : (
+                      <span className="font-body text-[11px] tracking-[0.1em] uppercase text-muted-foreground">
+                        {p.company[0]}
+                      </span>
+                    )}
+                  </div>
                   <h3 className="font-display text-[22px] md:text-[24px] text-foreground leading-tight">
                     {p.company}
                   </h3>
