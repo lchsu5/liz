@@ -9,7 +9,8 @@
       "Bash(node -e ' *)",
       "Read(//tmp/**)",
       "Read(//c/tmp/**)",
-      "Bash('.grid > div:first-child')"
+      "Bash('.grid > div:first-child')",
+      "Bash(git add *)"
     ]
   }
 }
