@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import { useRef } from "react";
-import { Mail, Linkedin, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowDown } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
@@ -12,7 +11,7 @@ const honors = [
     date: "Mar 2026",
   },
   {
-    title: "Dean’s List",
+    title: "Dean's List",
     issuer: "Carnegie Mellon University",
     date: "Jan 2026",
   },
@@ -23,109 +22,261 @@ const languages = [
   { name: "Chinese (Mandarin)", level: "Limited Working" },
 ];
 
+const currentChips = [
+  { org: "Adobe", role: "Student Ambassador" },
+  { org: "Workiva", role: "PM Intern" },
+  { org: "Handshake", role: "AI Research" },
+];
 
 export default function OverviewView() {
-  const ref = useRef<HTMLElement>(null);
-
   return (
-    <main ref={ref} className="min-h-screen">
-      <ThemeController mode="overview" scrollRef={ref} />
+    <main className="min-h-screen">
+      <ThemeController mode="light" />
 
-      {/* Ambient animated background — visible mostly in dark */}
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-      >
-        <motion.div
-          animate={{ x: [0, 60, -40, 0], y: [0, -40, 30, 0] }}
-          transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-32 -left-32 w-[55vw] h-[55vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, hsl(var(--accent) / 0.18), transparent 60%)",
-            filter: "blur(60px)",
-          }}
-        />
-        <motion.div
-          animate={{ x: [0, -50, 40, 0], y: [0, 50, -30, 0] }}
-          transition={{ duration: 34, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-32 -right-32 w-[50vw] h-[50vw] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, hsl(var(--accent) / 0.14), transparent 60%)",
-            filter: "blur(70px)",
-          }}
-        />
-      </div>
-
-      {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-32">
-        <div className="max-w-6xl mx-auto w-full">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-8"
-          >
-            § 01 — Portfolio
-          </motion.p>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="font-display tracking-tight text-foreground text-[56px] sm:text-[88px] md:text-[128px] leading-[0.95]"
-          >
-            Elizabeth
-            <br />
-            <span className="italic text-accent">Hsu</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            className="font-body text-[13px] md:text-[15px] tracking-[0.18em] uppercase text-accent mt-8 mb-4"
-          >
-            Business + AI @ Carnegie Mellon
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="font-body text-[16px] md:text-[20px] text-foreground/80 max-w-2xl leading-relaxed"
-          >
-            I work at the seam of product, research, and venture — currently
-            shipping with Adobe, Workiva, and Handshake.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-10 flex flex-wrap gap-x-6 gap-y-3 font-body text-[12px] tracking-[0.14em] uppercase text-foreground/65"
-          >
-            <span className="inline-flex items-center gap-2">
-              <MapPin size={13} className="text-accent" /> Irvine, CA
-            </span>
-            <a
-              href="mailto:lchsu@andrew.cmu.edu"
-              className="inline-flex items-center gap-2 hover:text-accent transition-colors"
-            >
-              <Mail size={13} className="text-accent" /> lchsu@andrew.cmu.edu
-            </a>
-            <a
-              href="https://www.linkedin.com/in/lizhhsu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-accent transition-colors"
-            >
-              <Linkedin size={13} className="text-accent" /> linkedin.com/in/lizhhsu
-            </a>
-          </motion.div>
+      {/* HERO — asymmetric editorial spread */}
+      <section className="relative min-h-screen flex items-center px-6 md:px-12 pt-24 pb-24 overflow-hidden">
+        {/* Ambient accent wash */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10"
+        >
+          <div
+            className="absolute -top-32 -right-40 w-[60vw] h-[60vw] rounded-full opacity-50"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(var(--accent) / 0.12), transparent 65%)",
+              filter: "blur(40px)",
+            }}
+          />
+          <div
+            className="absolute -bottom-40 -left-40 w-[50vw] h-[50vw] rounded-full opacity-40"
+            style={{
+              background:
+                "radial-gradient(circle, hsl(var(--accent) / 0.08), transparent 60%)",
+              filter: "blur(50px)",
+            }}
+          />
+          {/* dot grid */}
+          <div
+            className="absolute inset-0 opacity-[0.18]"
+            style={{
+              backgroundImage:
+                "radial-gradient(hsl(var(--foreground) / 0.5) 1px, transparent 1px)",
+              backgroundSize: "28px 28px",
+              maskImage:
+                "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse at center, black 30%, transparent 75%)",
+            }}
+          />
         </div>
+
+        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          {/* LEFT — copy */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6 flex items-center gap-3"
+            >
+              <span className="w-8 h-px bg-accent" />
+              § 01 — Portfolio
+            </motion.p>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: "easeOut" }}
+              className="font-display tracking-tight text-foreground text-[56px] sm:text-[80px] md:text-[112px] leading-[0.92]"
+            >
+              Elizabeth
+              <br />
+              <span className="italic text-accent">Hsu</span>
+              <span className="text-accent">.</span>
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="font-body text-[13px] md:text-[14px] tracking-[0.18em] uppercase text-accent mt-7"
+            >
+              Business + AI @ Carnegie Mellon
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="font-body text-[16px] md:text-[19px] text-foreground/75 max-w-xl leading-relaxed mt-5"
+            >
+              I work at the seam of product, research, and venture — currently
+              shipping with Adobe, Workiva, and Handshake.
+            </motion.p>
+
+            {/* Quick chips */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.45 }}
+              className="mt-8 flex flex-wrap gap-2"
+            >
+              {currentChips.map((c) => (
+                <span
+                  key={c.org}
+                  className="font-body text-[10px] tracking-[0.18em] uppercase border border-accent/40 text-foreground/80 px-3 py-1.5 hover:bg-accent/10 hover:border-accent transition-colors"
+                >
+                  <span className="text-accent">●</span> {c.org}
+                  <span className="text-foreground/40 mx-1.5">/</span>
+                  {c.role}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.55 }}
+              className="mt-10 flex flex-wrap gap-x-6 gap-y-3 font-body text-[12px] tracking-[0.14em] uppercase text-foreground/65"
+            >
+              <span className="inline-flex items-center gap-2">
+                <MapPin size={13} className="text-accent" /> Irvine, CA
+              </span>
+              <a
+                href="mailto:lchsu@andrew.cmu.edu"
+                className="inline-flex items-center gap-2 hover:text-accent transition-colors"
+              >
+                <Mail size={13} className="text-accent" /> lchsu@andrew.cmu.edu
+              </a>
+              <a
+                href="https://www.linkedin.com/in/lizhhsu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 hover:text-accent transition-colors"
+              >
+                <Linkedin size={13} className="text-accent" /> linkedin.com/in/lizhhsu
+              </a>
+            </motion.div>
+          </div>
+
+          {/* RIGHT — creative photo placeholder */}
+          <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+              className="relative w-[280px] h-[360px] sm:w-[340px] sm:h-[440px] md:w-[380px] md:h-[480px]"
+            >
+              {/* Rotated outlined frame behind */}
+              <motion.div
+                animate={{ rotate: [6, 8, 6] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 border border-accent/50"
+                style={{ transformOrigin: "center" }}
+              />
+
+              {/* Accent block bottom-left */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent"
+              />
+
+              {/* The blob-masked photo container */}
+              <div
+                className="absolute inset-0 overflow-hidden bg-card border border-border"
+                style={{
+                  borderRadius:
+                    "62% 38% 54% 46% / 48% 56% 44% 52%",
+                }}
+              >
+                {/* Inner gradient — stands in for photo */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, hsl(var(--accent) / 0.22), hsl(var(--accent) / 0.05) 55%, hsl(var(--card)))",
+                  }}
+                />
+                {/* Soft pattern overlay */}
+                <div
+                  className="absolute inset-0 opacity-30 mix-blend-multiply"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(hsl(var(--accent) / 0.5) 1px, transparent 1.5px)",
+                    backgroundSize: "14px 14px",
+                  }}
+                />
+                {/* Centered monogram placeholder */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <span className="font-display italic text-accent text-[140px] leading-none select-none">
+                    eh
+                  </span>
+                  <span className="font-body text-[9px] tracking-[0.28em] uppercase text-foreground/50 mt-2">
+                    Photo · soon
+                  </span>
+                </div>
+
+                {/* Animated organic blob morph */}
+                <motion.div
+                  animate={{
+                    borderRadius: [
+                      "62% 38% 54% 46% / 48% 56% 44% 52%",
+                      "48% 52% 38% 62% / 56% 42% 58% 44%",
+                      "62% 38% 54% 46% / 48% 56% 44% 52%",
+                    ],
+                  }}
+                  transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute inset-0 pointer-events-none border border-accent/20"
+                />
+              </div>
+
+              {/* Floating caption card top-right */}
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: -10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="absolute -top-4 -right-4 sm:-right-8 bg-background border border-border shadow-sm px-4 py-3"
+              >
+                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-accent">
+                  Based in
+                </p>
+                <p className="font-display text-[16px] text-foreground mt-0.5">
+                  Irvine, <span className="italic">CA</span>
+                </p>
+              </motion.div>
+
+              {/* Floating status card bottom-right */}
+              <motion.div
+                initial={{ opacity: 0, x: 20, y: 10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.85 }}
+                className="absolute -bottom-2 -right-6 sm:-right-10 bg-background border border-border shadow-sm px-4 py-3 flex items-center gap-2"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                </span>
+                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/80">
+                  Open to roles
+                </span>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Scroll cue */}
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/50"
+        >
+          <span className="font-body text-[9px] tracking-[0.28em] uppercase">Scroll</span>
+          <ArrowDown size={14} />
+        </motion.div>
       </section>
+
 
       {/* EDUCATION */}
       <section className="px-6 md:px-12 py-24">
