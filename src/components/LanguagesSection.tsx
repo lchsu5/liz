@@ -1,8 +1,8 @@
 import SectionHeader from "./SectionHeader";
 
 const languages = [
-  { name: "English", level: "Native or Bilingual Proficiency" },
-  { name: "Chinese", level: "Limited Working Proficiency" },
+  { name: "English", level: "Fluent" },
+  { name: "Chinese", level: "Bilingual" },
 ];
 
 export default function LanguagesSection() {

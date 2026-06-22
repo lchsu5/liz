@@ -85,8 +85,8 @@ export default function OverviewView() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="font-body text-[16px] md:text-[19px] text-foreground/75 max-w-xl leading-relaxed mt-5"
             >
-              I work at the seam of product, research, and venture — currently
-              shipping with Adobe, Workiva, and Handshake.
+              I work at the intersection of product, research, and venture, currently
+              shipping with Adobe and Workiva.
             </motion.p>
 
             {/* Quick chips */}
