@@ -61,15 +61,6 @@ export default function OverviewView() {
       {/* HERO */}
       <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 pt-24 pb-32">
         <div className="max-w-6xl mx-auto w-full">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-8"
-          >
-            § 01 — Portfolio
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}

@@ -98,31 +98,32 @@ export default function BeforeView() {
             {past.map((p) => (
               <div
                 key={p.company + p.dates}
-                className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-7 hover:bg-card/40 transition-colors px-2 -mx-2"
+                className="flex items-start gap-5 py-7 hover:bg-card/40 transition-colors px-2 -mx-2"
               >
-                <div className="md:col-span-4">
-                  <div className="w-10 h-10 border border-border flex items-center justify-center mb-3 overflow-hidden">
-                    {p.logo ? (
-                      <img src={p.logo} alt={p.company} className="w-full h-full object-contain p-1" />
-                    ) : (
-                      <span className="font-body text-[11px] tracking-[0.1em] uppercase text-muted-foreground">
-                        {p.company[0]}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-display text-[22px] md:text-[24px] text-foreground leading-tight">
+                {/* Logo — always visible, larger */}
+                <div className="w-16 h-16 shrink-0 border border-border flex items-center justify-center overflow-hidden bg-card">
+                  {p.logo ? (
+                    <img src={p.logo} alt={p.company} className="w-full h-full object-contain p-2" />
+                  ) : (
+                    <span className="font-display text-[20px] text-muted-foreground">
+                      {p.company[0]}
+                    </span>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display text-[22px] md:text-[26px] text-foreground leading-tight">
                     {p.company}
                   </h3>
-                  <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-2">
+                  <p className="font-body text-[15px] text-foreground/90 mt-1">{p.title}</p>
+                  <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-1">
                     {p.dates}
                     {p.location && (
                       <span className="ml-2 text-foreground/40">· {p.location}</span>
                     )}
                   </p>
-                </div>
-                <div className="md:col-span-8">
-                  <p className="font-body text-[15px] text-foreground/90">{p.title}</p>
-                  <p className="font-body text-[13px] text-foreground/65 mt-2 leading-relaxed max-w-2xl">
+                  <p className="font-body text-[13px] text-foreground/65 mt-3 leading-relaxed max-w-2xl">
                     {p.note}
                   </p>
                 </div>

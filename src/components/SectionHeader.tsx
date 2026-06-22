@@ -1,17 +1,14 @@
 interface SectionHeaderProps {
-  label: string;
+  label?: string;
   title: string;
   italicWord?: string;
   description?: string;
 }
 
-export default function SectionHeader({ label, title, italicWord, description }: SectionHeaderProps) {
+export default function SectionHeader({ title, italicWord, description }: SectionHeaderProps) {
   const words = title.split(" ");
   return (
     <div className="mb-12">
-      <p className="font-body text-[11px] tracking-[0.28em] uppercase text-accent mb-3">
-        {label}
-      </p>
       <h2 className="font-display text-[34px] md:text-[44px] leading-[1.05] text-foreground tracking-tight">
         {italicWord ? (
           words.map((w, i) => (
