@@ -121,20 +121,14 @@ export default function BeforeView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-body text-[12px] tracking-[0.22em] uppercase text-accent mb-6">
-            Before
-          </p>
-          <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
-            Where I've <span className="italic text-accent">been</span>.
-          </h1>
-          <p className="font-body text-[15px] md:text-[16px] text-foreground/70 mt-6 max-w-2xl leading-relaxed">
-            Past roles across research, real estate, consulting, and the
-            classroom. Filter by track, click any row to expand.
-          </p>
+          <SectionHeader
+            title="Where I've Been"
+            description="Past roles across research, real estate, consulting, and the classroom. Filter by track, click any row to expand."
+          />
         </motion.div>
 
         <div className="mt-20">
-          <SectionHeader label="§ 01" title="Past Roles" italicWord="Roles" />
+          <SectionHeader title="Past Roles" />
 
           {/* Filter chips */}
           <div className="flex flex-wrap items-center gap-2 mb-8">
@@ -177,9 +171,9 @@ export default function BeforeView() {
                       onClick={() => setOpenIdx(open ? null : i)}
                       className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 py-5 md:py-6 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
                     >
-                      {/* Year + Logo side by side */}
-                      <div className="col-span-3 md:col-span-3 flex items-center justify-between self-center gap-2">
-                        <span className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+                      {/* Year + Logo packed tightly together */}
+                      <div className="col-span-2 md:col-span-2 flex items-center gap-3 self-center">
+                        <span className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground flex-shrink-0">
                           {p.year}
                         </span>
                         <motion.div
@@ -202,8 +196,8 @@ export default function BeforeView() {
                         </motion.div>
                       </div>
 
-                      {/* Company + title — left edge consistent between name and role */}
-                      <div className="col-span-7 md:col-span-6 self-center">
+                      {/* Company + title */}
+                      <div className="col-span-8 md:col-span-7 self-center">
                         <h3 className="font-display text-[20px] md:text-[24px] text-foreground leading-tight group-hover:text-accent transition-colors">
                           {p.company}
                         </h3>
@@ -237,8 +231,8 @@ export default function BeforeView() {
                           className="overflow-hidden"
                         >
                           <div className="grid grid-cols-12 gap-3 md:gap-6 pb-7 pt-1 px-2 -mx-2">
-                            {/* Dates + note — left-aligned with company name (col 4 on desktop) */}
-                            <div className="col-span-12 md:col-start-4 md:col-span-7">
+                            {/* Dates + note — left-aligned with company name (col 3 on desktop) */}
+                            <div className="col-span-12 md:col-start-3 md:col-span-7">
                               <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
                                 {p.dates}
                                 {p.location && (

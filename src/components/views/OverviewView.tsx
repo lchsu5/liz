@@ -236,21 +236,22 @@ export default function OverviewView() {
                 </p>
               </motion.div>
 
-              {/* Floating status card bottom-right */}
-              <motion.div
+              {/* Floating contact badge bottom-right */}
+              <motion.a
                 initial={{ opacity: 0, x: 20, y: 10 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.85 }}
-                className="absolute -bottom-2 -right-6 sm:-right-10 bg-background border border-border shadow-sm px-4 py-3 flex items-center gap-2"
+                href="mailto:lchsu@andrew.cmu.edu"
+                className="absolute -bottom-2 -right-6 sm:-right-10 bg-background border border-border shadow-sm px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/5 transition-colors duration-200"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
                 </span>
                 <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/80">
-                  Open to roles
+                  Contact me
                 </span>
-              </motion.div>
+              </motion.a>
             </motion.div>
           </div>
         </div>
@@ -270,7 +271,7 @@ export default function OverviewView() {
       {/* EDUCATION */}
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 02" title="Education" italicWord="Education" />
+          <SectionHeader title="Education" />
           <div className="border-y border-border py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6">
             <div className="md:col-span-5">
               <h3 className="font-display text-[26px] md:text-[34px] text-foreground leading-tight">
@@ -300,7 +301,7 @@ export default function OverviewView() {
       {/* HONORS */}
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 03" title="Honors & Awards" italicWord="Awards" />
+          <SectionHeader title="Honors & Awards" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {honors.map((h, i) => (
               <motion.div
@@ -335,7 +336,7 @@ export default function OverviewView() {
       {/* LANGUAGES */}
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 05" title="Languages" italicWord="Languages" />
+          <SectionHeader title="Languages" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
             {languages.map((l, i) => (
               <motion.div
@@ -361,7 +362,7 @@ export default function OverviewView() {
       {/* CONTACT */}
       <section className="px-6 md:px-12 py-24 pb-40">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader label="§ 06" title="Get in Touch" italicWord="Touch" />
+          <SectionHeader title="Get in Touch" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <a
               href="mailto:lchsu@andrew.cmu.edu"

@@ -342,20 +342,14 @@ export default function ResearchView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6">
-            § Research
-          </p>
-          <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
-            Equity <span className="italic text-accent">coverage</span>.
-          </h1>
-          <p className="font-body text-[15px] md:text-[16px] text-foreground/70 mt-6 max-w-2xl leading-relaxed">
-            Initiating-coverage reports published with Consortium Research's FIG vertical.
-            Toggle scenarios to explore valuation ranges.
-          </p>
+          <SectionHeader
+            title="Equity Coverage"
+            description="Initiating-coverage reports published with Consortium Research's FIG vertical. Toggle scenarios to explore valuation ranges."
+          />
         </motion.div>
 
         <div className="mt-20">
-          <SectionHeader label="§ 01" title="Published Reports" italicWord="Reports" />
+          <SectionHeader title="Published Reports" />
           <div className="space-y-px">
             {reports.map((r) => (
               <ReportCard key={r.ticker} report={r} />

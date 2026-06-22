@@ -1,26 +1,18 @@
 interface SectionHeaderProps {
-  label?: string;
   title: string;
-  italicWord?: string;
   description?: string;
 }
 
-export default function SectionHeader({ title, italicWord, description }: SectionHeaderProps) {
-  const words = title.split(" ");
+export default function SectionHeader({ title, description }: SectionHeaderProps) {
   return (
     <div className="mb-12">
-      <h2 className="font-display text-[34px] md:text-[44px] leading-[1.05] text-foreground tracking-tight">
-        {italicWord ? (
-          words.map((w, i) => (
-            <span key={i}>
-              {w === italicWord ? <span className="italic text-accent">{w}</span> : w}
-              {i < words.length - 1 ? " " : ""}
-            </span>
-          ))
-        ) : (
-          title
-        )}
+      <h2 className="font-heading font-medium uppercase text-[22px] md:text-[30px] tracking-[0.04em] text-foreground leading-tight">
+        {title}
       </h2>
+      {/* Hairline rule with 32px maroon accent overlapping from the left */}
+      <div className="relative mt-5 h-px bg-foreground/[0.12]">
+        <div className="absolute left-0 -top-[0.5px] w-8 h-[2px] bg-accent" />
+      </div>
       {description && (
         <p className="font-body text-muted-foreground mt-4 max-w-2xl text-[14px] leading-relaxed">
           {description}

@@ -43,20 +43,14 @@ export default function CurrentlyView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-body text-[12px] tracking-[0.22em] uppercase text-accent mb-6">
-            Currently
-          </p>
-          <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
-            What I'm <span className="italic text-accent">doing</span> now.
-          </h1>
-          <p className="font-body text-[15px] md:text-[16px] text-foreground/70 mt-6 max-w-2xl leading-relaxed">
-            Active roles across product, research, and venture — plus the projects
-            I'm shipping in parallel.
-          </p>
+          <SectionHeader
+            title="What I'm Doing Now"
+            description="Active roles across product, research, and venture — plus the projects I'm shipping in parallel."
+          />
         </motion.div>
 
         <div className="mt-20">
-          <SectionHeader label="§ 01" title="Active Roles" italicWord="Roles" />
+          <SectionHeader title="Active Roles" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {roles.map((r, i) => (
               <motion.div
@@ -111,7 +105,7 @@ export default function CurrentlyView() {
         </div>
 
         <div className="mt-24">
-          <SectionHeader label="§ 02" title="Latest Build" italicWord="Build" />
+          <SectionHeader title="Latest Build" />
           <TiltCard maxDeg={3}>
             <a
               href="https://trae4d3ed8mx.vercel.app"
@@ -145,7 +139,7 @@ export default function CurrentlyView() {
         </div>
 
         <div className="mt-24">
-          <SectionHeader label="§ 03" title="Projects & Ventures" italicWord="Ventures" />
+          <SectionHeader title="Projects & Ventures" />
           <div className="space-y-px">
             {ventures.map((v) => (
               <a
