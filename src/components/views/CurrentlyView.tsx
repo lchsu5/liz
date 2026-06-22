@@ -64,32 +64,55 @@ export default function CurrentlyView() {
 
         <div className="mt-20">
           <SectionHeader label="§ 01" title="Active Roles" italicWord="Roles" />
-          <div className="divide-y divide-border border-y border-border">
-            {roles.map((r) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {roles.map((r, i) => (
+              <motion.div
                 key={r.company}
-                className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-8"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                whileHover={{ y: -4 }}
+                className="group relative border border-border bg-card/30 p-7 md:p-8 overflow-hidden transition-colors duration-300 hover:bg-card/60 hover:border-accent/50"
               >
-                <div className="md:col-span-4">
-                  <div className="flex items-center gap-3 mb-2">
-                    {r.logo && (
-                      <img src={r.logo} alt={r.company} className="w-9 h-9 object-contain flex-shrink-0" />
-                    )}
-                    <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
+                {/* corner number */}
+                <span className="absolute top-4 right-5 font-display italic text-[14px] text-muted-foreground/70">
+                  0{i + 1}
+                </span>
+
+                <div className="flex items-center gap-3 mb-6">
+                  {r.logo && (
+                    <div className="w-11 h-11 border border-border bg-background flex items-center justify-center overflow-hidden">
+                      <img
+                        src={r.logo}
+                        alt={r.company}
+                        className="w-full h-full object-contain p-1 transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                  )}
+                  <div>
+                    <h3 className="font-display text-[26px] text-foreground leading-tight">
                       {r.company}
                     </h3>
+                    <p className="font-body text-[10px] tracking-[0.18em] uppercase text-accent mt-1">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 animate-pulse" />
+                      {r.dates}
+                    </p>
                   </div>
-                  <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
-                    {r.dates}
-                  </p>
                 </div>
-                <div className="md:col-span-8">
-                  <p className="font-body text-[15px] text-foreground/90">{r.title}</p>
-                  <p className="font-body text-[13px] text-foreground/65 mt-2 leading-relaxed max-w-2xl">
-                    {r.note}
-                  </p>
+
+                <p className="font-body text-[15px] text-foreground/90 mb-3">
+                  {r.title}
+                </p>
+                <p className="font-body text-[13px] text-foreground/65 leading-relaxed">
+                  {r.note}
+                </p>
+
+                {/* hover underline */}
+                <div className="mt-6 h-px bg-border overflow-hidden">
+                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
