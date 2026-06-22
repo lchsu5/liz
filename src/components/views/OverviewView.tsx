@@ -79,10 +79,7 @@ export default function OverviewView() {
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="font-display tracking-tight text-foreground text-[56px] sm:text-[80px] md:text-[112px] leading-[0.92]"
             >
-              Elizabeth
-              <br />
-              <span className="italic text-accent">Hsu</span>
-              <span className="text-accent">.</span>
+              Elizabeth Hsu
             </motion.h1>
 
             <motion.p
