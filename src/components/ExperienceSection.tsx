@@ -133,6 +133,18 @@ export default function ExperienceSection() {
               key={exp.company}
               className="flex items-start gap-4 py-5 group hover:bg-card/40 transition-colors duration-200 px-2 -mx-2"
             >
+              {/* Dates column */}
+              <div className="flex flex-col gap-0.5 w-28 flex-shrink-0 mt-0.5">
+                {exp.roles.map((r, i) => (
+                  <div key={i} className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
+                    {r.dates}
+                  </div>
+                ))}
+              </div>
+
+              {/* Separator */}
+              <div className="w-px self-stretch bg-border flex-shrink-0" />
+
               {/* Logo square */}
               <img
                 src={exp.logo}
@@ -150,15 +162,10 @@ export default function ExperienceSection() {
                 </h3>
                 <div className="space-y-0.5">
                   {exp.roles.map((r, i) => (
-                    <div key={i} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 sm:gap-4">
-                      <div className="font-body text-[12px] text-foreground/60">
-                        {r.title}
-                        {r.type && <span className="text-foreground/40"> · {r.type}</span>}
-                        {r.location && <span className="text-foreground/40"> · {r.location}</span>}
-                      </div>
-                      <div className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
-                        {r.dates}
-                      </div>
+                    <div key={i} className="font-body text-[12px] text-foreground/60">
+                      {r.title}
+                      {r.type && <span className="text-foreground/40"> · {r.type}</span>}
+                      {r.location && <span className="text-foreground/40"> · {r.location}</span>}
                     </div>
                   ))}
                 </div>
