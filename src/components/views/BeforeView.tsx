@@ -99,7 +99,7 @@ const categories: Category[] = ["All", "Research", "Product", "Finance", "Teachi
 
 export default function BeforeView() {
   const [filter, setFilter] = useState<Category>("All");
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [logoVisible, setLogoVisible] = useState(false);
 
   useEffect(() => {
@@ -121,8 +121,8 @@ export default function BeforeView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6">
-            § Before
+          <p className="font-body text-[12px] tracking-[0.22em] uppercase text-accent mb-6">
+            Before
           </p>
           <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
             Where I've <span className="italic text-accent">been</span>.
@@ -177,18 +177,16 @@ export default function BeforeView() {
                       onClick={() => setOpenIdx(open ? null : i)}
                       className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 py-5 md:py-6 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
                     >
-                      {/* Year */}
-                      <div className="col-span-3 md:col-span-2 font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground self-center">
-                        {p.year}
-                      </div>
-
-                      {/* Logo — hidden on mobile, fades in after load on desktop */}
-                      <div className="hidden md:flex md:col-span-1 self-center items-center">
+                      {/* Year + Logo side by side */}
+                      <div className="col-span-3 md:col-span-3 flex items-center justify-between self-center gap-2">
+                        <span className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
+                          {p.year}
+                        </span>
                         <motion.div
                           initial={{ opacity: 0, scale: 0.7 }}
                           animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.7 }}
                           transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="w-10 h-10 border border-border flex items-center justify-center overflow-hidden"
+                          className="w-12 h-12 border border-border flex items-center justify-center overflow-hidden flex-shrink-0"
                         >
                           {p.logo ? (
                             <img
@@ -197,14 +195,14 @@ export default function BeforeView() {
                               className="w-full h-full object-contain p-1"
                             />
                           ) : (
-                            <span className="font-display italic text-[16px] text-accent">
+                            <span className="font-display italic text-[18px] text-accent">
                               {p.company[0]}
                             </span>
                           )}
                         </motion.div>
                       </div>
 
-                      {/* Company + title */}
+                      {/* Company + title — left edge consistent between name and role */}
                       <div className="col-span-7 md:col-span-6 self-center">
                         <h3 className="font-display text-[20px] md:text-[24px] text-foreground leading-tight group-hover:text-accent transition-colors">
                           {p.company}

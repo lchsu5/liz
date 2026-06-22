@@ -25,7 +25,6 @@ const languages = [
 const currentChips = [
   { org: "Adobe", role: "Student Ambassador" },
   { org: "Workiva", role: "PM Intern" },
-  { org: "Handshake", role: "AI Research" },
 ];
 
 export default function OverviewView() {
@@ -74,16 +73,6 @@ export default function OverviewView() {
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* LEFT — copy */}
           <div className="lg:col-span-7 order-2 lg:order-1">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6 flex items-center gap-3"
-            >
-              <span className="w-8 h-px bg-accent" />
-              § 01 — Portfolio
-            </motion.p>
-
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
@@ -322,9 +311,6 @@ export default function OverviewView() {
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className="group relative border border-border bg-card/20 p-7 overflow-hidden hover:bg-card/50 hover:border-accent/50 transition-colors duration-300"
               >
-                <span className="absolute -top-3 -right-2 font-display italic text-[80px] leading-none text-accent/10 select-none">
-                  0{i + 1}
-                </span>
                 <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
                   {h.date}
                 </p>
@@ -351,36 +337,23 @@ export default function OverviewView() {
         <div className="max-w-6xl mx-auto">
           <SectionHeader label="§ 05" title="Languages" italicWord="Languages" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-            {languages.map((l, i) => {
-              const pct = l.level.toLowerCase().includes("native") ? 100 : 55;
-              return (
-                <motion.div
-                  key={l.name}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="bg-background py-8 px-7 group"
-                >
-                  <div className="flex items-baseline justify-between gap-4 mb-4">
-                    <span className="font-display text-[28px] text-foreground">{l.name}</span>
-                    <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
-                      {l.level}
-                    </span>
-                  </div>
-                  <div className="h-px bg-border relative overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${pct}%` }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1.1, delay: 0.15 + i * 0.1, ease: "easeOut" }}
-                      className="absolute inset-y-0 left-0 bg-accent"
-                      style={{ height: 2, top: -0.5 }}
-                    />
-                  </div>
-                </motion.div>
-              );
-            })}
+            {languages.map((l, i) => (
+              <motion.div
+                key={l.name}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="bg-background py-8 px-7"
+              >
+                <div className="flex items-baseline justify-between gap-4">
+                  <span className="font-display text-[28px] text-foreground">{l.name}</span>
+                  <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+                    {l.level}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

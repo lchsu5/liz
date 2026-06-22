@@ -31,13 +31,6 @@ const ventures = [
     body: "Real-time, vision-powered STEM tutor. Detects conceptual mistakes as students solve problems via live iPad screen share, intervenes without giving the answer away, and generates personalized review notes after each session.",
     tags: ["Computer Vision", "LLMs", "EdTech"],
   },
-  {
-    name: "Depop Storefront",
-    tag: "Founder venture · ongoing",
-    href: "https://www.depop.com/",
-    body: "Independent resale storefront — sourcing, photography, pricing, and customer ops. A small studio in fashion commerce, run end-to-end.",
-    tags: ["Resale", "Brand", "Ops"],
-  },
 ];
 
 export default function CurrentlyView() {
@@ -50,8 +43,8 @@ export default function CurrentlyView() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-body text-[11px] tracking-[0.32em] uppercase text-accent mb-6">
-            § Currently
+          <p className="font-body text-[12px] tracking-[0.22em] uppercase text-accent mb-6">
+            Currently
           </p>
           <h1 className="font-display text-[48px] md:text-[80px] leading-[0.98] tracking-tight text-foreground">
             What I'm <span className="italic text-accent">doing</span> now.
