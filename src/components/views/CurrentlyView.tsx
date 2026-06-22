@@ -23,13 +23,16 @@ const roles = [
   },
 ];
 
-const ventures = [
+const honors = [
   {
-    name: "SecondLook",
-    tag: "Project · Jan 2026",
-    href: "https://trae4d3ed8mx.vercel.app",
-    body: "Real-time, vision-powered STEM tutor. Detects conceptual mistakes as students solve problems via live iPad screen share, intervenes without giving the answer away, and generates personalized review notes after each session.",
-    tags: ["Computer Vision", "LLMs", "EdTech"],
+    title: "Zappurtunity Scholar",
+    issuer: "Zappurtunity — selected from 300+ applicants",
+    date: "Mar 2026",
+  },
+  {
+    title: "Dean's List",
+    issuer: "Carnegie Mellon University",
+    date: "Jan 2026",
   },
 ];
 
@@ -139,44 +142,30 @@ export default function CurrentlyView() {
         </div>
 
         <div className="mt-24">
-          <SectionHeader title="Projects & Ventures" />
-          <div className="space-y-px">
-            {ventures.map((v) => (
-              <a
-                key={v.name}
-                href={v.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block border border-border bg-card/30 hover:bg-card/60 transition-colors duration-200 p-7 md:p-9 group"
+          <SectionHeader title="Honors & Awards" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {honors.map((h, i) => (
+              <motion.div
+                key={h.title}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative border border-border bg-card/20 p-7 overflow-hidden hover:bg-card/50 hover:border-accent/50 transition-colors duration-300"
               >
-                <div className="flex items-start justify-between gap-6">
-                  <div className="flex-1">
-                    <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
-                      {v.tag}
-                    </p>
-                    <h3 className="font-display text-[28px] md:text-[34px] text-foreground leading-tight">
-                      {v.name}
-                    </h3>
-                    <p className="font-body text-[14px] text-foreground/75 leading-relaxed max-w-3xl mt-4">
-                      {v.body}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mt-5">
-                      {v.tags.map((t) => (
-                        <span
-                          key={t}
-                          className="font-body text-[10px] tracking-[0.16em] uppercase text-accent border border-accent/30 px-2 py-1"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <ArrowUpRight
-                    size={24}
-                    className="text-foreground/50 group-hover:text-accent group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all duration-200 flex-shrink-0"
-                  />
+                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
+                  {h.date}
+                </p>
+                <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
+                  {h.title}
+                </h3>
+                <p className="font-body text-[12px] text-foreground/65 mt-3 leading-relaxed">
+                  {h.issuer}
+                </p>
+                <div className="mt-5 h-px bg-border overflow-hidden">
+                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
                 </div>
-              </a>
+              </motion.div>
             ))}
           </div>
         </div>

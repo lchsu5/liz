@@ -4,19 +4,6 @@ import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
 
-const honors = [
-  {
-    title: "Zappurtunity Scholar",
-    issuer: "Zappurtunity — selected from 300+ applicants",
-    date: "Mar 2026",
-  },
-  {
-    title: "Dean's List",
-    issuer: "Carnegie Mellon University",
-    date: "Jan 2026",
-  },
-];
-
 const languages = [
   { name: "English", level: "Native or Bilingual" },
   { name: "Chinese (Mandarin)", level: "Limited Working" },
@@ -291,38 +278,6 @@ export default function OverviewView() {
                 Coursework spanning business analytics, computer science, and applied AI.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* HONORS */}
-      <section className="px-6 md:px-12 py-24">
-        <div className="max-w-6xl mx-auto">
-          <SectionHeader title="Honors & Awards" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {honors.map((h, i) => (
-              <motion.div
-                key={h.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative border border-border bg-card/20 p-7 overflow-hidden hover:bg-card/50 hover:border-accent/50 transition-colors duration-300"
-              >
-                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
-                  {h.date}
-                </p>
-                <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
-                  {h.title}
-                </h3>
-                <p className="font-body text-[12px] text-foreground/65 mt-3 leading-relaxed">
-                  {h.issuer}
-                </p>
-                <div className="mt-5 h-px bg-border overflow-hidden">
-                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
