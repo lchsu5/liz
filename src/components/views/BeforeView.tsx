@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
 import ThemeController from "../ThemeController";
@@ -100,6 +100,12 @@ const categories: Category[] = ["All", "Research", "Product", "Finance", "Teachi
 export default function BeforeView() {
   const [filter, setFilter] = useState<Category>("All");
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const [logoVisible, setLogoVisible] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setLogoVisible(true), 400);
+    return () => clearTimeout(t);
+  }, []);
 
   const visible = useMemo(
     () => past.filter((p) => filter === "All" || p.category === filter),
@@ -171,10 +177,35 @@ export default function BeforeView() {
                       onClick={() => setOpenIdx(open ? null : i)}
                       className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 py-5 md:py-6 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
                     >
+                      {/* Year */}
                       <div className="col-span-3 md:col-span-2 font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground self-center">
                         {p.year}
                       </div>
-                      <div className="col-span-7 md:col-span-7 self-center">
+
+                      {/* Logo — hidden on mobile, fades in after load on desktop */}
+                      <div className="hidden md:flex md:col-span-1 self-center items-center">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.7 }}
+                          animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.7 }}
+                          transition={{ duration: 0.4, ease: "easeOut" }}
+                          className="w-10 h-10 border border-border flex items-center justify-center overflow-hidden"
+                        >
+                          {p.logo ? (
+                            <img
+                              src={p.logo}
+                              alt={p.company}
+                              className="w-full h-full object-contain p-1"
+                            />
+                          ) : (
+                            <span className="font-display italic text-[16px] text-accent">
+                              {p.company[0]}
+                            </span>
+                          )}
+                        </motion.div>
+                      </div>
+
+                      {/* Company + title */}
+                      <div className="col-span-7 md:col-span-6 self-center">
                         <h3 className="font-display text-[20px] md:text-[24px] text-foreground leading-tight group-hover:text-accent transition-colors">
                           {p.company}
                         </h3>
@@ -182,6 +213,8 @@ export default function BeforeView() {
                           {p.title}
                         </p>
                       </div>
+
+                      {/* Category + expand toggle */}
                       <div className="col-span-2 md:col-span-3 self-center flex items-center justify-end gap-3">
                         <span className="hidden md:inline font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
                           {p.category}
@@ -206,22 +239,8 @@ export default function BeforeView() {
                           className="overflow-hidden"
                         >
                           <div className="grid grid-cols-12 gap-3 md:gap-6 pb-7 pt-1 px-2 -mx-2">
-                            <div className="col-span-12 md:col-span-2 md:col-start-3">
-                              <div className="w-10 h-10 border border-border flex items-center justify-center overflow-hidden">
-                                {p.logo ? (
-                                  <img
-                                    src={p.logo}
-                                    alt={p.company}
-                                    className="w-full h-full object-contain p-1"
-                                  />
-                                ) : (
-                                  <span className="font-display italic text-[16px] text-accent">
-                                    {p.company[0]}
-                                  </span>
-                                )}
-                              </div>
-                            </div>
-                            <div className="col-span-12 md:col-span-7">
+                            {/* Dates + note — left-aligned with company name (col 4 on desktop) */}
+                            <div className="col-span-12 md:col-start-4 md:col-span-7">
                               <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
                                 {p.dates}
                                 {p.location && (
