@@ -10,7 +10,9 @@
       "Read(//tmp/**)",
       "Read(//c/tmp/**)",
       "Bash('.grid > div:first-child')",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "PowerShell(Get-ChildItem \"$env:USERPROFILE\\\\Downloads\" | Sort-Object LastWriteTime -Descending | Select-Object -First 10 Name, LastWriteTime)",
+      "PowerShell(Copy-Item \"$env:USERPROFILE\\\\Downloads\\\\Liz_Headshot.JPG\" \"c:\\\\Users\\\\lizhs\\\\OneDrive\\\\Documents\\\\GitHub\\\\lizhhsu\\\\src\\\\assets\\\\headshot.jpg\")"
     ]
   }
 }

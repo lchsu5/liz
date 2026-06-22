@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Mail, Linkedin, MapPin, ArrowDown } from "lucide-react";
+import headshotImg from "@/assets/headshot.jpg";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
@@ -158,50 +159,15 @@ export default function OverviewView() {
 
               {/* The blob-masked photo container */}
               <div
-                className="absolute inset-0 overflow-hidden bg-card border border-border"
+                className="absolute inset-0 overflow-hidden border border-border"
                 style={{
-                  borderRadius:
-                    "62% 38% 54% 46% / 48% 56% 44% 52%",
+                  borderRadius: "62% 38% 54% 46% / 48% 56% 44% 52%",
                 }}
               >
-                {/* Inner gradient — stands in for photo */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, hsl(var(--accent) / 0.22), hsl(var(--accent) / 0.05) 55%, hsl(var(--card)))",
-                  }}
-                />
-                {/* Soft pattern overlay */}
-                <div
-                  className="absolute inset-0 opacity-30 mix-blend-multiply"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(hsl(var(--accent) / 0.5) 1px, transparent 1.5px)",
-                    backgroundSize: "14px 14px",
-                  }}
-                />
-                {/* Centered monogram placeholder */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <span className="font-display italic text-accent text-[140px] leading-none select-none">
-                    eh
-                  </span>
-                  <span className="font-body text-[9px] tracking-[0.28em] uppercase text-foreground/50 mt-2">
-                    Photo · soon
-                  </span>
-                </div>
-
-                {/* Animated organic blob morph */}
-                <motion.div
-                  animate={{
-                    borderRadius: [
-                      "62% 38% 54% 46% / 48% 56% 44% 52%",
-                      "48% 52% 38% 62% / 56% 42% 58% 44%",
-                      "62% 38% 54% 46% / 48% 56% 44% 52%",
-                    ],
-                  }}
-                  transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute inset-0 pointer-events-none border border-accent/20"
+                <img
+                  src={headshotImg}
+                  alt="Elizabeth Hsu"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
 
