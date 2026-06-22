@@ -65,7 +65,7 @@ export default function OverviewView() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="font-display tracking-tight text-foreground text-[56px] sm:text-[80px] md:text-[112px] leading-[0.92]"
+              className="font-display tracking-tight text-foreground text-[48px] sm:text-[64px] md:text-[84px] leading-[0.92] whitespace-nowrap"
             >
               Elizabeth Hsu
             </motion.h1>
@@ -222,7 +222,7 @@ export default function OverviewView() {
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader title="Education" />
-          <div className="border-y border-border py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6">
+          <div className="py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6">
             <div className="md:col-span-5">
               <h3 className="font-display text-[26px] md:text-[34px] text-foreground leading-tight">
                 Carnegie Mellon University
