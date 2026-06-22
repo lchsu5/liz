@@ -161,26 +161,32 @@ export default function OverviewView() {
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader label="§ 03" title="Honors & Awards" italicWord="Awards" />
-          <div className="divide-y divide-border border-y border-border">
-            {honors.map((h) => (
-              <div
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {honors.map((h, i) => (
+              <motion.div
                 key={h.title}
-                className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6 py-6"
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative border border-border bg-card/20 p-7 overflow-hidden hover:bg-card/50 hover:border-accent/50 transition-colors duration-300"
               >
-                <div className="md:col-span-8">
-                  <h3 className="font-display text-[22px] md:text-[26px] text-foreground leading-tight">
-                    {h.title}
-                  </h3>
-                  <p className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground mt-2">
-                    {h.issuer}
-                  </p>
+                <span className="absolute -top-3 -right-2 font-display italic text-[80px] leading-none text-accent/10 select-none">
+                  0{i + 1}
+                </span>
+                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
+                  {h.date}
+                </p>
+                <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
+                  {h.title}
+                </h3>
+                <p className="font-body text-[12px] text-foreground/65 mt-3 leading-relaxed">
+                  {h.issuer}
+                </p>
+                <div className="mt-5 h-px bg-border overflow-hidden">
+                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
                 </div>
-                <div className="md:col-span-4 md:text-right self-center">
-                  <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground">
-                    {h.date}
-                  </p>
-                </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -194,17 +200,36 @@ export default function OverviewView() {
         <div className="max-w-6xl mx-auto">
           <SectionHeader label="§ 05" title="Languages" italicWord="Languages" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
-            {languages.map((l) => (
-              <div
-                key={l.name}
-                className="bg-background py-7 px-7 flex items-baseline justify-between gap-4"
-              >
-                <span className="font-display text-[28px] text-foreground">{l.name}</span>
-                <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
-                  {l.level}
-                </span>
-              </div>
-            ))}
+            {languages.map((l, i) => {
+              const pct = l.level.toLowerCase().includes("native") ? 100 : 55;
+              return (
+                <motion.div
+                  key={l.name}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="bg-background py-8 px-7 group"
+                >
+                  <div className="flex items-baseline justify-between gap-4 mb-4">
+                    <span className="font-display text-[28px] text-foreground">{l.name}</span>
+                    <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+                      {l.level}
+                    </span>
+                  </div>
+                  <div className="h-px bg-border relative overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${pct}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.1, delay: 0.15 + i * 0.1, ease: "easeOut" }}
+                      className="absolute inset-y-0 left-0 bg-accent"
+                      style={{ height: 2, top: -0.5 }}
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

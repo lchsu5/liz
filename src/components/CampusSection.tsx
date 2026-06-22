@@ -148,7 +148,6 @@ export default function CampusSection() {
                       listStyle: "none",
                       padding: 0,
                       margin: 0,
-                      marginTop: "auto",
                     }}
                   >
                     {org.bullets.map((b, i) => (
