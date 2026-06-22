@@ -179,12 +179,9 @@ export default function BeforeView() {
                       onClick={() => setOpenIdx(open ? null : i)}
                       className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 py-5 md:py-6 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
                     >
-                      {/* Year + date stacked */}
-                      <div className="col-span-3 md:col-span-2 flex flex-col justify-center self-center gap-1">
+                      {/* Date in year position */}
+                      <div className="col-span-3 md:col-span-2 self-center">
                         <span className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
-                          {p.year}
-                        </span>
-                        <span className="font-body text-[10px] text-muted-foreground/60 leading-tight">
                           {p.dates}
                         </span>
                       </div>
