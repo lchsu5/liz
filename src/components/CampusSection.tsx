@@ -1,6 +1,7 @@
 import btgImg from "@/assets/btg.jpeg";
 import tsaImg from "@/assets/taiwanese_student_association.jpeg";
 import foundryImg from "@/assets/foundry.jpeg";
+import SectionHeader from "./SectionHeader";
 
 const CRIMSON = "#6b0909";
 
@@ -47,21 +48,10 @@ export default function CampusSection() {
     <section className="py-[100px] px-6">
       <div className="max-w-6xl mx-auto">
 
-        {/* Section header */}
-        <div className="mb-8">
-          <h2
-            className="font-display tracking-tight text-foreground"
-            style={{ fontSize: 44, lineHeight: 1.1 }}
-          >
-            Campus Leadership
-          </h2>
-          <p
-            className="font-body mt-3"
-            style={{ fontSize: 14, color: "#888" }}
-          >
-            Involvement across product, culture, and venture at CMU.
-          </p>
-        </div>
+        <SectionHeader
+          title="Campus Leadership"
+          description="Involvement across product, culture, and venture at CMU."
+        />
 
         {/* Card grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
