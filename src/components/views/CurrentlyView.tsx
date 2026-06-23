@@ -38,7 +38,7 @@ const honors = [
 
 export default function CurrentlyView() {
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-32 pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController mode="light" />
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -63,7 +63,7 @@ export default function CurrentlyView() {
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 whileHover={{ y: -4 }}
-                className="group relative border border-border bg-card/30 p-7 md:p-8 overflow-hidden transition-colors duration-300 hover:bg-card/60 hover:border-accent/50"
+                className="group relative border border-border bg-card/40 p-7 md:p-8 overflow-hidden lift-card"
               >
                 {/* corner number */}
                 <span className="absolute top-4 right-5 font-display italic text-[14px] text-muted-foreground/70">
@@ -114,7 +114,7 @@ export default function CurrentlyView() {
               href="https://trae4d3ed8mx.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="block group border border-border bg-card/40 hover:bg-card/70 transition-colors duration-300 p-8 md:p-12"
+              className="block group border border-border bg-card/40 p-8 md:p-12 lift-card"
             >
               <div className="flex items-start justify-between gap-6">
                 <div className="flex-1">
@@ -131,44 +131,48 @@ export default function CurrentlyView() {
                     pinpoints where reasoning breaks down, and intervenes
                     without giving away the answer.
                   </p>
+                  <p className="mt-5 font-body text-[11px] tracking-[0.2em] uppercase text-foreground/50 group-hover:text-accent transition-colors">
+                    View project →
+                  </p>
                 </div>
                 <ArrowUpRight
                   size={28}
-                  className="text-foreground/50 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                  className="text-foreground/40 group-hover:text-accent group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
                 />
               </div>
             </a>
           </TiltCard>
+
         </div>
 
-        <div className="mt-24">
-          <SectionHeader title="Honors & Awards" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {honors.map((h, i) => (
-              <motion.div
-                key={h.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative border border-border bg-card/20 p-7 overflow-hidden hover:bg-card/50 hover:border-accent/50 transition-colors duration-300"
-              >
-                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
-                  {h.date}
-                </p>
-                <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
-                  {h.title}
-                </h3>
-                <p className="font-body text-[12px] text-foreground/65 mt-3 leading-relaxed">
-                  {h.issuer}
-                </p>
-                <div className="mt-5 h-px bg-border overflow-hidden">
-                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                </div>
-              </motion.div>
-            ))}
+        {honors.length > 0 && (
+          <div className="mt-24">
+            <SectionHeader title="Honors & Awards" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {honors.map((h, i) => (
+                <motion.div
+                  key={h.title}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="group relative border border-border bg-card/30 p-7 overflow-hidden lift-card"
+                >
+                  <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
+                    {h.date}
+                  </p>
+                  <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
+                    {h.title}
+                  </h3>
+                  <p className="font-body text-[12px] text-foreground/65 mt-3 leading-relaxed">
+                    {h.issuer}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
     </main>
   );
