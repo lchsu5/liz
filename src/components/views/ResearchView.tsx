@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { FileText } from "lucide-react";
 import {
   BarChart,
@@ -14,6 +14,7 @@ import {
 } from "recharts";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
+
 
 type Scenario = "bull" | "base" | "bear";
 
@@ -148,83 +149,117 @@ function ValuationChart({
   report: Report;
   activeScenario: Scenario;
 }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(wrapRef, { once: true, margin: "-40px" });
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let raf = 0;
+    const start = performance.now();
+    const duration = 900;
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      // ease-out cubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      setProgress(eased);
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView]);
+
   const data = (["bear", "base", "bull"] as Scenario[]).map((s) => ({
     name: SCENARIO_LABELS[s],
-    target: report.scenarios[s].target,
+    target: report.scenarios[s].target * progress,
     scenario: s,
   }));
 
+  const maxTarget = Math.max(
+    ...(["bear", "base", "bull"] as Scenario[]).map((s) => report.scenarios[s].target)
+  );
+
   return (
-    <ResponsiveContainer width="100%" height={160}>
-      <BarChart
-        data={data}
-        layout="vertical"
-        margin={{ top: 0, right: 24, bottom: 0, left: 0 }}
-      >
-        <CartesianGrid horizontal={false} strokeDasharray="3 3" stroke="hsl(var(--border))" />
-        <XAxis
-          type="number"
-          tickFormatter={(v) => `$${v}`}
-          tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
-          axisLine={false}
-          tickLine={false}
-        />
-        <YAxis
-          type="category"
-          dataKey="name"
-          tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
-          axisLine={false}
-          tickLine={false}
-          width={36}
-        />
-        <Tooltip
-          formatter={(val: number) => [`$${val}`, "Price Target"]}
-          contentStyle={{
-            background: "hsl(var(--card))",
-            border: "1px solid hsl(var(--border))",
-            borderRadius: 0,
-            fontSize: 11,
-            fontFamily: "Inter",
-            color: "hsl(var(--foreground))",
-          }}
-          cursor={{ fill: "hsl(var(--muted) / 0.4)" }}
-        />
-        <ReferenceLine
-          x={report.currentPrice}
-          stroke="hsl(var(--foreground) / 0.35)"
-          strokeDasharray="4 3"
-          label={{
-            value: `Current $${report.currentPrice}`,
-            position: "insideTopRight",
-            fontSize: 9,
-            fill: "hsl(var(--muted-foreground))",
-            fontFamily: "Inter",
-          }}
-        />
-        <Bar dataKey="target" radius={0} maxBarSize={24}>
-          {data.map((entry) => (
-            <Cell
-              key={entry.scenario}
-              fill={
-                entry.scenario === activeScenario
-                  ? SCENARIO_COLORS[entry.scenario]
-                  : "hsl(var(--border))"
-              }
-              fillOpacity={entry.scenario === activeScenario ? 1 : 0.55}
-            />
-          ))}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <div ref={wrapRef}>
+      <ResponsiveContainer width="100%" height={160}>
+        <BarChart
+          data={data}
+          layout="vertical"
+          margin={{ top: 0, right: 24, bottom: 0, left: 0 }}
+        >
+          <CartesianGrid horizontal={false} strokeDasharray="3 3" stroke="hsl(var(--border))" />
+          <XAxis
+            type="number"
+            domain={[0, Math.ceil(maxTarget * 1.05)]}
+            tickFormatter={(v) => `$${Math.round(v)}`}
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            type="category"
+            dataKey="name"
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
+            axisLine={false}
+            tickLine={false}
+            width={36}
+          />
+          <Tooltip
+            formatter={(val: number) => [`$${Math.round(val)}`, "Price Target"]}
+            contentStyle={{
+              background: "hsl(var(--card))",
+              border: "1px solid hsl(var(--border))",
+              borderRadius: 0,
+              fontSize: 11,
+              fontFamily: "Inter",
+              color: "hsl(var(--foreground))",
+            }}
+            cursor={{ fill: "hsl(var(--muted) / 0.4)" }}
+          />
+          <ReferenceLine
+            x={report.currentPrice}
+            stroke="hsl(var(--foreground) / 0.35)"
+            strokeDasharray="4 3"
+            label={{
+              value: `Current $${report.currentPrice}`,
+              position: "insideTopRight",
+              fontSize: 9,
+              fill: "hsl(var(--muted-foreground))",
+              fontFamily: "Inter",
+            }}
+          />
+          <Bar dataKey="target" radius={0} maxBarSize={24} isAnimationActive={false}>
+            {data.map((entry) => (
+              <Cell
+                key={entry.scenario}
+                fill={
+                  entry.scenario === activeScenario
+                    ? SCENARIO_COLORS[entry.scenario]
+                    : "hsl(var(--border))"
+                }
+                fillOpacity={entry.scenario === activeScenario ? 1 : 0.55}
+              />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
+
 
 function ReportCard({ report }: { report: Report }) {
   const [scenario, setScenario] = useState<Scenario>("base");
   const active = report.scenarios[scenario];
 
   return (
-    <article className="border border-border bg-card/30">
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="border border-border bg-card/40 lift-card"
+    >
       {/* Header */}
       <div className="p-7 md:p-9 border-b border-border">
         <div className="flex items-start justify-between gap-6 mb-5">
@@ -256,26 +291,37 @@ function ReportCard({ report }: { report: Report }) {
 
       {/* Scenario selector */}
       <div className="p-7 md:p-9">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent">
             Scenario Analysis
           </p>
-          <div className="flex gap-1">
-            {(["bull", "base", "bear"] as Scenario[]).map((s) => (
-              <button
-                key={s}
-                onClick={() => setScenario(s)}
-                className={`font-body text-[10px] tracking-[0.16em] uppercase px-3 py-1.5 border transition-all duration-200 ${
-                  scenario === s
-                    ? "border-accent text-accent bg-accent/10"
-                    : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                }`}
-              >
-                {SCENARIO_LABELS[s]}
-              </button>
-            ))}
+          <div className="flex gap-1 p-1 border border-border rounded-full bg-background/60">
+            {(["bull", "base", "bear"] as Scenario[]).map((s) => {
+              const isActive = scenario === s;
+              return (
+                <button
+                  key={s}
+                  onClick={() => setScenario(s)}
+                  className={`relative font-body text-[10px] tracking-[0.16em] uppercase px-3.5 py-1.5 rounded-full transition-colors duration-200 active:scale-95 ${
+                    isActive
+                      ? "text-[hsl(var(--accent-foreground))]"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId={`scenario-${report.ticker}`}
+                      className="absolute inset-0 rounded-full bg-accent -z-0"
+                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{SCENARIO_LABELS[s]}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Valuation chart */}
@@ -328,13 +374,14 @@ function ReportCard({ report }: { report: Report }) {
           </AnimatePresence>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
 export default function ResearchView() {
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-32 pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+
       <ThemeController mode="light" />
       <div className="max-w-6xl mx-auto">
         <motion.div
