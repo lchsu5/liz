@@ -397,7 +397,7 @@ export default function ResearchView() {
 
         <div className="mt-20">
           <SectionHeader title="Published Reports" />
-          <div className="space-y-px">
+          <div className="space-y-6 md:space-y-8">
             {reports.map((r) => (
               <ReportCard key={r.ticker} report={r} />
             ))}
