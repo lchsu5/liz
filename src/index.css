@@ -100,18 +100,36 @@
   }
 
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: 0.005em;
+    line-height: 1.65;
+  }
+
+  p {
+    line-height: 1.7;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Sunday Masthead', serif;
     font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
   }
 }
 
 @layer utilities {
   .font-display {
     font-family: 'Sunday Masthead', serif;
+  }
+  .lift-card {
+    @apply transition-all duration-300 ease-out;
+    box-shadow: 0 1px 0 hsl(var(--border)), 0 1px 2px hsl(var(--foreground) / 0.03);
+  }
+  .lift-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px -16px hsl(var(--foreground) / 0.18), 0 2px 6px hsl(var(--foreground) / 0.05);
+    border-color: hsl(var(--accent) / 0.55);
   }
   .font-body {
     font-family: 'Inter', sans-serif;
