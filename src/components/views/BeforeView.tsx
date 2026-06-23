@@ -120,7 +120,7 @@ export default function BeforeView() {
   );
 
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-32 pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController mode="light" />
       <div className="max-w-6xl mx-auto">
         <motion.div
@@ -147,14 +147,15 @@ export default function BeforeView() {
                 <button
                   key={c}
                   onClick={() => setFilter(c)}
-                  className={`font-body text-[10px] tracking-[0.18em] uppercase px-3 py-1.5 border transition-all duration-200 ${
+                  className={`relative font-body text-[10px] tracking-[0.18em] uppercase px-3.5 py-2 border rounded-full transition-all duration-200 active:scale-95 ${
                     active
-                      ? "border-accent text-accent bg-accent/10"
-                      : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground"
+                      ? "border-accent text-[hsl(var(--accent-foreground))] bg-accent shadow-[0_4px_12px_-4px_hsl(var(--accent)/0.5)]"
+                      : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground hover:bg-card/40"
                   }`}
                 >
-                  {c} <span className="opacity-50 ml-1">{count}</span>
+                  {c} <span className={`ml-1 ${active ? "opacity-70" : "opacity-50"}`}>{count}</span>
                 </button>
+
               );
             })}
           </div>

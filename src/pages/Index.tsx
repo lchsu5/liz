@@ -32,16 +32,24 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <CursorGlow />
 
-      <a
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          setView("overview");
-        }}
-        className="fixed top-6 left-6 md:top-8 md:left-10 z-50 font-display text-[16px] tracking-tight text-foreground/90 hover:text-accent transition-colors"
-      >
-        Elizabeth Hsu
-      </a>
+      {/* Sticky wordmark bar — solid bg so it never collides with content */}
+      <div className="fixed top-0 left-0 right-0 z-40 bg-background/85 backdrop-blur-md border-b border-border/60">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 h-14 md:h-16 flex items-center">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setView("overview");
+            }}
+            className="font-display text-[15px] md:text-[17px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors"
+          >
+            Elizabeth <span className="italic text-accent">Hsu</span>
+          </a>
+          <span className="ml-3 hidden sm:inline font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
+            · Personal Research Brand
+          </span>
+        </div>
+      </div>
 
       <AnimatePresence mode="wait">
         <motion.div
