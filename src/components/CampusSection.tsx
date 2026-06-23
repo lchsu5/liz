@@ -45,7 +45,7 @@ const orgs = [
 
 export default function CampusSection() {
   return (
-    <section className="py-[100px] px-6">
+    <section className="py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
 
         <SectionHeader
@@ -61,11 +61,11 @@ export default function CampusSection() {
               className="relative"
               style={{ transition: "transform 300ms ease-out", zIndex: 1 }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.25)";
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(-5px)";
                 (e.currentTarget as HTMLDivElement).style.zIndex = "10";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
                 (e.currentTarget as HTMLDivElement).style.zIndex = "1";
               }}
             >
