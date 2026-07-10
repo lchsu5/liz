@@ -58,7 +58,7 @@ export default function OverviewView() {
           />
         </div>
 
-        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           {/* LEFT — copy */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <motion.h1
@@ -226,7 +226,7 @@ export default function OverviewView() {
 
       {/* EDUCATION — numeral / title / fact-sheet three-column split */}
       <section className="px-6 md:px-12 py-20">
-        <div className="max-w-6xl">
+        <div className="w-full">
           <SectionHeader title="Education" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -284,7 +284,7 @@ export default function OverviewView() {
 
       {/* LANGUAGES — two identical cards, equal size/font/style */}
       <section className="px-6 md:px-12 py-20">
-        <div className="max-w-6xl">
+        <div className="w-full">
           <SectionHeader title="Languages" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {languages.map((l, i) => (
@@ -310,7 +310,7 @@ export default function OverviewView() {
 
       {/* CONTACT — editorial colophon: display headline + fact-sheet list, matching Education's split */}
       <section className="px-6 md:px-12 py-20 pb-32 md:pb-40">
-        <div className="max-w-6xl">
+        <div className="w-full">
           <SectionHeader title="Get in Touch" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}

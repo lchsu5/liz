@@ -45,7 +45,7 @@ const orgs = [
 export default function CampusSection() {
   return (
     <section className="py-20 px-6 md:px-12">
-      <div className="max-w-6xl">
+      <div className="w-full">
         <SectionHeader
           title="Campus Leadership"
           description="Involvement across product, culture, and venture at CMU."

@@ -40,7 +40,7 @@ export default function CurrentlyView() {
   return (
     <main className="min-h-screen pl-6 pr-6 md:pl-44 md:pr-12 lg:pl-52 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController />
-      <div className="max-w-6xl">
+      <div className="w-full">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
