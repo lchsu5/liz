@@ -169,7 +169,7 @@ export default function BeforeView() {
         {/* Row — split into meta zone (dates+logo) and content zone */}
         <button
           onClick={() => setOpenKey(open ? null : rowKey)}
-          className="w-full text-left flex items-center gap-5 md:gap-8 py-5 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
+          className="w-full text-left flex items-center gap-5 md:gap-8 py-5 group hover:bg-accent/[0.04] transition-colors px-4 md:px-6"
         >
           <div className="w-14 shrink-0 flex flex-col items-center gap-2">
             <motion.img
@@ -215,7 +215,7 @@ export default function BeforeView() {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="overflow-hidden"
             >
-              <div className="flex gap-5 md:gap-8 pb-7 pt-1 px-2 -mx-2">
+              <div className="flex gap-5 md:gap-8 pb-7 pt-1 px-4 md:px-6">
                 <div className="w-14 shrink-0" />
                 <div className="flex-1 border-l border-border/70 pl-5 md:pl-7">
                   {Array.isArray(p.note) ? (
