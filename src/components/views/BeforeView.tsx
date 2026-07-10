@@ -11,6 +11,17 @@ import projectDestinedLogo from "@/assets/project-destined-logo.png";
 import eyLogo from "@/assets/ey.jpg";
 import deloitteLogo from "@/assets/deliotte.jpg";
 import kumonLogo from "@/assets/kumon.jpg";
+import photoGraduation from "@/assets/photo-graduation.jpg";
+import photoEySummit from "@/assets/photo-ey-summit.jpeg";
+import photoTieShadowDay from "@/assets/photo-tie-shadow-day.png";
+import photoGroup from "@/assets/photo-group.jpeg";
+
+const archive: { src: string; caption: string; sub: string; area: string }[] = [
+  { src: photoGraduation, caption: "Beckman High School", sub: "Commencement", area: "hero" },
+  { src: photoTieShadowDay, caption: "TIE Shadow Day", sub: "Avasant", area: "top-a" },
+  { src: photoGroup, caption: "Industry Info Session", sub: "Group Visit", area: "top-b" },
+  { src: photoEySummit, caption: "EY", sub: "Discovery Program", area: "wide" },
+];
 
 type Category = "All" | "Research" | "Product" | "Finance" | "Teaching";
 
@@ -256,11 +267,42 @@ export default function BeforeView() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-4 md:gap-5 md:h-[560px]"
         >
-          <SectionHeader
-            title="Where I've Been"
-            description="Past roles across research, real estate, consulting, and the classroom. Filter by track, click any row to expand."
-          />
+          {archive.map((p, i) => {
+            const placement =
+              p.area === "hero"
+                ? "md:col-[1/7] md:row-[1/3]"
+                : p.area === "top-a"
+                ? "md:col-[7/10] md:row-[1/2]"
+                : p.area === "top-b"
+                ? "md:col-[10/13] md:row-[1/2]"
+                : "md:col-[7/13] md:row-[2/3]";
+            return (
+              <motion.div
+                key={p.caption}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
+                className={`relative overflow-hidden rounded-2xl border border-border aspect-[4/5] md:aspect-auto ${placement}`}
+              >
+                <img
+                  src={p.src}
+                  alt={p.caption}
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.03]"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute left-4 bottom-3.5 pointer-events-none">
+                  <p className="font-display text-[16px] md:text-[18px] text-white leading-tight">
+                    {p.caption}
+                  </p>
+                  <p className="font-body text-[10px] tracking-[0.18em] uppercase text-white/70 mt-0.5">
+                    {p.sub}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
         <div className="mt-20">

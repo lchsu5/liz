@@ -2,6 +2,26 @@ import SectionHeader from "./SectionHeader";
 
 const honors = [
   {
+    title: "Accenture Elevate to Innovate Externship",
+    issuer: "Accenture",
+    date: "May 2026",
+  },
+  {
+    title: "Kohl's Leadership Summit",
+    issuer: "Kohl's",
+    date: "May 2026",
+  },
+  {
+    title: "Goldman Sachs Possibilities Summit",
+    issuer: "Goldman Sachs",
+    date: "Apr 2026",
+  },
+  {
+    title: "Eaton empowerU Leadership Summit",
+    issuer: "Eaton",
+    date: "Apr 2026",
+  },
+  {
     title: "2026 Zappurtunity Scholar",
     issuer: "Zappurtunity",
     date: "Mar 2026",
@@ -12,6 +32,16 @@ const honors = [
     title: "Dean's List",
     issuer: "Carnegie Mellon University",
     date: "Jan 2026",
+  },
+  {
+    title: "2nd Place, ETF Arbitrage",
+    issuer: "MSCF Trading Competition",
+    date: "Sep 2025",
+  },
+  {
+    title: "California State Seal of Biliteracy (Mandarin)",
+    issuer: "California Department of Education",
+    date: "May 2025",
   },
   {
     title: "Dean's Scholarship",
