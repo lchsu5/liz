@@ -17,7 +17,7 @@ const currentChips = [
 
 export default function OverviewView() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen md:pl-32 lg:pl-40">
       <ThemeController />
 
       {/* HERO — asymmetric editorial spread */}
@@ -89,48 +89,54 @@ export default function OverviewView() {
               shipping with Adobe and Workiva.
             </motion.p>
 
-            {/* Quick chips */}
+            {/* Status + contact — split into two unequal blocks instead of one inline row */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.45 }}
-              className="mt-8 flex flex-wrap gap-2"
+              className="mt-10 grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-6 max-w-xl"
             >
-              {currentChips.map((c) => (
-                <span
-                  key={c.org}
-                  className="font-body text-[10px] tracking-[0.18em] uppercase border border-accent/40 rounded-full text-foreground/80 px-3.5 py-1.5 hover:bg-accent/10 hover:border-accent transition-colors duration-300"
-                >
-                  <span className="text-accent">●</span> {c.org}
-                  <span className="text-foreground/40 mx-1.5">/</span>
-                  {c.role}
-                </span>
-              ))}
-            </motion.div>
+              {/* Currently — stacked rows, col-span-5 */}
+              <div className="sm:col-span-5">
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-muted-foreground mb-3">
+                  Currently
+                </p>
+                <div className="flex flex-col gap-2.5">
+                  {currentChips.map((c) => (
+                    <div key={c.org} className="flex items-baseline gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                      <span className="font-display text-[16px] text-foreground leading-none">{c.org}</span>
+                      <span className="font-body text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
+                        {c.role}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.55 }}
-              className="mt-10 flex flex-wrap gap-x-6 gap-y-3 font-body text-[12px] tracking-[0.14em] uppercase text-foreground/65"
-            >
-              <span className="inline-flex items-center gap-2">
-                <MapPin size={13} className="text-accent" /> Irvine, CA
-              </span>
-              <a
-                href="mailto:lchsu@andrew.cmu.edu"
-                className="inline-flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Mail size={13} className="text-accent" /> lchsu@andrew.cmu.edu
-              </a>
-              <a
-                href="https://www.linkedin.com/in/lizhhsu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 hover:text-accent transition-colors"
-              >
-                <Linkedin size={13} className="text-accent" /> linkedin.com/in/lizhhsu
-              </a>
+              {/* Contact — bordered vertical fact list, col-span-7 */}
+              <div className="sm:col-span-7 sm:border-l sm:border-border sm:pl-8 flex flex-col gap-3">
+                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-muted-foreground mb-1">
+                  Reach me
+                </p>
+                <span className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75">
+                  <MapPin size={13} className="text-accent shrink-0" /> Irvine, CA
+                </span>
+                <a
+                  href="mailto:lchsu@andrew.cmu.edu"
+                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors w-fit"
+                >
+                  <Mail size={13} className="text-accent shrink-0" /> lchsu@andrew.cmu.edu
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/lizhhsu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors w-fit"
+                >
+                  <Linkedin size={13} className="text-accent shrink-0" /> linkedin.com/in/lizhhsu
+                </a>
+              </div>
             </motion.div>
           </div>
 
@@ -218,37 +224,57 @@ export default function OverviewView() {
       </section>
 
 
-      {/* EDUCATION */}
-      <section className="px-6 md:px-12 py-24">
-        <div className="max-w-6xl mx-auto">
+      {/* EDUCATION — numeral / title / fact-sheet three-column split */}
+      <section className="px-6 md:px-12 py-20">
+        <div className="max-w-6xl">
           <SectionHeader title="Education" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl border border-border bg-card/40 p-7 md:p-10 lift-card grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
+            className="grid grid-cols-1 md:grid-cols-12 border-t border-border"
           >
-            <div className="md:col-span-5">
-              <h3 className="font-display text-[26px] md:text-[34px] text-foreground leading-tight">
+            {/* Decorative numeral column */}
+            <div className="hidden md:flex md:col-span-2 items-start pt-8">
+              <span className="font-display italic text-[64px] text-accent/25 leading-none">01</span>
+            </div>
+
+            {/* Institution + degree */}
+            <div className="md:col-span-5 py-8 md:pr-6 md:border-r border-border">
+              <h3 className="font-display text-[28px] md:text-[36px] text-foreground leading-[1.05]">
                 Carnegie Mellon University
               </h3>
               <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground mt-3">
-                Tepper School of Business · Pittsburgh, PA
+                Tepper School of Business
+              </p>
+              <p className="font-body text-[15px] text-foreground/85 mt-5 leading-relaxed max-w-sm">
+                B.S. Business Administration, concentration in Artificial Intelligence.
               </p>
             </div>
-            <div className="md:col-span-7">
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-                <p className="font-body text-[15px] text-foreground/90">
-                  B.S. Business Administration · Concentration in Artificial Intelligence
-                </p>
-                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-accent whitespace-nowrap">
-                  Expected May 2028
+
+            {/* Fact sheet — labeled rows instead of paragraph flow */}
+            <div className="md:col-span-5 py-8 md:pl-8 flex flex-col divide-y divide-border/70">
+              <div className="flex items-baseline justify-between py-3 first:pt-0">
+                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                  Graduation
+                </span>
+                <span className="font-body text-[13px] text-accent">Expected May 2028</span>
+              </div>
+              <div className="flex items-baseline justify-between py-3">
+                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                  Location
+                </span>
+                <span className="font-body text-[13px] text-foreground/80">Pittsburgh, PA</span>
+              </div>
+              <div className="py-3 last:pb-0">
+                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                  Coursework
+                </span>
+                <p className="font-body text-[13px] text-foreground/65 mt-2 leading-relaxed">
+                  Business analytics, computer science, and applied AI.
                 </p>
               </div>
-              <p className="font-body text-[13px] text-foreground/65 mt-4 leading-relaxed">
-                Coursework spanning business analytics, computer science, and applied AI.
-              </p>
             </div>
           </motion.div>
         </div>
@@ -257,75 +283,84 @@ export default function OverviewView() {
       {/* CAMPUS LEADERSHIP */}
       <CampusSection />
 
-      {/* LANGUAGES */}
-      <section className="px-6 md:px-12 py-24">
-        <div className="max-w-6xl mx-auto">
+      {/* LANGUAGES — featured 8-col primary + 4-col secondary, not equal cards */}
+      <section className="px-6 md:px-12 py-20">
+        <div className="max-w-6xl">
           <SectionHeader title="Languages" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {languages.map((l, i) => (
-              <motion.div
-                key={l.name}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -3 }}
-                className="rounded-2xl border border-border bg-card/40 py-8 px-7 lift-card"
-              >
-                <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-display text-[28px] text-foreground">{l.name}</span>
-                  <span className="font-body text-[10px] tracking-[0.18em] uppercase text-accent">
-                    {l.level}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+            {languages.map((l, i) => {
+              const featured = i === 0;
+              const fill = featured ? 96 : 45;
+              return (
+                <motion.div
+                  key={l.name}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className={`rounded-2xl border border-border bg-card/40 lift-card flex flex-col justify-between ${
+                    featured ? "md:col-span-8 p-8 md:p-10" : "md:col-span-4 p-6"
+                  }`}
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <span
+                      className={`font-display text-foreground leading-none ${
+                        featured ? "text-[34px] md:text-[42px]" : "text-[22px]"
+                      }`}
+                    >
+                      {l.name}
+                    </span>
+                  </div>
+                  <div className="mt-6">
+                    <span className="font-body text-[10px] tracking-[0.18em] uppercase text-accent">
+                      {l.level}
+                    </span>
+                    <div className="mt-3 h-[3px] w-full bg-border/70 rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-accent rounded-full"
+                        style={{ width: `${fill}%` }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section className="px-6 md:px-12 py-24 pb-40">
-        <div className="max-w-6xl mx-auto">
+      {/* CONTACT — footer-style split: oversized primary CTA panel + demoted secondary link */}
+      <section className="px-6 md:px-12 py-20 pb-32 md:pb-40">
+        <div className="max-w-6xl">
           <SectionHeader title="Get in Touch" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="rounded-[28px] border border-border bg-card/40 overflow-hidden lift-card">
             <a
               href="mailto:lchsu@andrew.cmu.edu"
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-border hover:border-accent bg-card/40 hover:bg-card/70 transition-all duration-300 px-6 py-6 lift-card"
+              className="group flex flex-col md:flex-row md:items-end justify-between gap-4 px-8 md:px-12 py-10 md:py-14 hover:bg-accent/[0.06] transition-colors duration-300"
             >
-              <div className="flex items-center gap-4">
-                <Mail size={20} className="text-accent" strokeWidth={1.5} />
-                <div>
-                  <p className="font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
-                    Email
-                  </p>
-                  <p className="font-body text-[14px] text-foreground">
-                    lchsu@andrew.cmu.edu
-                  </p>
-                </div>
+              <div>
+                <p className="font-body text-[10px] tracking-[0.28em] uppercase text-accent mb-3">
+                  Email — preferred
+                </p>
+                <p className="font-display text-[32px] md:text-[52px] text-foreground leading-none group-hover:text-accent transition-colors duration-300">
+                  lchsu@andrew.cmu.edu
+                </p>
               </div>
-              <span className="font-body text-[11px] text-foreground/40 group-hover:text-accent transition-colors">
-                →
+              <span className="font-body text-[12px] tracking-[0.18em] uppercase text-foreground/40 group-hover:text-accent group-hover:translate-x-1 transition-all duration-300 shrink-0">
+                Send a note →
               </span>
             </a>
             <a
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 rounded-2xl border border-border hover:border-accent bg-card/40 hover:bg-card/70 transition-all duration-300 px-6 py-6 lift-card"
+              className="group flex items-center justify-between gap-4 px-8 md:px-12 py-5 border-t border-border hover:bg-accent/[0.06] transition-colors duration-300"
             >
-              <div className="flex items-center gap-4">
-                <Linkedin size={20} className="text-accent" strokeWidth={1.5} />
-                <div>
-                  <p className="font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
-                    LinkedIn
-                  </p>
-                  <p className="font-body text-[14px] text-foreground">
-                    linkedin.com/in/lizhhsu
-                  </p>
-                </div>
-              </div>
-              <span className="font-body text-[11px] text-foreground/40 group-hover:text-accent transition-colors">
+              <span className="inline-flex items-center gap-3 font-body text-[13px] text-foreground/70">
+                <Linkedin size={16} className="text-accent" strokeWidth={1.5} />
+                linkedin.com/in/lizhhsu
+              </span>
+              <span className="font-body text-[10px] tracking-[0.18em] uppercase text-foreground/40 group-hover:text-accent transition-colors">
                 →
               </span>
             </a>

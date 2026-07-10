@@ -258,39 +258,39 @@ function ReportCard({ report }: { report: Report }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="border border-border bg-card/40 lift-card"
+      className="border border-border rounded-[28px] overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
     >
-      {/* Header */}
-      <div className="p-7 md:p-9 border-b border-border">
+      {/* Left panel — ticker, title, thesis. Own background, sticky on scroll. */}
+      <div className="lg:col-span-5 bg-card/60 p-7 md:p-9 lg:border-r border-border flex flex-col">
         <div className="flex items-start justify-between gap-6 mb-5">
-          <div className="flex items-baseline gap-4">
-            <FileText size={20} className="text-accent" strokeWidth={1.5} />
-            <span className="font-display text-[36px] md:text-[44px] text-foreground leading-none italic">
+          <div className="flex items-baseline gap-3">
+            <FileText size={18} className="text-accent" strokeWidth={1.5} />
+            <span className="font-display text-[38px] md:text-[46px] text-foreground leading-none italic">
               {report.ticker}
             </span>
           </div>
-          <p className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground whitespace-nowrap">
-            {report.date}
-          </p>
         </div>
-        <h3 className="font-display text-[24px] md:text-[30px] text-foreground leading-tight max-w-3xl">
+        <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-4">
+          {report.date}
+        </p>
+        <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
           {report.title}
         </h3>
-        <p className="font-body text-[12px] tracking-[0.14em] uppercase text-muted-foreground mt-3">
+        <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-3">
           {report.subtitle} · {report.publisher}
         </p>
-        <div className="mt-5 border-t border-border pt-5">
+        <div className="mt-6 pt-6 border-t border-border">
           <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-2">
             Thesis
           </p>
-          <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-3xl">
+          <p className="font-body text-[14px] text-foreground/80 leading-relaxed">
             {report.thesis}
           </p>
         </div>
       </div>
 
-      {/* Scenario selector */}
-      <div className="p-7 md:p-9">
+      {/* Right panel — scenario controls, chart, detail */}
+      <div className="lg:col-span-7 p-7 md:p-9 bg-background/40">
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent">
             Scenario Analysis
@@ -322,28 +322,20 @@ function ReportCard({ report }: { report: Report }) {
           </div>
         </div>
 
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Valuation chart */}
-          <div>
-            <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-4">
-              Price Targets by Scenario
-            </p>
-            <ValuationChart report={report} activeScenario={scenario} />
-          </div>
-
-          {/* Active scenario detail */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={scenario}
-              initial={{ opacity: 0, x: 10 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -10 }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="flex items-baseline gap-3 mb-4">
+        {/* Active scenario detail — headline stat block above the chart, not beside it */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={scenario}
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -10 }}
+            transition={{ duration: 0.2 }}
+            className="rounded-2xl border border-border bg-card/40 p-5 md:p-6 mb-6"
+          >
+            <div className="flex flex-wrap items-baseline justify-between gap-4">
+              <div className="flex items-baseline gap-3">
                 <span
-                  className="font-display text-[42px] leading-none"
+                  className="font-display text-[38px] md:text-[44px] leading-none"
                   style={{ color: SCENARIO_COLORS[scenario] }}
                 >
                   ${active.target}
@@ -355,24 +347,27 @@ function ReportCard({ report }: { report: Report }) {
                   {active.returnLabel}
                 </span>
               </div>
-
-              <div className="flex gap-4 mb-5">
+              <div className="flex gap-4">
                 {active.metrics.map((m) => (
                   <div key={m.label}>
                     <p className="font-body text-[9px] tracking-[0.18em] uppercase text-muted-foreground">
                       {m.label}
                     </p>
-                    <p className="font-body text-[14px] text-foreground mt-0.5">{m.value}</p>
+                    <p className="font-body text-[13px] text-foreground mt-0.5">{m.value}</p>
                   </div>
                 ))}
               </div>
+            </div>
+            <p className="font-body text-[13px] text-foreground/75 leading-relaxed mt-4 pt-4 border-t border-border/70">
+              {active.catalyst}
+            </p>
+          </motion.div>
+        </AnimatePresence>
 
-              <p className="font-body text-[13px] text-foreground/75 leading-relaxed">
-                {active.catalyst}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-4">
+          Price Targets by Scenario
+        </p>
+        <ValuationChart report={report} activeScenario={scenario} />
       </div>
     </motion.article>
   );
@@ -380,10 +375,10 @@ function ReportCard({ report }: { report: Report }) {
 
 export default function ResearchView() {
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen pl-6 pr-6 md:pl-44 md:pr-12 lg:pl-52 pt-24 md:pt-32 pb-28 md:pb-40">
 
       <ThemeController />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}

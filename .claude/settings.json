@@ -17,7 +17,8 @@
       "Bash(git rm *)",
       "Bash(rm src/components/PhotoCard.tsx)",
       "Bash(npx tsc *)",
-      "Bash(sleep 2; cat /tmp/vite.log)"
+      "Bash(sleep 2; cat /tmp/vite.log)",
+      "Bash(pkill -f \"vite\")"
     ]
   }
 }

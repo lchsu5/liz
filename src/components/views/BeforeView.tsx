@@ -150,10 +150,20 @@ export default function BeforeView() {
     [filter]
   );
 
+  // Group by category so "All" reads as distinct labeled sections, not one flat list.
+  const grouped = useMemo(() => {
+    const order: Exclude<Category, "All">[] = ["Research", "Product", "Finance", "Teaching"];
+    return order
+      .map((cat) => ({ cat, items: visible.filter((p) => p.category === cat) }))
+      .filter((g) => g.items.length > 0);
+  }, [visible]);
+
+  let runningIdx = -1;
+
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen pl-6 pr-6 md:pl-44 md:pr-12 lg:pl-52 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController />
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -169,7 +179,7 @@ export default function BeforeView() {
           <SectionHeader title="Past Roles" />
 
           {/* Filter chips */}
-          <div className="flex flex-wrap items-center gap-2 mb-8">
+          <div className="flex flex-wrap items-center gap-2 mb-12">
             {categories.map((c) => {
               const count =
                 c === "All" ? past.length : past.filter((p) => p.category === c).length;
@@ -191,112 +201,122 @@ export default function BeforeView() {
             })}
           </div>
 
-          {/* Timeline */}
-          <div className="rounded-2xl border border-border bg-card/20 overflow-hidden shadow-[0_8px_24px_-18px_hsl(0_0%_0%/0.5)]">
-            <AnimatePresence initial={false}>
-              {visible.map((p, i) => {
-                const open = openIdx === i;
-                return (
-                  <motion.div
-                    key={p.company + p.dates}
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="border-b border-border last:border-b-0"
-                  >
-                    {/* Header row — always visible */}
-                    <button
-                      onClick={() => setOpenIdx(open ? null : i)}
-                      className="w-full text-left grid grid-cols-12 gap-3 md:gap-6 py-5 md:py-6 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
-                    >
-                      {/* Date in year position */}
-                      <div className="col-span-3 md:col-span-2 self-center">
-                        <span className="font-body text-[11px] tracking-[0.18em] uppercase text-muted-foreground">
-                          {p.dates}
-                        </span>
-                      </div>
+          {/* Grouped-by-category sections, each with its own rail + varying gap */}
+          <div className="flex flex-col gap-14">
+            {grouped.map((group) => (
+              <div key={group.cat} className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+                {/* Category label rail — own column, sticky-feeling anchor */}
+                <div className="md:col-span-2">
+                  <p className="font-display italic text-[22px] text-accent sticky top-28">
+                    {group.cat}
+                  </p>
+                  <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mt-1">
+                    {group.items.length} role{group.items.length > 1 ? "s" : ""}
+                  </p>
+                </div>
 
-                      {/* Logo — real image, no border box */}
-                      <div className="col-span-2 md:col-span-2 self-center">
-                        <motion.img
-                          src={p.logo}
-                          alt={p.company}
-                          initial={{ opacity: 0, scale: 0.7 }}
-                          animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.7 }}
-                          transition={{ duration: 0.4, ease: "easeOut" }}
-                          className="w-14 h-14 object-contain"
-                        />
-                      </div>
-
-                      {/* Company + title */}
-                      <div className="col-span-5 md:col-span-6 self-center">
-                        <h3 className="font-display text-[18px] md:text-[22px] text-foreground leading-tight group-hover:text-accent transition-colors">
-                          {p.company}
-                        </h3>
-                        <p className="font-body text-[11px] md:text-[13px] text-foreground/70 mt-1">
-                          {p.title}
-                        </p>
-                      </div>
-
-                      {/* Category + expand toggle */}
-                      <div className="col-span-2 md:col-span-2 self-center flex items-center justify-end gap-3">
-                        <span className="hidden md:inline font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
-                          {p.category}
-                        </span>
-                        <motion.span
-                          animate={{ rotate: open ? 45 : 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="text-accent"
-                        >
-                          <Plus size={16} strokeWidth={1.5} />
-                        </motion.span>
-                      </div>
-                    </button>
-
-                    {/* Expanded panel — description only (date lives in header row) */}
-                    <AnimatePresence initial={false}>
-                      {open && (
+                {/* Entries for this category */}
+                <div className="md:col-span-10 flex flex-col">
+                  <AnimatePresence initial={false}>
+                    {group.items.map((p) => {
+                      runningIdx += 1;
+                      const i = runningIdx;
+                      const open = openIdx === i;
+                      return (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
-                          className="overflow-hidden"
+                          key={p.company + p.dates}
+                          layout
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.25 }}
+                          className="border-b border-border last:border-b-0"
                         >
-                          <div className="grid grid-cols-12 gap-3 md:gap-6 pb-7 pt-1 px-2 -mx-2">
-                            <div className="col-span-12 md:col-start-5 md:col-span-7">
-                              {Array.isArray(p.note) ? (
-                                <ul className="space-y-1.5 max-w-2xl">
-                                  {p.note.map((line, ni) => (
-                                    <li
-                                      key={ni}
-                                      className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-foreground/40"
-                                    >
-                                      {line}
-                                    </li>
-                                  ))}
-                                </ul>
-                              ) : (
-                                <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-2xl">
-                                  {p.note}
-                                </p>
-                              )}
-                              {p.location && (
-                                <p className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/40 mt-2">
-                                  {p.location}
-                                </p>
-                              )}
+                          {/* Row — split into meta zone (dates+logo) and content zone */}
+                          <button
+                            onClick={() => setOpenIdx(open ? null : i)}
+                            className="w-full text-left flex items-center gap-5 md:gap-8 py-5 group hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
+                          >
+                            <div className="w-14 shrink-0 flex flex-col items-center gap-2">
+                              <motion.img
+                                src={p.logo}
+                                alt={p.company}
+                                initial={{ opacity: 0, scale: 0.7 }}
+                                animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.7 }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                className="w-12 h-12 rounded-xl object-contain"
+                              />
                             </div>
-                          </div>
+
+                            <div className="flex-1 min-w-0 border-l border-border/70 pl-5 md:pl-7">
+                              <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                                <h3 className="font-display text-[19px] md:text-[23px] text-foreground leading-tight group-hover:text-accent transition-colors">
+                                  {p.company}
+                                </h3>
+                                <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+                                  {p.dates}
+                                </span>
+                              </div>
+                              <p className="font-body text-[12px] md:text-[13px] text-foreground/65 mt-1">
+                                {p.title}
+                              </p>
+                            </div>
+
+                            <motion.span
+                              animate={{ rotate: open ? 45 : 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="text-accent shrink-0"
+                            >
+                              <Plus size={16} strokeWidth={1.5} />
+                            </motion.span>
+                          </button>
+
+                          {/* Expanded panel — indented under the content zone, same rail */}
+                          <AnimatePresence initial={false}>
+                            {open && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="overflow-hidden"
+                              >
+                                <div className="flex gap-5 md:gap-8 pb-7 pt-1 px-2 -mx-2">
+                                  <div className="w-14 shrink-0" />
+                                  <div className="flex-1 border-l border-border/70 pl-5 md:pl-7">
+                                    {Array.isArray(p.note) ? (
+                                      <ul className="space-y-1.5 max-w-2xl">
+                                        {p.note.map((line, ni) => (
+                                          <li
+                                            key={ni}
+                                            className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-foreground/40"
+                                          >
+                                            {line}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    ) : (
+                                      <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-2xl">
+                                        {p.note}
+                                      </p>
+                                    )}
+                                    {p.location && (
+                                      <p className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/40 mt-2">
+                                        {p.location}
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                      );
+                    })}
+                  </AnimatePresence>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

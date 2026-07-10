@@ -7,6 +7,13 @@ import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
 import ResearchView from "@/components/views/ResearchView";
 
+const VIEW_META: Record<ViewKey, { index: string; label: string }> = {
+  overview: { index: "01", label: "Overview" },
+  currently: { index: "02", label: "Currently" },
+  before: { index: "03", label: "Before" },
+  research: { index: "04", label: "Research" },
+};
+
 const Index = () => {
   const [view, setView] = useState<ViewKey>("overview");
 
@@ -32,19 +39,28 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <CursorGlow />
 
-      {/* Sticky wordmark bar — solid bg so it never collides with content */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/70 shadow-[0_1px_0_hsl(0_0%_0%/0.2)]">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center">
+      {/* Header — split two-zone bar: wordmark left, live section index right */}
+      <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/70">
+        <div className="px-5 md:px-10 h-16 md:h-20 flex items-stretch justify-between">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               setView("overview");
             }}
-            className="font-display text-[16px] md:text-[19px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors duration-300"
+            className="flex items-center font-display text-[16px] md:text-[19px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors duration-300"
           >
             Elizabeth <span className="italic text-accent">Hsu</span>
           </a>
+
+          <div className="hidden sm:flex items-center gap-5 pl-6 border-l border-border/70">
+            <span className="font-body text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
+              {VIEW_META[view].index} <span className="text-foreground/30 mx-1">/</span> 04
+            </span>
+            <span className="font-display text-[15px] text-accent italic">
+              {VIEW_META[view].label}
+            </span>
+          </div>
         </div>
       </div>
 
