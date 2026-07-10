@@ -53,12 +53,12 @@ export default function CursorGlow() {
     <div
       ref={dotRef}
       aria-hidden
-      className="pointer-events-none fixed top-0 left-0 z-[60] opacity-0 transition-opacity duration-500 mix-blend-screen"
+      className="pointer-events-none fixed top-0 left-0 z-[60] opacity-0 transition-opacity duration-500 mix-blend-multiply"
       style={{
         width: 500,
         height: 500,
         background:
-          "radial-gradient(circle, hsl(var(--cursor-glow) / 0.55) 0%, hsl(var(--cursor-glow) / 0.22) 22%, hsl(var(--cursor-glow) / 0.06) 45%, transparent 70%)",
+          "radial-gradient(circle, hsl(var(--cursor-glow) / 0.18) 0%, hsl(var(--cursor-glow) / 0.1) 22%, hsl(var(--cursor-glow) / 0.04) 45%, transparent 70%)",
         filter: "blur(28px)",
         willChange: "transform",
       }}

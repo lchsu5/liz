@@ -52,72 +52,53 @@ export default function CurrentlyView() {
           />
         </motion.div>
 
-        {/* Active Roles — offset asymmetric pairing, not equal cards */}
+        {/* Active Roles — equal-size cards */}
         <div className="mt-20">
           <SectionHeader title="Active Roles" />
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-5">
-            {roles.map((r, i) => {
-              const featured = i === 0;
-              return (
-                <motion.div
-                  key={r.company}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className={`group relative border border-border bg-card/40 overflow-hidden lift-card ${
-                    featured
-                      ? "md:col-span-7 p-8 md:p-10 rounded-[28px]"
-                      : "md:col-span-5 md:mt-10 p-6 rounded-2xl"
-                  }`}
-                >
-                  {/* corner number */}
-                  <span className={`absolute top-4 right-5 font-display italic text-muted-foreground/70 ${featured ? "text-[18px]" : "text-[13px]"}`}>
-                    0{i + 1}
-                  </span>
-
-                  <div className="flex items-center gap-3 mb-6">
-                    {r.logo && (
-                      <div className={`shrink-0 rounded-xl border border-border bg-background flex items-center justify-center overflow-hidden ${featured ? "w-14 h-14" : "w-10 h-10"}`}>
-                        <img
-                          src={r.logo}
-                          alt={r.company}
-                          className="w-full h-full object-contain p-1 transition-transform duration-300 group-hover:scale-110"
-                        />
-                      </div>
-                    )}
-                    <div>
-                      <h3 className={`font-display text-foreground leading-tight ${featured ? "text-[30px] md:text-[34px]" : "text-[20px]"}`}>
-                        {r.company}
-                      </h3>
-                      <p className="font-body text-[10px] tracking-[0.18em] uppercase text-accent mt-1">
-                        <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 animate-pulse" />
-                        {r.dates}
-                      </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {roles.map((r, i) => (
+              <motion.div
+                key={r.company}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="group relative border border-border bg-card/40 overflow-hidden lift-card p-8 rounded-2xl"
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  {r.logo && (
+                    <div className="shrink-0 w-12 h-12 rounded-xl border border-border bg-background flex items-center justify-center overflow-hidden">
+                      <img
+                        src={r.logo}
+                        alt={r.company}
+                        className="w-full h-full object-contain p-1 transition-transform duration-300 group-hover:scale-110"
+                      />
                     </div>
-                  </div>
-
-                  <p className={`font-body text-foreground/90 mb-3 ${featured ? "text-[16px]" : "text-[13px]"}`}>
-                    {r.title}
-                  </p>
-                  {featured && (
-                    <p className="font-body text-[13px] text-foreground/65 leading-relaxed max-w-md">
-                      {r.note}
-                    </p>
                   )}
-                  {!featured && (
-                    <p className="font-body text-[11px] text-foreground/55 leading-relaxed">
-                      {r.note}
+                  <div>
+                    <h3 className="font-display text-[26px] text-foreground leading-tight">
+                      {r.company}
+                    </h3>
+                    <p className="font-body text-[10px] tracking-[0.18em] uppercase text-accent mt-1">
+                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 animate-pulse" />
+                      {r.dates}
                     </p>
-                  )}
-
-                  {/* hover underline */}
-                  <div className="mt-6 h-px bg-border overflow-hidden">
-                    <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
                   </div>
-                </motion.div>
-              );
-            })}
+                </div>
+
+                <p className="font-body text-[15px] text-foreground/90 mb-3">
+                  {r.title}
+                </p>
+                <p className="font-body text-[13px] text-foreground/65 leading-relaxed">
+                  {r.note}
+                </p>
+
+                {/* hover underline */}
+                <div className="mt-6 h-px bg-border overflow-hidden">
+                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
@@ -182,7 +163,7 @@ export default function CurrentlyView() {
         {honors.length > 0 && (
           <div className="mt-28">
             <SectionHeader title="Honors & Awards" />
-            {/* Editorial row list with oversized ordinals — not a card grid */}
+            {/* Editorial row list — no ordinal numbering */}
             <div className="border-t border-border">
               {honors.map((h, i) => (
                 <motion.div
@@ -193,10 +174,7 @@ export default function CurrentlyView() {
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   className="group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-7 border-b border-border hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
                 >
-                  <span className="col-span-3 md:col-span-2 font-display italic text-[40px] md:text-[56px] text-accent/25 leading-none group-hover:text-accent/50 transition-colors">
-                    0{i + 1}
-                  </span>
-                  <div className="col-span-9 md:col-span-7">
+                  <div className="col-span-9 md:col-span-9">
                     <h3 className="font-display text-[22px] md:text-[26px] text-foreground leading-tight">
                       {h.title}
                     </h3>
@@ -204,7 +182,7 @@ export default function CurrentlyView() {
                       {h.issuer}
                     </p>
                   </div>
-                  <span className="hidden md:block md:col-span-3 text-right font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
+                  <span className="col-span-3 text-right font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
                     {h.date}
                   </span>
                 </motion.div>

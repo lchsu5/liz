@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 
-// Single premium dark palette — deep charcoal, off-white text, muted blue accent.
+// Single premium light palette — soft off-white background, near-black text, muted blue accent.
 const PALETTE = {
-  background: "222 22% 7%",
-  foreground: "210 24% 95%",
-  card: "222 20% 11%",
-  cardForeground: "210 24% 95%",
-  border: "222 16% 20%",
-  muted: "222 16% 15%",
-  mutedForeground: "216 12% 63%",
-  accent: "213 62% 58%",
+  background: "210 20% 98%",
+  foreground: "222 25% 12%",
+  card: "0 0% 100%",
+  cardForeground: "222 25% 12%",
+  border: "220 16% 88%",
+  muted: "220 18% 94%",
+  mutedForeground: "220 10% 42%",
+  accent: "213 70% 45%",
   accentForeground: "0 0% 100%",
-  cursorGlow: "213 80% 66%",
+  cursorGlow: "213 70% 55%",
 };
 
 function applyPalette() {
@@ -36,7 +36,7 @@ function applyPalette() {
   r.setProperty("--cursor-glow", PALETTE.cursorGlow);
 }
 
-/** Applies the single site-wide dark palette. */
+/** Applies the single site-wide light palette. */
 export default function ThemeController() {
   useEffect(() => {
     applyPalette();
