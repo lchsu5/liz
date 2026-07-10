@@ -45,9 +45,6 @@ const Index = () => {
           >
             Elizabeth <span className="italic text-accent">Hsu</span>
           </a>
-          <span className="ml-3 hidden sm:inline font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
-            · Personal Research Brand
-          </span>
         </div>
       </div>
 

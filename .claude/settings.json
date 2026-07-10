@@ -15,7 +15,8 @@
       "PowerShell(Copy-Item \"$env:USERPROFILE\\\\Downloads\\\\Liz_Headshot.JPG\" \"c:\\\\Users\\\\lizhs\\\\OneDrive\\\\Documents\\\\GitHub\\\\lizhhsu\\\\src\\\\assets\\\\headshot.jpg\")",
       "Bash(git checkout *)",
       "Bash(git rm *)",
-      "Bash(rm src/components/PhotoCard.tsx)"
+      "Bash(rm src/components/PhotoCard.tsx)",
+      "Bash(npx tsc *)"
     ]
   }
 }

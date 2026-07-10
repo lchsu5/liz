@@ -22,7 +22,7 @@ export default function EducationSection() {
                   B.S. in Business Administration, Concentration in Artificial Intelligence
                 </p>
                 <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
-                  Expected May 2029
+                  Expected May 2028
                 </p>
               </div>
               <p className="font-body text-[13px] text-foreground/65 mt-3 leading-relaxed">

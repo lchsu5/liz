@@ -20,7 +20,7 @@ const past: {
   dates: string;
   year: string;
   location?: string;
-  note: string;
+  note: string | string[];
   category: Exclude<Category, "All">;
   logo: string;
 }[] = [
@@ -29,7 +29,12 @@ const past: {
     title: "LLM & Multimodal AI Research Fellow",
     dates: "Nov 2025 — Jun 2026",
     year: "2026",
-    note: "Applied research on multimodal models for early-career hiring signals.",
+    location: "San Francisco, CA",
+    note: [
+      "Collaborated with researchers to refine LLM capabilities by completing 100+ domain-specific evaluation tasks.",
+      "Analyzed multimodal inputs (image, audio, video, text) to identify inconsistent reasoning and edge-case behavior.",
+      "Delivered 150+ pieces of decision-oriented feedback by synthesizing recurring failure patterns and edge cases into actionable recommendations used across training cycles.",
+    ],
     category: "Research",
     logo: handshakeLogo,
   },
@@ -39,7 +44,10 @@ const past: {
     dates: "Mar 2026 — May 2026",
     year: "2026",
     location: "Pittsburgh, PA",
-    note: "Evaluated frontier LLM behavior under adversarial prompts; contributed to safety benchmark design.",
+    note: [
+      "Analyze results to assess the robustness of current LLM safety testing methods and find gaps in risk detection.",
+      "Evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks using a structured scoring framework to assess alignment, misuse risk, and policy compliance.",
+    ],
     category: "Research",
     logo: cmuLogo,
   },
@@ -48,7 +56,12 @@ const past: {
     title: "Product Manager Intern",
     dates: "Feb 2026 — May 2026",
     year: "2026",
-    note: "Spec'd consumer features for a virtual-world platform; ran user interviews and prioritization.",
+    location: "Los Angeles, CA",
+    note: [
+      "Defined product roadmap for geospatial AI platform by analyzing user behavior across 3+ social map platforms.",
+      "Conducted user interviews and behavioral analysis to prioritize features improving retention and engagement.",
+      "Coordinated cross-functional development across engineering and design to ship MVP features on schedule.",
+    ],
     category: "Product",
     logo: superworldLogo,
   },
@@ -57,7 +70,12 @@ const past: {
     title: "FIG Analyst",
     dates: "Jun 2025 — Aug 2025",
     year: "2025",
-    note: "Published initiating-coverage reports on $HOOD and $PYPL covering the FinTech vertical.",
+    location: "Irvine, CA",
+    note: [
+      "Modeled 5 and 10-year DCFs and comps for PYPL & HOOD, evaluating key revenue and macro sensitivity.",
+      "Developed 5 theses on crypto M&A and super-app competition, supporting coverage with 10+ models.",
+      "Quantified earnings sensitivity to Fed policy and regulations, stress-testing models under multiple scenarios.",
+    ],
     category: "Finance",
     logo: consortiumLogo,
   },
@@ -66,7 +84,12 @@ const past: {
     title: "Real Estate Private Equity Intern",
     dates: "May 2025 — Oct 2025",
     year: "2025",
-    note: "Underwrote multifamily acquisitions; presented investment memos to industry mentors.",
+    location: "Washington, DC",
+    note: [
+      "Modeled cash flows, IRR, and sensitivity for 5+ multifamily assets, identifying $2M+ in value creation potential.",
+      "Built DCFs highlighting two deals with projected 15–20% IRR, supporting investment committee reviews.",
+      "Synthesized market, leasing, and sponsor analysis into investor memos and presented findings to professionals.",
+    ],
     category: "Finance",
     logo: projectDestinedLogo,
   },
@@ -75,8 +98,12 @@ const past: {
     title: "Sustainability Consultant Intern",
     dates: "May 2024 — Aug 2024",
     year: "2024",
-    location: "Orange County, CA",
-    note: "Supported ESG disclosure modeling for a Fortune 500 client.",
+    location: "Costa Mesa, CA",
+    note: [
+      "Engineered an ESG integration roadmap, mitigating a 25% noncompliance risk against global standards.",
+      "Created two circular-economy product models for a fashion client that lowered client water consumption by 24%.",
+      "Synthesized ESG data into 16-slide C-suite brief, securing adoption of three firmwide sustainability initiatives.",
+    ],
     category: "Finance",
     logo: eyLogo,
   },
@@ -95,8 +122,12 @@ const past: {
     title: "Teacher, Receptionist & Translator",
     dates: "Feb 2023 — Apr 2025",
     year: "2023",
-    location: "Tustin, CA",
-    note: "Two years of one-on-one math instruction — quietly the most formative role on this list.",
+    location: "Irvine, CA",
+    note: [
+      "Tutored 28 students in English & Math daily, increasing test scores by 18% across 5 grade levels.",
+      "Managed scheduling & billing for 300+ students, streamlined processes to lower admin errors 30%.",
+      "Interpreted Mandarin for 20+ families in parent meetings, improving the implementation of student plans.",
+    ],
     category: "Teaching",
     logo: kumonLogo,
   },
@@ -236,9 +267,22 @@ export default function BeforeView() {
                         >
                           <div className="grid grid-cols-12 gap-3 md:gap-6 pb-7 pt-1 px-2 -mx-2">
                             <div className="col-span-12 md:col-start-5 md:col-span-7">
-                              <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-2xl">
-                                {p.note}
-                              </p>
+                              {Array.isArray(p.note) ? (
+                                <ul className="space-y-1.5 max-w-2xl">
+                                  {p.note.map((line, ni) => (
+                                    <li
+                                      key={ni}
+                                      className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-foreground/40"
+                                    >
+                                      {line}
+                                    </li>
+                                  ))}
+                                </ul>
+                              ) : (
+                                <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-2xl">
+                                  {p.note}
+                                </p>
+                              )}
                               {p.location && (
                                 <p className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/40 mt-2">
                                   {p.location}
