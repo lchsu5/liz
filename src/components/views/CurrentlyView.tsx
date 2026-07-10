@@ -39,7 +39,7 @@ const honors = [
 export default function CurrentlyView() {
   return (
     <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
-      <ThemeController mode="light" />
+      <ThemeController />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -72,7 +72,7 @@ export default function CurrentlyView() {
 
                 <div className="flex items-center gap-3 mb-6">
                   {r.logo && (
-                    <div className="w-11 h-11 border border-border bg-background flex items-center justify-center overflow-hidden">
+                    <div className="w-11 h-11 rounded-xl border border-border bg-background flex items-center justify-center overflow-hidden">
                       <img
                         src={r.logo}
                         alt={r.company}

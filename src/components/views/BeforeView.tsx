@@ -152,7 +152,7 @@ export default function BeforeView() {
 
   return (
     <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
-      <ThemeController mode="light" />
+      <ThemeController />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -192,7 +192,7 @@ export default function BeforeView() {
           </div>
 
           {/* Timeline */}
-          <div className="border-y border-border">
+          <div className="rounded-2xl border border-border bg-card/20 overflow-hidden shadow-[0_8px_24px_-18px_hsl(0_0%_0%/0.5)]">
             <AnimatePresence initial={false}>
               {visible.map((p, i) => {
                 const open = openIdx === i;

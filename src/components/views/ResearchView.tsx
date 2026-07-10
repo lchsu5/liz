@@ -382,7 +382,7 @@ export default function ResearchView() {
   return (
     <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
 
-      <ThemeController mode="light" />
+      <ThemeController />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

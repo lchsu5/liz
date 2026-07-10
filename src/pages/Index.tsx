@@ -33,15 +33,15 @@ const Index = () => {
       <CursorGlow />
 
       {/* Sticky wordmark bar — solid bg so it never collides with content */}
-      <div className="fixed top-0 left-0 right-0 z-40 bg-background/85 backdrop-blur-md border-b border-border/60">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 h-14 md:h-16 flex items-center">
+      <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/70 shadow-[0_1px_0_hsl(0_0%_0%/0.2)]">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 h-16 md:h-20 flex items-center">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               setView("overview");
             }}
-            className="font-display text-[15px] md:text-[17px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors"
+            className="font-display text-[16px] md:text-[19px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors duration-300"
           >
             Elizabeth <span className="italic text-accent">Hsu</span>
           </a>

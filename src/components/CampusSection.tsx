@@ -1,9 +1,8 @@
+import { motion } from "framer-motion";
 import btgImg from "@/assets/btg.jpeg";
 import tsaImg from "@/assets/taiwanese_student_association.jpeg";
 import foundryImg from "@/assets/foundry.jpeg";
 import SectionHeader from "./SectionHeader";
-
-const CRIMSON = "#6b0909";
 
 const orgs = [
   {
@@ -45,136 +44,62 @@ const orgs = [
 
 export default function CampusSection() {
   return (
-    <section className="py-[100px] px-6">
+    <section className="py-24 md:py-28 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-
         <SectionHeader
           title="Campus Leadership"
           description="Involvement across product, culture, and venture at CMU."
         />
 
-        {/* Card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {orgs.map((org) => (
-            <div
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {orgs.map((org, i) => (
+            <motion.div
               key={org.name}
-              className="relative"
-              style={{ transition: "transform 300ms ease-out", zIndex: 1 }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.25)";
-                (e.currentTarget as HTMLDivElement).style.zIndex = "10";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                (e.currentTarget as HTMLDivElement).style.zIndex = "1";
-              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -4 }}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card/60 lift-card"
             >
-              {/* Card inner — overflow-hidden keeps image inside rounded corners */}
-              <div
-                className="flex flex-col h-full"
-                style={{
-                  background: "#fff",
-                  borderRadius: 16,
-                  overflow: "hidden",
-                }}
-              >
-                {/* Photo */}
-                <div style={{ height: 200, flexShrink: 0 }}>
-                  <img
-                    src={org.image}
-                    alt={org.name}
-                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                  />
-                </div>
-
-                {/* Content */}
-                <div
-                  className="flex flex-col flex-1"
-                  style={{ padding: 24 }}
-                >
-                  {/* Organization name */}
-                  <p
-                    style={{
-                      fontSize: 10,
-                      letterSpacing: "0.22em",
-                      textTransform: "uppercase",
-                      color: CRIMSON,
-                      marginBottom: 8,
-                      fontFamily: "Inter, sans-serif",
-                    }}
-                  >
-                    {org.name}
-                  </p>
-
-                  {/* Roles */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 3,
-                      marginBottom: 20,
-                    }}
-                  >
-                    {org.roles.map((r) => (
-                      <div
-                        key={r.title}
-                        style={{ fontFamily: "Inter, sans-serif", fontSize: 11 }}
-                      >
-                        <span style={{ fontWeight: 600, color: "#181818" }}>
-                          {r.title}
-                        </span>
-                        <span style={{ color: "#aaa" }}> · {r.years}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Bullets */}
-                  <ul
-                    style={{
-                      marginTop: "auto",
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: 10,
-                      listStyle: "none",
-                      padding: 0,
-                      margin: 0,
-                    }}
-                  >
-                    {org.bullets.map((b, i) => (
-                      <li
-                        key={i}
-                        style={{ display: "flex", gap: 10, alignItems: "flex-start" }}
-                      >
-                        <span
-                          style={{
-                            color: CRIMSON,
-                            fontSize: 12,
-                            flexShrink: 0,
-                            marginTop: 1,
-                            fontFamily: "Inter, sans-serif",
-                          }}
-                        >
-                          —
-                        </span>
-                        <span
-                          style={{
-                            fontSize: 12,
-                            color: "#555",
-                            lineHeight: 1.6,
-                            fontFamily: "Inter, sans-serif",
-                          }}
-                        >
-                          {b}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              {/* Photo */}
+              <div className="h-48 shrink-0 overflow-hidden">
+                <img
+                  src={org.image}
+                  alt={org.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
-            </div>
+
+              {/* Content */}
+              <div className="flex flex-col flex-1 p-6">
+                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
+                  {org.name}
+                </p>
+
+                <div className="flex flex-col gap-1 mb-5">
+                  {org.roles.map((r) => (
+                    <div key={r.title} className="font-body text-[12px] text-foreground/90">
+                      <span className="font-medium">{r.title}</span>
+                      <span className="text-muted-foreground"> · {r.years}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <ul className="mt-auto flex flex-col gap-3">
+                  {org.bullets.map((b, bi) => (
+                    <li key={bi} className="flex gap-2.5 items-start">
+                      <span className="text-accent text-[12px] mt-0.5 shrink-0">—</span>
+                      <span className="font-body text-[12px] text-foreground/65 leading-relaxed">
+                        {b}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

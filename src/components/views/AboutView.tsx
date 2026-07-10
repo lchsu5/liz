@@ -23,7 +23,7 @@ const languages = [
 export default function AboutView() {
   return (
     <main className="min-h-screen px-6 md:px-12 pt-32 pb-40">
-      <ThemeController mode="light" />
+      <ThemeController />
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -18,7 +18,7 @@ const currentChips = [
 export default function OverviewView() {
   return (
     <main className="min-h-screen">
-      <ThemeController mode="light" />
+      <ThemeController />
 
       {/* HERO — asymmetric editorial spread */}
       <section className="relative min-h-screen flex items-center px-6 md:px-12 pt-24 pb-24 overflow-hidden">
@@ -99,7 +99,7 @@ export default function OverviewView() {
               {currentChips.map((c) => (
                 <span
                   key={c.org}
-                  className="font-body text-[10px] tracking-[0.18em] uppercase border border-accent/40 text-foreground/80 px-3 py-1.5 hover:bg-accent/10 hover:border-accent transition-colors"
+                  className="font-body text-[10px] tracking-[0.18em] uppercase border border-accent/40 rounded-full text-foreground/80 px-3.5 py-1.5 hover:bg-accent/10 hover:border-accent transition-colors duration-300"
                 >
                   <span className="text-accent">●</span> {c.org}
                   <span className="text-foreground/40 mx-1.5">/</span>
@@ -176,7 +176,7 @@ export default function OverviewView() {
                 initial={{ opacity: 0, x: 20, y: -10 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute -top-4 -right-4 sm:-right-8 bg-background border border-border shadow-sm px-4 py-3"
+                className="absolute -top-4 -right-4 sm:-right-8 bg-card/90 backdrop-blur-md border border-border rounded-2xl shadow-[0_16px_40px_-16px_hsl(0_0%_0%/0.6)] px-4 py-3"
               >
                 <p className="font-body text-[9px] tracking-[0.22em] uppercase text-accent">
                   Based in
@@ -192,7 +192,7 @@ export default function OverviewView() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.85 }}
                 href="mailto:lchsu@andrew.cmu.edu"
-                className="absolute -bottom-2 -right-6 sm:-right-10 bg-background border border-border shadow-sm px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/5 transition-colors duration-200"
+                className="absolute -bottom-2 -right-6 sm:-right-10 bg-card/90 backdrop-blur-md border border-border rounded-2xl shadow-[0_16px_40px_-16px_hsl(0_0%_0%/0.6)] px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/10 transition-colors duration-200"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
@@ -222,7 +222,13 @@ export default function OverviewView() {
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader title="Education" />
-          <div className="py-8 grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.5 }}
+            className="rounded-2xl border border-border bg-card/40 p-7 md:p-10 lift-card grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6"
+          >
             <div className="md:col-span-5">
               <h3 className="font-display text-[26px] md:text-[34px] text-foreground leading-tight">
                 Carnegie Mellon University
@@ -236,7 +242,7 @@ export default function OverviewView() {
                 <p className="font-body text-[15px] text-foreground/90">
                   B.S. Business Administration · Concentration in Artificial Intelligence
                 </p>
-                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground whitespace-nowrap">
+                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-accent whitespace-nowrap">
                   Expected May 2028
                 </p>
               </div>
@@ -244,7 +250,7 @@ export default function OverviewView() {
                 Coursework spanning business analytics, computer science, and applied AI.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -255,19 +261,20 @@ export default function OverviewView() {
       <section className="px-6 md:px-12 py-24">
         <div className="max-w-6xl mx-auto">
           <SectionHeader title="Languages" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border border border-border">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {languages.map((l, i) => (
               <motion.div
                 key={l.name}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="bg-background py-8 px-7"
+                whileHover={{ y: -3 }}
+                className="rounded-2xl border border-border bg-card/40 py-8 px-7 lift-card"
               >
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="font-display text-[28px] text-foreground">{l.name}</span>
-                  <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+                  <span className="font-body text-[10px] tracking-[0.18em] uppercase text-accent">
                     {l.level}
                   </span>
                 </div>
@@ -284,7 +291,7 @@ export default function OverviewView() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <a
               href="mailto:lchsu@andrew.cmu.edu"
-              className="group flex items-center justify-between gap-4 border border-border hover:border-accent bg-card/30 hover:bg-card/60 transition-all duration-200 px-6 py-6"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-border hover:border-accent bg-card/40 hover:bg-card/70 transition-all duration-300 px-6 py-6 lift-card"
             >
               <div className="flex items-center gap-4">
                 <Mail size={20} className="text-accent" strokeWidth={1.5} />
@@ -305,7 +312,7 @@ export default function OverviewView() {
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 border border-border hover:border-accent bg-card/30 hover:bg-card/60 transition-all duration-200 px-6 py-6"
+              className="group flex items-center justify-between gap-4 rounded-2xl border border-border hover:border-accent bg-card/40 hover:bg-card/70 transition-all duration-300 px-6 py-6 lift-card"
             >
               <div className="flex items-center gap-4">
                 <Linkedin size={20} className="text-accent" strokeWidth={1.5} />

@@ -24,7 +24,7 @@ export default function PillNav({
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
       aria-label="Primary"
     >
-      <ul className="flex items-center gap-1 rounded-full border border-[hsl(var(--foreground)/0.14)] bg-[hsl(var(--background)/0.7)] backdrop-blur-xl px-1.5 py-1.5 shadow-[0_10px_40px_-10px_hsl(0_0%_0%/0.35)]">
+      <ul className="flex items-center gap-1 rounded-full border border-[hsl(var(--border))] bg-[hsl(var(--background)/0.75)] backdrop-blur-xl px-1.5 py-1.5 shadow-[0_16px_48px_-12px_hsl(0_0%_0%/0.6)]">
         {items.map((it) => {
           const isActive = it.key === active;
           return (
