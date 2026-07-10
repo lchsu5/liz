@@ -234,7 +234,7 @@ export default function BeforeView() {
                       {p.note.map((line, ni) => (
                         <li
                           key={ni}
-                          className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['—'] before:absolute before:left-0 before:text-foreground/40"
+                          className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-accent"
                         >
                           {line}
                         </li>
@@ -289,7 +289,7 @@ export default function BeforeView() {
                 <img
                   src={p.src}
                   alt={p.caption}
-                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.03]"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
                 />
                 <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
                 <div className="absolute left-4 bottom-3.5 pointer-events-none">

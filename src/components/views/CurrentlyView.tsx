@@ -55,6 +55,11 @@ const honors = [
     date: "Jan 2026",
   },
   {
+    title: "UCC Consulting Academy Case Competition Finalist",
+    issuer: "CMU Undergraduate Consulting Club",
+    date: "Nov 2025",
+  },
+  {
     title: "2nd Place, ETF Arbitrage",
     issuer: "MSCF Trading Competition",
     date: "Sep 2025",
