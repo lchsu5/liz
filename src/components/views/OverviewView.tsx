@@ -267,7 +267,11 @@ export default function OverviewView() {
                   Coursework
                 </span>
                 <p className="font-body text-[13px] text-foreground/65 mt-2 leading-relaxed">
-                  Business analytics, computer science, and applied AI.
+                  AI for Business Leaders, Principles of Computing, Business Computing,
+                  Reasoning with Data, Multivariate Analysis, Business Science,
+                  Information Systems in Organizational Milieux, Introduction to
+                  Entrepreneurship, Organizational Behavior, and Business Leadership
+                  Endeavor I &amp; II.
                 </p>
               </div>
             </div>
@@ -304,50 +308,71 @@ export default function OverviewView() {
         </div>
       </section>
 
-      {/* CONTACT — centered CTA composition with icon-badge buttons */}
-      <section className="px-6 md:px-12 py-24 pb-32 md:pb-40">
+      {/* CONTACT — editorial colophon: display headline + fact-sheet list, matching Education's split */}
+      <section className="px-6 md:px-12 py-20 pb-32 md:pb-40">
         <div className="max-w-6xl">
+          <SectionHeader title="Get in Touch" />
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center text-center rounded-[32px] border border-border bg-card/30 px-8 py-16 md:py-20"
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-1 md:grid-cols-12 border-t border-border"
           >
-            <p className="font-body text-[10px] tracking-[0.3em] uppercase text-accent mb-4">
-              Get in Touch
-            </p>
-            <h2 className="font-display text-[36px] md:text-[56px] text-foreground leading-[1.05] max-w-2xl">
-              Let's build something <span className="italic text-accent">worth shipping.</span>
-            </h2>
-            <p className="font-body text-[15px] text-foreground/65 mt-5 max-w-md">
-              Open to product, research, and venture conversations — reach out however's easiest.
-            </p>
+            {/* Headline */}
+            <div className="md:col-span-6 py-10 md:pr-10 md:border-r border-border">
+              <h3 className="font-display text-[38px] md:text-[58px] text-foreground leading-[0.98]">
+                Let's talk <span className="italic text-accent">shop.</span>
+              </h3>
+              <p className="font-body text-[15px] text-foreground/65 mt-6 max-w-sm leading-relaxed">
+                Open to product, research, and venture conversations — reach out
+                however's easiest.
+              </p>
+            </div>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+            {/* Contact fact-list */}
+            <div className="md:col-span-6 py-4 md:py-2 md:pl-10 flex flex-col divide-y divide-border/70">
               <a
                 href="mailto:lchsu@andrew.cmu.edu"
-                className="group flex items-center gap-3 rounded-full bg-accent text-[hsl(var(--accent-foreground))] pl-5 pr-6 py-3.5 hover:brightness-110 transition-all duration-300 shadow-[0_12px_32px_-12px_hsl(var(--accent)/0.6)]"
+                className="group flex items-center justify-between gap-4 py-6 hover:pl-2 transition-all duration-300"
               >
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-[hsl(var(--accent-foreground)/0.15)]">
-                  <Mail size={15} strokeWidth={1.75} />
+                <span className="flex items-center gap-3">
+                  <Mail size={15} className="text-accent shrink-0" strokeWidth={1.75} />
+                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                    Email
+                  </span>
                 </span>
-                <span className="font-body text-[13px] tracking-[0.04em]">lchsu@andrew.cmu.edu</span>
+                <span className="font-body text-[14px] text-foreground/85 group-hover:text-accent transition-colors">
+                  lchsu@andrew.cmu.edu
+                </span>
               </a>
 
               <a
                 href="https://www.linkedin.com/in/lizhhsu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-full border border-border pl-5 pr-6 py-3.5 hover:border-accent hover:bg-accent/[0.06] transition-all duration-300"
+                className="group flex items-center justify-between gap-4 py-6 hover:pl-2 transition-all duration-300"
               >
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-accent/10 text-accent">
-                  <Linkedin size={15} strokeWidth={1.75} />
+                <span className="flex items-center gap-3">
+                  <Linkedin size={15} className="text-accent shrink-0" strokeWidth={1.75} />
+                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                    LinkedIn
+                  </span>
                 </span>
-                <span className="font-body text-[13px] tracking-[0.04em] text-foreground/80 group-hover:text-foreground">
+                <span className="font-body text-[14px] text-foreground/85 group-hover:text-accent transition-colors">
                   linkedin.com/in/lizhhsu
                 </span>
               </a>
+
+              <div className="flex items-center justify-between gap-4 py-6">
+                <span className="flex items-center gap-3">
+                  <MapPin size={15} className="text-accent shrink-0" strokeWidth={1.75} />
+                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
+                    Location
+                  </span>
+                </span>
+                <span className="font-body text-[14px] text-foreground/85">Irvine, CA</span>
+              </div>
             </div>
           </motion.div>
         </div>
