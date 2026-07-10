@@ -71,19 +71,8 @@ export default function CurrentlyView() {
     <main className="min-h-screen pl-6 pr-6 md:pl-44 md:pr-12 lg:pl-52 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController />
       <div className="w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <SectionHeader
-            title="What I'm Doing Now"
-            description="Active roles across product, research, and venture — plus the projects I'm shipping in parallel."
-          />
-        </motion.div>
-
         {/* Active Roles — equal-size cards */}
-        <div className="mt-20">
+        <div>
           <SectionHeader title="Active Roles" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {roles.map((r, i) => (

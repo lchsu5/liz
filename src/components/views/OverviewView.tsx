@@ -1,14 +1,9 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, MapPin, ArrowDown } from "lucide-react";
+import { Mail, Linkedin, MapPin, ArrowDown, Briefcase } from "lucide-react";
 import headshotImg from "@/assets/headshot.jpg";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
-
-const languages = [
-  { name: "English", level: "Native or Bilingual" },
-  { name: "Chinese (Mandarin)", level: "Limited Working" },
-];
 
 const currentChips = [
   { org: "Adobe", role: "Student Ambassador" },
@@ -282,100 +277,56 @@ export default function OverviewView() {
       {/* CAMPUS LEADERSHIP */}
       <CampusSection />
 
-      {/* LANGUAGES — two identical cards, equal size/font/style */}
-      <section className="px-6 md:px-12 py-20">
-        <div className="w-full">
-          <SectionHeader title="Languages" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {languages.map((l, i) => (
-              <motion.div
-                key={l.name}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-2xl border border-border bg-card/40 lift-card p-8"
-              >
-                <span className="font-display text-[28px] text-foreground leading-none">
-                  {l.name}
-                </span>
-                <p className="font-body text-[10px] tracking-[0.18em] uppercase text-accent mt-4">
-                  {l.level}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CONTACT — editorial colophon: display headline + fact-sheet list, matching Education's split */}
+      {/* CONTACT — headline + description, big email bar, then a row of link cards */}
       <section className="px-6 md:px-12 py-20 pb-32 md:pb-40">
-        <div className="w-full">
-          <SectionHeader title="Get in Touch" />
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-12 border-t border-border"
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="w-full"
+        >
+          <SectionHeader
+            title="Get in Touch"
+            description="Let's chat! Open to Product Management, AI Business Development, and AI Engineering roles, as well as leadership development."
+          />
+
+          <a
+            href="mailto:lchsu@andrew.cmu.edu"
+            className="group flex items-center justify-center gap-3 rounded-2xl bg-accent py-6 md:py-7 transition-transform duration-300 hover:scale-[1.01]"
           >
-            {/* Headline */}
-            <div className="md:col-span-6 py-10 md:pr-10 md:border-r border-border">
-              <h3 className="font-display text-[38px] md:text-[58px] text-foreground leading-[0.98]">
-                Let's talk <span className="italic text-accent">shop.</span>
-              </h3>
-              <p className="font-body text-[15px] text-foreground/65 mt-6 max-w-sm leading-relaxed">
-                Open to product, research, and venture conversations — reach out
-                however's easiest.
-              </p>
-            </div>
+            <Mail size={18} className="text-[hsl(var(--accent-foreground))] shrink-0" strokeWidth={1.75} />
+            <span className="font-body text-[15px] md:text-[17px] tracking-[0.1em] uppercase text-[hsl(var(--accent-foreground))]">
+              lchsu@andrew.cmu.edu
+            </span>
+          </a>
 
-            {/* Contact fact-list */}
-            <div className="md:col-span-6 py-4 md:py-2 md:pl-10 flex flex-col divide-y divide-border/70">
-              <a
-                href="mailto:lchsu@andrew.cmu.edu"
-                className="group flex items-center justify-between gap-4 py-6 hover:pl-2 transition-all duration-300"
-              >
-                <span className="flex items-center gap-3">
-                  <Mail size={15} className="text-accent shrink-0" strokeWidth={1.75} />
-                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                    Email
-                  </span>
-                </span>
-                <span className="font-body text-[14px] text-foreground/85 group-hover:text-accent transition-colors">
-                  lchsu@andrew.cmu.edu
-                </span>
-              </a>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            <a
+              href="https://www.linkedin.com/in/lizhhsu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-card/40 lift-card py-8"
+            >
+              <Linkedin size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+                LinkedIn
+              </span>
+            </a>
 
-              <a
-                href="https://www.linkedin.com/in/lizhhsu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-between gap-4 py-6 hover:pl-2 transition-all duration-300"
-              >
-                <span className="flex items-center gap-3">
-                  <Linkedin size={15} className="text-accent shrink-0" strokeWidth={1.75} />
-                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                    LinkedIn
-                  </span>
-                </span>
-                <span className="font-body text-[14px] text-foreground/85 group-hover:text-accent transition-colors">
-                  linkedin.com/in/lizhhsu
-                </span>
-              </a>
-
-              <div className="flex items-center justify-between gap-4 py-6">
-                <span className="flex items-center gap-3">
-                  <MapPin size={15} className="text-accent shrink-0" strokeWidth={1.75} />
-                  <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                    Location
-                  </span>
-                </span>
-                <span className="font-body text-[14px] text-foreground/85">Irvine, CA</span>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+            <a
+              href="https://elizabeth-hsu-portfolio.lovable.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-card/40 lift-card py-8"
+            >
+              <Briefcase size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+                Ambassador Portfolio
+              </span>
+            </a>
+          </div>
+        </motion.div>
       </section>
     </main>
   );
