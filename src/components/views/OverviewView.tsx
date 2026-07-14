@@ -12,7 +12,7 @@ const currentChips = [
 
 export default function OverviewView() {
   return (
-    <main className="min-h-screen md:pl-32 lg:pl-40">
+    <main className="min-h-screen">
       <ThemeController />
 
       {/* HERO — asymmetric editorial spread */}

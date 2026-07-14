@@ -260,7 +260,7 @@ export default function BeforeView() {
   };
 
   return (
-    <main className="min-h-screen pl-6 pr-6 md:pl-44 md:pr-12 lg:pl-52 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
       <ThemeController />
       <div className="w-full">
         <motion.div

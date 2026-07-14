@@ -39,7 +39,7 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <CursorGlow />
 
-      {/* Header — split two-zone bar: wordmark left, live section index right */}
+      {/* Header — wordmark left; live nav (PillNav) sits pinned top-right on desktop */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/70">
         <div className="px-5 md:px-10 h-16 md:h-20 flex items-stretch justify-between">
           <a
@@ -53,7 +53,7 @@ const Index = () => {
             Elizabeth <span className="italic text-accent">Hsu</span>
           </a>
 
-          <div className="hidden sm:flex items-center gap-5 pl-6 border-l border-border/70">
+          <div className="hidden sm:flex md:hidden items-center gap-5 pl-6 border-l border-border/70">
             <span className="font-body text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
               {VIEW_META[view].index} <span className="text-foreground/30 mx-1">/</span> 04
             </span>
