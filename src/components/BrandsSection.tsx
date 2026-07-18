@@ -3,8 +3,10 @@ import projectDestinedLogo from "@/assets/project-destined-logo.png";
 import redbullLogo from "@/assets/redbull-logo.svg";
 import princessPollyLogo from "@/assets/princess-polly-logo.webp";
 import adobeLogo from "@/assets/adobe.jpg";
+import notionLogo from "@/assets/notion-logo.svg";
 
 const brands = [
+  { logo: notionLogo,          name: "Notion",           role: "Campus Leader",       href: "#" },
   { logo: adobeLogo,           name: "Adobe",            role: "Student Ambassador",  href: "#" },
   { logo: princessPollyLogo,   name: "Princess Polly",   role: "Ambassador",          href: "#" },
   { logo: bigFutureLogo,       name: "BigFuture",        role: "Ambassador",          href: "#" },
