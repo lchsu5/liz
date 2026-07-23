@@ -6,8 +6,8 @@ import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
 
 const currentChips = [
-  { org: "Adobe", role: "Student Ambassador" },
   { org: "Workiva", role: "PM Intern" },
+  { org: "Google", role: "Student Ambassador" },
 ];
 
 export default function OverviewView() {
@@ -45,7 +45,7 @@ export default function OverviewView() {
               className="font-body text-[14px] md:text-[15px] font-normal text-foreground/75 max-w-xl leading-[1.9] mt-4"
             >
               I work at the intersection of product, research, and venture, currently
-              shipping with Adobe and Workiva.
+              shipping with Workiva and Google.
             </motion.p>
 
             {/* Status + contact */}
@@ -155,7 +155,7 @@ export default function OverviewView() {
                 Tepper School of Business
               </p>
               <p className="font-body text-[13px] text-foreground/85 mt-5 leading-relaxed max-w-sm">
-                B.S. Business Administration, concentration in Artificial Intelligence.
+                B.S. Business Administration, minor in Artificial Intelligence.
               </p>
             </div>
 

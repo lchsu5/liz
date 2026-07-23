@@ -2,23 +2,23 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
-import adobeLogo from "@/assets/adobe.jpg";
+import googleLogo from "@/assets/google-logo.svg";
 import workivaLogo from "@/assets/workiva.avif";
 
 const roles = [
-  {
-    company: "Adobe",
-    title: "Student Ambassador",
-    dates: "Jun 2026 — Present",
-    note: "Representing Adobe on campus; connecting students with the creative & AI toolchain.",
-    logo: adobeLogo as string | null,
-  },
   {
     company: "Workiva",
     title: "Product Manager Intern",
     dates: "May 2026 — Present",
     note: "Internship on a product team building enterprise reporting workflows.",
     logo: workivaLogo as string | null,
+  },
+  {
+    company: "Google",
+    title: "Student Ambassador",
+    dates: "2025 — Present",
+    note: "Representing Google's developer ecosystem at Carnegie Mellon — building community, running technical workshops, and connecting students to Google Cloud opportunities.",
+    logo: googleLogo as string | null,
   },
 ];
 
@@ -39,13 +39,13 @@ const honors = [
     date: "Apr 2026",
   },
   {
-    title: "Eaton empowerU Leadership Summit",
+    title: "Eaton EmpowerU Leadership Summit",
     issuer: "Eaton",
     date: "Apr 2026",
   },
   {
     title: "Zappurtunity Scholar",
-    issuer: "Zappurtunity — selected from 300+ applicants",
+    issuer: "Selected from 300+ applicants",
     date: "Mar 2026",
   },
   {
@@ -54,8 +54,8 @@ const honors = [
     date: "Jan 2026",
   },
   {
-    title: "UCC Consulting Academy Case Competition Finalist",
-    issuer: "CMU Undergraduate Consulting Club",
+    title: "UCC Consulting Case Competition Finalist",
+    issuer: "CMU Consulting Club",
     date: "Nov 2025",
   },
   {
@@ -64,8 +64,8 @@ const honors = [
     date: "Sep 2025",
   },
   {
-    title: "California State Seal of Biliteracy (Mandarin)",
-    issuer: "California Department of Education",
+    title: "CA State Seal of Biliteracy (Mandarin)",
+    issuer: "CA Dept of Education",
     date: "May 2025",
   },
 ];
