@@ -213,10 +213,10 @@ export default function OverviewView() {
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-accent hover:border-accent"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-primary hover:border-primary"
             >
-              <Linkedin size={22} className="text-foreground/80 group-hover:text-accent-foreground transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-accent-foreground transition-colors duration-150">
+              <Linkedin size={22} className="text-foreground/80 group-hover:text-primary-foreground transition-colors duration-150" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-primary-foreground transition-colors duration-150">
                 LinkedIn
               </span>
             </a>
@@ -225,10 +225,10 @@ export default function OverviewView() {
               href="https://elizabeth-hsu-portfolio.lovable.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-accent hover:border-accent"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-primary hover:border-primary"
             >
-              <Briefcase size={22} className="text-foreground/80 group-hover:text-accent-foreground transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-accent-foreground transition-colors duration-150">
+              <Briefcase size={22} className="text-foreground/80 group-hover:text-primary-foreground transition-colors duration-150" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-primary-foreground transition-colors duration-150">
                 Ambassador Portfolio
               </span>
             </a>
