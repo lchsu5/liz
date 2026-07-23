@@ -164,18 +164,16 @@ export default function CurrentlyView() {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ duration: 0.4, delay: i * 0.04 }}
-                  className="grid grid-cols-12 gap-4 md:gap-8 items-baseline py-3.5 border-b border-border"
+                  className="flex items-center justify-between gap-4 py-4 border-b border-border"
                 >
-                  <div className="col-span-8 md:col-span-9">
-                    <h3 className="font-body text-[13px] font-semibold text-foreground leading-tight">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    <h3 className="font-body text-[14px] font-semibold text-foreground truncate">
                       {h.title}
                     </h3>
-                    <p className="font-body text-[11px] text-muted-foreground mt-1 tracking-[0.02em]">
-                      {h.issuer}
-                    </p>
                   </div>
-                  <span className="col-span-4 md:col-span-3 text-right font-body text-[10px] tracking-[0.14em] uppercase text-muted-foreground">
-                    {h.date}
+                  <span className="font-body text-[13px] text-muted-foreground shrink-0">
+                    {h.issuer} · {h.date}
                   </span>
                 </motion.div>
               ))}

@@ -195,15 +195,15 @@ export default function OverviewView() {
         >
           <SectionHeader
             title="Get in Touch"
-            description="Let's chat! Open to Product Management, AI Business Development, and AI Engineering roles, as well as leadership development."
+            description="Always open to connecting, whether it's a role, a project, or just a chat."
           />
 
           <a
             href="mailto:lchsu@andrew.cmu.edu"
             className="group flex items-center justify-center gap-3 rounded-md bg-primary py-6 md:py-7 transition-colors duration-150 hover:bg-primary/90"
           >
-            <Mail size={18} className="text-primary-foreground shrink-0" strokeWidth={1.75} />
-            <span className="font-body text-[13px] md:text-[14px] tracking-[0.1em] uppercase text-primary-foreground">
+            <Mail size={18} className="text-[hsl(343_70%_82%)] group-hover:text-primary-foreground transition-colors duration-150 shrink-0" strokeWidth={1.75} />
+            <span className="font-body text-[13px] md:text-[14px] tracking-[0.1em] uppercase text-[hsl(343_70%_82%)] group-hover:text-primary-foreground transition-colors duration-150">
               lchsu@andrew.cmu.edu
             </span>
           </a>
@@ -213,10 +213,10 @@ export default function OverviewView() {
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 py-8"
             >
               <Linkedin size={22} className="text-foreground/80 group-hover:text-accent transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-150">
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-accent transition-colors duration-150">
                 LinkedIn
               </span>
             </a>
@@ -225,10 +225,10 @@ export default function OverviewView() {
               href="https://elizabeth-hsu-portfolio.lovable.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 py-8"
             >
               <Briefcase size={22} className="text-foreground/80 group-hover:text-accent transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-150">
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-accent transition-colors duration-150">
                 Ambassador Portfolio
               </span>
             </a>

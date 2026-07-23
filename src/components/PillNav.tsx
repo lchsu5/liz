@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 
 export type ViewKey = "overview" | "currently" | "before" | "research";
 
-const items: { key: ViewKey; index: string; label: string }[] = [
-  { key: "overview", index: "01", label: "Overview" },
-  { key: "currently", index: "02", label: "Currently" },
-  { key: "before", index: "03", label: "Before" },
-  { key: "research", index: "04", label: "Research" },
+const items: { key: ViewKey; label: string }[] = [
+  { key: "overview", label: "Overview" },
+  { key: "currently", label: "Currently" },
+  { key: "before", label: "Before" },
+  { key: "research", label: "Research" },
 ];
 
 export default function PillNav({
@@ -37,13 +37,6 @@ export default function PillNav({
                     isActive ? "bg-accent" : "hover:bg-secondary"
                   }`}
                 >
-                  <span
-                    className={`font-body text-[9px] tracking-[0.1em] transition-colors duration-150 ${
-                      isActive ? "text-accent-foreground/70" : "text-muted-foreground/50 group-hover:text-muted-foreground"
-                    }`}
-                  >
-                    {it.index}
-                  </span>
                   <span
                     className={`font-body text-[11px] tracking-[0.04em] uppercase transition-colors duration-150 ${
                       isActive ? "text-accent-foreground" : "text-muted-foreground group-hover:text-foreground"
