@@ -60,7 +60,13 @@ export default function CampusSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-              className="relative flex flex-col h-full overflow-hidden rounded-md border border-border bg-background transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.12] hover:z-20 hover:shadow-2xl"
+              whileHover={{
+                scale: 1.12,
+                zIndex: 20,
+                transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+              }}
+              style={{ transformOrigin: "center" }}
+              className="relative flex flex-col h-full overflow-hidden rounded-md border border-border bg-background hover:shadow-2xl transition-shadow duration-300"
             >
               <div className="h-56 md:h-64 shrink-0 overflow-hidden">
                 <img
