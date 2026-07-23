@@ -60,9 +60,9 @@ export default function CampusSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col h-full overflow-hidden rounded-md border border-border lift-card"
+              className="group flex flex-col h-full overflow-hidden rounded-md border border-border lift-card"
             >
-              <div className="h-36 shrink-0 overflow-hidden group">
+              <div className="h-56 md:h-64 shrink-0 overflow-hidden">
                 <img
                   src={org.image}
                   alt={org.name}

@@ -180,7 +180,7 @@ export default function BeforeView() {
         {/* Row — split into meta zone (dates+logo) and content zone */}
         <button
           onClick={() => setOpenKey(open ? null : rowKey)}
-          className="w-full text-left flex items-center gap-5 md:gap-8 py-5 group hover:bg-accent/[0.04] transition-colors px-4 md:px-6"
+          className="w-full text-left flex items-center gap-5 md:gap-8 py-5 group transition-colors px-4 md:px-6"
         >
           <div className="w-14 shrink-0 flex flex-col items-center gap-2">
             <motion.img
@@ -195,14 +195,14 @@ export default function BeforeView() {
 
           <div className="flex-1 min-w-0 border-l border-border/70 pl-5 md:pl-7">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="font-body text-[13px] font-semibold text-foreground leading-tight group-hover:text-accent transition-colors duration-150">
+              <h3 className="font-display text-[18px] md:text-[19px] text-foreground leading-tight group-hover:text-accent transition-colors duration-150">
                 {p.company}
               </h3>
-              <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
+              <span className="font-body text-[12px] text-muted-foreground shrink-0">
                 {p.dates}
               </span>
             </div>
-            <p className="font-body text-[11px] text-muted-foreground tracking-[0.01em] mt-1">
+            <p className="font-body text-[12px] text-muted-foreground mt-1">
               {p.title}
             </p>
           </div>
@@ -230,23 +230,23 @@ export default function BeforeView() {
                 <div className="w-14 shrink-0" />
                 <div className="flex-1 border-l border-border/70 pl-5 md:pl-7">
                   {Array.isArray(p.note) ? (
-                    <ul className="space-y-1.5 max-w-2xl">
+                    <ul className="flex flex-col gap-2 max-w-2xl">
                       {p.note.map((line, ni) => (
-                        <li
-                          key={ni}
-                          className="font-body text-[12px] text-foreground/80 leading-[1.8] pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-accent"
-                        >
-                          {line}
+                        <li key={ni} className="flex gap-2.5 items-start">
+                          <span className="w-1 h-1 rounded-full bg-accent opacity-70 mt-2 shrink-0" />
+                          <span className="font-body text-[12px] text-foreground/75 leading-[1.8]">
+                            {line}
+                          </span>
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="font-body text-[12px] text-foreground/80 leading-[1.8] max-w-2xl">
+                    <p className="font-body text-[12px] text-foreground/75 leading-[1.8] max-w-2xl">
                       {p.note}
                     </p>
                   )}
                   {p.location && (
-                    <p className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/40 mt-2">
+                    <p className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/40 mt-3">
                       {p.location}
                     </p>
                   )}
