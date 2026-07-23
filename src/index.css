@@ -1,12 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500&display=swap');
-
-@font-face {
-  font-family: 'Sunday Masthead';
-  src: url('/fonts/SundayMasthead-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&family=DM+Sans:wght@200;300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,38 +6,38 @@
 
 @layer base {
   :root {
-    /* Premium light palette — soft off-white background, near-black text, muted blue accent. */
-    --background: 210 20% 98%;
-    --foreground: 222 25% 12%;
+    /* Warm editorial palette — off-white background, near-black text, dusty rose accent. */
+    --background: 40 20% 98%;
+    --foreground: 45 8% 9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card-foreground: 45 8% 9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
+    --popover-foreground: 45 8% 9%;
 
-    --primary: 222 25% 12%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 45 8% 9%;
+    --primary-foreground: 40 20% 98%;
 
-    --secondary: 220 20% 95%;
-    --secondary-foreground: 222 25% 12%;
+    --secondary: 40 12% 95%;
+    --secondary-foreground: 45 8% 9%;
 
-    --muted: 220 18% 94%;
-    --muted-foreground: 220 10% 42%;
+    --muted: 40 12% 95%;
+    --muted-foreground: 36 4% 52%;
 
-    --accent: 213 70% 45%;
+    --accent: 342 41% 61%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 16% 88%;
-    --input: 220 16% 88%;
-    --ring: 213 70% 45%;
+    --border: 40 10% 90%;
+    --input: 40 10% 90%;
+    --ring: 342 41% 61%;
 
-    --cursor-glow: 213 70% 55%;
+    --cursor-glow: 342 41% 55%;
 
-    --radius: 1.25rem;
+    --radius: 0.625rem;
 
     --warm-cream: 37 35% 94%;
     --warm-beige: 37 18% 89%;
@@ -64,33 +56,33 @@
 
 
   .dark {
-    --background: 210 20% 98%;
-    --foreground: 222 25% 12%;
+    --background: 40 20% 98%;
+    --foreground: 45 8% 9%;
     --card: 0 0% 100%;
-    --card-foreground: 222 25% 12%;
+    --card-foreground: 45 8% 9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 25% 12%;
-    --primary: 222 25% 12%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 20% 95%;
-    --secondary-foreground: 222 25% 12%;
-    --muted: 220 18% 94%;
-    --muted-foreground: 220 10% 42%;
-    --accent: 213 70% 45%;
+    --popover-foreground: 45 8% 9%;
+    --primary: 45 8% 9%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 40 12% 95%;
+    --secondary-foreground: 45 8% 9%;
+    --muted: 40 12% 95%;
+    --muted-foreground: 36 4% 52%;
+    --accent: 342 41% 61%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 220 16% 88%;
-    --input: 220 16% 88%;
-    --ring: 213 70% 45%;
-    --sidebar-background: 210 20% 98%;
-    --sidebar-foreground: 222 25% 12%;
-    --sidebar-primary: 213 70% 45%;
+    --border: 40 10% 90%;
+    --input: 40 10% 90%;
+    --ring: 342 41% 61%;
+    --sidebar-background: 40 20% 98%;
+    --sidebar-foreground: 45 8% 9%;
+    --sidebar-primary: 342 41% 61%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 95%;
-    --sidebar-accent-foreground: 222 25% 12%;
-    --sidebar-border: 220 16% 88%;
-    --sidebar-ring: 213 70% 45%;
+    --sidebar-accent: 40 12% 95%;
+    --sidebar-accent-foreground: 45 8% 9%;
+    --sidebar-border: 40 10% 90%;
+    --sidebar-ring: 342 41% 61%;
   }
 }
 
@@ -111,7 +103,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Sunday Masthead', serif;
+    font-family: 'DM Serif Display', serif;
     font-weight: 400;
     letter-spacing: -0.01em;
     line-height: 1.05;
@@ -120,28 +112,28 @@
 
 @layer utilities {
   .font-display {
-    font-family: 'Sunday Masthead', serif;
+    font-family: 'DM Serif Display', serif;
   }
   .lift-card {
-    @apply transition-all duration-300 ease-out rounded-2xl;
-    box-shadow: 0 1px 0 hsl(var(--border)), 0 8px 24px -18px hsl(220 20% 30% / 0.18);
+    @apply transition-all duration-300 ease-out;
+    box-shadow: 0 1px 0 hsl(var(--border));
   }
   .lift-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 24px 48px -20px hsl(220 20% 30% / 0.22), 0 2px 8px hsl(213 70% 45% / 0.1);
-    border-color: hsl(var(--accent) / 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -14px hsl(45 8% 9% / 0.16);
+    border-color: hsl(var(--accent) / 0.35);
   }
   .font-body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
   }
   .font-heading {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'DM Sans', sans-serif;
   }
   .text-accent-warm {
     color: hsl(var(--accent));
   }
   .card-surface {
-    @apply rounded-2xl border border-border bg-card/60 shadow-[0_8px_24px_-18px_rgba(0,0,0,0.5)];
+    @apply rounded-xl border border-border bg-card/60 shadow-[0_1px_0_hsl(var(--border))];
   }
   .scroll-fade {
     @apply transition-all duration-700 ease-out;

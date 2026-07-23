@@ -17,38 +17,17 @@ export default function OverviewView() {
 
       {/* HERO — asymmetric editorial spread */}
       <section className="relative min-h-screen flex items-center px-6 md:px-12 pt-24 pb-24 overflow-hidden">
-        {/* Ambient accent wash */}
+        {/* Ambient accent wash — subtle, editorial */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-10"
         >
           <div
-            className="absolute -top-32 -right-40 w-[60vw] h-[60vw] rounded-full opacity-50"
+            className="absolute -top-32 -right-40 w-[60vw] h-[60vw] rounded-full opacity-20"
             style={{
               background:
-                "radial-gradient(circle, hsl(var(--accent) / 0.12), transparent 65%)",
-              filter: "blur(40px)",
-            }}
-          />
-          <div
-            className="absolute -bottom-40 -left-40 w-[50vw] h-[50vw] rounded-full opacity-40"
-            style={{
-              background:
-                "radial-gradient(circle, hsl(var(--accent) / 0.08), transparent 60%)",
+                "radial-gradient(circle, hsl(var(--accent) / 0.1), transparent 65%)",
               filter: "blur(50px)",
-            }}
-          />
-          {/* dot grid */}
-          <div
-            className="absolute inset-0 opacity-[0.18]"
-            style={{
-              backgroundImage:
-                "radial-gradient(hsl(var(--foreground) / 0.5) 1px, transparent 1px)",
-              backgroundSize: "28px 28px",
-              maskImage:
-                "radial-gradient(ellipse at center, black 30%, transparent 75%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse at center, black 30%, transparent 75%)",
             }}
           />
         </div>
@@ -177,7 +156,7 @@ export default function OverviewView() {
                 initial={{ opacity: 0, x: 20, y: -10 }}
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute -top-4 -right-4 sm:-right-8 bg-card/90 backdrop-blur-md border border-border rounded-2xl shadow-[0_16px_40px_-16px_hsl(0_0%_0%/0.6)] px-4 py-3"
+                className="absolute -top-4 -right-4 sm:-right-8 bg-card/90 backdrop-blur-md border border-border rounded-xl shadow-[0_8px_20px_-14px_hsl(45_8%_9%/0.3)] px-4 py-3"
               >
                 <p className="font-body text-[9px] tracking-[0.22em] uppercase text-accent">
                   Based in
@@ -193,7 +172,7 @@ export default function OverviewView() {
                 animate={{ opacity: 1, x: 0, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.85 }}
                 href="mailto:lchsu@andrew.cmu.edu"
-                className="absolute -bottom-2 -right-6 sm:-right-10 bg-card/90 backdrop-blur-md border border-border rounded-2xl shadow-[0_16px_40px_-16px_hsl(0_0%_0%/0.6)] px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/10 transition-colors duration-200"
+                className="absolute -bottom-2 -right-6 sm:-right-10 bg-card/90 backdrop-blur-md border border-border rounded-xl shadow-[0_8px_20px_-14px_hsl(45_8%_9%/0.3)] px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/10 transition-colors duration-200"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
@@ -293,7 +272,7 @@ export default function OverviewView() {
 
           <a
             href="mailto:lchsu@andrew.cmu.edu"
-            className="group flex items-center justify-center gap-3 rounded-2xl bg-accent py-6 md:py-7 transition-transform duration-300 hover:scale-[1.01]"
+            className="group flex items-center justify-center gap-3 rounded-xl bg-accent py-6 md:py-7 transition-transform duration-300 hover:scale-[1.01]"
           >
             <Mail size={18} className="text-[hsl(var(--accent-foreground))] shrink-0" strokeWidth={1.75} />
             <span className="font-body text-[15px] md:text-[17px] tracking-[0.1em] uppercase text-[hsl(var(--accent-foreground))]">
@@ -306,7 +285,7 @@ export default function OverviewView() {
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-card/40 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/40 lift-card py-8"
             >
               <Linkedin size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
               <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
@@ -318,7 +297,7 @@ export default function OverviewView() {
               href="https://elizabeth-hsu-portfolio.lovable.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-2xl border border-border bg-card/40 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/40 lift-card py-8"
             >
               <Briefcase size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
               <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">

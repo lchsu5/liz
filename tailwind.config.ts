@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["'Sunday Masthead'", "serif"],
-        body: ["Inter", "sans-serif"],
-        heading: ["'Oswald'", "sans-serif"],
+        display: ["'DM Serif Display'", "serif"],
+        body: ["'DM Sans'", "sans-serif"],
+        heading: ["'DM Sans'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

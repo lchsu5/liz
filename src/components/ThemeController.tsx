@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 
-// Single premium light palette — soft off-white background, near-black text, muted blue accent.
+// Single warm editorial palette — off-white background, near-black text, dusty rose accent.
 const PALETTE = {
-  background: "210 20% 98%",
-  foreground: "222 25% 12%",
+  background: "40 20% 98%",
+  foreground: "45 8% 9%",
   card: "0 0% 100%",
-  cardForeground: "222 25% 12%",
-  border: "220 16% 88%",
-  muted: "220 18% 94%",
-  mutedForeground: "220 10% 42%",
-  accent: "213 70% 45%",
+  cardForeground: "45 8% 9%",
+  border: "40 10% 90%",
+  muted: "40 12% 95%",
+  mutedForeground: "36 4% 52%",
+  accent: "342 41% 61%",
   accentForeground: "0 0% 100%",
-  cursorGlow: "213 70% 55%",
+  cursorGlow: "342 41% 55%",
 };
 
 function applyPalette() {

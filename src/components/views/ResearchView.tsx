@@ -258,7 +258,7 @@ function ReportCard({ report }: { report: Report }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="border border-border rounded-[28px] overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
+      className="border border-border rounded-2xl overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
     >
       {/* Left panel — ticker, title, thesis. Own background, sticky on scroll. */}
       <div className="lg:col-span-5 bg-card/60 p-7 md:p-9 lg:border-r border-border flex flex-col">
@@ -330,7 +330,7 @@ function ReportCard({ report }: { report: Report }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
             transition={{ duration: 0.2 }}
-            className="rounded-2xl border border-border bg-card/40 p-5 md:p-6 mb-6"
+            className="rounded-xl border border-border bg-card/40 p-5 md:p-6 mb-6"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <div className="flex items-baseline gap-3">

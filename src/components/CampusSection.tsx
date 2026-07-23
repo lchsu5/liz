@@ -62,7 +62,7 @@ export default function CampusSection() {
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ scale: 1.04 }}
               style={{ transformOrigin: "center" }}
-              className="relative z-0 hover:z-10 flex flex-col h-full overflow-hidden rounded-2xl border border-border bg-card/60 lift-card"
+              className="relative z-0 hover:z-10 flex flex-col h-full overflow-hidden rounded-xl border border-border bg-card/60 lift-card"
             >
               <div className="h-48 shrink-0 overflow-hidden">
                 <img

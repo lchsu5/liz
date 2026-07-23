@@ -189,7 +189,7 @@ export default function BeforeView() {
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: logoVisible ? 1 : 0, scale: logoVisible ? 1 : 0.7 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="w-12 h-12 rounded-xl object-contain"
+              className="w-12 h-12 rounded-lg object-contain"
             />
           </div>
 
@@ -284,7 +284,7 @@ export default function BeforeView() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-                className={`relative overflow-hidden rounded-2xl border border-border aspect-[4/5] md:aspect-auto ${placement}`}
+                className={`relative overflow-hidden rounded-xl border border-border aspect-[4/5] md:aspect-auto ${placement}`}
               >
                 <img
                   src={p.src}
@@ -348,7 +348,7 @@ export default function BeforeView() {
             </div>
           ) : (
             /* "All" — flat list, no category labels */
-            <div className="rounded-2xl border border-border overflow-hidden">
+            <div className="rounded-xl border border-border overflow-hidden">
               <AnimatePresence initial={false}>{visible.map(renderRow)}</AnimatePresence>
             </div>
           )}

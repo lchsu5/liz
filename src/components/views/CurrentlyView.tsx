@@ -87,11 +87,11 @@ export default function CurrentlyView() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative border border-border bg-card/40 overflow-hidden lift-card p-8 rounded-2xl"
+                className="group relative border border-border bg-card/40 overflow-hidden lift-card p-8 rounded-xl"
               >
                 <div className="flex items-center gap-3 mb-6">
                   {r.logo && (
-                    <div className="shrink-0 w-12 h-12 rounded-xl border border-border bg-background flex items-center justify-center overflow-hidden">
+                    <div className="shrink-0 w-12 h-12 rounded-lg border border-border bg-background flex items-center justify-center overflow-hidden">
                       <img
                         src={r.logo}
                         alt={r.company}
@@ -134,7 +134,7 @@ export default function CurrentlyView() {
               href="https://trae4d3ed8mx.vercel.app"
               target="_blank"
               rel="noopener noreferrer"
-              className="group grid grid-cols-1 md:grid-cols-12 border border-border rounded-[28px] overflow-hidden lift-card"
+              className="group grid grid-cols-1 md:grid-cols-12 border border-border rounded-2xl overflow-hidden lift-card"
             >
               <div className="md:col-span-8 p-8 md:p-12 bg-card/40">
                 <p className="font-body text-[11px] tracking-[0.18em] uppercase text-accent mb-3">
