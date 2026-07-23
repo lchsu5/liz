@@ -5,6 +5,7 @@ import OverviewView from "@/components/views/OverviewView";
 import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
 import ResearchView from "@/components/views/ResearchView";
+import logo from "@/assets/logo.png";
 
 const VIEW_META: Record<ViewKey, { index: string; label: string }> = {
   overview: { index: "01", label: "Overview" },
@@ -45,9 +46,9 @@ const Index = () => {
               e.preventDefault();
               setView("overview");
             }}
-            className="flex items-center font-body text-[14px] tracking-[0.01em] text-foreground hover:text-accent transition-colors duration-150"
+            className="flex items-center hover:opacity-75 transition-opacity duration-150"
           >
-            Elizabeth <span className="italic font-medium text-accent">Hsu</span>
+            <img src={logo} alt="Elizabeth Hsu" className="h-9 md:h-10 w-auto" />
           </a>
 
           <div className="hidden sm:flex md:hidden items-center gap-5 pl-6 border-l border-border/70">
