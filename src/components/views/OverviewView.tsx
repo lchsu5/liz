@@ -145,45 +145,33 @@ export default function OverviewView() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4 }}
-            className="grid grid-cols-1 md:grid-cols-12 border border-border rounded-md overflow-hidden"
+            className="rounded-md border border-border overflow-hidden"
           >
-            <div className="md:col-span-6 p-7 md:p-8 md:border-r border-border">
-              <h3 className="font-display text-[22px] text-foreground leading-[1.05]">
-                Carnegie Mellon University
-              </h3>
-              <p className="font-body text-[10px] tracking-[0.16em] uppercase text-muted-foreground mt-3">
-                Tepper School of Business
-              </p>
-              <p className="font-body text-[13px] text-foreground/85 mt-5 leading-relaxed max-w-sm">
+            <div className="flex flex-wrap items-start justify-between gap-4 p-7 md:p-8 border-b border-border">
+              <div>
+                <h3 className="font-display text-[26px] md:text-[28px] text-foreground leading-[1.05]">
+                  Carnegie Mellon University
+                </h3>
+                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-2">
+                  Tepper School of Business
+                </p>
+              </div>
+              <div className="text-right shrink-0">
+                <p className="font-body text-[13px] text-accent">Expected May 2028</p>
+                <p className="font-body text-[12px] text-muted-foreground mt-1">Pittsburgh, PA</p>
+              </div>
+            </div>
+
+            <div className="p-7 md:p-8 border-b border-border">
+              <p className="font-body text-[13px] text-foreground/85">
                 B.S. Business Administration, minor in Artificial Intelligence.
               </p>
             </div>
 
-            <div className="md:col-span-6 p-7 md:p-8 bg-secondary/50 flex flex-col divide-y divide-border/70">
-              <div className="flex items-baseline justify-between py-3 first:pt-0">
-                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                  Graduation
-                </span>
-                <span className="font-body text-[13px] text-accent">Expected May 2028</span>
-              </div>
-              <div className="flex items-baseline justify-between py-3">
-                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                  Location
-                </span>
-                <span className="font-body text-[13px] text-foreground/80">Pittsburgh, PA</span>
-              </div>
-              <div className="py-3 last:pb-0">
-                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
-                  Coursework
-                </span>
-                <p className="font-body text-[13px] text-foreground/65 mt-2 leading-relaxed">
-                  AI for Business Leaders, Principles of Computing, Business Computing,
-                  Reasoning with Data, Multivariate Analysis, Business Science,
-                  Information Systems in Organizational Milieux, Introduction to
-                  Entrepreneurship, Organizational Behavior, and Business Leadership
-                  Endeavor I &amp; II.
-                </p>
-              </div>
+            <div className="h-56 md:h-64 bg-secondary/40 flex items-center justify-center">
+              <span className="font-body text-[10px] tracking-[0.16em] uppercase text-muted-foreground">
+                CMU Campus Photo
+              </span>
             </div>
           </motion.div>
         </div>

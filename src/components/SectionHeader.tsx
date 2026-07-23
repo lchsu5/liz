@@ -32,7 +32,7 @@ export default function SectionHeader({
           {label}
         </p>
       )}
-      <h2 className="border-l-2 border-accent pl-2.5 font-body text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground leading-none">
+      <h2 className="font-body text-[11px] font-medium tracking-[0.2em] uppercase text-muted-foreground leading-none">
         {renderTitle()}
       </h2>
       {description && (
