@@ -12,7 +12,7 @@ import eyLogo from "@/assets/ey.jpg";
 import deloitteLogo from "@/assets/deliotte.jpg";
 import kumonLogo from "@/assets/kumon.jpg";
 import photoGraduation from "@/assets/photo-graduation.jpg";
-import photoEySummit from "@/assets/photo-ey-summit.jpeg";
+import photoEaton from "@/assets/eaton.JPG";
 import photoTieShadowDay from "@/assets/photo-tie-shadow-day.png";
 import photoGroup from "@/assets/photo-group.jpeg";
 
@@ -20,7 +20,7 @@ const archive: { src: string; caption: string; sub: string; area: string }[] = [
   { src: photoGraduation, caption: "Beckman High School", sub: "Commencement", area: "hero" },
   { src: photoTieShadowDay, caption: "TIE Shadow Day", sub: "Avasant", area: "top-a" },
   { src: photoGroup, caption: "Industry Info Session", sub: "Group Visit", area: "top-b" },
-  { src: photoEySummit, caption: "EY", sub: "Discovery Program", area: "wide" },
+  { src: photoEaton, caption: "Eaton", sub: "emPOWER U Leadership Summit", area: "wide" },
 ];
 
 type Category = "All" | "Research" | "Product" | "Finance" | "Teaching";
