@@ -56,17 +56,17 @@ export default function CampusSection() {
           {orgs.map((org, i) => (
             <motion.div
               key={org.name}
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.4, delay: i * 0.06 }}
+              transition={{ duration: 0.7, delay: i * 0.09, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col h-full overflow-hidden rounded-md border border-border lift-card"
             >
-              <div className="h-36 shrink-0 overflow-hidden">
+              <div className="h-36 shrink-0 overflow-hidden group">
                 <img
                   src={org.image}
                   alt={org.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
                 />
               </div>
 
