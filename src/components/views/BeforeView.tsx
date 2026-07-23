@@ -12,7 +12,7 @@ import eyLogo from "@/assets/ey.jpg";
 import deloitteLogo from "@/assets/deliotte.jpg";
 import kumonLogo from "@/assets/kumon.jpg";
 import photoGraduation from "@/assets/photo-graduation.jpg";
-import photoEaton from "@/assets/eaton.JPG";
+import photoEaton from "@/assets/eaton.jpg";
 import photoTieShadowDay from "@/assets/photo-tie-shadow-day.png";
 import photoGroup from "@/assets/photo-group.jpeg";
 
