@@ -78,10 +78,10 @@ export default function CurrentlyView() {
             {roles.map((r, i) => (
               <motion.div
                 key={r.company}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
+                transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="relative pl-8 pb-10 last:pb-0"
               >
                 {i !== roles.length - 1 && (
