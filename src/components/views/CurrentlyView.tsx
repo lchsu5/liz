@@ -2,23 +2,19 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
-import googleLogo from "@/assets/google-logo.svg";
-import workivaLogo from "@/assets/workiva.avif";
 
 const roles = [
   {
     company: "Workiva",
-    title: "Product Manager Intern",
-    dates: "May 2026 — Present",
-    note: "Internship on a product team building enterprise reporting workflows.",
-    logo: workivaLogo as string | null,
+    title: "Product Management Intern",
+    dates: "Summer 2026",
+    note: "Owning the product lifecycle for AI-driven features inside Workiva's financial reporting platform — from discovery through launch, shipping work that directly impacts how Fortune 500 finance teams operate.",
   },
   {
     company: "Google",
     title: "Student Ambassador",
-    dates: "2025 — Present",
-    note: "Representing Google's developer ecosystem at Carnegie Mellon — building community, running technical workshops, and connecting students to Google Cloud opportunities.",
-    logo: googleLogo as string | null,
+    dates: "2025 – present",
+    note: "Representing Google's developer ecosystem at Carnegie Mellon — building community, running technical workshops, and connecting students to Google Cloud opportunities at scale.",
   },
 ];
 
@@ -75,10 +71,10 @@ export default function CurrentlyView() {
     <main className="min-h-screen px-6 md:px-12 pt-20 md:pt-24 pb-24 md:pb-32">
       <ThemeController />
       <div className="w-full">
-        {/* Active Roles */}
+        {/* Right Now — vertical timeline */}
         <div>
-          <SectionHeader title="Active Roles" />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <SectionHeader title="Right Now" />
+          <div className="flex flex-col">
             {roles.map((r, i) => (
               <motion.div
                 key={r.company}
@@ -86,89 +82,74 @@ export default function CurrentlyView() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="group relative border border-border overflow-hidden lift-card p-7 rounded-md"
+                className="relative pl-8 pb-10 last:pb-0"
               >
-                <div className="flex items-center gap-3 mb-5">
-                  {r.logo && (
-                    <div className="shrink-0 w-11 h-11 rounded-md border border-border bg-background flex items-center justify-center overflow-hidden">
-                      <img
-                        src={r.logo}
-                        alt={r.company}
-                        className="w-full h-full object-contain p-1"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <h3 className="font-display text-[22px] text-foreground leading-tight">
-                      {r.company}
-                    </h3>
-                    <p className="font-body text-[10px] tracking-[0.1em] uppercase text-accent mt-1">
-                      <span className="inline-block w-1 h-1 rounded-full bg-accent mr-2" />
-                      {r.dates}
-                    </p>
-                  </div>
-                </div>
+                {i !== roles.length - 1 && (
+                  <span className="absolute left-[5px] top-4 bottom-0 w-px bg-border" />
+                )}
+                <span className="absolute left-0 top-1.5 flex items-center justify-center w-[11px] h-[11px] rounded-full border-2 border-accent/40 bg-background">
+                  <span className="w-[3px] h-[3px] rounded-full bg-accent" />
+                </span>
 
-                <p className="font-body text-[13px] font-semibold text-foreground/90 mb-2">
+                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h3 className="font-display text-[20px] md:text-[22px] text-foreground leading-tight">
+                    {r.company}
+                  </h3>
+                  <span className="font-body text-[12px] text-muted-foreground shrink-0">
+                    {r.dates}
+                  </span>
+                </div>
+                <p className="font-body text-[13px] text-muted-foreground mt-1">
                   {r.title}
                 </p>
-                <p className="font-body text-[12px] text-foreground/65 leading-relaxed">
+                <p className="font-body text-[13px] text-foreground/70 leading-[1.8] max-w-2xl mt-3">
                   {r.note}
                 </p>
+
+                <span className="inline-flex items-center gap-1.5 mt-4 px-3 py-1 rounded-full border border-accent/30 text-accent font-body text-[11px]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  Active
+                </span>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Latest Build — near-black editorial card */}
+        {/* Latest Build */}
         <div className="mt-20">
           <SectionHeader title="Latest Build" />
           <a
             href="https://trae4d3ed8mx.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
-            className="group grid grid-cols-1 md:grid-cols-12 rounded-lg overflow-hidden bg-primary transition-colors duration-150 hover:bg-primary/95"
+            className="group block rounded-lg border border-border p-8 md:p-10 lift-card"
           >
-            <div className="md:col-span-8 p-8 md:p-10">
-              <p className="font-body text-[9px] tracking-[0.12em] uppercase text-accent mb-3">
+            <div className="flex items-start justify-between gap-6 flex-wrap mb-5">
+              <p className="font-body text-[10px] tracking-[0.12em] uppercase text-accent">
                 SecondLook · Jan 2026
               </p>
-              <h3 className="font-display text-[26px] md:text-[32px] text-primary-foreground leading-[1.1] mb-4">
-                A vision-powered STEM tutor that catches mistakes as you make them.
-              </h3>
-              <p className="font-body text-[13px] text-primary-foreground/60 font-light leading-[1.7] max-w-lg">
-                Watches handwritten math over a live iPad screen share,
-                pinpoints where reasoning breaks down, and intervenes
-                without giving away the answer.
-              </p>
-            </div>
-
-            <div className="md:col-span-4 flex flex-col justify-between p-8 md:p-10 border-t md:border-t-0 md:border-l border-white/10">
-              <div className="flex flex-col gap-5">
-                <div>
-                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-primary-foreground/40 mb-1">
-                    Type
-                  </p>
-                  <p className="font-body text-[13px] text-primary-foreground/80">Personal build</p>
-                </div>
-                <div>
-                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-primary-foreground/40 mb-1">
-                    Status
-                  </p>
-                  <p className="font-body text-[13px] text-primary-foreground/80 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-                    Live
-                  </p>
-                </div>
-              </div>
-              <div className="mt-8 flex items-center justify-between font-body text-[10px] tracking-[0.16em] uppercase text-accent">
-                View project
-                <ArrowUpRight
-                  size={16}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150"
-                />
+              <div className="flex flex-col items-end gap-2 shrink-0">
+                <span className="inline-flex items-center gap-1.5 font-body text-[12px] text-foreground">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
+                  Live
+                </span>
+                <span className="inline-flex items-center gap-1 font-body text-[12px] text-accent">
+                  View Project
+                  <ArrowUpRight
+                    size={14}
+                    className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150"
+                  />
+                </span>
               </div>
             </div>
+            <h3 className="font-display text-[26px] md:text-[30px] text-foreground leading-[1.15] mb-3">
+              A vision-powered STEM tutor that catches mistakes as you make them.
+            </h3>
+            <p className="font-body text-[13px] text-foreground/65 leading-[1.8] max-w-2xl">
+              Watches handwritten math over a live iPad screen share, pinpoints
+              where reasoning breaks down, and intervenes without giving away
+              the answer.
+            </p>
           </a>
         </div>
 
