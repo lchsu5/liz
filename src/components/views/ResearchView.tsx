@@ -254,10 +254,10 @@ function ReportCard({ report }: { report: Report }) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="border border-border rounded-lg overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
     >
       {/* Left panel — ticker, title, thesis. Own background, sticky on scroll. */}
