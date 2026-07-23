@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
-import TiltCard from "../TiltCard";
 import adobeLogo from "@/assets/adobe.jpg";
 import workivaLogo from "@/assets/workiva.avif";
 
@@ -73,140 +72,128 @@ const honors = [
 
 export default function CurrentlyView() {
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-20 md:pt-24 pb-24 md:pb-32">
       <ThemeController />
       <div className="w-full">
-        {/* Active Roles — equal-size cards */}
+        {/* Active Roles */}
         <div>
           <SectionHeader title="Active Roles" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {roles.map((r, i) => (
               <motion.div
                 key={r.company}
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative border border-border bg-card/40 overflow-hidden lift-card p-8 rounded-xl"
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="group relative border border-border overflow-hidden lift-card p-7 rounded-md"
               >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-5">
                   {r.logo && (
-                    <div className="shrink-0 w-12 h-12 rounded-lg border border-border bg-background flex items-center justify-center overflow-hidden">
+                    <div className="shrink-0 w-11 h-11 rounded-md border border-border bg-background flex items-center justify-center overflow-hidden">
                       <img
                         src={r.logo}
                         alt={r.company}
-                        className="w-full h-full object-contain p-1 transition-transform duration-300 group-hover:scale-110"
+                        className="w-full h-full object-contain p-1"
                       />
                     </div>
                   )}
                   <div>
-                    <h3 className="font-display text-[26px] text-foreground leading-tight">
+                    <h3 className="font-display text-[22px] text-foreground leading-tight">
                       {r.company}
                     </h3>
-                    <p className="font-body text-[10px] tracking-[0.18em] uppercase text-accent mt-1">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 animate-pulse" />
+                    <p className="font-body text-[10px] tracking-[0.1em] uppercase text-accent mt-1">
+                      <span className="inline-block w-1 h-1 rounded-full bg-accent mr-2" />
                       {r.dates}
                     </p>
                   </div>
                 </div>
 
-                <p className="font-body text-[15px] text-foreground/90 mb-3">
+                <p className="font-body text-[13px] font-semibold text-foreground/90 mb-2">
                   {r.title}
                 </p>
-                <p className="font-body text-[13px] text-foreground/65 leading-relaxed">
+                <p className="font-body text-[12px] text-foreground/65 leading-relaxed">
                   {r.note}
                 </p>
-
-                {/* hover underline */}
-                <div className="mt-6 h-px bg-border overflow-hidden">
-                  <div className="h-full w-0 bg-accent transition-all duration-500 group-hover:w-full" />
-                </div>
               </motion.div>
             ))}
           </div>
         </div>
 
-        {/* Latest Build — true two-panel split: headline block + separate meta panel */}
-        <div className="mt-28">
+        {/* Latest Build — near-black editorial card */}
+        <div className="mt-20">
           <SectionHeader title="Latest Build" />
-          <TiltCard maxDeg={2}>
-            <a
-              href="https://trae4d3ed8mx.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group grid grid-cols-1 md:grid-cols-12 border border-border rounded-2xl overflow-hidden lift-card"
-            >
-              <div className="md:col-span-8 p-8 md:p-12 bg-card/40">
-                <p className="font-body text-[11px] tracking-[0.18em] uppercase text-accent mb-3">
-                  SecondLook · Jan 2026
-                </p>
-                <h3 className="font-display text-[32px] md:text-[46px] text-foreground leading-[1.05] mb-5">
-                  A vision-powered{" "}
-                  <span className="italic text-accent">STEM tutor</span> that
-                  catches mistakes as you make them.
-                </h3>
-                <p className="font-body text-[15px] text-foreground/75 leading-relaxed max-w-lg">
-                  Watches handwritten math over a live iPad screen share,
-                  pinpoints where reasoning breaks down, and intervenes
-                  without giving away the answer.
-                </p>
-              </div>
+          <a
+            href="https://trae4d3ed8mx.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group grid grid-cols-1 md:grid-cols-12 rounded-lg overflow-hidden bg-primary transition-colors duration-150 hover:bg-primary/95"
+          >
+            <div className="md:col-span-8 p-8 md:p-10">
+              <p className="font-body text-[9px] tracking-[0.12em] uppercase text-accent mb-3">
+                SecondLook · Jan 2026
+              </p>
+              <h3 className="font-display text-[26px] md:text-[32px] text-primary-foreground leading-[1.1] mb-4">
+                A vision-powered STEM tutor that catches mistakes as you make them.
+              </h3>
+              <p className="font-body text-[13px] text-primary-foreground/60 font-light leading-[1.7] max-w-lg">
+                Watches handwritten math over a live iPad screen share,
+                pinpoints where reasoning breaks down, and intervenes
+                without giving away the answer.
+              </p>
+            </div>
 
-              {/* Meta panel — distinct container, own background */}
-              <div className="md:col-span-4 flex flex-col justify-between p-8 md:p-10 bg-background/60 border-t md:border-t-0 md:border-l border-border">
-                <div className="flex flex-col gap-5">
-                  <div>
-                    <p className="font-body text-[9px] tracking-[0.2em] uppercase text-muted-foreground mb-1">
-                      Type
-                    </p>
-                    <p className="font-body text-[13px] text-foreground/85">Personal build</p>
-                  </div>
-                  <div>
-                    <p className="font-body text-[9px] tracking-[0.2em] uppercase text-muted-foreground mb-1">
-                      Status
-                    </p>
-                    <p className="font-body text-[13px] text-foreground/85">
-                      <span className="inline-block w-1.5 h-1.5 rounded-full bg-accent mr-2 animate-pulse" />
-                      Live
-                    </p>
-                  </div>
+            <div className="md:col-span-4 flex flex-col justify-between p-8 md:p-10 border-t md:border-t-0 md:border-l border-white/10">
+              <div className="flex flex-col gap-5">
+                <div>
+                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-primary-foreground/40 mb-1">
+                    Type
+                  </p>
+                  <p className="font-body text-[13px] text-primary-foreground/80">Personal build</p>
                 </div>
-                <div className="mt-8 flex items-center justify-between font-body text-[11px] tracking-[0.2em] uppercase text-foreground/50 group-hover:text-accent transition-colors">
-                  View project
-                  <ArrowUpRight
-                    size={20}
-                    className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-300"
-                  />
+                <div>
+                  <p className="font-body text-[9px] tracking-[0.2em] uppercase text-primary-foreground/40 mb-1">
+                    Status
+                  </p>
+                  <p className="font-body text-[13px] text-primary-foreground/80 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
+                    Live
+                  </p>
                 </div>
               </div>
-            </a>
-          </TiltCard>
-
+              <div className="mt-8 flex items-center justify-between font-body text-[10px] tracking-[0.16em] uppercase text-accent">
+                View project
+                <ArrowUpRight
+                  size={16}
+                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-150"
+                />
+              </div>
+            </div>
+          </a>
         </div>
 
         {honors.length > 0 && (
-          <div className="mt-28">
+          <div className="mt-20">
             <SectionHeader title="Honors & Awards" />
-            {/* Editorial row list — no ordinal numbering */}
             <div className="border-t border-border">
               {honors.map((h, i) => (
                 <motion.div
                   key={h.title}
-                  initial={{ opacity: 0, x: -14 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
                   viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08 }}
-                  className="group grid grid-cols-12 gap-4 md:gap-8 items-baseline py-7 border-b border-border hover:bg-accent/[0.04] transition-colors px-2 -mx-2"
+                  transition={{ duration: 0.4, delay: i * 0.04 }}
+                  className="grid grid-cols-12 gap-4 md:gap-8 items-baseline py-3.5 border-b border-border"
                 >
-                  <div className="col-span-9 md:col-span-9">
-                    <h3 className="font-display text-[22px] md:text-[26px] text-foreground leading-tight">
+                  <div className="col-span-8 md:col-span-9">
+                    <h3 className="font-body text-[13px] font-semibold text-foreground leading-tight">
                       {h.title}
                     </h3>
-                    <p className="font-body text-[12px] text-foreground/60 mt-2 leading-relaxed">
+                    <p className="font-body text-[11px] text-muted-foreground mt-1 tracking-[0.02em]">
                       {h.issuer}
                     </p>
                   </div>
-                  <span className="col-span-3 text-right font-body text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
+                  <span className="col-span-4 md:col-span-3 text-right font-body text-[10px] tracking-[0.14em] uppercase text-muted-foreground">
                     {h.date}
                   </span>
                 </motion.div>
@@ -214,7 +201,6 @@ export default function CurrentlyView() {
             </div>
           </div>
         )}
-
       </div>
     </main>
   );

@@ -192,14 +192,14 @@ function ValuationChart({
             type="number"
             domain={[0, Math.ceil(maxTarget * 1.05)]}
             tickFormatter={(v) => `$${Math.round(v)}`}
-            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "DM Sans" }}
             axisLine={false}
             tickLine={false}
           />
           <YAxis
             type="category"
             dataKey="name"
-            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "Inter" }}
+            tick={{ fontSize: 10, fill: "hsl(var(--muted-foreground))", fontFamily: "DM Sans" }}
             axisLine={false}
             tickLine={false}
             width={36}
@@ -209,9 +209,9 @@ function ValuationChart({
             contentStyle={{
               background: "hsl(var(--card))",
               border: "1px solid hsl(var(--border))",
-              borderRadius: 0,
+              borderRadius: 6,
               fontSize: 11,
-              fontFamily: "Inter",
+              fontFamily: "DM Sans",
               color: "hsl(var(--foreground))",
             }}
             cursor={{ fill: "hsl(var(--muted) / 0.4)" }}
@@ -225,10 +225,10 @@ function ValuationChart({
               position: "insideTopRight",
               fontSize: 9,
               fill: "hsl(var(--muted-foreground))",
-              fontFamily: "Inter",
+              fontFamily: "DM Sans",
             }}
           />
-          <Bar dataKey="target" radius={0} maxBarSize={24} isAnimationActive={false}>
+          <Bar dataKey="target" radius={2} maxBarSize={14} isAnimationActive={false}>
             {data.map((entry) => (
               <Cell
                 key={entry.scenario}
@@ -258,32 +258,32 @@ function ReportCard({ report }: { report: Report }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="border border-border rounded-2xl overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
+      className="border border-border rounded-lg overflow-hidden lift-card grid grid-cols-1 lg:grid-cols-12"
     >
       {/* Left panel — ticker, title, thesis. Own background, sticky on scroll. */}
       <div className="lg:col-span-5 bg-card/60 p-7 md:p-9 lg:border-r border-border flex flex-col">
-        <div className="flex items-start justify-between gap-6 mb-5">
+        <div className="flex items-start justify-between gap-6 mb-4">
           <div className="flex items-baseline gap-3">
-            <FileText size={18} className="text-accent" strokeWidth={1.5} />
-            <span className="font-display text-[38px] md:text-[46px] text-foreground leading-none italic">
+            <FileText size={16} className="text-accent" strokeWidth={1.5} />
+            <span className="font-display text-[26px] md:text-[28px] tracking-[-0.01em] text-foreground leading-none">
               {report.ticker}
             </span>
           </div>
         </div>
-        <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-4">
+        <p className="font-body text-[9px] tracking-[0.06em] uppercase text-muted-foreground mb-4">
           {report.date}
         </p>
-        <h3 className="font-display text-[24px] md:text-[28px] text-foreground leading-tight">
+        <h3 className="font-body text-[12px] font-semibold text-foreground leading-snug">
           {report.title}
         </h3>
-        <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-3">
+        <p className="font-body text-[10px] tracking-[0.06em] uppercase text-muted-foreground mt-3">
           {report.subtitle} · {report.publisher}
         </p>
         <div className="mt-6 pt-6 border-t border-border">
-          <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-2">
+          <p className="font-body text-[9px] tracking-[0.18em] uppercase text-accent mb-2">
             Thesis
           </p>
-          <p className="font-body text-[14px] text-foreground/80 leading-relaxed">
+          <p className="font-body text-[12px] text-foreground/80 leading-[1.8]">
             {report.thesis}
           </p>
         </div>
@@ -292,30 +292,23 @@ function ReportCard({ report }: { report: Report }) {
       {/* Right panel — scenario controls, chart, detail */}
       <div className="lg:col-span-7 p-7 md:p-9 bg-background/40">
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-          <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent">
+          <p className="font-body text-[9px] tracking-[0.18em] uppercase text-accent">
             Scenario Analysis
           </p>
-          <div className="flex gap-1 p-1 border border-border rounded-full bg-background/60">
+          <div className="flex gap-1">
             {(["bull", "base", "bear"] as Scenario[]).map((s) => {
               const isActive = scenario === s;
               return (
                 <button
                   key={s}
                   onClick={() => setScenario(s)}
-                  className={`relative font-body text-[10px] tracking-[0.16em] uppercase px-3.5 py-1.5 rounded-full transition-colors duration-200 active:scale-95 ${
+                  className={`font-body text-[9px] font-medium tracking-[0.08em] uppercase px-2.5 py-1 rounded-sm border transition-colors duration-150 ${
                     isActive
-                      ? "text-[hsl(var(--accent-foreground))]"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "border-transparent bg-accent text-accent-foreground"
+                      : "border-border text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {isActive && (
-                    <motion.span
-                      layoutId={`scenario-${report.ticker}`}
-                      className="absolute inset-0 rounded-full bg-accent -z-0"
-                      transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                    />
-                  )}
-                  <span className="relative z-10">{SCENARIO_LABELS[s]}</span>
+                  {SCENARIO_LABELS[s]}
                 </button>
               );
             })}
@@ -330,18 +323,18 @@ function ReportCard({ report }: { report: Report }) {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -10 }}
             transition={{ duration: 0.2 }}
-            className="rounded-xl border border-border bg-card/40 p-5 md:p-6 mb-6"
+            className="rounded-md border border-border bg-secondary/50 p-5 md:p-6 mb-6"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <div className="flex items-baseline gap-3">
                 <span
-                  className="font-display text-[38px] md:text-[44px] leading-none"
+                  className="font-display text-[28px] md:text-[30px] leading-none"
                   style={{ color: SCENARIO_COLORS[scenario] }}
                 >
                   ${active.target}
                 </span>
                 <span
-                  className="font-body text-[13px] tracking-[0.12em]"
+                  className="font-body text-[12px] tracking-[0.1em]"
                   style={{ color: SCENARIO_COLORS[scenario] }}
                 >
                   {active.returnLabel}
@@ -350,21 +343,21 @@ function ReportCard({ report }: { report: Report }) {
               <div className="flex gap-4">
                 {active.metrics.map((m) => (
                   <div key={m.label}>
-                    <p className="font-body text-[9px] tracking-[0.18em] uppercase text-muted-foreground">
+                    <p className="font-body text-[9px] tracking-[0.14em] uppercase text-muted-foreground">
                       {m.label}
                     </p>
-                    <p className="font-body text-[13px] text-foreground mt-0.5">{m.value}</p>
+                    <p className="font-body text-[12px] font-semibold text-foreground mt-0.5">{m.value}</p>
                   </div>
                 ))}
               </div>
             </div>
-            <p className="font-body text-[13px] text-foreground/75 leading-relaxed mt-4 pt-4 border-t border-border/70">
+            <p className="font-body text-[12px] text-foreground/75 leading-relaxed mt-4 pt-4 border-t border-border/70">
               {active.catalyst}
             </p>
           </motion.div>
         </AnimatePresence>
 
-        <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mb-4">
+        <p className="font-body text-[9px] tracking-[0.14em] uppercase text-muted-foreground mb-4">
           Price Targets by Scenario
         </p>
         <ValuationChart report={report} activeScenario={scenario} />
@@ -375,7 +368,7 @@ function ReportCard({ report }: { report: Report }) {
 
 export default function ResearchView() {
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-20 md:pt-24 pb-24 md:pb-32">
 
       <ThemeController />
       <div className="w-full">

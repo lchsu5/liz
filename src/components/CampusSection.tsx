@@ -56,15 +56,13 @@ export default function CampusSection() {
           {orgs.map((org, i) => (
             <motion.div
               key={org.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ scale: 1.04 }}
-              style={{ transformOrigin: "center" }}
-              className="relative z-0 hover:z-10 flex flex-col h-full overflow-hidden rounded-xl border border-border bg-card/60 lift-card"
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="flex flex-col h-full overflow-hidden rounded-md border border-border lift-card"
             >
-              <div className="h-48 shrink-0 overflow-hidden">
+              <div className="h-36 shrink-0 overflow-hidden">
                 <img
                   src={org.image}
                   alt={org.name}
@@ -73,14 +71,14 @@ export default function CampusSection() {
               </div>
 
               <div className="flex flex-col flex-1 p-6">
-                <p className="font-body text-[10px] tracking-[0.22em] uppercase text-accent mb-3">
+                <p className="font-body text-[9px] tracking-[0.16em] uppercase text-accent mb-3">
                   {org.name}
                 </p>
 
                 <div className="flex flex-col gap-1 mb-5">
                   {org.roles.map((r) => (
-                    <div key={r.title} className="font-body text-[12px] text-foreground/90">
-                      <span className="font-medium">{r.title}</span>
+                    <div key={r.title} className="font-body text-[13px] text-foreground/90">
+                      <span className="font-semibold">{r.title}</span>
                       <span className="text-muted-foreground"> · {r.years}</span>
                     </div>
                   ))}
@@ -89,7 +87,7 @@ export default function CampusSection() {
                 <ul className="mt-auto flex flex-col gap-3">
                   {org.bullets.map((b, bi) => (
                     <li key={bi} className="flex gap-2.5 items-start">
-                      <span className="text-accent text-[12px] mt-0.5 shrink-0">—</span>
+                      <span className="w-1 h-1 rounded-full bg-accent opacity-70 mt-1.5 shrink-0" />
                       <span className="font-body text-[12px] text-foreground/65 leading-relaxed">
                         {b}
                       </span>

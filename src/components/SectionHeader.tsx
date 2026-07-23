@@ -26,20 +26,17 @@ export default function SectionHeader({
   };
 
   return (
-    <div className="mb-12 md:mb-16">
+    <div className="mb-10 md:mb-12">
       {label && (
-        <p className="font-body text-[10px] tracking-[0.3em] uppercase text-accent mb-4 font-medium">
+        <p className="font-body text-[9px] tracking-[0.28em] uppercase text-accent mb-2 font-medium">
           {label}
         </p>
       )}
-      <h2 className="font-display font-normal uppercase text-[28px] md:text-[40px] tracking-[0.01em] text-foreground leading-[1.05]">
+      <h2 className="border-l-2 border-accent pl-2.5 font-body text-[10px] font-medium tracking-[0.22em] uppercase text-muted-foreground leading-none">
         {renderTitle()}
       </h2>
-      <div className="relative mt-6 h-px bg-foreground/[0.1]">
-        <div className="absolute left-0 -top-[1px] w-10 h-[3px] rounded-full bg-accent" />
-      </div>
       {description && (
-        <p className="font-body text-muted-foreground mt-5 max-w-2xl text-[15px] leading-relaxed">
+        <p className="font-body text-muted-foreground mt-4 max-w-2xl text-[13px] leading-relaxed">
           {description}
         </p>
       )}

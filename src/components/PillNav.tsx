@@ -26,37 +26,32 @@ export default function PillNav({
         className="hidden md:flex fixed top-0 right-0 z-50 h-16 md:h-20 items-center pl-8 pr-5 md:pr-10 border-l border-border/70 bg-background/70 backdrop-blur-xl"
         aria-label="Primary"
       >
-        <ul className="relative flex items-center gap-8">
+        <ul className="flex items-center gap-1">
           {items.map((it) => {
             const isActive = it.key === active;
             return (
-              <li key={it.key} className="relative">
+              <li key={it.key}>
                 <button
                   onClick={() => onChange(it.key)}
-                  className="group flex items-baseline gap-2 text-left"
+                  className={`group flex items-baseline gap-2 rounded-sm px-3 py-1.5 transition-colors duration-150 ${
+                    isActive ? "bg-accent" : "hover:bg-secondary"
+                  }`}
                 >
                   <span
-                    className={`font-body text-[9px] tracking-[0.16em] transition-colors duration-300 ${
-                      isActive ? "text-accent" : "text-muted-foreground/50 group-hover:text-muted-foreground"
+                    className={`font-body text-[9px] tracking-[0.1em] transition-colors duration-150 ${
+                      isActive ? "text-accent-foreground/70" : "text-muted-foreground/50 group-hover:text-muted-foreground"
                     }`}
                   >
                     {it.index}
                   </span>
                   <span
-                    className={`font-display text-[15px] leading-none transition-colors duration-300 ${
-                      isActive ? "text-foreground italic" : "text-muted-foreground group-hover:text-foreground/80"
+                    className={`font-body text-[11px] tracking-[0.04em] uppercase transition-colors duration-150 ${
+                      isActive ? "text-accent-foreground" : "text-muted-foreground group-hover:text-foreground"
                     }`}
                   >
                     {it.label}
                   </span>
                 </button>
-                {isActive && (
-                  <motion.span
-                    layoutId="rail-active"
-                    className="absolute -bottom-2 left-0 right-0 h-[2px] bg-accent"
-                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                  />
-                )}
               </li>
             );
           })}
@@ -77,17 +72,10 @@ export default function PillNav({
             <button
               key={it.key}
               onClick={() => onChange(it.key)}
-              className={`relative flex flex-col items-center gap-1 py-3.5 font-body text-[9px] tracking-[0.14em] uppercase border-r last:border-r-0 border-border/60 transition-colors duration-300 ${
-                isActive ? "text-accent" : "text-muted-foreground"
+              className={`flex flex-col items-center gap-1 py-3.5 font-body text-[9px] tracking-[0.14em] uppercase border-r last:border-r-0 border-border/60 transition-colors duration-150 ${
+                isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground"
               }`}
             >
-              {isActive && (
-                <motion.span
-                  layoutId="mobile-active"
-                  className="absolute top-0 left-0 right-0 h-[2px] bg-accent"
-                  transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                />
-              )}
               {it.label}
             </button>
           );

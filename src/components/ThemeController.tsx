@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 
-// Single warm editorial palette — off-white background, near-black text, dusty rose accent.
+// Editorial-finance palette — quiet off-white, near-black text, deep rose accent used sparingly.
 const PALETTE = {
-  background: "40 20% 98%",
-  foreground: "45 8% 9%",
+  background: "40 16% 96%",
+  foreground: "60 3% 6%",
   card: "0 0% 100%",
-  cardForeground: "45 8% 9%",
-  border: "40 10% 90%",
-  muted: "40 12% 95%",
-  mutedForeground: "36 4% 52%",
-  accent: "342 41% 61%",
+  cardForeground: "60 3% 6%",
+  border: "40 6% 90%",
+  muted: "34 19% 93%",
+  mutedForeground: "30 3% 53%",
+  accent: "343 39% 54%",
   accentForeground: "0 0% 100%",
-  cursorGlow: "342 41% 55%",
+  cursorGlow: "343 39% 50%",
 };
 
 function applyPalette() {

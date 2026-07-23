@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, MapPin, ArrowDown, Briefcase } from "lucide-react";
+import { Mail, Linkedin, MapPin, Briefcase } from "lucide-react";
 import headshotImg from "@/assets/headshot.jpg";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
@@ -15,71 +15,55 @@ export default function OverviewView() {
     <main className="min-h-screen">
       <ThemeController />
 
-      {/* HERO — asymmetric editorial spread */}
-      <section className="relative min-h-screen flex items-center px-6 md:px-12 pt-24 pb-24 overflow-hidden">
-        {/* Ambient accent wash — subtle, editorial */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
-        >
-          <div
-            className="absolute -top-32 -right-40 w-[60vw] h-[60vw] rounded-full opacity-20"
-            style={{
-              background:
-                "radial-gradient(circle, hsl(var(--accent) / 0.1), transparent 65%)",
-              filter: "blur(50px)",
-            }}
-          />
-        </div>
-
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      {/* HERO — quiet editorial spread */}
+      <section className="px-6 md:px-12 pt-16 pb-16 md:pt-20 md:pb-20">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           {/* LEFT — copy */}
           <div className="lg:col-span-7 order-2 lg:order-1">
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: "easeOut" }}
-              className="font-display tracking-tight text-foreground text-[48px] sm:text-[64px] md:text-[84px] leading-[0.92] whitespace-nowrap"
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="font-display tracking-[-0.02em] text-foreground text-[40px] sm:text-[48px] md:text-[56px] leading-[0.98]"
             >
               Elizabeth Hsu
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="font-body text-[13px] md:text-[14px] tracking-[0.18em] uppercase text-accent mt-7"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-body text-[11px] tracking-[0.06em] uppercase text-accent mt-4"
             >
               Business + AI @ Carnegie Mellon
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="font-body text-[16px] md:text-[19px] text-foreground/75 max-w-xl leading-relaxed mt-5"
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="font-body text-[14px] md:text-[15px] font-normal text-foreground/75 max-w-xl leading-[1.9] mt-4"
             >
               I work at the intersection of product, research, and venture, currently
               shipping with Adobe and Workiva.
             </motion.p>
 
-            {/* Status + contact — split into two unequal blocks instead of one inline row */}
+            {/* Status + contact */}
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
-              className="mt-10 grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-6 max-w-xl"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-5 max-w-xl"
             >
-              {/* Currently — stacked rows, col-span-5 */}
               <div className="sm:col-span-5">
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-muted-foreground mb-3">
+                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
                   Currently
                 </p>
                 <div className="flex flex-col gap-2.5">
                   {currentChips.map((c) => (
-                    <div key={c.org} className="flex items-baseline gap-2.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                      <span className="font-display text-[16px] text-foreground leading-none">{c.org}</span>
+                    <div key={c.org} className="flex items-center gap-2.5">
+                      <span className="w-0.5 h-3 rounded-sm bg-accent opacity-50 shrink-0" />
+                      <span className="font-body text-[13px] font-semibold text-foreground leading-none">{c.org}</span>
                       <span className="font-body text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
                         {c.role}
                       </span>
@@ -88,9 +72,8 @@ export default function OverviewView() {
                 </div>
               </div>
 
-              {/* Contact — bordered vertical fact list, col-span-7 */}
               <div className="sm:col-span-7 sm:border-l sm:border-border sm:pl-8 flex flex-col gap-3">
-                <p className="font-body text-[9px] tracking-[0.28em] uppercase text-muted-foreground mb-1">
+                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
                   Reach me
                 </p>
                 <span className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75">
@@ -98,7 +81,7 @@ export default function OverviewView() {
                 </span>
                 <a
                   href="mailto:lchsu@andrew.cmu.edu"
-                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors w-fit"
+                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors duration-150 w-fit"
                 >
                   <Mail size={13} className="text-accent shrink-0" /> lchsu@andrew.cmu.edu
                 </a>
@@ -106,7 +89,7 @@ export default function OverviewView() {
                   href="https://www.linkedin.com/in/lizhhsu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors w-fit"
+                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors duration-150 w-fit"
                 >
                   <Linkedin size={13} className="text-accent shrink-0" /> linkedin.com/in/lizhhsu
                 </a>
@@ -114,36 +97,15 @@ export default function OverviewView() {
             </motion.div>
           </div>
 
-          {/* RIGHT — creative photo placeholder */}
+          {/* RIGHT — clean editorial photo frame */}
           <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
             <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
-              className="relative w-[280px] h-[360px] sm:w-[340px] sm:h-[440px] md:w-[380px] md:h-[480px]"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="relative w-[220px] h-[280px] sm:w-[250px] sm:h-[320px]"
             >
-              {/* Rotated outlined frame behind */}
-              <motion.div
-                animate={{ rotate: [6, 8, 6] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 border border-accent/50"
-                style={{ transformOrigin: "center" }}
-              />
-
-              {/* Accent block bottom-left */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-6 w-24 h-24 bg-accent"
-              />
-
-              {/* The blob-masked photo container */}
-              <div
-                className="absolute inset-0 overflow-hidden border border-border"
-                style={{
-                  borderRadius: "62% 38% 54% 46% / 48% 56% 44% 52%",
-                }}
-              >
+              <div className="absolute inset-0 overflow-hidden rounded-lg border border-border">
                 <img
                   src={headshotImg}
                   alt="Elizabeth Hsu"
@@ -151,79 +113,53 @@ export default function OverviewView() {
                 />
               </div>
 
-              {/* Floating caption card top-right */}
-              <motion.div
-                initial={{ opacity: 0, x: 20, y: -10 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute -top-4 -right-4 sm:-right-8 bg-card/90 backdrop-blur-md border border-border rounded-xl shadow-[0_8px_20px_-14px_hsl(45_8%_9%/0.3)] px-4 py-3"
-              >
-                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-accent">
+              <div className="absolute -top-3 -right-3 sm:-right-6 bg-card border border-border rounded-md px-3.5 py-2.5">
+                <p className="font-body text-[9px] tracking-[0.18em] uppercase text-accent">
                   Based in
                 </p>
-                <p className="font-display text-[16px] text-foreground mt-0.5">
-                  Irvine, <span className="italic">CA</span>
-                </p>
-              </motion.div>
+                <p className="font-body text-[13px] text-foreground mt-0.5">Irvine, CA</p>
+              </div>
 
-              {/* Floating contact badge bottom-right */}
-              <motion.a
-                initial={{ opacity: 0, x: 20, y: 10 }}
-                animate={{ opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
+              <a
                 href="mailto:lchsu@andrew.cmu.edu"
-                className="absolute -bottom-2 -right-6 sm:-right-10 bg-card/90 backdrop-blur-md border border-border rounded-xl shadow-[0_8px_20px_-14px_hsl(45_8%_9%/0.3)] px-4 py-3 flex items-center gap-2 hover:border-accent hover:bg-accent/10 transition-colors duration-200"
+                className="absolute -bottom-3 -right-4 sm:-right-8 bg-card border border-border rounded-md px-3.5 py-2.5 flex items-center gap-2 hover:border-accent transition-colors duration-150"
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-60" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-                </span>
-                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground/80">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                <span className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/80">
                   Contact me
                 </span>
-              </motion.a>
+              </a>
             </motion.div>
           </div>
         </div>
-
-        {/* Scroll cue */}
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-foreground/50"
-        >
-          <span className="font-body text-[9px] tracking-[0.28em] uppercase">Scroll</span>
-          <ArrowDown size={14} />
-        </motion.div>
       </section>
 
+      <div className="border-t border-border" />
 
-      {/* EDUCATION — numeral / title / fact-sheet three-column split */}
-      <section className="px-6 md:px-12 py-20">
+      {/* EDUCATION — bordered card, fact-sheet split */}
+      <section className="px-6 md:px-12 py-16">
         <div className="w-full">
           <SectionHeader title="Education" />
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-12 border-t border-border"
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-12 border border-border rounded-md overflow-hidden"
           >
-            {/* Institution + degree */}
-            <div className="md:col-span-6 py-8 md:pr-8 md:border-r border-border">
-              <h3 className="font-display text-[28px] md:text-[36px] text-foreground leading-[1.05]">
+            <div className="md:col-span-6 p-7 md:p-8 md:border-r border-border">
+              <h3 className="font-display text-[22px] text-foreground leading-[1.05]">
                 Carnegie Mellon University
               </h3>
-              <p className="font-body text-[11px] tracking-[0.16em] uppercase text-muted-foreground mt-3">
+              <p className="font-body text-[10px] tracking-[0.16em] uppercase text-muted-foreground mt-3">
                 Tepper School of Business
               </p>
-              <p className="font-body text-[15px] text-foreground/85 mt-5 leading-relaxed max-w-sm">
+              <p className="font-body text-[13px] text-foreground/85 mt-5 leading-relaxed max-w-sm">
                 B.S. Business Administration, concentration in Artificial Intelligence.
               </p>
             </div>
 
-            {/* Fact sheet — labeled rows instead of paragraph flow */}
-            <div className="md:col-span-6 py-8 md:pl-8 flex flex-col divide-y divide-border/70">
+            <div className="md:col-span-6 p-7 md:p-8 bg-secondary/50 flex flex-col divide-y divide-border/70">
               <div className="flex items-baseline justify-between py-3 first:pt-0">
                 <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
                   Graduation
@@ -253,16 +189,20 @@ export default function OverviewView() {
         </div>
       </section>
 
+      <div className="border-t border-border" />
+
       {/* CAMPUS LEADERSHIP */}
       <CampusSection />
 
-      {/* CONTACT — headline + description, big email bar, then a row of link cards */}
-      <section className="px-6 md:px-12 py-20 pb-32 md:pb-40">
+      <div className="border-t border-border" />
+
+      {/* CONTACT — headline + description, near-black email bar, link cards */}
+      <section className="px-6 md:px-12 py-16 pb-28 md:pb-32">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.4 }}
           className="w-full"
         >
           <SectionHeader
@@ -272,10 +212,10 @@ export default function OverviewView() {
 
           <a
             href="mailto:lchsu@andrew.cmu.edu"
-            className="group flex items-center justify-center gap-3 rounded-xl bg-accent py-6 md:py-7 transition-transform duration-300 hover:scale-[1.01]"
+            className="group flex items-center justify-center gap-3 rounded-md bg-primary py-6 md:py-7 transition-colors duration-150 hover:bg-primary/90"
           >
-            <Mail size={18} className="text-[hsl(var(--accent-foreground))] shrink-0" strokeWidth={1.75} />
-            <span className="font-body text-[15px] md:text-[17px] tracking-[0.1em] uppercase text-[hsl(var(--accent-foreground))]">
+            <Mail size={18} className="text-primary-foreground shrink-0" strokeWidth={1.75} />
+            <span className="font-body text-[13px] md:text-[14px] tracking-[0.1em] uppercase text-primary-foreground">
               lchsu@andrew.cmu.edu
             </span>
           </a>
@@ -285,10 +225,10 @@ export default function OverviewView() {
               href="https://www.linkedin.com/in/lizhhsu"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/40 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 lift-card py-8"
             >
-              <Linkedin size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+              <Linkedin size={22} className="text-foreground/80 group-hover:text-accent transition-colors duration-150" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                 LinkedIn
               </span>
             </a>
@@ -297,10 +237,10 @@ export default function OverviewView() {
               href="https://elizabeth-hsu-portfolio.lovable.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/40 lift-card py-8"
+              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-secondary/50 lift-card py-8"
             >
-              <Briefcase size={22} className="text-foreground/80 group-hover:text-accent transition-colors" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
+              <Briefcase size={22} className="text-foreground/80 group-hover:text-accent transition-colors duration-150" strokeWidth={1.5} />
+              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-foreground transition-colors duration-150">
                 Ambassador Portfolio
               </span>
             </a>

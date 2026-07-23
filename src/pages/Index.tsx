@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import PillNav, { ViewKey } from "@/components/PillNav";
-import CursorGlow from "@/components/CursorGlow";
 import OverviewView from "@/components/views/OverviewView";
 import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
@@ -37,27 +36,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <CursorGlow />
-
       {/* Header — wordmark left; live nav (PillNav) sits pinned top-right on desktop */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-xl border-b border-border/70">
-        <div className="px-5 md:px-10 h-16 md:h-20 flex items-stretch justify-between">
+        <div className="px-5 md:px-10 h-16 flex items-stretch justify-between">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
               setView("overview");
             }}
-            className="flex items-center font-display text-[16px] md:text-[19px] tracking-[0.04em] uppercase text-foreground hover:text-accent transition-colors duration-300"
+            className="flex items-center font-body text-[14px] tracking-[0.01em] text-foreground hover:text-accent transition-colors duration-150"
           >
-            Elizabeth <span className="italic text-accent">Hsu</span>
+            Elizabeth <span className="italic font-medium text-accent">Hsu</span>
           </a>
 
           <div className="hidden sm:flex md:hidden items-center gap-5 pl-6 border-l border-border/70">
             <span className="font-body text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
               {VIEW_META[view].index} <span className="text-foreground/30 mx-1">/</span> 04
             </span>
-            <span className="font-display text-[15px] text-accent italic">
+            <span className="font-body text-[11px] text-accent uppercase tracking-[0.04em]">
               {VIEW_META[view].label}
             </span>
           </div>

@@ -195,14 +195,14 @@ export default function BeforeView() {
 
           <div className="flex-1 min-w-0 border-l border-border/70 pl-5 md:pl-7">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="font-display text-[19px] md:text-[23px] text-foreground leading-tight group-hover:text-accent transition-colors">
+              <h3 className="font-body text-[13px] font-semibold text-foreground leading-tight group-hover:text-accent transition-colors duration-150">
                 {p.company}
               </h3>
               <span className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground">
                 {p.dates}
               </span>
             </div>
-            <p className="font-body text-[12px] md:text-[13px] text-foreground/65 mt-1">
+            <p className="font-body text-[11px] text-muted-foreground tracking-[0.01em] mt-1">
               {p.title}
             </p>
           </div>
@@ -234,14 +234,14 @@ export default function BeforeView() {
                       {p.note.map((line, ni) => (
                         <li
                           key={ni}
-                          className="font-body text-[14px] text-foreground/80 leading-relaxed pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-accent"
+                          className="font-body text-[12px] text-foreground/80 leading-[1.8] pl-4 relative before:content-['•'] before:absolute before:left-0 before:text-accent"
                         >
                           {line}
                         </li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="font-body text-[14px] text-foreground/80 leading-relaxed max-w-2xl">
+                    <p className="font-body text-[12px] text-foreground/80 leading-[1.8] max-w-2xl">
                       {p.note}
                     </p>
                   )}
@@ -260,7 +260,7 @@ export default function BeforeView() {
   };
 
   return (
-    <main className="min-h-screen px-6 md:px-12 pt-24 md:pt-32 pb-28 md:pb-40">
+    <main className="min-h-screen px-6 md:px-12 pt-20 md:pt-24 pb-24 md:pb-32">
       <ThemeController />
       <div className="w-full">
         <motion.div
@@ -284,19 +284,19 @@ export default function BeforeView() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 + i * 0.08 }}
-                className={`relative overflow-hidden rounded-xl border border-border aspect-[4/5] md:aspect-auto ${placement}`}
+                className={`relative overflow-hidden rounded-md border border-border aspect-[4/5] md:aspect-auto ${placement}`}
               >
                 <img
                   src={p.src}
                   alt={p.caption}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
                 />
-                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/65 to-transparent pointer-events-none" />
                 <div className="absolute left-4 bottom-3.5 pointer-events-none">
-                  <p className="font-display text-[16px] md:text-[18px] text-white leading-tight">
+                  <p className="font-body text-[12px] font-medium text-white leading-tight">
                     {p.caption}
                   </p>
-                  <p className="font-body text-[10px] tracking-[0.18em] uppercase text-white/70 mt-0.5">
+                  <p className="font-body text-[9px] tracking-[0.1em] uppercase text-white/60 mt-0.5">
                     {p.sub}
                   </p>
                 </div>
@@ -318,10 +318,10 @@ export default function BeforeView() {
                 <button
                   key={c}
                   onClick={() => setFilter(c)}
-                  className={`relative font-body text-[10px] tracking-[0.18em] uppercase px-3.5 py-2 border rounded-full transition-all duration-200 active:scale-95 ${
+                  className={`font-body text-[10px] tracking-[0.1em] uppercase px-3 py-1.5 border rounded-sm transition-colors duration-150 ${
                     active
-                      ? "border-accent text-[hsl(var(--accent-foreground))] bg-accent shadow-[0_4px_12px_-4px_hsl(var(--accent)/0.5)]"
-                      : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground hover:bg-card/40"
+                      ? "border-transparent text-accent-foreground bg-accent"
+                      : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground hover:bg-secondary"
                   }`}
                 >
                   {c} <span className={`ml-1 ${active ? "opacity-70" : "opacity-50"}`}>{count}</span>
@@ -335,7 +335,7 @@ export default function BeforeView() {
             /* A specific category is selected — show its label above the flat list */
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
               <div className="md:col-span-2">
-                <p className="font-display italic text-[22px] text-accent">
+                <p className="font-body text-[13px] font-semibold text-accent">
                   {activeCategoryLabel}
                 </p>
                 <p className="font-body text-[10px] tracking-[0.18em] uppercase text-muted-foreground mt-1">
@@ -348,7 +348,7 @@ export default function BeforeView() {
             </div>
           ) : (
             /* "All" — flat list, no category labels */
-            <div className="rounded-xl border border-border overflow-hidden">
+            <div className="rounded-md border border-border overflow-hidden">
               <AnimatePresence initial={false}>{visible.map(renderRow)}</AnimatePresence>
             </div>
           )}
