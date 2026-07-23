@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail, Linkedin, MapPin, Briefcase } from "lucide-react";
 import headshotImg from "@/assets/headshot.jpg";
+import cmuCampusImg from "@/assets/cmucampus.jpg";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
@@ -168,10 +169,12 @@ export default function OverviewView() {
               </p>
             </div>
 
-            <div className="h-56 md:h-64 bg-secondary/40 flex items-center justify-center">
-              <span className="font-body text-[10px] tracking-[0.16em] uppercase text-muted-foreground">
-                CMU Campus Photo
-              </span>
+            <div className="h-56 md:h-64 bg-secondary/40">
+              <img
+                src={cmuCampusImg}
+                alt="Carnegie Mellon University campus"
+                className="w-full h-full object-cover"
+              />
             </div>
           </motion.div>
         </div>
