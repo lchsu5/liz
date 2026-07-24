@@ -17,63 +17,38 @@ export default function PillNav({
   onChange: (k: ViewKey) => void;
 }) {
   return (
-    <>
-      {/* Desktop — horizontal index nav pinned to the top-right edge */}
-      <motion.nav
-        initial={{ y: -16, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-        className="hidden md:flex fixed top-0 right-0 z-50 h-16 md:h-20 items-center pl-8 pr-5 md:pr-10 border-l border-border/70 bg-background/70 backdrop-blur-xl"
-        aria-label="Primary"
-      >
-        <ul className="flex items-center gap-1">
-          {items.map((it) => {
-            const isActive = it.key === active;
-            return (
-              <li key={it.key}>
-                <button
-                  onClick={() => onChange(it.key)}
-                  className={`group flex items-baseline gap-2 rounded-sm px-3 py-1.5 transition-colors duration-150 ${
-                    isActive ? "bg-accent" : "hover:bg-secondary"
-                  }`}
-                >
-                  <span
-                    className={`font-body text-[11px] tracking-[0.04em] uppercase transition-colors duration-150 ${
-                      isActive ? "text-accent-foreground" : "text-muted-foreground group-hover:text-foreground"
-                    }`}
-                  >
-                    {it.label}
-                  </span>
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </motion.nav>
-
-      {/* Mobile — compact bottom bar with hard-edged segments */}
-      <motion.nav
-        initial={{ y: 30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-        className="md:hidden fixed bottom-0 left-0 right-0 z-50 grid grid-cols-4 border-t border-border bg-background/90 backdrop-blur-xl"
-        aria-label="Primary"
-      >
-        {items.map((it) => {
-          const isActive = it.key === active;
-          return (
-            <button
-              key={it.key}
-              onClick={() => onChange(it.key)}
-              className={`flex flex-col items-center gap-1 py-3.5 font-body text-[9px] tracking-[0.14em] uppercase border-r last:border-r-0 border-border/60 transition-colors duration-150 ${
-                isActive ? "bg-accent text-accent-foreground" : "text-muted-foreground"
+    <motion.nav
+      initial={{ y: 30, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 p-1.5 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-[0_8px_30px_hsl(var(--foreground)/0.05)] ring-1 ring-foreground/5"
+      aria-label="Primary"
+    >
+      {items.map((it) => {
+        const isActive = it.key === active;
+        return (
+          <button
+            key={it.key}
+            onClick={() => onChange(it.key)}
+            className="relative px-3.5 py-2 font-body text-[10px] font-medium tracking-wide uppercase rounded-full transition-colors duration-200"
+          >
+            {isActive && (
+              <motion.span
+                layoutId="activeMobileNavPill"
+                className="absolute inset-0 bg-accent rounded-full shadow-sm"
+                transition={{ type: "spring", stiffness: 380, damping: 30 }}
+              />
+            )}
+            <span
+              className={`relative z-10 ${
+                isActive ? "text-accent-foreground" : "text-muted-foreground"
               }`}
             >
               {it.label}
-            </button>
-          );
-        })}
-      </motion.nav>
-    </>
+            </span>
+          </button>
+        );
+      })}
+    </motion.nav>
   );
 }
