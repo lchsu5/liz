@@ -41,7 +41,7 @@ const Index = () => {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 hidden md:flex items-center justify-between h-14 w-[calc(100%-3rem)] max-w-5xl px-2 pl-6 pr-2 rounded-full border border-border/40 bg-background/40 backdrop-blur-xl shadow-[0_8px_30px_hsl(var(--foreground)/0.04)] ring-1 ring-foreground/5"
+        className="fixed top-4 left-6 right-6 z-50 hidden md:flex items-center justify-between h-14 max-w-5xl mx-auto px-2 pl-6 pr-2 rounded-full border border-border/40 bg-background/40 backdrop-blur-xl shadow-[0_8px_30px_hsl(var(--foreground)/0.04)] ring-1 ring-foreground/5"
       >
         {/* Wordmark */}
         <a
