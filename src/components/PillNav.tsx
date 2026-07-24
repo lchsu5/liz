@@ -21,7 +21,7 @@ export default function PillNav({
       initial={{ y: 30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1 p-1.5 rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-[0_8px_30px_hsl(var(--foreground)/0.05)] ring-1 ring-foreground/5"
+      className="md:hidden fixed bottom-4 left-4 right-4 z-50 flex items-center justify-center gap-1 p-1.5 w-fit max-w-[calc(100%-2rem)] mx-auto rounded-full border border-border/40 bg-background/60 backdrop-blur-xl shadow-[0_8px_30px_hsl(var(--foreground)/0.05)] ring-1 ring-foreground/5"
       aria-label="Primary"
     >
       {items.map((it) => {
