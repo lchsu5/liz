@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail, Linkedin, MapPin, Briefcase } from "lucide-react";
 import headshotImg from "@/assets/headshot.jpg";
 import cmuCampusImg from "@/assets/cmucampus.jpg";
+import bannerImg from "@/assets/banner.jpeg";
 import ThemeController from "../ThemeController";
 import SectionHeader from "../SectionHeader";
 import CampusSection from "../CampusSection";
@@ -15,6 +16,17 @@ export default function OverviewView() {
   return (
     <main className="min-h-screen">
       <ThemeController />
+
+      {/* BANNER — full-width editorial strip */}
+      <section className="px-6 md:px-12 pt-10">
+        <div className="w-full h-56 md:h-64 rounded-md overflow-hidden border border-border">
+          <img
+            src={bannerImg}
+            alt="Elizabeth Hsu banner"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </section>
 
       {/* HERO — quiet editorial spread */}
       <section className="px-6 md:px-12 pt-16 pb-16 md:pt-20 md:pb-20">
