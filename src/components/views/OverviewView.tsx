@@ -18,7 +18,7 @@ export default function OverviewView() {
       <ThemeController />
 
       {/* BANNER — full-width editorial strip */}
-      <section className="px-6 md:px-12 pt-10">
+      <section className="px-6 md:px-12 pt-24 md:pt-28">
         <div className="w-full h-56 md:h-64 rounded-md overflow-hidden border border-border">
           <img
             src={bannerImg}
