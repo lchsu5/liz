@@ -57,8 +57,8 @@ const Index = () => {
             <img
               src={logo}
               alt="Elizabeth Hsu"
-              className="absolute"
-              style={{ width: 71, height: 71, top: -12, left: -17 }}
+              className="absolute max-w-none"
+              style={{ width: 70, height: 70, top: -13, left: -17 }}
             />
           </span>
         </a>
@@ -108,8 +108,8 @@ const Index = () => {
               <img
                 src={logo}
                 alt="Elizabeth Hsu"
-                className="absolute"
-                style={{ width: 63, height: 63, top: -10, left: -15 }}
+                className="absolute max-w-none"
+                style={{ width: 62, height: 62, top: -11, left: -15 }}
               />
             </span>
           </a>
