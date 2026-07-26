@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import PillNav, { ViewKey } from "@/components/PillNav";
+import logo from "@/assets/logo.png";
 import OverviewView from "@/components/views/OverviewView";
 import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
@@ -52,12 +53,13 @@ const Index = () => {
           }}
           className="group flex items-center gap-2.5 select-none"
         >
-          <span className="font-display text-xl tracking-tight text-foreground">
-            Elizabeth Hsu
-          </span>
-          <span className="relative flex h-1.5 w-1.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
+          <span className="relative block h-9 w-9 overflow-hidden rounded-full">
+            <img
+              src={logo}
+              alt="Elizabeth Hsu"
+              className="absolute"
+              style={{ width: 71, height: 71, top: -12, left: -17 }}
+            />
           </span>
         </a>
 
@@ -102,12 +104,13 @@ const Index = () => {
             }}
             className="flex items-center gap-2"
           >
-            <span className="font-display text-lg tracking-tight text-foreground">
-              Elizabeth Hsu
-            </span>
-            <span className="relative flex h-1 w-1">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-              <span className="relative inline-flex rounded-full h-1 w-1 bg-accent" />
+            <span className="relative block h-8 w-8 overflow-hidden rounded-full">
+              <img
+                src={logo}
+                alt="Elizabeth Hsu"
+                className="absolute"
+                style={{ width: 63, height: 63, top: -10, left: -15 }}
+              />
             </span>
           </a>
         </div>

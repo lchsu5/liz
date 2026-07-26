@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Experience", href: "#experience" },
@@ -36,12 +35,8 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between h-16">
-        <a href="#" className="block h-9 w-9 overflow-hidden rounded-md">
-          <img
-            src={logo}
-            alt="Elizabeth Hsu"
-            className="h-full w-full object-cover object-top scale-125"
-          />
+        <a href="#" className="font-display text-[18px] text-foreground tracking-tight">
+          Elizabeth Hsu
         </a>
 
         <nav className="hidden md:flex items-center gap-8">
