@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 
-export type ViewKey = "overview" | "currently" | "before" | "research";
+export type ViewKey = "overview" | "present" | "past" | "visionboard";
 
 const items: { key: ViewKey; label: string }[] = [
   { key: "overview", label: "Overview" },
-  { key: "currently", label: "Currently" },
-  { key: "before", label: "Before" },
-  { key: "research", label: "Research" },
+  { key: "present", label: "Present" },
+  { key: "past", label: "Past" },
+  { key: "visionboard", label: "Vision Board" },
 ];
 
 export default function PillNav({

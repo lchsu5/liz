@@ -5,13 +5,13 @@ import logo from "@/assets/logo.png";
 import OverviewView from "@/components/views/OverviewView";
 import CurrentlyView from "@/components/views/CurrentlyView";
 import BeforeView from "@/components/views/BeforeView";
-import ResearchView from "@/components/views/ResearchView";
+import VisionBoardView from "@/components/views/VisionBoardView";
 
 const NAV_ITEMS: { key: ViewKey; label: string }[] = [
   { key: "overview", label: "Overview" },
-  { key: "currently", label: "Currently" },
-  { key: "before", label: "Before" },
-  { key: "research", label: "Research" },
+  { key: "present", label: "Present" },
+  { key: "past", label: "Past" },
+  { key: "visionboard", label: "Vision Board" },
 ];
 
 const Index = () => {
@@ -26,12 +26,12 @@ const Index = () => {
     switch (view) {
       case "overview":
         return <OverviewView />;
-      case "currently":
+      case "present":
         return <CurrentlyView />;
-      case "before":
+      case "past":
         return <BeforeView />;
-      case "research":
-        return <ResearchView />;
+      case "visionboard":
+        return <VisionBoardView />;
     }
   };
 
