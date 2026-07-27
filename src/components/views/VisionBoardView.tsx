@@ -63,7 +63,7 @@ export default function VisionBoardView() {
         >
           <SectionHeader
             title="Vision Board"
-            description="My vision for what's ahead, completed as I move forward with different stages in life, posted as they're made."
+            description="My vision for what's ahead, completed as I move forward with different stages in life. See my goals, values, and aspirations for the future."
           />
         </motion.div>
 
