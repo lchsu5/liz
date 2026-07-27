@@ -11,7 +11,7 @@ const NAV_ITEMS: { key: ViewKey; label: string }[] = [
   { key: "overview", label: "Overview" },
   { key: "present", label: "Present" },
   { key: "past", label: "Past" },
-  { key: "visionboard", label: "Vision Board" },
+  { key: "visionboard", label: "Future" },
 ];
 
 const Index = () => {
