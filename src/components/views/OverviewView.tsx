@@ -16,17 +16,8 @@ export default function OverviewView() {
     <main className="min-h-screen">
       <ThemeController />
 
-      {/* BANNER — full-width editorial strip */}
-      <section className="px-6 md:px-12 pt-24 md:pt-28">
-        <div className="w-full h-64 md:h-80 rounded-md overflow-hidden border border-border bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-          <span className="font-body text-xs tracking-[0.18em] uppercase text-muted-foreground">
-            Banner image coming soon
-          </span>
-        </div>
-      </section>
-
       {/* HERO — quiet editorial spread */}
-      <section className="px-6 md:px-12 pt-16 pb-16 md:pt-20 md:pb-20">
+      <section className="px-6 md:px-12 pt-24 pb-16 md:pt-28 md:pb-20">
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           {/* LEFT — copy */}
           <div className="lg:col-span-7 order-2 lg:order-1">
