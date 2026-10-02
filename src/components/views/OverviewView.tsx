@@ -18,13 +18,12 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
 
 <section id="hero"><div className="stick">
   <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src="/overview-reference/elizabeth-pink-wall.jpeg" /><div id="ov"></div></div>
+  <div className="strip" id="strip"><div className="tr" id="tr2"></div></div>
   <div id="tr"></div>
   <div id="hm"><span>Based in Irvine, CA</span><span>Business + AI, Carnegie Mellon</span></div>
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
   <div id="hs">Currently shipping with Workiva and Google</div>
 </div></section>
-
-<div className="strip" id="strip"><div className="tr" id="tr2"></div></div>
 
 <section id="stats">
   <div><div id="n1" className="big">0</div><div>Culture Night attendees</div></div>

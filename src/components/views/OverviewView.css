@@ -28,11 +28,13 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 #hn{position:absolute;left:20px;bottom:56px;z-index:3}
 #hs{position:absolute;left:20px;bottom:20px;z-index:3;color:var(--c)}
 #hm{position:absolute;left:20px;right:20px;top:calc(76px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;z-index:3}
-.strip{overflow:hidden;padding:26px 0;border-top:1px solid var(--h)}
-.strip .tr{display:flex;width:max-content;animation:mq 40s linear infinite}
+.strip{position:absolute;left:0;right:0;top:var(--slide-top,76px);height:var(--slide-height,338px);overflow:hidden;opacity:0;visibility:hidden;z-index:1}
+.strip .tr{display:flex;width:max-content;height:100%;animation:mq 40s linear infinite;animation-play-state:paused}
+.strip.is-visible{visibility:visible}
+.strip.is-visible .tr{animation-play-state:running}
 .strip:hover .tr{animation-play-state:paused}
 .strip .grp{display:flex;gap:10px;padding-right:10px}
-.strip img{width:150px;height:200px;object-fit:cover;border-radius:3px;display:block}
+.strip img{width:var(--slide-width,260px);height:100%;object-fit:cover;border-radius:4px;display:block}
 @keyframes mq{to{transform:translateX(-50%)}}
 #stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:48px 20px;background:var(--c);color:var(--k)}
 #stats .big{font-size:clamp(48px,11vw,150px)}

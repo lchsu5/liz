@@ -42,7 +42,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       track.appendChild(div);
     }
     cleanups.push(() => track.replaceChildren());
-    const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), sticky = get(".stick");
+    const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), sticky = get(".stick"), strip = get("#strip");
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const updateHero = () => {
       const width = page.clientWidth, height = window.innerHeight;
@@ -50,6 +50,14 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       const eased = progress * progress * (3 - 2 * progress);
       const mix = (a: number, b: number) => a + (b - a) * eased;
       const smallWidth = Math.min(260, width * .5);
+      const slideProgress = reduced.matches ? 0 : clamp((progress - .75) / .2, 0, 1);
+      const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
+      strip.style.setProperty("--slide-width", `${smallWidth}px`);
+      strip.style.setProperty("--slide-height", `${smallWidth * 1.3}px`);
+      strip.style.setProperty("--slide-top", `${width < 480 ? 110 : 76}px`);
+      strip.style.opacity = String(slideOpacity);
+      strip.classList.toggle("is-visible", slideOpacity > 0);
+      photo.style.opacity = String(1 - slideOpacity);
       Object.assign(photo.style, { width: `${mix(width, smallWidth)}px`, height: `${mix(height, smallWidth * 1.3)}px`, top: `${mix(0, width < 480 ? 110 : 76)}px`, right: `${mix(0, 20)}px`, borderRadius: `${mix(0, 4)}px` });
       get("#ov").style.opacity = String(mix(.45, 0));
       title.style.fontSize = "100px";
