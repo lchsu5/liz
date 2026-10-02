@@ -17,7 +17,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
 <header id="hd"><button type="button" onClick={() => navigate("overview", "Overview")}>Elizabeth Hsu™</button><nav id="nav" aria-label="Primary">{navItems.map(item => <button key={item.key} type="button" className={`nv scr ${item.key === "overview" ? "act" : ""}`} aria-current={item.key === "overview" ? "page" : undefined} onClick={() => navigate(item.key, item.label)}>{item.label}</button>)}</nav><span>©2025-2026</span></header>
 
 <section id="hero"><div className="stick">
-  <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src="/overview-reference/photo-0.jpg" /><div id="ov"></div></div>
+  <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src="/overview-reference/elizabeth-pink-wall.jpeg" /><div id="ov"></div></div>
   <div id="tr"></div>
   <div id="hm"><span>Based in Irvine, CA</span><span>Business + AI, Carnegie Mellon</span></div>
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
