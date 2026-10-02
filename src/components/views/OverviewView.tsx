@@ -1,243 +1,66 @@
-import { motion } from "framer-motion";
-import { Mail, Linkedin, MapPin, Briefcase } from "lucide-react";
-import headshotImg from "@/assets/headshot.jpg";
-import cmuCampusImg from "@/assets/cmucampus.jpg";
-import ThemeController from "../ThemeController";
-import SectionHeader from "../SectionHeader";
-import CampusSection from "../CampusSection";
+import { useRef } from "react";
+import type { ViewKey } from "../PillNav";
+import { useOverviewEffects } from "./useOverviewEffects";
+import "./OverviewView.css";
 
-const currentChips = [
-  { org: "Workiva", role: "PM Intern" },
-  { org: "Google", role: "Student Ambassador" },
+const navItems: { key: ViewKey; label: string }[] = [
+  { key: "overview", label: "Overview" }, { key: "present", label: "Present" },
+  { key: "past", label: "Past" }, { key: "visionboard", label: "Future" },
 ];
 
-export default function OverviewView() {
-  return (
-    <main className="min-h-screen">
-      <ThemeController />
+export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
+  const root = useRef<HTMLElement>(null);
+  const navigate = useOverviewEffects(root, onNavigate);
+  return <main ref={root} className="overview-reference">
 
-      {/* HERO — quiet editorial spread */}
-      <section className="px-6 md:px-12 pt-24 pb-16 md:pt-28 md:pb-20">
-        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
-          {/* LEFT — copy */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
-            <motion.h1
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="font-display tracking-[-0.02em] text-foreground text-[40px] sm:text-[48px] md:text-[56px] leading-[0.98]"
-            >
-              Elizabeth Hsu
-            </motion.h1>
+<div id="bar"></div><div id="dot"></div>
+<header id="hd"><button type="button" onClick={() => navigate("overview", "Overview")}>Elizabeth Hsu™</button><nav id="nav" aria-label="Primary">{navItems.map(item => <button key={item.key} type="button" className={`nv scr ${item.key === "overview" ? "act" : ""}`} aria-current={item.key === "overview" ? "page" : undefined} onClick={() => navigate(item.key, item.label)}>{item.label}</button>)}</nav><span>©2025-2026</span></header>
 
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-body text-[11px] tracking-[0.06em] uppercase text-accent mt-4"
-            >
-              Business + AI @ Carnegie Mellon
-            </motion.p>
+<section id="hero"><div className="stick">
+  <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src="/overview-reference/photo-0.jpg" /><div id="ov"></div></div>
+  <div id="tr"></div>
+  <div id="hm"><span>Based in Irvine, CA</span><span>Business + AI, Carnegie Mellon</span></div>
+  <h1 id="hn" className="big">Elizabeth Hsu</h1>
+  <div id="hs">Currently shipping with Workiva and Google</div>
+</div></section>
 
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="font-body text-[14px] md:text-[15px] font-normal text-foreground/75 max-w-xl leading-[1.9] mt-4"
-            >
-              I work at the intersection of product, research, and venture, currently
-              shipping with Workiva and Google.
-            </motion.p>
+<div className="strip" id="strip"><div className="tr" id="tr2"></div></div>
 
-            {/* Status + contact */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-8 grid grid-cols-1 sm:grid-cols-12 gap-x-8 gap-y-5 max-w-xl"
-            >
-              <div className="sm:col-span-5">
-                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-3">
-                  Currently
-                </p>
-                <div className="flex flex-col gap-2.5">
-                  {currentChips.map((c) => (
-                    <div key={c.org} className="flex items-center gap-2.5">
-                      <span className="w-0.5 h-3 rounded-sm bg-accent opacity-50 shrink-0" />
-                      <span className="font-body text-[13px] font-semibold text-foreground leading-none">{c.org}</span>
-                      <span className="font-body text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
-                        {c.role}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+<section id="stats">
+  <div><div id="n1" className="big">0</div><div>Culture Night attendees</div></div>
+  <div><div id="n2" className="big">0</div><div>Person ski trip</div></div>
+  <div><div id="n3" className="big">0</div><div>Founder funding supported</div></div>
+</section>
 
-              <div className="sm:col-span-7 sm:border-l sm:border-border sm:pl-8 flex flex-col gap-3">
-                <p className="font-body text-[9px] tracking-[0.22em] uppercase text-muted-foreground mb-1">
-                  Reach me
-                </p>
-                <span className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75">
-                  <MapPin size={13} className="text-accent shrink-0" /> Irvine, CA
-                </span>
-                <a
-                  href="mailto:lchsu@andrew.cmu.edu"
-                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors duration-150 w-fit"
-                >
-                  <Mail size={13} className="text-accent shrink-0" /> lchsu@andrew.cmu.edu
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/lizhhsu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 font-body text-[13px] text-foreground/75 hover:text-accent transition-colors duration-150 w-fit"
-                >
-                  <Linkedin size={13} className="text-accent shrink-0" /> linkedin.com/in/lizhhsu
-                </a>
-              </div>
-            </motion.div>
-          </div>
+<section id="education">
+  <div className="eb">
+    <img id="imgC" alt="Carnegie Mellon campus at sunset" src="/overview-reference/photo-1.jpg" />
+    <div className="sh"></div>
+    <div className="gl scr et">Education</div>
+    <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · Expected May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
+  </div>
+</section>
 
-          {/* RIGHT — clean editorial photo frame */}
-          <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end">
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative w-[220px] h-[280px] sm:w-[250px] sm:h-[320px]"
-            >
-              <div className="absolute inset-0 overflow-hidden rounded-lg border border-border">
-                <img
-                  src={headshotImg}
-                  alt="Elizabeth Hsu"
-                  className="w-full h-full object-cover object-top"
-                />
-              </div>
+<section id="lead">
+  <div className="top"><div className="gl scr">Campus leadership</div><p>Involvement across product, culture, and venture at CMU.</p></div>
+  <div className="cols">
+  <article className="lc"><div className="im"><img alt="BTG team" src="/overview-reference/photo-2.jpg" /></div><div className="bd"><div className="og">Business Technology Group</div><div className="rr"><div><b>Head of Outreach</b> <span className="gl">· 2026–27</span></div><div><b>Product Analyst</b> <span className="gl">· 2025–26</span></div></div><ul><li>Selected as 1 of 2 freshmen to build CMUsed, a secondhand marketplace addressing resale friction on campus.</li><li>Led cross-functional feature development with engineers and designers, refining listing flow and search UX.</li></ul></div></article>
+  <article className="lc"><div className="im"><img alt="Taiwanese Student Association team" src="/overview-reference/photo-3.jpg" /></div><div className="bd"><div className="og">Taiwanese Student Association</div><div className="rr"><div><b>Public Relations Chair</b> <span className="gl">· 2026–27</span></div><div><b>Freshman Representative</b> <span className="gl">· 2025–26</span></div></div><ul><li>Coordinated Culture Night logistics for 300+ attendees, aligning 20+ student organizations.</li><li>Planned and executed a 40+ person ski trip, managing transportation, budgeting, and ops.</li></ul></div></article>
+  <article className="lc"><div className="im"><img alt="Foundry by ScottyLabs team at the CMU sign" src="/overview-reference/photo-4.jpg" /></div><div className="bd"><div className="og">Foundry by ScottyLabs</div><div className="rr"><div><b>Talent Subcommittee Chair, Executive Board</b> <span className="gl">· 2026–27</span></div></div><ul><li>Designed a 7-category framework analyzing critical venture metrics to identify high-signal builders.</li><li>Facilitated founder referrals to a16z, Sequoia, and Khosla — supporting $11M raised over 8 months.</li></ul></div></article>
+</div>
+</section>
 
-              <div className="absolute -top-3 -right-3 sm:-right-6 bg-card border border-border rounded-md px-3.5 py-2.5">
-                <p className="font-body text-[9px] tracking-[0.18em] uppercase text-accent">
-                  Based in
-                </p>
-                <p className="font-body text-[13px] text-foreground mt-0.5">Irvine, CA</p>
-              </div>
+<section id="contact">
+  <div className="top"><div className="gl scr">Get in touch</div><p>Always open to connecting, whether it's a role, a project, or just a chat.</p></div>
+  <div className="lrows">
+    <a className="lr" href="mailto:lchsu@andrew.cmu.edu"><span className="t">Email</span><span className="r">lchsu@andrew.cmu.edu <i>→</i></span></a>
+    <a className="lr" target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/lizhhsu"><span className="t">LinkedIn</span><span className="r">/in/lizhhsu <i>→</i></span></a>
+    <a className="lr" target="_blank" rel="noopener noreferrer" href="https://elizabeth-hsu-portfolio.lovable.app/"><span className="t">Ambassador portfolio</span><span className="r"><i>→</i></span></a>
+  </div>
+  <div className="ft gl"><span>Irvine, CA <span id="ck"></span></span><span>©2025-2026</span></div>
+</section>
+<div id="wp" className="big"></div>
 
-              <a
-                href="mailto:lchsu@andrew.cmu.edu"
-                className="absolute -bottom-3 -right-4 sm:-right-8 bg-card border border-border rounded-md px-3.5 py-2.5 flex items-center gap-2 hover:border-accent transition-colors duration-150"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                <span className="font-body text-[10px] tracking-[0.14em] uppercase text-foreground/80">
-                  Contact me
-                </span>
-              </a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      <div className="border-t border-border" />
-
-      {/* EDUCATION — bordered card, fact-sheet split */}
-      <section className="px-6 md:px-12 py-16">
-        <div className="w-full">
-          <SectionHeader title="Education" />
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.4 }}
-            className="rounded-md border border-border overflow-hidden"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-4 p-7 md:p-8 border-b border-border">
-              <div>
-                <h3 className="font-display text-[26px] md:text-[28px] text-foreground leading-[1.05]">
-                  Carnegie Mellon University
-                </h3>
-                <p className="font-body text-[11px] tracking-[0.14em] uppercase text-muted-foreground mt-2">
-                  Tepper School of Business
-                </p>
-              </div>
-              <div className="text-right shrink-0">
-                <p className="font-body text-[13px] text-accent">Expected May 2028</p>
-                <p className="font-body text-[12px] text-muted-foreground mt-1">Pittsburgh, PA</p>
-              </div>
-            </div>
-
-            <div className="p-7 md:p-8 border-b border-border">
-              <p className="font-body text-[13px] text-foreground/85">
-                B.S. Business Administration, minor in Artificial Intelligence.
-              </p>
-            </div>
-
-            <div className="h-56 md:h-64 bg-secondary/40">
-              <img
-                src={cmuCampusImg}
-                alt="Carnegie Mellon University campus"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <div className="border-t border-border" />
-
-      {/* CAMPUS LEADERSHIP */}
-      <CampusSection />
-
-      <div className="border-t border-border" />
-
-      {/* CONTACT — headline + description, near-black email bar, link cards */}
-      <section className="px-6 md:px-12 py-16 pb-28 md:pb-32">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.4 }}
-          className="w-full"
-        >
-          <SectionHeader
-            title="Get in Touch"
-            description="Always open to connecting, whether it's a role, a project, or just a chat."
-          />
-
-          <a
-            href="mailto:lchsu@andrew.cmu.edu"
-            className="group flex items-center justify-center gap-3 rounded-md bg-accent py-6 md:py-7 transition-colors duration-150 hover:bg-primary"
-          >
-            <Mail size={18} className="text-accent-foreground shrink-0" strokeWidth={1.75} />
-            <span className="font-body text-[13px] md:text-[14px] tracking-[0.1em] uppercase text-accent-foreground">
-              lchsu@andrew.cmu.edu
-            </span>
-          </a>
-
-          <div className="grid grid-cols-2 gap-4 mt-4">
-            <a
-              href="https://www.linkedin.com/in/lizhhsu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-primary hover:border-primary"
-            >
-              <Linkedin size={22} className="text-foreground/80 group-hover:text-primary-foreground transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-primary-foreground transition-colors duration-150">
-                LinkedIn
-              </span>
-            </a>
-
-            <a
-              href="https://elizabeth-hsu-portfolio.lovable.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center justify-center gap-3 rounded-md border border-border bg-white py-8 transition-colors duration-150 hover:bg-primary hover:border-primary"
-            >
-              <Briefcase size={22} className="text-foreground/80 group-hover:text-primary-foreground transition-colors duration-150" strokeWidth={1.5} />
-              <span className="font-body text-[10px] tracking-[0.2em] uppercase text-muted-foreground group-hover:text-primary-foreground transition-colors duration-150">
-                Ambassador Portfolio
-              </span>
-            </a>
-          </div>
-        </motion.div>
-      </section>
-    </main>
-  );
+</main>;
 }

@@ -25,7 +25,7 @@ const Index = () => {
   const renderView = () => {
     switch (view) {
       case "overview":
-        return <OverviewView />;
+        return <OverviewView onNavigate={setView} />;
       case "present":
         return <CurrentlyView />;
       case "past":
@@ -38,7 +38,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Floating glass editorial header */}
-      <motion.header
+      {view !== "overview" && <motion.header
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -91,10 +91,10 @@ const Index = () => {
             );
           })}
         </nav>
-      </motion.header>
+      </motion.header>}
 
       {/* Mobile wordmark bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-xl border-b border-border/70">
+      {view !== "overview" && <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-xl border-b border-border/70">
         <div className="px-5 h-14 flex items-center justify-between">
           <a
             href="#"
@@ -114,22 +114,22 @@ const Index = () => {
             </span>
           </a>
         </div>
-      </div>
+      </div>}
 
       <AnimatePresence mode="wait">
         <motion.div
           key={view}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="pb-24 md:pb-0"
+          className={view === "overview" ? "" : "pb-24 md:pb-0"}
         >
           {renderView()}
         </motion.div>
       </AnimatePresence>
 
-      <PillNav active={view} onChange={setView} />
+      {view !== "overview" && <PillNav active={view} onChange={setView} />}
     </div>
   );
 };

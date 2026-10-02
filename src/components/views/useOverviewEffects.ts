@@ -1,0 +1,174 @@
+import { useEffect, useRef, type RefObject } from "react";
+import type { ViewKey } from "../PillNav";
+
+export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (view: ViewKey) => void) {
+  const navigateRef = useRef<(view: ViewKey, label: string) => void>(() => {});
+  useEffect(() => {
+    const page = root.current;
+    if (!page) return;
+    const get = <T extends HTMLElement = HTMLElement>(selector: string) => page.querySelector<T>(selector)!;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    const cleanups: (() => void)[] = [];
+    const timers = new Set<ReturnType<typeof setTimeout>>();
+    const frames = new Set<number>();
+    let alive = true;
+    const later = (fn: () => void, ms: number) => {
+      const id = setTimeout(() => { timers.delete(id); if (alive) fn(); }, ms);
+      timers.add(id);
+    };
+    const frame = (fn: FrameRequestCallback) => {
+      const id = requestAnimationFrame(time => { frames.delete(id); if (alive) fn(time); });
+      frames.add(id);
+    };
+    const listen = (target: EventTarget, event: string, handler: EventListener) => {
+      target.addEventListener(event, handler, { passive: true });
+      cleanups.push(() => target.removeEventListener(event, handler));
+    };
+    const animateAway = (el: HTMLElement, keyframes: Keyframe[], duration: number) => {
+      const animation = el.animate(keyframes, { duration, easing: "ease-out", fill: "forwards" });
+      later(() => { animation.cancel(); el.remove(); }, duration + 50);
+    };
+    const sources = Array.from(page.querySelectorAll<HTMLImageElement>("#imgP, #imgC, .lc img")).map(img => img.src);
+    const track = get("#tr2");
+    for (let group = 0; group < 2; group++) {
+      const div = document.createElement("div");
+      div.className = "grp";
+      for (const src of [...sources, ...sources]) {
+        const img = document.createElement("img");
+        img.src = src; img.alt = ""; img.loading = "lazy";
+        div.appendChild(img);
+      }
+      track.appendChild(div);
+    }
+    cleanups.push(() => track.replaceChildren());
+    const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), sticky = get(".stick");
+    const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
+    const updateHero = () => {
+      const width = page.clientWidth, height = window.innerHeight;
+      const progress = reduced.matches ? 0 : clamp(-hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight - height), 0, 1);
+      const eased = progress * progress * (3 - 2 * progress);
+      const mix = (a: number, b: number) => a + (b - a) * eased;
+      const smallWidth = Math.min(260, width * .5);
+      Object.assign(photo.style, { width: `${mix(width, smallWidth)}px`, height: `${mix(height, smallWidth * 1.3)}px`, top: `${mix(0, width < 480 ? 110 : 76)}px`, right: `${mix(0, 20)}px`, borderRadius: `${mix(0, 4)}px` });
+      get("#ov").style.opacity = String(mix(.45, 0));
+      title.style.fontSize = "100px";
+      const large = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
+      title.style.fontSize = `${mix(large, clamp(width * .07, 30, 64))}px`;
+      get("#hm").style.opacity = String(Math.max(0, 1 - eased * 2.5));
+      get("#bar").style.width = `${clamp(window.scrollY / Math.max(1, document.documentElement.scrollHeight - height) * 100, 0, 100)}%`;
+    };
+    let scheduled = false;
+    const scheduleHero = () => { if (!scheduled) { scheduled = true; frame(() => { scheduled = false; updateHero(); }); } };
+    listen(window, "scroll", scheduleHero);
+    listen(window, "resize", scheduleHero);
+    listen(reduced, "change", scheduleHero);
+    document.fonts.ready.then(() => { if (alive) scheduleHero(); });
+    updateHero();
+
+    const stats = get("#stats");
+    let counting = false, countToken = 0;
+    const setCounts = (progress: number) => {
+      get("#n1").textContent = `${Math.round(300 * progress)}+`;
+      get("#n2").textContent = `${Math.round(40 * progress)}+`;
+      get("#n3").textContent = `$${Math.round(11 * progress)}M`;
+    };
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) { counting = false; countToken++; continue; }
+        if (counting) continue;
+        counting = true;
+        const token = ++countToken, start = performance.now();
+        if (reduced.matches) { setCounts(1); continue; }
+        const tick = (time: number) => {
+          if (token !== countToken) return;
+          const progress = Math.min(1, (time - start) / 1400);
+          setCounts(progress);
+          if (progress < 1) frame(tick);
+        };
+        frame(tick);
+      }
+    }, { threshold: .4 });
+    observer.observe(stats);
+    cleanups.push(() => observer.disconnect());
+
+    page.querySelectorAll<HTMLElement>(".scr").forEach(el => {
+      const original = el.textContent || "";
+      let running = false;
+      listen(el, "mouseenter", () => {
+        if (reduced.matches || running) return;
+        running = true;
+        let iteration = 0;
+        const tick = () => {
+          iteration++;
+          el.textContent = original.split("").map((letter, index) => index < iteration / 2 || /[^A-Za-z]/.test(letter) ? letter : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]).join("");
+          if (iteration < original.length * 2 && !reduced.matches) later(tick, 35);
+          else { el.textContent = original; running = false; }
+        };
+        tick();
+      });
+      cleanups.push(() => { el.textContent = original; });
+    });
+
+    let busy = false;
+    navigateRef.current = (view, label) => {
+      if (busy) return;
+      const change = () => view === "overview" ? window.scrollTo({ top: 0, behavior: "instant" }) : onNavigate(view);
+      if (reduced.matches) { change(); return; }
+      busy = true;
+      const wipe = get("#wp");
+      wipe.textContent = label;
+      wipe.style.visibility = "visible";
+      const animation = wipe.animate([{ transform: "translateY(100%)" }, { transform: "translateY(0)", offset: .4 }, { transform: "translateY(0)", offset: .5 }, { transform: "translateY(-100%)" }], { duration: 1200, easing: "cubic-bezier(.7,0,.2,1)" });
+      if (view === "overview") later(change, 600);
+      later(() => { animation.cancel(); wipe.style.visibility = "hidden"; busy = false; if (view !== "overview") change(); }, 1200);
+      cleanups.push(() => animation.cancel());
+    };
+
+    if (fine) {
+      const dot = get("#dot"), trail = get("#tr");
+      let targetX = 0, targetY = 0, currentX = 0, currentY = 0, lastX = -99, lastY = -99, photoIndex = 0;
+      listen(page, "pointermove", event => {
+        const e = event as PointerEvent;
+        targetX = e.clientX; targetY = e.clientY;
+        const rect = sticky.getBoundingClientRect();
+        dot.style.opacity = reduced.matches || (targetY >= rect.top && targetY <= rect.bottom) ? "0" : "1";
+        if (reduced.matches) return;
+        currentX += (targetX - currentX) * .16; currentY += (targetY - currentY) * .16;
+        dot.style.transform = `translate(${currentX}px,${currentY}px)`;
+      });
+      listen(page, "pointerleave", () => { dot.style.opacity = "0"; });
+      listen(sticky, "pointermove", event => {
+        if (reduced.matches) return;
+        const e = event as PointerEvent, rect = sticky.getBoundingClientRect();
+        const x = e.clientX - rect.left, y = e.clientY - rect.top;
+        if (Math.hypot(x - lastX, y - lastY) < 70) return;
+        lastX = x; lastY = y;
+        const img = document.createElement("img"); img.src = sources[photoIndex++ % sources.length]; img.alt = "";
+        img.style.left = `${x - 42}px`; img.style.top = `${y - 54}px`;
+        trail.appendChild(img);
+        animateAway(img, [{ opacity: 1, transform: "scale(1)" }, { opacity: 0, transform: "scale(.7)" }], 900);
+      });
+    }
+    listen(page, "click", event => {
+      const e = event as MouseEvent;
+      if (reduced.matches || (e.target as Element).closest("a, button")) return;
+      for (let i = 0; i < 8; i++) {
+        const particle = document.createElement("div"), angle = i / 8 * Math.PI * 2;
+        Object.assign(particle.style, { position: "fixed", width: "6px", height: "6px", borderRadius: "50%", background: "#ECEAE3", pointerEvents: "none", zIndex: "90", left: `${e.clientX - 3}px`, top: `${e.clientY - 3}px` });
+        page.appendChild(particle);
+        animateAway(particle, [{ opacity: 1, transform: "translate(0,0)" }, { opacity: 0, transform: `translate(${Math.cos(angle) * 32}px,${Math.sin(angle) * 32}px)` }], 550);
+      }
+    });
+    const clock = () => { get("#ck").textContent = new Date().toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" }); };
+    clock();
+    const interval = setInterval(clock, 10000);
+    return () => {
+      alive = false; clearInterval(interval);
+      timers.forEach(clearTimeout); frames.forEach(cancelAnimationFrame);
+      cleanups.forEach(cleanup => cleanup());
+      navigateRef.current = () => {};
+    };
+  }, [root, onNavigate]);
+  return (view: ViewKey, label: string) => navigateRef.current(view, label);
+}
