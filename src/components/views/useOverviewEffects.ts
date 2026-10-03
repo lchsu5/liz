@@ -74,31 +74,17 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     document.fonts.ready.then(() => { if (alive) scheduleHero(); });
     updateHero();
 
-    const stats = get("#stats");
-    let counting = false, countToken = 0;
-    const setCounts = (progress: number) => {
-      get("#n1").textContent = `${Math.round(300 * progress)}+`;
-      get("#n2").textContent = `${Math.round(40 * progress)}+`;
-      get("#n3").textContent = `$${Math.round(11 * progress)}M`;
-    };
+    const contact = get("#contact");
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) { counting = false; countToken++; continue; }
-        if (counting) continue;
-        counting = true;
-        const token = ++countToken, start = performance.now();
-        if (reduced.matches) { setCounts(1); continue; }
-        const tick = (time: number) => {
-          if (token !== countToken) return;
-          const progress = Math.min(1, (time - start) / 1400);
-          setCounts(progress);
-          if (progress < 1) frame(tick);
-        };
-        frame(tick);
+        contact.classList.toggle("is-visible", entry.isIntersecting);
       }
-    }, { threshold: .4 });
-    observer.observe(stats);
-    cleanups.push(() => observer.disconnect());
+    }, { threshold: .15 });
+    observer.observe(contact);
+    cleanups.push(() => {
+      observer.disconnect();
+      contact.classList.remove("is-visible");
+    });
 
     page.querySelectorAll<HTMLElement>(".scr").forEach(el => {
       const original = el.textContent || "";

@@ -25,10 +25,13 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
   <div id="hs">Currently shipping with Workiva and Google</div>
 </div></section>
 
-<section id="stats">
-  <div><div id="n1" className="big">0</div><div>Culture Night attendees</div></div>
-  <div><div id="n2" className="big">0</div><div>Person ski trip</div></div>
-  <div><div id="n3" className="big">0</div><div>Founder funding supported</div></div>
+<section id="contact" aria-label="Get in touch">
+  <div className="contact-intro"><span className="scr">Get in touch</span><p>Always open to connecting, whether it's a role, a project, or just a chat.</p></div>
+  <div className="contact-links">
+    <a className="contact-link" href="mailto:lchsu@andrew.cmu.edu"><span className="contact-title">Say hello <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">lchsu@andrew.cmu.edu</span></a>
+    <a className="contact-link" href="https://linkedin.com/in/lizhhsu" target="_blank" rel="noopener noreferrer"><span className="contact-title">Let’s connect <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">LinkedIn / lizhhsu</span></a>
+    <a className="contact-link" href="https://elizabeth-hsu-portfolio.lovable.app/" target="_blank" rel="noopener noreferrer"><span className="contact-title">Explore my work <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">Ambassador portfolio</span></a>
+  </div>
 </section>
 
 <section id="education">
@@ -49,15 +52,9 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
 </div>
 </section>
 
-<section id="contact">
-  <div className="top"><div className="gl scr">Get in touch</div><p>Always open to connecting, whether it's a role, a project, or just a chat.</p></div>
-  <div className="lrows">
-    <a className="lr" href="mailto:lchsu@andrew.cmu.edu"><span className="t">Email</span><span className="r">lchsu@andrew.cmu.edu <i>→</i></span></a>
-    <a className="lr" target="_blank" rel="noopener noreferrer" href="https://linkedin.com/in/lizhhsu"><span className="t">LinkedIn</span><span className="r">/in/lizhhsu <i>→</i></span></a>
-    <a className="lr" target="_blank" rel="noopener noreferrer" href="https://elizabeth-hsu-portfolio.lovable.app/"><span className="t">Ambassador portfolio</span><span className="r"><i>→</i></span></a>
-  </div>
+<footer id="overview-footer">
   <div className="ft gl"><span>Irvine, CA <span id="ck"></span></span><span>©2025-2026</span></div>
-</section>
+</footer>
 <div id="wp" className="big"></div>
 
 
