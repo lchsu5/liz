@@ -13,6 +13,68 @@
   -webkit-font-smoothing: antialiased;
 }
 
+.view-shell {
+  min-height: 100vh;
+  background: #eceae3;
+  transition: background-color 280ms ease;
+}
+
+.view-shell[data-theme="dark"] { background: #1a1a1a; }
+
+.view-navigation {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: calc(18px + env(safe-area-inset-top, 0px)) 20px 18px;
+  background: #eceae3;
+  color: #181817;
+  font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
+  text-transform: uppercase;
+  transition: background-color 280ms ease, color 280ms ease;
+}
+
+.view-navigation[data-theme="dark"] { background: #1a1a1a; color: #eeebe4; }
+.view-navigation nav { display: flex; gap: 26px; }
+.view-navigation button {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+.view-navigation nav button::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 -5px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+.view-navigation nav button[aria-current="page"]::after { opacity: 1; }
+.view-navigation button:hover { color: #b53c59; }
+.view-navigation[data-theme="dark"] button:hover { color: #e0607e; }
+.view-navigation button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
+
+@media (max-width: 600px) {
+  .view-navigation { flex-wrap: wrap; gap: 14px; }
+  .view-navigation > span { display: none; }
+  .view-navigation nav { width: 100%; justify-content: space-between; gap: 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .view-shell, .view-navigation, .view-navigation button, .view-navigation nav button::after { transition: none; }
+}
+
 @layer base {
   :root {
     /* Editorial-finance palette — quiet off-white, near-black text, deep rose accent used sparingly. */

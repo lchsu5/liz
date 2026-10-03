@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import type { ViewKey } from "@/lib/navigation";
 import "./PresentView.css";
 
-const navigation: { key: ViewKey; label: string }[] = [
-  { key: "overview", label: "Overview" }, { key: "present", label: "Present" },
-  { key: "past", label: "Past" }, { key: "visionboard", label: "Future" },
-];
 const roles = [
   { company: "Workiva", dates: "Summer 2026", title: "Product Management Intern", details: [
     "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
@@ -25,7 +20,7 @@ const story = [
 ];
 const stack = ["React", "Vite", "Tailwind", "Python", "Gemini 2.5", "Qwen3-VL", "Overshoot", "WebRTC", "TRAE"];
 
-export default function PresentView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
+export default function PresentView() {
   const [expanded, setExpanded] = useState<string[]>(["Workiva"]);
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -44,11 +39,7 @@ export default function PresentView({ onNavigate }: { onNavigate: (view: ViewKey
   }, []);
   return <main className="present-reference">
     <div className="present-progress" ref={progress} aria-hidden="true" />
-    <header className="present-header">
-      <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
-      <nav aria-label="Primary">{navigation.map(item => <button type="button" key={item.key} className={`nv ${item.key === "present" ? "act" : ""}`} aria-current={item.key === "present" ? "page" : undefined} onClick={() => onNavigate(item.key)}>{item.label}</button>)}</nav>
-      <span>Â©2026</span>
-    </header>
+
     <div className="present-content">
       <section className="sec" aria-labelledby="present-now">
         <h1 className="lab" id="present-now">Right now</h1>

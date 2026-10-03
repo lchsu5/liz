@@ -1,5 +1,4 @@
 import { useState } from "react";
-import type { ViewKey } from "@/lib/navigation";
 import "./BeforeView.css";
 import handshakeLogo from "@/assets/handshake.jpg";
 import cmuLogo from "@/assets/cmu.png";
@@ -144,23 +143,15 @@ const past: {
 
 const categories: Category[] = ["All", "Research", "Product", "Finance", "Teaching"];
 
-const navigation: { key: ViewKey; label: string }[] = [
-  { key: "overview", label: "Overview" }, { key: "present", label: "Present" },
-  { key: "past", label: "Past" }, { key: "visionboard", label: "Future" },
-];
 
-export default function BeforeView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
+export default function BeforeView() {
   const [filter, setFilter] = useState<Category>("All");
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
   const visible = past.filter(role => filter === "All" || role.category === filter);
 
   return <main className="past-reference">
-    <header className="past-header">
-      <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
-      <nav aria-label="Primary">{navigation.map(item => <button type="button" key={item.key} aria-current={item.key === "past" ? "page" : undefined} onClick={() => onNavigate(item.key)}>{item.label}</button>)}</nav>
-      <span>©2026</span>
-    </header>
+
     <div className="past-content">
       <section aria-labelledby="past-moments">
         <h1 className="past-label" id="past-moments">Moments</h1>
