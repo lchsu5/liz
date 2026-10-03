@@ -1,7 +1,7 @@
 import type { ViewKey } from "@/lib/navigation";
 import visionBoard2026 from "@/assets/vision-board-2026.jpg";
 import visionBoardSummer2026 from "@/assets/vision-board-summer-2026.jpg";
-import visionBoardFall2026 from "@/assets/Fall 2026 Vision Board.png";
+import visionBoardFall2026 from "@/assets/vision-board-fall-2026.jpg";
 import "./VisionBoardView.css";
 
 const navigation: { key: ViewKey; label: string }[] = [
