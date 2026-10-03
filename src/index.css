@@ -25,6 +25,15 @@
 
 .view-panel { position: relative; z-index: 1; }
 
+.site-footer {
+  padding: 24px 20px;
+  border-top: 1px solid rgba(24, 24, 23, 0.15);
+  color: #66665f;
+  font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
+}
+.view-shell[data-theme="dark"] .site-footer { color: #aaa89f; border-color: rgba(238, 235, 228, 0.15); }
+.location-time { white-space: nowrap; }
+
 .view-shell[data-theme="dark"] { background: #1a1a1a; }
 
 .view-navigation {
@@ -69,7 +78,8 @@
 
 @media (max-width: 600px) {
   .view-navigation { flex-wrap: wrap; gap: 14px; }
-  .view-navigation > span { display: none; }
+  .view-navigation .location-time { margin-left: auto; }
+  .view-navigation > div { order: 1; width: 100%; }
   .view-navigation nav { width: 100%; justify-content: space-between; gap: 14px; }
 }
 

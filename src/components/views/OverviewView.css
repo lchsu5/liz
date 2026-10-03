@@ -60,8 +60,6 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 #contact.is-visible .contact-link:nth-child(2){animation-delay:.12s}
 #contact.is-visible .contact-link:nth-child(3){animation-delay:.24s}
 @keyframes contact-reveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-#overview-footer{padding:24px 20px;border-top:1px solid var(--h)}
-#overview-footer .ft{margin-top:0}
 @media(max-width:700px){.contact-links{grid-template-columns:1fr;gap:28px}.contact-title{font-size:clamp(20px,5.5vw,36px)}.contact-intro{flex-direction:column;gap:8px}#contact{padding-bottom:36px}}
 @media(prefers-reduced-motion:reduce){#contact.is-visible .contact-link{animation:none}.contact-link{transition:none}}
 

@@ -40,9 +40,6 @@ export default function OverviewView() {
 
 
 
-<footer id="overview-footer">
-  <div className="ft gl"><span>Irvine, CA <span id="ck"></span></span><span>©2026</span></div>
-</footer>
 
 
 </main>;

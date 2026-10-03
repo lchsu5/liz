@@ -104,6 +104,7 @@ const Index = () => {
         {renderView()}
       </PagePanel>}
     </AnimatePresence>
+    <footer className="site-footer">©2026</footer>
   </div>;
 };
 export default Index;

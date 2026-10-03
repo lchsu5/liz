@@ -156,11 +156,8 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
         animateAway(particle, [{ opacity: 1, transform: "translate(0,0)" }, { opacity: 0, transform: `translate(${Math.cos(angle) * 32}px,${Math.sin(angle) * 32}px)` }], 550);
       }
     });
-    const clock = () => { get("#ck").textContent = new Date().toLocaleTimeString("en-US", { timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit" }); };
-    clock();
-    const interval = setInterval(clock, 10000);
     return () => {
-      alive = false; clearInterval(interval);
+      alive = false;
       timers.forEach(clearTimeout); frames.forEach(cancelAnimationFrame);
       cleanups.forEach(cleanup => cleanup());
     };
