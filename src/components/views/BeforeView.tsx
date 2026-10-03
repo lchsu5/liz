@@ -20,15 +20,12 @@ const archive: { src: string; caption: string; sub: string; area: string }[] = [
   { src: photoEaton, caption: "Eaton", sub: "emPOWER U Leadership Summit", area: "wide" },
 ];
 
-type Category = "All" | "Research" | "Product" | "Finance" | "Teaching";
-
 const past: {
   company: string;
   title: string;
   dates: string;
   location?: string;
   note: string | string[];
-  category: Exclude<Category, "All">;
   logo: string;
 }[] = [
   {
@@ -41,7 +38,6 @@ const past: {
       "Analyzed multimodal inputs (image, audio, video, text) to identify inconsistent reasoning and edge-case behavior.",
       "Delivered 150+ pieces of decision-oriented feedback by synthesizing recurring failure patterns and edge cases into actionable recommendations used across training cycles.",
     ],
-    category: "Research",
     logo: handshakeLogo,
   },
   {
@@ -53,7 +49,6 @@ const past: {
       "Analyze results to assess the robustness of current LLM safety testing methods and find gaps in risk detection.",
       "Evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks using a structured scoring framework to assess alignment, misuse risk, and policy compliance.",
     ],
-    category: "Research",
     logo: cmuLogo,
   },
   {
@@ -66,7 +61,6 @@ const past: {
       "Conducted user interviews and behavioral analysis to prioritize features improving retention and engagement.",
       "Coordinated cross-functional development across engineering and design to ship MVP features on schedule.",
     ],
-    category: "Product",
     logo: superworldLogo,
   },
   {
@@ -79,7 +73,6 @@ const past: {
       "Developed 5 theses on crypto M&A and super-app competition, supporting coverage with 10+ models.",
       "Quantified earnings sensitivity to Fed policy and regulations, stress-testing models under multiple scenarios.",
     ],
-    category: "Finance",
     logo: consortiumLogo,
   },
   {
@@ -92,7 +85,6 @@ const past: {
       "Built DCFs highlighting two deals with projected 15–20% IRR, supporting investment committee reviews.",
       "Synthesized market, leasing, and sponsor analysis into investor memos and presented findings to professionals.",
     ],
-    category: "Finance",
     logo: projectDestinedLogo,
   },
   {
@@ -105,7 +97,6 @@ const past: {
       "Created two circular-economy product models for a fashion client that lowered client water consumption by 24%.",
       "Synthesized ESG data into 16-slide C-suite brief, securing adoption of three firmwide sustainability initiatives.",
     ],
-    category: "Finance",
     logo: eyLogo,
   },
   {
@@ -114,7 +105,6 @@ const past: {
     dates: "Jul 2024",
     location: "Costa Mesa, CA",
     note: "Selected participant — case studies, professional skills, and partner shadowing.",
-    category: "Finance",
     logo: deloitteLogo,
   },
   {
@@ -127,19 +117,15 @@ const past: {
       "Managed scheduling & billing for 300+ students, streamlined processes to lower admin errors 30%.",
       "Interpreted Mandarin for 20+ families in parent meetings, improving the implementation of student plans.",
     ],
-    category: "Teaching",
     logo: kumonLogo,
   },
 ];
 
-const categories: Category[] = ["All", "Research", "Product", "Finance", "Teaching"];
 
 
 export default function BeforeView() {
-  const [filter, setFilter] = useState<Category>("All");
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
-  const visible = past.filter(role => filter === "All" || role.category === filter);
 
   return <main className="past-reference">
 
@@ -157,13 +143,8 @@ export default function BeforeView() {
       </section>
       <section className="past-roles" aria-labelledby="past-roles-heading">
         <h2 className="past-label" id="past-roles-heading">Past Roles</h2>
-        <div className="past-filters" role="group" aria-label="Filter past roles">
-          {categories.map(category => <button key={category} type="button" aria-pressed={filter === category} onClick={() => { setFilter(category); setOpenKey(null); }}>
-            {category} <span>{category === "All" ? past.length : past.filter(role => role.category === category).length}</span>
-          </button>)}
-        </div>
         <div className="past-role-list">
-          {visible.map((role, index) => {
+          {past.map((role, index) => {
             const open = openKey === role.company;
             const panelId = `past-role-${past.indexOf(role)}`;
             return <article key={role.company} className={`past-role ${open ? "is-open" : ""}`} style={{ animationDelay: `${index * 45}ms` }}>
