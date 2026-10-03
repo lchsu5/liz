@@ -1,5 +1,17 @@
 import { useEffect, useRef, type RefObject } from "react";
 import type { ViewKey } from "@/lib/navigation";
+import photoA from "@/assets/a.jpg";
+import photoB from "@/assets/b.jpg";
+import photoC from "@/assets/c.jpg";
+import photoD from "@/assets/d.jpg";
+import photoE from "@/assets/e.jpg";
+import trailPhoto1 from "@/assets/1.1.JPG?url";
+import trailPhoto2 from "@/assets/1.2.jpeg";
+import trailPhoto3 from "@/assets/1.3.JPG?url";
+import trailPhoto4 from "@/assets/1.4.png";
+
+const rotatingPhotos = [photoA, photoB, photoC, photoD, photoE];
+const trailPhotos = [trailPhoto1, trailPhoto2, trailPhoto3, trailPhoto4];
 
 export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (view: ViewKey) => void) {
   const navigateRef = useRef<(view: ViewKey, label: string) => void>(() => {});
@@ -28,12 +40,11 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       const animation = el.animate(keyframes, { duration, easing: "ease-out", fill: "forwards" });
       later(() => { animation.cancel(); el.remove(); }, duration + 50);
     };
-    const sources = Array.from(page.querySelectorAll<HTMLImageElement>("#imgP, #imgC, .lc img")).map(img => img.src);
     const track = get("#tr2");
     for (let group = 0; group < 2; group++) {
       const div = document.createElement("div");
       div.className = "grp";
-      for (const src of [...sources, ...sources]) {
+      for (const src of [...rotatingPhotos, ...rotatingPhotos]) {
         const img = document.createElement("img");
         img.src = src; img.alt = ""; img.loading = "lazy";
         div.appendChild(img);
@@ -43,8 +54,9 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     cleanups.push(() => track.replaceChildren());
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
     const trail = get(".hero-photo-trail");
-    // Replace these colored placeholders with the supplied trail photos.
-    const trailColors = ["#8f4a78", "#5a6b3a", "#3a3f5c", "#2f5d62"];
+    if (!reduced.matches && window.matchMedia("(hover: hover)").matches) {
+      trailPhotos.forEach(src => { const image = new Image(); image.src = src; });
+    }
     let trailIndex = 0;
     let lastTrailPoint: { x: number; y: number } | null = null;
     const clearTrail = () => { trail.replaceChildren(); lastTrailPoint = null; };
@@ -55,17 +67,17 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       const x = pointer.clientX - bounds.left, y = pointer.clientY - bounds.top;
       if (lastTrailPoint && Math.hypot(x - lastTrailPoint.x, y - lastTrailPoint.y) < 65) return;
       lastTrailPoint = { x, y };
-      const index = trailIndex++ % trailColors.length;
+      const index = trailIndex++ % trailPhotos.length;
       const card = document.createElement("div");
       card.className = "hero-trail-card";
       card.style.left = `${x}px`;
       card.style.top = `${y}px`;
-      card.style.setProperty("--trail-color", trailColors[index]);
       card.style.setProperty("--trail-angle", `${index % 2 ? 8 : -8}deg`);
-      const placeholder = document.createElement("div");
-      placeholder.className = "hero-trail-placeholder";
-      placeholder.textContent = `Photo ${String(index + 1).padStart(2, "0")}`;
-      card.appendChild(placeholder);
+      const image = document.createElement("img");
+      image.src = trailPhotos[index];
+      image.alt = "";
+      image.draggable = false;
+      card.appendChild(image);
       trail.appendChild(card);
       if (trail.childElementCount > 8) trail.firstElementChild?.remove();
       card.addEventListener("animationend", () => card.remove(), { once: true });
