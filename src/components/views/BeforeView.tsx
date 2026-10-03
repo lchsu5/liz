@@ -157,9 +157,9 @@ export default function BeforeView({ onNavigate }: { onNavigate: (view: ViewKey)
 
   return <main className="past-reference">
     <header className="past-header">
-      <button type="button" onClick={() => onNavigate("overview")}>Elizabeth Hsu™</button>
+      <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
       <nav aria-label="Primary">{navigation.map(item => <button type="button" key={item.key} aria-current={item.key === "past" ? "page" : undefined} onClick={() => onNavigate(item.key)}>{item.label}</button>)}</nav>
-      <span>©2025–2026</span>
+      <span>©2026</span>
     </header>
     <div className="past-content">
       <section aria-labelledby="past-moments">

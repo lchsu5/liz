@@ -18,9 +18,9 @@ const boards = [
 export default function VisionBoardView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
   return <main className="future-gallery">
     <header className="future-header">
-      <button type="button" onClick={() => onNavigate("overview")}>Elizabeth Hsu™</button>
+      <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
       <nav aria-label="Primary">{navigation.map(item => <button type="button" key={item.key} aria-current={item.key === "visionboard" ? "page" : undefined} onClick={() => onNavigate(item.key)}>{item.label}</button>)}</nav>
-      <span>©2025-2026</span>
+      <span>©2026</span>
     </header>
     <h1 className="sr-only">Future vision boards</h1>
     <div className="future-selectors" role="group" aria-label="Vision board">

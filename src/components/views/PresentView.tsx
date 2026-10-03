@@ -45,9 +45,9 @@ export default function PresentView({ onNavigate }: { onNavigate: (view: ViewKey
   return <main className="present-reference">
     <div className="present-progress" ref={progress} aria-hidden="true" />
     <header className="present-header">
-      <button type="button" onClick={() => onNavigate("overview")}>Elizabeth Hsuâ„¢</button>
+      <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
       <nav aria-label="Primary">{navigation.map(item => <button type="button" key={item.key} className={`nv ${item.key === "present" ? "act" : ""}`} aria-current={item.key === "present" ? "page" : undefined} onClick={() => onNavigate(item.key)}>{item.label}</button>)}</nav>
-      <span>Â©2025-2026</span>
+      <span>Â©2026</span>
     </header>
     <div className="present-content">
       <section className="sec" aria-labelledby="present-now">

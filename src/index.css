@@ -4,6 +4,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.site-name.site-name {
+  font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+  align-self: flex-start;
+  -webkit-font-smoothing: antialiased;
+}
+
 @layer base {
   :root {
     /* Editorial-finance palette — quiet off-white, near-black text, deep rose accent used sparingly. */

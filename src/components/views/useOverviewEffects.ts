@@ -113,8 +113,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       if (slideOpacity === 0) track.style.animation = "none";
       else track.style.removeProperty("animation");
       photo.style.opacity = slideOpacity === 1 ? "0" : "1";
-      const portraitLeft = width - smallWidth - 20;
-      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: `${shrink(0, width < 480 ? 110 : 76)}px`, left: `${shrink(0, portraitLeft)}px`, borderRadius: `${shrink(0, 4)}px` });
+      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: `${shrink(0, width < 480 ? 110 : 76)}px`, left: "auto", right: `${shrink(0, 20)}px`, borderRadius: `${shrink(0, 4)}px` });
       get("#ov").style.opacity = String(shrink(.45, 0));
       title.style.fontSize = "100px";
       const large = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
