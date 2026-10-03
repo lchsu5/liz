@@ -9,17 +9,15 @@ const navigation: { key: ViewKey; label: string }[] = [
   { key: "overview", label: "Overview" }, { key: "present", label: "Present" },
   { key: "past", label: "Past" }, { key: "visionboard", label: "Future" },
 ];
-// Add future boards here; year tabs are generated from the available images.
+// Add future boards here; each image gets a tab in the left-aligned selector.
 const boards = [
-  { term: "2026", year: "2026", image: visionBoard2026 },
-  { term: "Summer 2026", year: "2026", image: visionBoardSummer2026 },
+  { term: "2026 Year", image: visionBoard2026 },
+  { term: "2026 Summer", image: visionBoardSummer2026 },
 ];
-const years = [...new Set(boards.map(board => board.year))].sort().reverse();
 
 export default function VisionBoardView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
   const [selected, setSelected] = useState(boards[0]);
   const [expanded, setExpanded] = useState(false);
-  const yearBoards = boards.filter(board => board.year === selected.year);
 
   return <main className="future-gallery">
     <header className="future-header">
@@ -28,13 +26,8 @@ export default function VisionBoardView({ onNavigate }: { onNavigate: (view: Vie
       <span>©2025-2026</span>
     </header>
     <h1 className="sr-only">Future vision boards</h1>
-    <div className="future-selectors">
-      <div className="future-years" role="group" aria-label="Vision board year">
-        {years.map(year => <button type="button" key={year} aria-pressed={selected.year === year} onClick={() => setSelected(boards.find(board => board.year === year)!)}>{year}</button>)}
-      </div>
-      {yearBoards.length > 1 && <div className="future-terms" role="group" aria-label="Vision board">
-        {yearBoards.map(board => <button type="button" key={board.term} aria-pressed={selected.term === board.term} onClick={() => setSelected(board)}>{board.term === board.year ? "Full year" : board.term.replace(` ${board.year}`, "")}</button>)}
-      </div>}
+    <div className="future-selectors" role="group" aria-label="Vision board">
+      {boards.map(board => <button type="button" key={board.term} aria-pressed={selected.term === board.term} onClick={() => setSelected(board)}>{board.term}</button>)}
     </div>
     <div className="future-mat">
       <button type="button" className="future-board" onClick={() => setExpanded(true)} aria-label={`Expand ${selected.term} vision board`}>
