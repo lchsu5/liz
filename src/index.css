@@ -26,11 +26,18 @@
 .view-panel { position: relative; z-index: 1; }
 
 .site-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
   padding: 24px 20px;
   border-top: 1px solid rgba(24, 24, 23, 0.15);
   color: #66665f;
   font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
 }
+.site-footer a { margin-left: auto; color: inherit; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
 .view-shell[data-theme="dark"] .site-footer { color: #aaa89f; border-color: rgba(238, 235, 228, 0.15); }
 .location-time { white-space: nowrap; }
 

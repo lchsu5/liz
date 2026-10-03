@@ -104,7 +104,10 @@ const Index = () => {
         {renderView()}
       </PagePanel>}
     </AnimatePresence>
-    <footer className="site-footer">©2026</footer>
+    <footer className="site-footer">
+      <span>©2026</span>
+      <a href="mailto:lchsu@andrew.cmu.edu">CONTACT: LCHSU@ANDREW.CMU.EDU</a>
+    </footer>
   </div>;
 };
 export default Index;

@@ -78,7 +78,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       title.style.fontSize = "100px";
       const large = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
       title.style.fontSize = `${mix(large, clamp(width * .07, 30, 64))}px`;
-      get("#hm").style.opacity = String(Math.max(0, 1 - eased * 2.5));
       get("#bar").style.width = `${clamp(window.scrollY / Math.max(1, document.documentElement.scrollHeight - height) * 100, 0, 100)}%`;
     };
     let scheduled = false;
