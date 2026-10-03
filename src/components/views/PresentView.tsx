@@ -48,7 +48,7 @@ export default function PresentView() {
           return <article className={`role ${open ? "open" : ""}`} key={role.company}>
             <button type="button" aria-expanded={open} aria-controls={`present-${role.company}`} onClick={() => setExpanded(current => open ? current.filter(company => company !== role.company) : [...current, role.company])}>
               <b>{role.company}</b><span className="yr">{role.dates}</span>
-              <span className="ttl"><i className="dot" aria-hidden="true" />{role.title}</span><i className="ic" aria-hidden="true" />
+              <span className="ttl">{role.title}</span><i className="ic" aria-hidden="true" />
             </button>
             <div className="pn" id={`present-${role.company}`} aria-hidden={!open}><div><ul>{role.details.map(detail => <li key={detail}>{detail}</li>)}</ul></div></div>
           </article>;
