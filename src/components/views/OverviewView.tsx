@@ -28,9 +28,9 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
 <section id="contact" aria-label="Get in touch">
   <div className="contact-intro"><span className="scr">Get in touch</span><p>Always open to connecting, whether it's a role, a project, or just a chat.</p></div>
   <div className="contact-links">
-    <a className="contact-link" href="mailto:lchsu@andrew.cmu.edu"><span className="contact-title">Say hello <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">lchsu@andrew.cmu.edu</span></a>
-    <a className="contact-link" href="https://linkedin.com/in/lizhhsu" target="_blank" rel="noopener noreferrer"><span className="contact-title">Let’s connect <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">LinkedIn / lizhhsu</span></a>
-    <a className="contact-link" href="https://elizabeth-hsu-portfolio.lovable.app/" target="_blank" rel="noopener noreferrer"><span className="contact-title">Explore my work <span className="contact-arrow" aria-hidden="true">↗</span></span><span className="contact-detail">Ambassador portfolio</span></a>
+    <a className="contact-link" href="mailto:lchsu@andrew.cmu.edu" aria-label="LCHSU@ANDREW.CMU.EDU"><span className="contact-title" aria-hidden="true">LCHSU@ANDREW.CMU.EDU</span></a>
+    <a className="contact-link" href="https://linkedin.com/in/lizhhsu" target="_blank" rel="noopener noreferrer" aria-label="LINKEDIN / LIZHHSU"><span className="contact-title" aria-hidden="true">LINKEDIN / LIZHHSU</span></a>
+    <a className="contact-link" href="https://elizabeth-hsu-portfolio.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="AMBASSADOR PORTFOLIO"><span className="contact-title" aria-hidden="true">AMBASSADOR PORTFOLIO</span></a>
   </div>
 </section>
 

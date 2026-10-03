@@ -105,20 +105,17 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 #contact{padding:28px 20px 48px;background:var(--c);color:var(--k)}
 .contact-intro{display:flex;justify-content:space-between;gap:20px;margin-bottom:32px}
 .contact-intro p{margin:0;font-size:14px;text-transform:none}
-.contact-links{display:grid;grid-template-columns:1fr 1.2fr 1.4fr;gap:24px}
+.contact-links{display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:24px}
 .contact-link{display:block;min-width:0;transition:color .25s}
-.contact-title{display:block;font-size:clamp(28px,4.6vw,72px);font-weight:500;letter-spacing:-.055em;line-height:1.05;text-transform:none}
-.contact-arrow{display:inline-block;font-size:.65em;vertical-align:top;margin-top:.15em;transition:transform .25s}
-.contact-detail{display:block;margin-top:14px;font-size:12px;overflow-wrap:anywhere}
-.contact-link:hover{color:#b53c59}
-.contact-link:hover .contact-arrow{transform:translate(4px,-4px)}
+.contact-title{display:block;font-size:clamp(18px,2.2vw,36px);font-weight:500;letter-spacing:-.035em;line-height:1.2;overflow-wrap:anywhere}
+.contact-link:hover,.contact-link:focus-visible{color:#b53c59}
 #contact.is-visible .contact-link{animation:contact-reveal .8s cubic-bezier(.2,.7,.2,1) both}
 #contact.is-visible .contact-link:nth-child(2){animation-delay:.12s}
 #contact.is-visible .contact-link:nth-child(3){animation-delay:.24s}
 @keyframes contact-reveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 #overview-footer{padding:24px 20px;border-top:1px solid var(--h)}
 #overview-footer .ft{margin-top:0}
-@media(max-width:700px){.contact-links{grid-template-columns:1fr;gap:28px}.contact-title{font-size:48px}.contact-intro{flex-direction:column;gap:8px}#contact{padding-bottom:36px}}
-@media(prefers-reduced-motion:reduce){#contact.is-visible .contact-link{animation:none}.contact-link,.contact-arrow{transition:none}}
+@media(max-width:700px){.contact-links{grid-template-columns:1fr;gap:28px}.contact-title{font-size:clamp(20px,5.5vw,36px)}.contact-intro{flex-direction:column;gap:8px}#contact{padding-bottom:36px}}
+@media(prefers-reduced-motion:reduce){#contact.is-visible .contact-link{animation:none}.contact-link{transition:none}}
 
 }
