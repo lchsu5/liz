@@ -8,7 +8,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     if (!page) return;
     const get = <T extends HTMLElement = HTMLElement>(selector: string) => page.querySelector<T>(selector)!;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const fine = window.matchMedia("(pointer: fine)").matches;
     const cleanups: (() => void)[] = [];
     const timers = new Set<ReturnType<typeof setTimeout>>();
     const frames = new Set<number>();
@@ -42,7 +41,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       track.appendChild(div);
     }
     cleanups.push(() => track.replaceChildren());
-    const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), sticky = get(".stick"), strip = get("#strip");
+    const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const updateHero = () => {
       const width = page.clientWidth, height = window.innerHeight;
@@ -75,15 +74,42 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     updateHero();
 
     const contact = get("#contact");
+    const contactTitles = Array.from(contact.querySelectorAll<HTMLElement>(".contact-title"));
+    const contactLabels = contactTitles.map(el => el.textContent || "");
+    let scrambleRun = 0;
+    const scrambleContact = () => {
+      const run = ++scrambleRun;
+      let step = 0;
+      const tick = () => {
+        if (run !== scrambleRun) return;
+        contactTitles.forEach((el, index) => {
+          const label = contactLabels[index];
+          const revealed = Math.floor(step / 30 * label.length);
+          el.textContent = label.split("").map((letter, position) =>
+            reduced.matches || position < revealed || /[^A-Z]/.test(letter)
+              ? letter : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]
+          ).join("");
+        });
+        if (!reduced.matches && step++ < 30) later(tick, 40);
+      };
+      tick();
+    };
+    scrambleContact();
+    let contactSeen = false;
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         contact.classList.toggle("is-visible", entry.isIntersecting);
+        if (entry.isIntersecting && !contactSeen) {
+          contactSeen = true;
+          scrambleContact();
+        }
       }
     }, { threshold: .15 });
     observer.observe(contact);
     cleanups.push(() => {
       observer.disconnect();
       contact.classList.remove("is-visible");
+      contactTitles.forEach((el, index) => { el.textContent = contactLabels[index]; });
     });
 
     page.querySelectorAll<HTMLElement>(".scr").forEach(el => {
@@ -119,31 +145,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       cleanups.push(() => animation.cancel());
     };
 
-    if (fine) {
-      const dot = get("#dot"), trail = get("#tr");
-      let targetX = 0, targetY = 0, currentX = 0, currentY = 0, lastX = -99, lastY = -99, photoIndex = 0;
-      listen(page, "pointermove", event => {
-        const e = event as PointerEvent;
-        targetX = e.clientX; targetY = e.clientY;
-        const rect = sticky.getBoundingClientRect();
-        dot.style.opacity = reduced.matches || (targetY >= rect.top && targetY <= rect.bottom) ? "0" : "1";
-        if (reduced.matches) return;
-        currentX += (targetX - currentX) * .16; currentY += (targetY - currentY) * .16;
-        dot.style.transform = `translate(${currentX}px,${currentY}px)`;
-      });
-      listen(page, "pointerleave", () => { dot.style.opacity = "0"; });
-      listen(sticky, "pointermove", event => {
-        if (reduced.matches) return;
-        const e = event as PointerEvent, rect = sticky.getBoundingClientRect();
-        const x = e.clientX - rect.left, y = e.clientY - rect.top;
-        if (Math.hypot(x - lastX, y - lastY) < 70) return;
-        lastX = x; lastY = y;
-        const img = document.createElement("img"); img.src = sources[photoIndex++ % sources.length]; img.alt = "";
-        img.style.left = `${x - 42}px`; img.style.top = `${y - 54}px`;
-        trail.appendChild(img);
-        animateAway(img, [{ opacity: 1, transform: "scale(1)" }, { opacity: 0, transform: "scale(.7)" }], 900);
-      });
-    }
     listen(page, "click", event => {
       const e = event as MouseEvent;
       if (reduced.matches || (e.target as Element).closest("a, button")) return;

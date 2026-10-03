@@ -29,7 +29,7 @@ const Index = () => {
       case "present":
         return <PresentView onNavigate={setView} />;
       case "past":
-        return <BeforeView />;
+        return <BeforeView onNavigate={setView} />;
       case "visionboard":
         return <VisionBoardView />;
     }
@@ -38,7 +38,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       {/* Floating glass editorial header */}
-      {view !== "overview" && view !== "present" && <motion.header
+      {view !== "overview" && view !== "present" && view !== "past" && <motion.header
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -94,7 +94,7 @@ const Index = () => {
       </motion.header>}
 
       {/* Mobile wordmark bar */}
-      {view !== "overview" && view !== "present" && <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-xl border-b border-border/70">
+      {view !== "overview" && view !== "present" && view !== "past" && <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/90 backdrop-blur-xl border-b border-border/70">
         <div className="px-5 h-14 flex items-center justify-between">
           <a
             href="#"
@@ -123,13 +123,13 @@ const Index = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className={view === "overview" || view === "present" ? "" : "pb-24 md:pb-0"}
+          className={view === "overview" || view === "present" || view === "past" ? "" : "pb-24 md:pb-0"}
         >
           {renderView()}
         </motion.div>
       </AnimatePresence>
 
-      {view !== "overview" && view !== "present" && <PillNav active={view} onChange={setView} />}
+      {view !== "overview" && view !== "present" && view !== "past" && <PillNav active={view} onChange={setView} />}
     </div>
   );
 };
