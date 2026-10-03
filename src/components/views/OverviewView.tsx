@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import pinkWallPhoto from "@/assets/elizabeth-pink-wall.jpeg";
 import cmuCampus from "@/assets/cmucampus.jpeg";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";
@@ -13,7 +14,7 @@ export default function OverviewView() {
 <div id="bar"></div>
 
 <section id="hero"><div className="stick">
-  <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src={`${import.meta.env.BASE_URL}overview-reference/elizabeth-pink-wall.jpeg`} /><div id="ov"></div><div className="hero-photo-trail" aria-hidden="true"></div></div>
+  <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src={pinkWallPhoto} /><div id="ov"></div><div className="hero-photo-trail" aria-hidden="true"></div></div>
   <div className="strip" id="strip"><div className="tr" id="tr2"></div></div>
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
   <div id="hs">Business + AI @ Carnegie Mellon</div>
