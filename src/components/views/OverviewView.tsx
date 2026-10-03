@@ -4,18 +4,12 @@ import type { ViewKey } from "@/lib/navigation";
 import { useOverviewEffects } from "./useOverviewEffects";
 import "./OverviewView.css";
 
-const navItems: { key: ViewKey; label: string }[] = [
-  { key: "overview", label: "Overview" }, { key: "present", label: "Present" },
-  { key: "past", label: "Past" }, { key: "visionboard", label: "Future" },
-];
-
 export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKey) => void }) {
   const root = useRef<HTMLElement>(null);
-  const navigate = useOverviewEffects(root, onNavigate);
+  useOverviewEffects(root, onNavigate);
   return <main ref={root} className="overview-reference">
 
 <div id="bar"></div>
-<header id="hd"><button type="button" className="site-name" onClick={() => navigate("overview", "Overview")}>Elizabeth Hsu</button><nav id="nav" aria-label="Primary">{navItems.map(item => <button key={item.key} type="button" className={`nv scr ${item.key === "overview" ? "act" : ""}`} aria-current={item.key === "overview" ? "page" : undefined} onClick={() => navigate(item.key, item.label)}>{item.label}</button>)}</nav><span>©2026</span></header>
 
 <section id="hero"><div className="stick">
   <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src="/overview-reference/elizabeth-pink-wall.jpeg" /><div id="ov"></div><div className="hero-photo-trail" aria-hidden="true"></div></div>

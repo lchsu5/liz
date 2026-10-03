@@ -186,19 +186,9 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       cleanups.push(() => { el.textContent = original; });
     });
 
-    let busy = false;
-    navigateRef.current = (view, label) => {
-      if (busy) return;
-      const change = () => view === "overview" ? window.scrollTo({ top: 0, behavior: "instant" }) : onNavigate(view);
-      if (reduced.matches) { change(); return; }
-      busy = true;
-      const wipe = get("#wp");
-      wipe.textContent = label;
-      wipe.style.visibility = "visible";
-      const animation = wipe.animate([{ transform: "translateY(100%)" }, { transform: "translateY(0)", offset: .4 }, { transform: "translateY(0)", offset: .5 }, { transform: "translateY(-100%)" }], { duration: 1200, easing: "cubic-bezier(.7,0,.2,1)" });
-      if (view === "overview") later(change, 600);
-      later(() => { animation.cancel(); wipe.style.visibility = "hidden"; busy = false; if (view !== "overview") change(); }, 1200);
-      cleanups.push(() => animation.cancel());
+    navigateRef.current = view => {
+      if (view === "overview") window.scrollTo({ top: 0, behavior: "instant" });
+      else onNavigate(view);
     };
 
     listen(page, "click", event => {

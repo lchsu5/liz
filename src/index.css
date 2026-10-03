@@ -14,10 +14,15 @@
 }
 
 .view-shell {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
   min-height: 100vh;
   background: #eceae3;
   transition: background-color 280ms ease;
 }
+
+.view-panel { position: relative; z-index: 1; }
 
 .view-shell[data-theme="dark"] { background: #1a1a1a; }
 
@@ -38,6 +43,7 @@
 }
 
 .view-navigation[data-theme="dark"] { background: #1a1a1a; color: #eeebe4; }
+.view-navigation[data-view="overview"] { background: transparent; color: #fff; mix-blend-mode: difference; }
 .view-navigation nav { display: flex; gap: 26px; }
 .view-navigation button {
   position: relative;
@@ -50,16 +56,12 @@
   cursor: pointer;
   transition: color 180ms ease;
 }
-.view-navigation nav button::after {
-  content: '';
+.view-navigation .nav-underline {
   position: absolute;
   inset: auto 0 -5px;
   height: 1px;
-  background: currentColor;
-  opacity: 0;
-  transition: opacity 180ms ease;
+  background: #e0607e;
 }
-.view-navigation nav button[aria-current="page"]::after { opacity: 1; }
 .view-navigation button:hover { color: #b53c59; }
 .view-navigation[data-theme="dark"] button:hover { color: #e0607e; }
 .view-navigation button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
