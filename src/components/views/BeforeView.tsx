@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ViewKey } from "../PillNav";
+import type { ViewKey } from "@/lib/navigation";
 import "./BeforeView.css";
 import handshakeLogo from "@/assets/handshake.jpg";
 import cmuLogo from "@/assets/cmu.png";

@@ -1,5 +1,5 @@
 import { useEffect, useRef, type RefObject } from "react";
-import type { ViewKey } from "../PillNav";
+import type { ViewKey } from "@/lib/navigation";
 
 export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (view: ViewKey) => void) {
   const navigateRef = useRef<(view: ViewKey, label: string) => void>(() => {});

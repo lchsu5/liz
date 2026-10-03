@@ -1,5 +1,5 @@
-﻿import { useEffect, useRef, useState } from "react";
-import type { ViewKey } from "../PillNav";
+import { useEffect, useRef, useState } from "react";
+import type { ViewKey } from "@/lib/navigation";
 import "./PresentView.css";
 
 const navigation: { key: ViewKey; label: string }[] = [

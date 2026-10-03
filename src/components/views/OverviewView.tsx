@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { ViewKey } from "../PillNav";
+import type { ViewKey } from "@/lib/navigation";
 import { useOverviewEffects } from "./useOverviewEffects";
 import "./OverviewView.css";
 
