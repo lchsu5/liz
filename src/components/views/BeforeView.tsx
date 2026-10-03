@@ -1,16 +1,16 @@
 import { useState } from "react";
 import "./BeforeView.css";
 import handshakeLogo from "@/assets/handshake.jpg";
-import cmuLogo from "@/assets/cmu.png";
+import cmuLogo from "@/assets/cmu.webp";
 import superworldLogo from "@/assets/superworld.jpg";
 import consortiumLogo from "@/assets/consortium.jpg";
-import projectDestinedLogo from "@/assets/project-destined-logo.png";
+import projectDestinedLogo from "@/assets/project-destined-logo.webp";
 import eyLogo from "@/assets/ey.jpg";
 import deloitteLogo from "@/assets/deliotte.jpg";
 import kumonLogo from "@/assets/kumon.jpg";
 import photoGraduation from "@/assets/photo-graduation.jpg";
 import photoEaton from "@/assets/eaton.jpg";
-import photoTieShadowDay from "@/assets/photo-tie-shadow-day.png";
+import photoTieShadowDay from "@/assets/photo-tie-shadow-day.webp";
 import photoGroup from "@/assets/photo-group.jpeg";
 
 const archive: { src: string; caption: string; sub: string; area: string }[] = [
@@ -26,7 +26,6 @@ const past: {
   company: string;
   title: string;
   dates: string;
-  year: string;
   location?: string;
   note: string | string[];
   category: Exclude<Category, "All">;
@@ -36,7 +35,6 @@ const past: {
     company: "Handshake",
     title: "LLM & Multimodal AI Research Fellow",
     dates: "Nov 2025 — Jun 2026",
-    year: "2026",
     location: "San Francisco, CA",
     note: [
       "Collaborated with researchers to refine LLM capabilities by completing 100+ domain-specific evaluation tasks.",
@@ -50,7 +48,6 @@ const past: {
     company: "Carnegie Mellon University",
     title: "Undergraduate Research Assistant — LLM Safety & Evaluation",
     dates: "Mar 2026 — May 2026",
-    year: "2026",
     location: "Pittsburgh, PA",
     note: [
       "Analyze results to assess the robustness of current LLM safety testing methods and find gaps in risk detection.",
@@ -63,7 +60,6 @@ const past: {
     company: "SuperWorld",
     title: "Product Manager Intern",
     dates: "Feb 2026 — May 2026",
-    year: "2026",
     location: "Los Angeles, CA",
     note: [
       "Defined product roadmap for geospatial AI platform by analyzing user behavior across 3+ social map platforms.",
@@ -77,7 +73,6 @@ const past: {
     company: "Consortium Research Group",
     title: "FIG Analyst",
     dates: "Jun 2025 — Aug 2025",
-    year: "2025",
     location: "Irvine, CA",
     note: [
       "Modeled 5 and 10-year DCFs and comps for PYPL & HOOD, evaluating key revenue and macro sensitivity.",
@@ -91,7 +86,6 @@ const past: {
     company: "Project Destined",
     title: "Real Estate Private Equity Intern",
     dates: "May 2025 — Oct 2025",
-    year: "2025",
     location: "Washington, DC",
     note: [
       "Modeled cash flows, IRR, and sensitivity for 5+ multifamily assets, identifying $2M+ in value creation potential.",
@@ -105,7 +99,6 @@ const past: {
     company: "EY",
     title: "Sustainability Consultant Intern",
     dates: "May 2024 — Aug 2024",
-    year: "2024",
     location: "Costa Mesa, CA",
     note: [
       "Engineered an ESG integration roadmap, mitigating a 25% noncompliance risk against global standards.",
@@ -119,7 +112,6 @@ const past: {
     company: "Deloitte",
     title: "Academy Attendant",
     dates: "Jul 2024",
-    year: "2024",
     location: "Costa Mesa, CA",
     note: "Selected participant — case studies, professional skills, and partner shadowing.",
     category: "Finance",
@@ -129,7 +121,6 @@ const past: {
     company: "Kumon North America",
     title: "Teacher, Receptionist & Translator",
     dates: "Feb 2023 — Apr 2025",
-    year: "2023",
     location: "Irvine, CA",
     note: [
       "Tutored 28 students in English & Math daily, increasing test scores by 18% across 5 grade levels.",
@@ -177,7 +168,7 @@ export default function BeforeView() {
             const panelId = `past-role-${past.indexOf(role)}`;
             return <article key={role.company} className={`past-role ${open ? "is-open" : ""}`} style={{ animationDelay: `${index * 45}ms` }}>
               <button type="button" className="past-role-trigger" aria-expanded={open} aria-controls={panelId} onClick={() => setOpenKey(open ? null : role.company)}>
-                <img className="past-role-logo" src={role.logo} alt="" />
+                <img className="past-role-logo" src={role.logo} alt="" loading={index > 2 ? "lazy" : undefined} />
                 <span className="past-role-copy"><span className="past-company">{role.company}</span><span className="past-title">{role.title}</span></span>
                 <span className="past-role-meta"><span>{role.dates}</span><span className="past-role-icon" aria-hidden="true" /></span>
               </button>

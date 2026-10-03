@@ -18,6 +18,6 @@ Install dependencies with `npm ci`, then run `npm run dev`.
 - `src/components/views` contains the four views and their styles.
 - `src/assets` contains images imported by the application.
 - `public` contains the favicon, crawler configuration, and Overview images.
-- `src/components/ui/dialog.tsx` provides the Future board image dialog.
+- `CLEANUP_AUDIT.md` documents verified unused code and cleanup validation.
 
 The project uses npm; `package-lock.json` records its dependencies. `node_modules` and `dist` are generated and excluded from version control.

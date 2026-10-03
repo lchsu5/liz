@@ -17,6 +17,7 @@ const variants: Variants = {
   enter: ({ direction }: ViewTransition) => ({ opacity: 0, x: direction * slideDistance }),
   visible: ({ reducedMotion }: ViewTransition) => ({
     opacity: 1, x: 0,
+    pointerEvents: "auto",
     transition: { duration: reducedMotion ? 0 : enterDuration, ease: [0.22, 1, 0.36, 1] },
   }),
   leave: ({ direction, reducedMotion }: ViewTransition) => ({
@@ -40,7 +41,7 @@ const Index = () => {
   };
   const renderView = () => {
     switch (view) {
-      case "overview": return <OverviewView onNavigate={navigate} />;
+      case "overview": return <OverviewView />;
       case "present": return <PresentView />;
       case "past": return <BeforeView />;
       case "visionboard": return <VisionBoardView />;

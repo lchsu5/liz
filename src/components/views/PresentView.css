@@ -1,5 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap");
-@scope (.present-reference) {
+﻿@scope (.present-reference) {
 :scope{--k:#ECEAE3;--c:#181817;--g:#686860;--a:#b53c59;--h:rgba(24,24,23,.16);background:var(--k);color:var(--c);font:500 12px/1.45 'Inter Tight',system-ui,sans-serif;text-transform:uppercase;-webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;padding-bottom:30vh;color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
 h1,h2,h3,p{font-family:inherit;line-height:inherit;letter-spacing:inherit}

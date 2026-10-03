@@ -1,21 +1,14 @@
-import { useEffect, useRef, type RefObject } from "react";
-import type { ViewKey } from "@/lib/navigation";
+import { useEffect, type RefObject } from "react";
 import photoA from "@/assets/a.jpg";
 import photoB from "@/assets/b.jpg";
 import photoC from "@/assets/c.jpg";
 import photoD from "@/assets/d.jpg";
 import photoE from "@/assets/e.jpg";
-import trailPhoto1 from "@/assets/1.1.JPG?url";
-import trailPhoto2 from "@/assets/1.2.jpeg";
-import trailPhoto3 from "@/assets/1.3.JPG?url";
-import trailPhoto4 from "@/assets/1.4.png";
 
 const mainPhoto = "/overview-reference/elizabeth-pink-wall.jpeg";
 const rotatingPhotos = [mainPhoto, photoA, photoB, photoC, photoD, photoE];
-const trailPhotos = [trailPhoto1, trailPhoto2, trailPhoto3, trailPhoto4];
 
-export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (view: ViewKey) => void) {
-  const navigateRef = useRef<(view: ViewKey, label: string) => void>(() => {});
+export function useOverviewEffects(root: RefObject<HTMLElement>) {
   useEffect(() => {
     const page = root.current;
     if (!page) return;
@@ -58,39 +51,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     }
     cleanups.push(() => track.replaceChildren());
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
-    const trail = get(".hero-photo-trail");
-    if (!reduced.matches && window.matchMedia("(hover: hover)").matches) {
-      trailPhotos.forEach(src => { const image = new Image(); image.src = src; });
-    }
-    let trailIndex = 0;
-    let lastTrailPoint: { x: number; y: number } | null = null;
-    const clearTrail = () => { trail.replaceChildren(); lastTrailPoint = null; };
-    listen(photo, "pointermove", event => {
-      const pointer = event as PointerEvent;
-      if (reduced.matches || pointer.pointerType !== "mouse" || strip.classList.contains("is-visible")) return;
-      const bounds = photo.getBoundingClientRect();
-      const x = pointer.clientX - bounds.left, y = pointer.clientY - bounds.top;
-      if (lastTrailPoint && Math.hypot(x - lastTrailPoint.x, y - lastTrailPoint.y) < 65) return;
-      lastTrailPoint = { x, y };
-      const index = trailIndex++ % trailPhotos.length;
-      const card = document.createElement("div");
-      card.className = "hero-trail-card";
-      card.style.left = `${x}px`;
-      card.style.top = `${y}px`;
-      card.style.setProperty("--trail-angle", `${index % 2 ? 8 : -8}deg`);
-      const image = document.createElement("img");
-      image.src = trailPhotos[index];
-      image.alt = "";
-      image.draggable = false;
-      card.appendChild(image);
-      trail.appendChild(card);
-      if (trail.childElementCount > 8) trail.firstElementChild?.remove();
-      card.addEventListener("animationend", () => card.remove(), { once: true });
-    });
-    listen(photo, "pointerleave", clearTrail);
-    listen(window, "scroll", clearTrail);
-    listen(reduced, "change", clearTrail);
-    cleanups.push(clearTrail);
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const updateHero = () => {
       const width = page.clientWidth, height = window.innerHeight;
@@ -186,11 +146,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       cleanups.push(() => { el.textContent = original; });
     });
 
-    navigateRef.current = view => {
-      if (view === "overview") window.scrollTo({ top: 0, behavior: "instant" });
-      else onNavigate(view);
-    };
-
     listen(page, "click", event => {
       const e = event as MouseEvent;
       if (reduced.matches || (e.target as Element).closest("a, button")) return;
@@ -208,8 +163,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       alive = false; clearInterval(interval);
       timers.forEach(clearTimeout); frames.forEach(cancelAnimationFrame);
       cleanups.forEach(cleanup => cleanup());
-      navigateRef.current = () => {};
     };
-  }, [root, onNavigate]);
-  return (view: ViewKey, label: string) => navigateRef.current(view, label);
+  }, [root]);
 }

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&family=DM+Sans:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -43,7 +44,7 @@
 }
 
 .view-navigation[data-theme="dark"] { background: #1a1a1a; color: #eeebe4; }
-.view-navigation[data-view="overview"] { background: transparent; color: #fff; mix-blend-mode: difference; }
+.view-navigation[data-view="overview"] { background: transparent; color: #fff; }
 .view-navigation nav { display: flex; gap: 26px; }
 .view-navigation button {
   position: relative;
@@ -74,7 +75,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  .view-shell, .view-navigation, .view-navigation button, .view-navigation nav button::after { transition: none; }
+  .view-shell, .view-navigation, .view-navigation button { transition: none; }
 }
 
 @layer base {

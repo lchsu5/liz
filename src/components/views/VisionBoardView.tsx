@@ -6,8 +6,8 @@ import "./VisionBoardView.css";
 // Add future boards here; each image gets a bookmark and a section on the page.
 const boards = [
   { id: "board-2026-year", term: "2026 Year", image: visionBoard2026 },
-  { id: "board-2026-summer", term: "2026 Summer", image: visionBoardSummer2026 },
-  { id: "board-2026-fall", term: "2026 Fall", image: visionBoardFall2026 },
+  { id: "board-2026-summer", term: "2026 Summer", image: visionBoardSummer2026, width: 2400, height: 1210 },
+  { id: "board-2026-fall", term: "2026 Fall", image: visionBoardFall2026, width: 6831, height: 3897 },
 ];
 
 export default function VisionBoardView() {
@@ -18,10 +18,10 @@ export default function VisionBoardView() {
       {boards.map(board => <button type="button" key={board.id} aria-controls={board.id} onClick={() => document.getElementById(board.id)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" })}>{board.term}</button>)}
     </div>
     <div className="future-boards">
-      {boards.map(board => <section key={board.id} id={board.id} className="future-section" aria-labelledby={`${board.id}-title`}>
+      {boards.map((board, index) => <section key={board.id} id={board.id} className="future-section" aria-labelledby={`${board.id}-title`}>
         <h2 id={`${board.id}-title`}>{board.term}</h2>
         <div className="future-mat">
-          <img className="future-board" src={board.image} alt={`${board.term} Vision Board`} />
+          <img className="future-board" src={board.image} alt={`${board.term} Vision Board`} width={index > 0 ? board.width : undefined} height={index > 0 ? board.height : undefined} loading={index > 0 ? "lazy" : undefined} />
         </div>
       </section>)}
     </div>
