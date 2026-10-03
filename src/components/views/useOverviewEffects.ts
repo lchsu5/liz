@@ -42,6 +42,38 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
     }
     cleanups.push(() => track.replaceChildren());
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
+    const trail = get(".hero-photo-trail");
+    // Replace these colored placeholders with the supplied trail photos.
+    const trailColors = ["#8f4a78", "#5a6b3a", "#3a3f5c", "#2f5d62"];
+    let trailIndex = 0;
+    let lastTrailPoint: { x: number; y: number } | null = null;
+    const clearTrail = () => { trail.replaceChildren(); lastTrailPoint = null; };
+    listen(photo, "pointermove", event => {
+      const pointer = event as PointerEvent;
+      if (reduced.matches || pointer.pointerType !== "mouse" || strip.classList.contains("is-visible")) return;
+      const bounds = photo.getBoundingClientRect();
+      const x = pointer.clientX - bounds.left, y = pointer.clientY - bounds.top;
+      if (lastTrailPoint && Math.hypot(x - lastTrailPoint.x, y - lastTrailPoint.y) < 65) return;
+      lastTrailPoint = { x, y };
+      const index = trailIndex++ % trailColors.length;
+      const card = document.createElement("div");
+      card.className = "hero-trail-card";
+      card.style.left = `${x}px`;
+      card.style.top = `${y}px`;
+      card.style.setProperty("--trail-color", trailColors[index]);
+      card.style.setProperty("--trail-angle", `${index % 2 ? 8 : -8}deg`);
+      const placeholder = document.createElement("div");
+      placeholder.className = "hero-trail-placeholder";
+      placeholder.textContent = `Photo ${String(index + 1).padStart(2, "0")}`;
+      card.appendChild(placeholder);
+      trail.appendChild(card);
+      if (trail.childElementCount > 8) trail.firstElementChild?.remove();
+      card.addEventListener("animationend", () => card.remove(), { once: true });
+    });
+    listen(photo, "pointerleave", clearTrail);
+    listen(window, "scroll", clearTrail);
+    listen(reduced, "change", clearTrail);
+    cleanups.push(clearTrail);
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const updateHero = () => {
       const width = page.clientWidth, height = window.innerHeight;

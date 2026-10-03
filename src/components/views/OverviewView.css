@@ -24,6 +24,11 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 #ph{position:absolute;overflow:hidden;background:#2b2b29}
 #ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
 #ov{position:absolute;inset:0;background:#181817;opacity:.45}
+.hero-photo-trail{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-trail-card{position:absolute;width:110px;height:140px;padding:8px;background:#eeebe4;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:hero-trail-fade 900ms ease-out forwards}
+.hero-trail-placeholder{display:flex;align-items:center;justify-content:center;width:100%;height:100%;background:var(--trail-color);color:#eeebe4;font-size:10px;letter-spacing:.08em;text-align:center}
+@keyframes hero-trail-fade{0%{opacity:0;transform:translate(-50%,-50%) rotate(var(--trail-angle)) scale(.85)}15%,55%{opacity:1;transform:translate(-50%,-50%) rotate(var(--trail-angle)) scale(1)}100%{opacity:0;transform:translate(-50%,-40%) rotate(var(--trail-angle)) scale(.95)}}
+@media(prefers-reduced-motion:reduce),(hover:none){.hero-photo-trail{display:none}}
 #hn{position:absolute;left:20px;bottom:56px;z-index:3}
 #hs{position:absolute;left:20px;bottom:20px;z-index:3;color:var(--c)}
 #hm{position:absolute;left:20px;right:20px;top:calc(76px + env(safe-area-inset-top,0px));display:flex;justify-content:space-between;z-index:3}
