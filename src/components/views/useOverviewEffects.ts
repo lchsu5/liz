@@ -10,7 +10,8 @@ import trailPhoto2 from "@/assets/1.2.jpeg";
 import trailPhoto3 from "@/assets/1.3.JPG?url";
 import trailPhoto4 from "@/assets/1.4.png";
 
-const rotatingPhotos = [photoA, photoB, photoC, photoD, photoE];
+const mainPhoto = "/overview-reference/elizabeth-pink-wall.jpeg";
+const rotatingPhotos = [mainPhoto, photoA, photoB, photoC, photoD, photoE];
 const trailPhotos = [trailPhoto1, trailPhoto2, trailPhoto3, trailPhoto4];
 
 export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (view: ViewKey) => void) {
@@ -47,6 +48,10 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       for (const src of [...rotatingPhotos, ...rotatingPhotos]) {
         const img = document.createElement("img");
         img.src = src; img.alt = ""; img.loading = "lazy";
+        if (src === mainPhoto) {
+          img.className = "strip-portrait";
+          img.loading = "eager";
+        }
         div.appendChild(img);
       }
       track.appendChild(div);
@@ -93,16 +98,24 @@ export function useOverviewEffects(root: RefObject<HTMLElement>, onNavigate: (vi
       const eased = progress * progress * (3 - 2 * progress);
       const mix = (a: number, b: number) => a + (b - a) * eased;
       const smallWidth = Math.min(260, width * .5);
-      const slideProgress = reduced.matches ? 0 : clamp((progress - .75) / .2, 0, 1);
+      // Finish shrinking before handing the portrait to its matching strip image.
+      const shrinkProgress = clamp(progress / .8, 0, 1);
+      const shrinkEase = shrinkProgress * shrinkProgress * (3 - 2 * shrinkProgress);
+      const shrink = (a: number, b: number) => a + (b - a) * shrinkEase;
+      const slideProgress = reduced.matches ? 0 : clamp((progress - .8) / .2, 0, 1);
       const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
       strip.style.setProperty("--slide-width", `${smallWidth}px`);
       strip.style.setProperty("--slide-height", `${smallWidth * 1.3}px`);
       strip.style.setProperty("--slide-top", `${width < 480 ? 110 : 76}px`);
       strip.style.opacity = String(slideOpacity);
       strip.classList.toggle("is-visible", slideOpacity > 0);
-      photo.style.opacity = String(1 - slideOpacity);
-      Object.assign(photo.style, { width: `${mix(width, smallWidth)}px`, height: `${mix(height, smallWidth * 1.3)}px`, top: `${mix(0, width < 480 ? 110 : 76)}px`, right: `${mix(0, 20)}px`, borderRadius: `${mix(0, 4)}px` });
-      get("#ov").style.opacity = String(mix(.45, 0));
+      strip.classList.toggle("is-rotating", progress >= 1);
+      if (slideOpacity === 0) track.style.animation = "none";
+      else track.style.removeProperty("animation");
+      photo.style.opacity = slideOpacity === 1 ? "0" : "1";
+      const portraitLeft = slideOpacity > 0 ? 20 + track.getBoundingClientRect().left - strip.getBoundingClientRect().left : 20;
+      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: `${shrink(0, width < 480 ? 110 : 76)}px`, left: `${shrink(0, portraitLeft)}px`, borderRadius: `${shrink(0, 4)}px` });
+      get("#ov").style.opacity = String(shrink(.45, 0));
       title.style.fontSize = "100px";
       const large = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
       title.style.fontSize = `${mix(large, clamp(width * .07, 30, 64))}px`;
