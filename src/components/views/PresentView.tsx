@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import "./PresentView.css";
 
 const roles = [
-  { company: "Workiva", dates: "Summer 2026", title: "Product Management Intern", details: [
+  { company: "Workiva", dates: "May - August 2026", title: "Product Management Intern", details: [
     "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
     "Building AI agentic products on the Sustainability Strategy and Product team, within Solution Development.",
     "Owning the product lifecycle from discovery through launch for Fortune 500 finance teams.",
   ] },
-  { company: "Google", dates: "2025 â€“ present", title: "Student Ambassador", details: [
+  { company: "Google", dates: "August 2026 - Present", title: "Student Ambassador", details: [
     "Selected from 35,000+ applicants as 1 of 100 students in Google's first U.S. ambassador cohort.",
     "Spent three days at Google HQ in Mountain View learning from product leaders, including Chrome and Consumer Apps VPs.",
     "Creating opportunities for CMU students to build with and use Google's AI tools.",
@@ -67,7 +67,7 @@ export default function PresentView() {
       <section className="sec" aria-labelledby="present-build">
         <h2 className="lab" id="present-build">Latest build</h2>
         <div className="proj">
-          <div className="meta"><span className="gl">SecondLook Â· Jan 2026</span><span className="st"><i className="dot" aria-hidden="true" />Live</span></div>
+          <div className="meta"><span className="gl">SecondLook · Jan 2026</span><span className="st"><i className="dot" aria-hidden="true" />Live</span></div>
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
           <div className="demo"><div className="demo-placeholder"><strong>SecondLook</strong><p>Demo clip coming soon</p></div></div>
           <div className="tabs" role="tablist" aria-label="SecondLook story">{story.map((item, index) => <button type="button" key={item.label} ref={element => { tabs.current[index] = element; }} role="tab" id={`present-tab-${index}`} aria-selected={selected === index} aria-controls={`present-story-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => {

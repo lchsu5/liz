@@ -39,7 +39,6 @@
 .past-role-details ul{margin:0;padding-left:16px;font-size:13px;line-height:1.8}
 .past-role-details li+li{margin-top:6px}
 .past-role-details li::marker{color:var(--past-accent)}
-.past-location{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--past-muted);margin:12px 0 0}
 @keyframes past-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(max-width:600px){.past-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.past-reference{padding:0 20px 40px}.past-bento{height:330px}.past-role-trigger{flex-wrap:wrap;gap:10px 14px}.past-role-copy{flex-basis:calc(100% - 60px)}.past-role-meta{width:100%;flex-direction:row;justify-content:space-between;padding-left:58px}.past-company{font-size:24px}.past-title{font-size:10px}.past-photo figcaption{padding:8px}.past-photo figcaption span{font-size:9px}.past-photo figcaption p{font-size:12px}}
 @media(hover:none){.past-photo figcaption{transform:none}}

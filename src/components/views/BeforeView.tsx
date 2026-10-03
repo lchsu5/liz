@@ -24,7 +24,6 @@ const past: {
   company: string;
   title: string;
   dates: string;
-  location?: string;
   note: string | string[];
   logo: string;
 }[] = [
@@ -32,7 +31,6 @@ const past: {
     company: "Handshake",
     title: "LLM & Multimodal AI Research Fellow",
     dates: "Nov 2025 — Jun 2026",
-    location: "San Francisco, CA",
     note: [
       "Collaborated with researchers to refine LLM capabilities by completing 100+ domain-specific evaluation tasks.",
       "Analyzed multimodal inputs (image, audio, video, text) to identify inconsistent reasoning and edge-case behavior.",
@@ -44,7 +42,6 @@ const past: {
     company: "Carnegie Mellon University",
     title: "Undergraduate Research Assistant — LLM Safety & Evaluation",
     dates: "Mar 2026 — May 2026",
-    location: "Pittsburgh, PA",
     note: [
       "Analyze results to assess the robustness of current LLM safety testing methods and find gaps in risk detection.",
       "Evaluated 5,000+ adversarial prompts across 50 LLM safety benchmarks using a structured scoring framework to assess alignment, misuse risk, and policy compliance.",
@@ -55,7 +52,6 @@ const past: {
     company: "SuperWorld",
     title: "Product Manager Intern",
     dates: "Feb 2026 — May 2026",
-    location: "Los Angeles, CA",
     note: [
       "Defined product roadmap for geospatial AI platform by analyzing user behavior across 3+ social map platforms.",
       "Conducted user interviews and behavioral analysis to prioritize features improving retention and engagement.",
@@ -67,7 +63,6 @@ const past: {
     company: "Consortium Research Group",
     title: "FIG Analyst",
     dates: "Jun 2025 — Aug 2025",
-    location: "Irvine, CA",
     note: [
       "Modeled 5 and 10-year DCFs and comps for PYPL & HOOD, evaluating key revenue and macro sensitivity.",
       "Developed 5 theses on crypto M&A and super-app competition, supporting coverage with 10+ models.",
@@ -79,7 +74,6 @@ const past: {
     company: "Project Destined",
     title: "Real Estate Private Equity Intern",
     dates: "May 2025 — Oct 2025",
-    location: "Washington, DC",
     note: [
       "Modeled cash flows, IRR, and sensitivity for 5+ multifamily assets, identifying $2M+ in value creation potential.",
       "Built DCFs highlighting two deals with projected 15–20% IRR, supporting investment committee reviews.",
@@ -91,7 +85,6 @@ const past: {
     company: "EY",
     title: "Sustainability Consultant Intern",
     dates: "May 2024 — Aug 2024",
-    location: "Costa Mesa, CA",
     note: [
       "Engineered an ESG integration roadmap, mitigating a 25% noncompliance risk against global standards.",
       "Created two circular-economy product models for a fashion client that lowered client water consumption by 24%.",
@@ -103,7 +96,6 @@ const past: {
     company: "Deloitte",
     title: "Academy Attendant",
     dates: "Jul 2024",
-    location: "Costa Mesa, CA",
     note: "Selected participant — case studies, professional skills, and partner shadowing.",
     logo: deloitteLogo,
   },
@@ -111,7 +103,6 @@ const past: {
     company: "Kumon North America",
     title: "Teacher, Receptionist & Translator",
     dates: "Feb 2023 — Apr 2025",
-    location: "Irvine, CA",
     note: [
       "Tutored 28 students in English & Math daily, increasing test scores by 18% across 5 grade levels.",
       "Managed scheduling & billing for 300+ students, streamlined processes to lower admin errors 30%.",
@@ -156,7 +147,6 @@ export default function BeforeView() {
               <div className="past-role-panel" id={panelId} aria-hidden={!open}><div>
                 <div className="past-role-details">
                   <ul>{(Array.isArray(role.note) ? role.note : [role.note]).map(note => <li key={note}>{note}</li>)}</ul>
-                  {role.location && <p className="past-location">{role.location}</p>}
                 </div>
               </div></div>
             </article>;
