@@ -1,8 +1,8 @@
 import { useEffect, useRef, type RefObject } from "react";
-import trailPhoto1 from "@/assets/1.jpg";
-import trailPhoto2 from "@/assets/2.jpg";
-import trailPhoto3 from "@/assets/3.jpg";
-import trailPhoto4 from "@/assets/4.jpg";
+import trailPhoto1 from "@/assets/optimized/1.jpg";
+import trailPhoto2 from "@/assets/optimized/2.jpg";
+import trailPhoto3 from "@/assets/optimized/3.jpg";
+import trailPhoto4 from "@/assets/optimized/4.jpg";
 
 const photos = [trailPhoto1, trailPhoto2, trailPhoto3, trailPhoto4];
 const poolSize = 8;

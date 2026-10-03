@@ -1,10 +1,10 @@
 import { useEffect, type RefObject } from "react";
-import mainPhoto from "@/assets/elizabeth-pink-wall.jpeg";
-import photoA from "@/assets/a.jpg";
-import photoB from "@/assets/b.jpg";
-import photoC from "@/assets/c.jpg";
-import photoD from "@/assets/d.jpg";
-import photoE from "@/assets/e.jpg";
+import mainPhoto from "@/assets/optimized/elizabeth-pink-wall.jpeg";
+import photoA from "@/assets/optimized/a.jpg";
+import photoB from "@/assets/optimized/b.jpg";
+import photoC from "@/assets/optimized/c.jpg";
+import photoD from "@/assets/optimized/d.jpg";
+import photoE from "@/assets/optimized/e.jpg";
 
 const rotatingPhotos = [mainPhoto, photoA, photoB, photoC, photoD, photoE];
 
@@ -35,7 +35,8 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       div.className = "grp";
       for (const src of [...rotatingPhotos, ...rotatingPhotos]) {
         const img = document.createElement("img");
-        img.src = src; img.alt = ""; img.loading = "lazy";
+        img.src = src; img.alt = ""; img.loading = "eager"; img.decoding = "async";
+        void img.decode().catch(() => {});
         if (src === mainPhoto) {
           img.className = "strip-portrait";
           img.loading = "eager";
@@ -48,6 +49,8 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const overlay = get("#ov"), bar = get("#bar");
+    const portrait = get<HTMLImageElement>("#imgP");
+    let portraitHeight = 1;
     let width = 0, height = 0, heroStart = 0, heroDistance = 1, scrollDistance = 1;
     let largeTitle = 100;
     let targetProgress = 0, currentProgress = 0;
@@ -56,6 +59,9 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     const measure = () => {
       width = page.clientWidth;
       height = window.innerHeight;
+      portraitHeight = portrait.naturalWidth ? width * portrait.naturalHeight / portrait.naturalWidth : height;
+      Object.assign(photo.style, { width: `${width}px`, height: `${height}px`, top: "0px", right: "0px" });
+      Object.assign(portrait.style, { width: `${width}px`, height: `${portraitHeight}px` });
       heroStart = hero.getBoundingClientRect().top + window.scrollY;
       heroDistance = Math.max(1, hero.offsetHeight - height);
       scrollDistance = Math.max(1, document.documentElement.scrollHeight - height);
@@ -80,7 +86,15 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       strip.classList.toggle("is-visible", slideOpacity > 0);
       strip.classList.toggle("is-rotating", progress === 1);
       photo.style.opacity = String(1 - slideOpacity);
-      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: "0px", left: "auto", right: "0px", transform: `translate3d(${-20 * shrinkEase}px, ${(width < 480 ? 110 : 76) * shrinkEase}px, 0)`, borderRadius: `${shrink(0, 4)}px` });
+      // Fixed layout boxes: all scroll motion uses compositor transforms.
+      const photoWidth = shrink(width, smallWidth), photoHeight = shrink(height, smallWidth * 1.3);
+      const scaleX = photoWidth / width, scaleY = photoHeight / height;
+      photo.style.transform = `translate3d(${-20 * shrinkEase}px, ${(width < 480 ? 110 : 76) * shrinkEase}px, 0) scale(${scaleX}, ${scaleY})`;
+      // Counter-scale the image so the portrait keeps its proportions and cover crop.
+      const cover = Math.max(photoWidth / width, photoHeight / portraitHeight);
+      const imageX = (photoWidth - width * cover) * .5 / scaleX;
+      const imageY = (photoHeight - portraitHeight * cover) * .3 / scaleY;
+      portrait.style.transform = `translate3d(${imageX}px, ${imageY}px, 0) scale(${cover / scaleX}, ${cover / scaleY})`;
       overlay.style.opacity = String(shrink(.45, 0));
       const smallTitle = clamp(width * .07, 30, 64);
       title.style.transform = `scale(${(largeTitle + (smallTitle - largeTitle) * eased) / largeTitle})`;
@@ -105,6 +119,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     listen(window, "scroll", scheduleHero);
     listen(window, "resize", resizeHero);
     listen(reduced, "change", resizeHero);
+    listen(portrait, "load", resizeHero);
     document.fonts.ready.then(() => { if (alive) resizeHero(); });
     measure();
     targetProgress = reduced.matches ? 0 : clamp((window.scrollY - heroStart) / heroDistance, 0, 1);

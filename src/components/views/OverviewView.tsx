@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import pinkWallPhoto from "@/assets/elizabeth-pink-wall.jpeg";
+import pinkWallPhoto from "@/assets/optimized/elizabeth-pink-wall.jpeg";
 import cmuCampus from "@/assets/cmucampus.jpeg";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";

@@ -15,8 +15,9 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 #bar{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--a);z-index:60}
 #hero{height:230vh;position:relative}
 .stick{position:sticky;top:0;height:100vh;overflow:hidden}
-#ph{position:absolute;overflow:hidden;background:#2b2b29;will-change:transform,opacity}
+#ph{position:absolute;overflow:hidden;background:#2b2b29;transform-origin:top right;will-change:transform,opacity}
 #ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
+#imgP{position:absolute;top:0;left:0;transform-origin:top left;will-change:transform}
 #ov{position:absolute;inset:0;background:#181817;opacity:.45}
 .hero-photo-trail{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .hero-trail-card{position:absolute;top:0;left:0;width:110px;height:140px;opacity:0;transform:translate3d(-50%,-50%,0);will-change:transform,opacity;pointer-events:none;box-shadow:0 8px 24px rgba(0,0,0,.25)}
