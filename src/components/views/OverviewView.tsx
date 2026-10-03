@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import cmuCampus from "@/assets/cmucampus.jpg";
+import cmuCampus from "@/assets/cmu.webp";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";
 import "./OverviewView.css";
