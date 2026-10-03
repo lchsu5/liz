@@ -5,7 +5,7 @@ import photoC from "@/assets/c.jpg";
 import photoD from "@/assets/d.jpg";
 import photoE from "@/assets/e.jpg";
 
-const mainPhoto = "/overview-reference/elizabeth-pink-wall.jpeg";
+const mainPhoto = `${import.meta.env.BASE_URL}overview-reference/elizabeth-pink-wall.jpeg`;
 const rotatingPhotos = [mainPhoto, photoA, photoB, photoC, photoD, photoE];
 
 export function useOverviewEffects(root: RefObject<HTMLElement>) {
