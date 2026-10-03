@@ -32,7 +32,6 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .strip .tr{display:flex;width:max-content;height:100%;animation:mq 40s linear infinite;animation-play-state:paused}
 .strip.is-visible{visibility:visible}
 .strip.is-visible .tr{animation-play-state:running}
-.strip:hover .tr{animation-play-state:paused}
 .strip .grp{display:flex;gap:10px;padding-right:10px}
 .strip img{width:var(--slide-width,260px);height:100%;object-fit:cover;border-radius:4px;display:block}
 @keyframes mq{to{transform:translateX(-50%)}}
