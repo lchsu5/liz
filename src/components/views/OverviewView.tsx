@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import cmuCampus from "@/assets/cmucampus.jpg";
 import type { ViewKey } from "@/lib/navigation";
 import { useOverviewEffects } from "./useOverviewEffects";
 import "./OverviewView.css";
@@ -35,7 +36,7 @@ export default function OverviewView({ onNavigate }: { onNavigate: (view: ViewKe
 
 <section id="education">
   <div className="eb">
-    <img id="imgC" alt="Carnegie Mellon campus at sunset" src="/overview-reference/photo-1.jpg" />
+    <img id="imgC" alt="Carnegie Mellon campus" src={cmuCampus} />
     <div className="sh"></div>
     <div className="gl scr et">Education</div>
     <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · Expected May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
