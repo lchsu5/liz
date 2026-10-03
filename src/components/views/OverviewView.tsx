@@ -1,4 +1,4 @@
-import { useRef } from "react";
+﻿import { useRef } from "react";
 import cmuCampus from "@/assets/cmucampus.jpeg";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";
@@ -34,7 +34,7 @@ export default function OverviewView() {
     <img id="imgC" alt="Carnegie Mellon campus" src={cmuCampus} loading="lazy" />
     <div className="sh"></div>
     <div className="gl scr et">Education</div>
-    <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · Expected May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
+    <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
   </div>
 </section>
 
