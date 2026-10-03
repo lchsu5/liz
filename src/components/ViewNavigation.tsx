@@ -20,7 +20,7 @@ export default function ViewNavigation({ view, onNavigate }: {
         aria-current={view === item.key ? "page" : undefined}
         onClick={() => onNavigate(item.key)}>{item.label}
         {view === item.key && <motion.span className="nav-underline" layoutId="active-tab" aria-hidden="true"
-          transition={{ duration: reducedMotion ? 0 : 0.65, ease: [0.22, 1, 0.36, 1] }} />}
+          transition={{ duration: reducedMotion ? 0 : 0.45, ease: [0.7, 0, 0.3, 1] }} />}
       </button>)}
     </nav></LayoutGroup>
     <span>©2026</span>
