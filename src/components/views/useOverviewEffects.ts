@@ -16,15 +16,10 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const cleanups: (() => void)[] = [];
     const timers = new Set<ReturnType<typeof setTimeout>>();
-    const frames = new Set<number>();
     let alive = true;
     const later = (fn: () => void, ms: number) => {
       const id = setTimeout(() => { timers.delete(id); if (alive) fn(); }, ms);
       timers.add(id);
-    };
-    const frame = (fn: FrameRequestCallback) => {
-      const id = requestAnimationFrame(time => { frames.delete(id); if (alive) fn(time); });
-      frames.add(id);
     };
     const listen = (target: EventTarget, event: string, handler: EventListener) => {
       target.addEventListener(event, handler, { passive: true });
@@ -52,41 +47,71 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     cleanups.push(() => track.replaceChildren());
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
-    const updateHero = () => {
-      const width = page.clientWidth, height = window.innerHeight;
-      const progress = reduced.matches ? 0 : clamp(-hero.getBoundingClientRect().top / Math.max(1, hero.offsetHeight - height), 0, 1);
-      const eased = progress * progress * (3 - 2 * progress);
-      const mix = (a: number, b: number) => a + (b - a) * eased;
+    const overlay = get("#ov"), bar = get("#bar");
+    let width = 0, height = 0, heroStart = 0, heroDistance = 1, scrollDistance = 1;
+    let largeTitle = 100;
+    let targetProgress = 0, currentProgress = 0;
+    let animationFrame: number | null = null;
+    let lastTime = 0;
+    const measure = () => {
+      width = page.clientWidth;
+      height = window.innerHeight;
+      heroStart = hero.getBoundingClientRect().top + window.scrollY;
+      heroDistance = Math.max(1, hero.offsetHeight - height);
+      scrollDistance = Math.max(1, document.documentElement.scrollHeight - height);
+      // Measure text only when the viewport or font changes, never while scrolling.
+      title.style.fontSize = "100px";
+      largeTitle = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
+      title.style.fontSize = `${largeTitle}px`;
       const smallWidth = Math.min(260, width * .5);
-      // Finish shrinking before handing the portrait to its matching strip image.
-      const shrinkProgress = clamp(progress / .8, 0, 1);
-      const shrinkEase = shrinkProgress * shrinkProgress * (3 - 2 * shrinkProgress);
-      const shrink = (a: number, b: number) => a + (b - a) * shrinkEase;
-      const slideProgress = reduced.matches ? 0 : clamp((progress - .8) / .2, 0, 1);
-      const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
       strip.style.setProperty("--slide-width", `${smallWidth}px`);
       strip.style.setProperty("--slide-height", `${smallWidth * 1.3}px`);
       strip.style.setProperty("--slide-top", `${width < 480 ? 110 : 76}px`);
+    };
+    const renderHero = (progress: number) => {
+      const eased = progress * progress * (3 - 2 * progress);
+      const smallWidth = Math.min(260, width * .5);
+      const shrinkProgress = clamp(progress / .8, 0, 1);
+      const shrinkEase = shrinkProgress * shrinkProgress * (3 - 2 * shrinkProgress);
+      const shrink = (a: number, b: number) => a + (b - a) * shrinkEase;
+      const slideProgress = clamp((progress - .8) / .2, 0, 1);
+      const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
       strip.style.opacity = String(slideOpacity);
       strip.classList.toggle("is-visible", slideOpacity > 0);
-      strip.classList.toggle("is-rotating", progress >= 1);
-      if (slideOpacity === 0) track.style.animation = "none";
-      else track.style.removeProperty("animation");
-      photo.style.opacity = slideOpacity === 1 ? "0" : "1";
-      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: `${shrink(0, width < 480 ? 110 : 76)}px`, left: "auto", right: `${shrink(0, 20)}px`, borderRadius: `${shrink(0, 4)}px` });
-      get("#ov").style.opacity = String(shrink(.45, 0));
-      title.style.fontSize = "100px";
-      const large = Math.min(360, 100 * (width - 40) / Math.max(1, title.scrollWidth));
-      title.style.fontSize = `${mix(large, clamp(width * .07, 30, 64))}px`;
-      get("#bar").style.width = `${clamp(window.scrollY / Math.max(1, document.documentElement.scrollHeight - height) * 100, 0, 100)}%`;
+      strip.classList.toggle("is-rotating", progress === 1);
+      photo.style.opacity = String(1 - slideOpacity);
+      Object.assign(photo.style, { width: `${shrink(width, smallWidth)}px`, height: `${shrink(height, smallWidth * 1.3)}px`, top: "0px", left: "auto", right: "0px", transform: `translate3d(${-20 * shrinkEase}px, ${(width < 480 ? 110 : 76) * shrinkEase}px, 0)`, borderRadius: `${shrink(0, 4)}px` });
+      overlay.style.opacity = String(shrink(.45, 0));
+      const smallTitle = clamp(width * .07, 30, 64);
+      title.style.transform = `scale(${(largeTitle + (smallTitle - largeTitle) * eased) / largeTitle})`;
     };
-    let scheduled = false;
-    const scheduleHero = () => { if (!scheduled) { scheduled = true; frame(() => { scheduled = false; updateHero(); }); } };
+    const tickHero = (time: number) => {
+      animationFrame = null;
+      const elapsed = lastTime ? Math.min(64, time - lastTime) : 1000 / 60;
+      lastTime = time;
+      const amount = reduced.matches ? 1 : 1 - Math.exp(-elapsed / 65);
+      currentProgress += (targetProgress - currentProgress) * amount;
+      if (Math.abs(targetProgress - currentProgress) < .0001) currentProgress = targetProgress;
+      renderHero(currentProgress);
+      if (currentProgress !== targetProgress) animationFrame = requestAnimationFrame(tickHero);
+      else lastTime = 0;
+    };
+    const scheduleHero = () => {
+      targetProgress = reduced.matches ? 0 : clamp((window.scrollY - heroStart) / heroDistance, 0, 1);
+      bar.style.transform = `scaleX(${clamp(window.scrollY / scrollDistance, 0, 1)})`;
+      if (animationFrame === null) animationFrame = requestAnimationFrame(tickHero);
+    };
+    const resizeHero = () => { measure(); scheduleHero(); };
     listen(window, "scroll", scheduleHero);
-    listen(window, "resize", scheduleHero);
-    listen(reduced, "change", scheduleHero);
-    document.fonts.ready.then(() => { if (alive) scheduleHero(); });
-    updateHero();
+    listen(window, "resize", resizeHero);
+    listen(reduced, "change", resizeHero);
+    document.fonts.ready.then(() => { if (alive) resizeHero(); });
+    measure();
+    targetProgress = reduced.matches ? 0 : clamp((window.scrollY - heroStart) / heroDistance, 0, 1);
+    currentProgress = targetProgress;
+    renderHero(currentProgress);
+    scheduleHero();
+    cleanups.push(() => { if (animationFrame !== null) cancelAnimationFrame(animationFrame); });
 
     const contact = get("#contact");
     const contactTitles = Array.from(contact.querySelectorAll<HTMLElement>(".contact-title"));
@@ -157,7 +182,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     });
     return () => {
       alive = false;
-      timers.forEach(clearTimeout); frames.forEach(cancelAnimationFrame);
+      timers.forEach(clearTimeout);
       cleanups.forEach(cleanup => cleanup());
     };
   }, [root]);
