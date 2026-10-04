@@ -1,4 +1,4 @@
-﻿# Elizabeth Hsu's portfolio
+﻿# Elizabeth Hsu's Portfolio
 
 A React and TypeScript website with Overview, Present, Past, and Future views. Built with Vite and Tailwind CSS.
 
