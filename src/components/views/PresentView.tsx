@@ -10,9 +10,11 @@ import collegeLife5 from "@/assets/1.5.JPEG?url";
 import collegeLife6 from "@/assets/1.6.JPG?url";
 import collegeLife7 from "@/assets/1.7.jpg";
 import collegeLife8 from "@/assets/1.8.JPEG?url";
+import psbtg from "@/assets/psbtg.jpeg";
+import btgBoard from "@/assets/btgboard.jpeg";
 import "./PresentView.css";
 
-const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8];
+const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
   { company: "Workiva", dates: "May - August 2026", title: "Product Management Intern", details: [

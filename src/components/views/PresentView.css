@@ -13,7 +13,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .leadership-body{max-width:1000px;width:100%;min-width:0}
 .leadership-intro{text-transform:none;font-size:16px;margin-bottom:34px;max-width:380px}
 .college-life{display:block;border-top:0}
-.college-life-gallery{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"six six one two" "six six one three" "four five seven eight";gap:10px}
+.college-life-gallery{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"six six one two" "six six one three" "four five seven eight" "nine nine ten ten";gap:10px}
 .college-life-photo{min-width:0;min-height:0;overflow:hidden;border-radius:12px}
 .college-life-photo:nth-child(1){grid-area:one}
 .college-life-photo:nth-child(2){grid-area:two}
@@ -23,11 +23,13 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .college-life-photo:nth-child(6){grid-area:six}
 .college-life-photo:nth-child(7){grid-area:seven}
 .college-life-photo:nth-child(8){grid-area:eight}
+.college-life-photo:nth-child(9){grid-area:nine;aspect-ratio:4/3}
+.college-life-photo:nth-child(10){grid-area:ten;aspect-ratio:4/3}
 .college-life-photo:nth-child(2),.college-life-photo:nth-child(3),.college-life-photo:nth-child(4),.college-life-photo:nth-child(5),.college-life-photo:nth-child(7),.college-life-photo:nth-child(8){aspect-ratio:4/3}
 .college-life-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 200ms ease}
 @media(hover:hover){.college-life-photo:hover img{transform:scale(1.03)}}
-@media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"six six one" "six six one" "two three four" "five seven eight"}}
-@media(max-width:600px){.college-life-gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"six six" "six six" "one two" "one three" "four five" "seven eight"}}
+@media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"six six one" "six six one" "two three four" "five seven eight" "nine nine ten"}}
+@media(max-width:600px){.college-life-gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"six six" "six six" "one two" "one three" "four five" "seven eight" "nine ten"}}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
 .lc{border:1px solid var(--h);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
 .lc:hover{border-color:rgba(24,24,23,.4)}
