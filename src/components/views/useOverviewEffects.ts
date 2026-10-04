@@ -71,7 +71,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       Object.assign(photo.style, { width: `${width}px`, height: `${height}px`, top: "0px", right: "0px" });
       Object.assign(portrait.style, { width: `${width}px`, height: `${portraitHeight}px` });
       heroStart = hero.getBoundingClientRect().top + window.scrollY;
-      heroDistance = Math.max(1, (hero.offsetHeight - height) * .65);
+      heroDistance = Math.max(1, (hero.offsetHeight - height) * .71);
       scrollDistance = Math.max(1, document.documentElement.scrollHeight - height);
       // Measure text only when the viewport or font changes, never while scrolling.
       title.style.fontSize = "100px";

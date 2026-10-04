@@ -12,6 +12,15 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .sec{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:48px 20px 64px;border-top:1px solid var(--h)}
 .leadership-body{max-width:1000px;width:100%;min-width:0}
 .leadership-intro{text-transform:none;font-size:16px;margin-bottom:34px;max-width:380px}
+.college-life-body{max-width:1000px;width:100%;min-width:0}
+.college-life-intro{text-transform:none;font-size:16px;margin-bottom:28px}
+.college-life-gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.college-life-photo{aspect-ratio:3/4;overflow:hidden;border-radius:6px;background:#e2e0d8}
+.college-life-photo:nth-child(even){margin-top:24px}
+.college-life-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.college-life-photo:hover img{transform:scale(1.04)}
+@media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.college-life-gallery{gap:10px}.college-life-photo:nth-child(even){margin-top:16px}}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
 .lc{border:1px solid var(--h);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
 .lc:hover{border-color:rgba(24,24,23,.4)}
