@@ -83,23 +83,22 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       strip.style.setProperty("--slide-top", `${width < 480 ? 110 : 76}px`);
     };
     const renderHero = (progress: number) => {
-      const eased = progress * progress * (3 - 2 * progress);
       const smallWidth = Math.min(260, width * .5);
       const shrinkProgress = clamp(progress / .8, 0, 1);
       const shrinkEase = shrinkProgress * shrinkProgress * (3 - 2 * shrinkProgress);
       const shrink = (a: number, b: number) => a + (b - a) * shrinkEase;
-      const slideProgress = clamp((progress - .65) / .2, 0, 1);
+      const slideProgress = clamp((progress - .65) / .15, 0, 1);
       const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
       strip.style.opacity = String(slideOpacity);
       strip.classList.toggle("is-visible", slideOpacity > 0);
       // Move the actual opening portrait into the rightmost slot without fading it.
-      const handedOff = progress >= .94;
+      const handedOff = progress >= .8;
       if (handedOff !== inStrip) {
         if (handedOff) portraitSlot.appendChild(photo);
         else openingParent.insertBefore(photo, strip);
         inStrip = handedOff;
       }
-      strip.classList.toggle("is-rotating", handedOff && progress === 1);
+      strip.classList.toggle("is-rotating", handedOff && !reduced.matches);
       photo.style.opacity = "1";
       // Fixed layout boxes: all scroll motion uses compositor transforms.
       const photoWidth = shrink(width, smallWidth), photoHeight = shrink(height, smallWidth * 1.3);
@@ -112,7 +111,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       portrait.style.transform = `translate3d(${imageX}px, ${imageY}px, 0) scale(${cover / scaleX}, ${cover / scaleY})`;
       overlay.style.opacity = String(shrink(.45, 0));
       const smallTitle = clamp(width * .07, 30, 64);
-      title.style.transform = `scale(${(largeTitle + (smallTitle - largeTitle) * eased) / largeTitle})`;
+      title.style.transform = `scale(${(largeTitle + (smallTitle - largeTitle) * shrinkEase) / largeTitle})`;
     };
     const tickHero = (time: number) => {
       animationFrame = null;
