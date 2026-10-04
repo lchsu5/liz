@@ -117,7 +117,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       animationFrame = null;
       const elapsed = lastTime ? Math.min(64, time - lastTime) : 1000 / 60;
       lastTime = time;
-      const amount = reduced.matches ? 1 : 1 - Math.exp(-elapsed / 65);
+      const amount = reduced.matches ? 1 : 1 - Math.exp(-elapsed / 40);
       currentProgress += (targetProgress - currentProgress) * amount;
       if (Math.abs(targetProgress - currentProgress) < .0001) currentProgress = targetProgress;
       renderHero(currentProgress);
