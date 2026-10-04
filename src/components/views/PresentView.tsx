@@ -77,15 +77,11 @@ export default function PresentView() {
 </div>
   </div>
 </section>
-      <section className="sec college-life" aria-labelledby="present-college-life">
-        <h2 className="lab" id="present-college-life">College life</h2>
-        <div className="college-life-body">
-          <p className="college-life-intro">A few moments beyond the classroom.</p>
-          <div className="college-life-gallery">
-            {collegeLifePhotos.map((photo, index) => <div className="college-life-photo" key={photo}>
-              <img src={photo} alt={`A moment from my college life, photo ${index + 1}`} loading="lazy" />
-            </div>)}
-          </div>
+      <section className="sec college-life" aria-label="College life photos">
+        <div className="college-life-gallery">
+          {collegeLifePhotos.map(photo => <div className="college-life-photo" key={photo}>
+            <img src={photo} alt="" loading="lazy" />
+          </div>)}
         </div>
       </section>
       <section className="sec" aria-labelledby="present-build">
