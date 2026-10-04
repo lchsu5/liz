@@ -45,7 +45,6 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       }
       track.appendChild(div);
     }
-    cleanups.push(() => track.replaceChildren());
     const hero = get("#hero"), photo = get("#ph"), title = get("#hn"), strip = get("#strip");
     const clamp = (n: number, a: number, b: number) => Math.max(a, Math.min(b, n));
     const overlay = get("#ov"), bar = get("#bar");
@@ -56,6 +55,15 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     let targetProgress = 0, currentProgress = 0;
     let animationFrame: number | null = null;
     let lastTime = 0;
+    const openingParent = photo.parentElement!;
+    const portraitSlot = document.createElement("div");
+    portraitSlot.className = "portrait-slot";
+    track.querySelector(".strip-portrait")!.replaceWith(portraitSlot);
+    let inStrip = false;
+    cleanups.push(() => {
+      openingParent.insertBefore(photo, strip);
+      track.replaceChildren();
+    });
     const measure = () => {
       width = page.clientWidth;
       height = window.innerHeight;
@@ -63,7 +71,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       Object.assign(photo.style, { width: `${width}px`, height: `${height}px`, top: "0px", right: "0px" });
       Object.assign(portrait.style, { width: `${width}px`, height: `${portraitHeight}px` });
       heroStart = hero.getBoundingClientRect().top + window.scrollY;
-      heroDistance = Math.max(1, hero.offsetHeight - height);
+      heroDistance = Math.max(1, (hero.offsetHeight - height) * .65);
       scrollDistance = Math.max(1, document.documentElement.scrollHeight - height);
       // Measure text only when the viewport or font changes, never while scrolling.
       title.style.fontSize = "100px";
@@ -80,16 +88,23 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       const shrinkProgress = clamp(progress / .8, 0, 1);
       const shrinkEase = shrinkProgress * shrinkProgress * (3 - 2 * shrinkProgress);
       const shrink = (a: number, b: number) => a + (b - a) * shrinkEase;
-      const slideProgress = clamp((progress - .8) / .2, 0, 1);
+      const slideProgress = clamp((progress - .65) / .2, 0, 1);
       const slideOpacity = slideProgress * slideProgress * (3 - 2 * slideProgress);
       strip.style.opacity = String(slideOpacity);
       strip.classList.toggle("is-visible", slideOpacity > 0);
-      strip.classList.toggle("is-rotating", progress === 1);
-      photo.style.opacity = String(1 - slideOpacity);
+      // Move the actual opening portrait into the rightmost slot without fading it.
+      const handedOff = progress >= .94;
+      if (handedOff !== inStrip) {
+        if (handedOff) portraitSlot.appendChild(photo);
+        else openingParent.insertBefore(photo, strip);
+        inStrip = handedOff;
+      }
+      strip.classList.toggle("is-rotating", handedOff && progress === 1);
+      photo.style.opacity = "1";
       // Fixed layout boxes: all scroll motion uses compositor transforms.
       const photoWidth = shrink(width, smallWidth), photoHeight = shrink(height, smallWidth * 1.3);
       const scaleX = photoWidth / width, scaleY = photoHeight / height;
-      photo.style.transform = `translate3d(${-20 * shrinkEase}px, ${(width < 480 ? 110 : 76) * shrinkEase}px, 0) scale(${scaleX}, ${scaleY})`;
+      photo.style.transform = `translate3d(${inStrip ? 0 : -20 * shrinkEase}px, ${inStrip ? 0 : (width < 480 ? 110 : 76) * shrinkEase}px, 0) scale(${scaleX}, ${scaleY})`;
       // Counter-scale the image so the portrait keeps its proportions and cover crop.
       const cover = Math.max(photoWidth / width, photoHeight / portraitHeight);
       const imageX = (photoWidth - width * cover) * .5 / scaleX;
