@@ -45,6 +45,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .lc li:before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--a)}
 @media (max-width:900px){.cols{grid-template-columns:1fr}.lc .rr{min-height:0}}
 .body,.proj{max-width:1000px;width:100%}
+.build-projects{display:grid;gap:64px;min-width:0}
 .role{border-top:1px solid var(--h)}
 .role:last-child{border-bottom:1px solid var(--h)}
 .role>button{width:100%;display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:22px 0;align-items:baseline}

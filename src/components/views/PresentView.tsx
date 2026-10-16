@@ -34,11 +34,19 @@ const story = [
   { label: "Result", text: "Built at NexHacks as a working real-time pipeline. It focuses on how students think, not only whether the answer is right, and never gives the solution. Planned next: free rollout to elementary schools, then SAT and ACT prep partners." },
 ];
 const stack = ["React", "Vite", "Tailwind", "Python", "Gemini 2.5", "Qwen3-VL", "Overshoot", "WebRTC", "TRAE"];
+const cmusedStory = [
+  { label: "Problem", text: <>Carnegie Mellon students lack a trusted, centralized marketplace for buying and selling secondhand items. Existing platforms like Facebook Marketplace and Instagram aren't designed for campus transactions, making it harder to find affordable essentials, sell unwanted belongings, and coordinate convenient local pickups.</> },
+  { label: "Approach", text: <>Led 0-to-1 product strategy and cross-functional execution within CMU's Business Technology Group. Directed design and engineering teams through technical PRDs to build a campus-exclusive marketplace with CMU-authenticated accounts, personalized discovery feeds, searchable listings, seller profiles, and built-in messaging. Developed go-to-market strategies targeting incoming students, campus organizations, and local resale communities.</> },
+  { label: "Result", text: <>Launched CMUsed to <strong>2,000+ users in its first week</strong>, scaling cumulative gross merchandise value to <strong>$22K</strong> while sustaining an approximately <strong>50% sell-through rate</strong>. Established a campus-focused resale platform that helps students save money, extend the life of secondhand goods, and connect directly with trusted buyers and sellers.</> },
+];
+const cmusedStack = ["Product Strategy", "Product Management", "UI/UX", "GTM", "Firebase", "Firestore", "Algolia", "Expo", "React Native"];
 
 export default function PresentView() {
   const [expanded, setExpanded] = useState<string[]>(["Workiva"]);
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const [cmusedSelected, setCmusedSelected] = useState(0);
+  const cmusedTabs = useRef<(HTMLButtonElement | null)[]>([]);
   const progress = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const update = () => {
@@ -88,6 +96,18 @@ export default function PresentView() {
       </section>
       <section className="sec" aria-labelledby="present-build">
         <h2 className="lab" id="present-build">Latest build</h2>
+        <div className="build-projects">
+        <article className="proj">
+          <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
+          <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
+          <div className="demo"><div className="demo-placeholder"><strong>CMUsed</strong><p>Product demo coming soon</p></div></div>
+          <div className="tabs" role="tablist" aria-label="CMUsed story">{cmusedStory.map((item, index) => <button type="button" key={item.label} ref={element => { cmusedTabs.current[index] = element; }} role="tab" id={`cmused-tab-${index}`} aria-selected={cmusedSelected === index} aria-controls={`cmused-story-${index}`} tabIndex={cmusedSelected === index ? 0 : -1} onClick={() => setCmusedSelected(index)} onKeyDown={event => {
+            const next = event.key === "ArrowRight" ? (index + 1) % cmusedStory.length : event.key === "ArrowLeft" ? (index + cmusedStory.length - 1) % cmusedStory.length : event.key === "Home" ? 0 : event.key === "End" ? cmusedStory.length - 1 : -1;
+            if (next >= 0) { event.preventDefault(); setCmusedSelected(next); cmusedTabs.current[next]?.focus(); }
+          }}>{item.label}</button>)}</div>
+          {cmusedStory.map((item, index) => <p key={item.label} className={`tp ${cmusedSelected === index ? "in" : ""}`} id={`cmused-story-${index}`} role="tabpanel" aria-labelledby={`cmused-tab-${index}`} hidden={cmusedSelected !== index} tabIndex={0}>{item.text}</p>)}
+          <div className="stk">{cmusedStack.map(technology => <span key={technology}>{technology}</span>)}</div>
+        </article>
         <div className="proj">
           <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
@@ -99,6 +119,7 @@ export default function PresentView() {
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`present-story-${index}`} role="tabpanel" aria-labelledby={`present-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           <a className="vp" href="https://trae4d3ed8mx.vercel.app" target="_blank" rel="noopener noreferrer">View project</a>
+        </div>
         </div>
       </section>
     </div>

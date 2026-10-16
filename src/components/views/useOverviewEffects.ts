@@ -143,42 +143,15 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     cleanups.push(() => { if (animationFrame !== null) cancelAnimationFrame(animationFrame); });
 
     const contact = get("#contact");
-    const contactTitles = Array.from(contact.querySelectorAll<HTMLElement>(".contact-title"));
-    const contactLabels = contactTitles.map(el => el.textContent || "");
-    let scrambleRun = 0;
-    const scrambleContact = () => {
-      const run = ++scrambleRun;
-      let step = 0;
-      const tick = () => {
-        if (run !== scrambleRun) return;
-        contactTitles.forEach((el, index) => {
-          const label = contactLabels[index];
-          const revealed = Math.floor(step / 30 * label.length);
-          el.textContent = label.split("").map((letter, position) =>
-            reduced.matches || position < revealed || /[^A-Z]/.test(letter)
-              ? letter : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]
-          ).join("");
-        });
-        if (!reduced.matches && step++ < 30) later(tick, 40);
-      };
-      tick();
-    };
-    scrambleContact();
-    let contactSeen = false;
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
         contact.classList.toggle("is-visible", entry.isIntersecting);
-        if (entry.isIntersecting && !contactSeen) {
-          contactSeen = true;
-          scrambleContact();
-        }
       }
     }, { threshold: .15 });
     observer.observe(contact);
     cleanups.push(() => {
       observer.disconnect();
       contact.classList.remove("is-visible");
-      contactTitles.forEach((el, index) => { el.textContent = contactLabels[index]; });
     });
 
     page.querySelectorAll<HTMLElement>(".scr").forEach(el => {
