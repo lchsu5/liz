@@ -1,9 +1,52 @@
 import { useRef } from "react";
 import pinkWallPhoto from "@/assets/optimized/elizabeth-pink-wall.jpeg";
 import cmuCampus from "@/assets/cmucampus.jpeg";
+import cmuLogo from "@/assets/cmu.webp";
+import eyLogo from "@/assets/ey.jpg";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";
 import "./OverviewView.css";
+
+const logoPath = (name: string) => `${import.meta.env.BASE_URL}logos/${name}.png`;
+
+const experiences = [
+  {
+    title: "Ambassador", company: "Google", employment: "Part-time",
+    dates: "Aug 2026 – Present", logo: logoPath("google"),
+    notes: ["0.003% AR", "Founding Cohort"],
+  },
+  {
+    title: "Campus Lead", company: "Notion", employment: "",
+    dates: "Aug 2026 – Present", logo: logoPath("notion"),
+    notes: ["1 of 5 CMU campus leads"],
+  },
+  {
+    title: "Sales Development", company: "Workiva", employment: "",
+    dates: "Jan 2027 – May 14, 2027", logo: logoPath("workiva"),
+    notes: ["Spring 2027 Intern", "Account Intelligence"],
+  },
+  {
+    title: "Product Management Intern", company: "Workiva", employment: "Internship",
+    dates: "May 2026 – Aug 2026", logo: logoPath("workiva"),
+    notes: [
+      "Youngest Intern @ Workiva Summer 2026",
+      "AI Agentic Products under the Sustainability Strategy & Product Team, Solution Development",
+      "Sole Undergraduate PM Intern",
+    ],
+  },
+  {
+    title: "Research Assistant, LLM Safety & Evaluation", company: "Carnegie Mellon University", employment: "",
+    dates: "Mar 2026 – May 2026", logo: cmuLogo,
+    location: "Pittsburgh, Pennsylvania, United States",
+    notes: ["Paid Research Assistant Working with Professor Derek Leben on LLM Safety"],
+  },
+  {
+    title: "Management Consulting Intern", company: "EY", employment: "Internship",
+    dates: "May 2024 – Aug 2024", logo: eyLogo,
+    location: "Orange County, California, United States",
+    notes: ["Sustainability, Circular Economy"],
+  },
+];
 
 export default function OverviewView() {
   const root = useRef<HTMLElement>(null);
@@ -19,6 +62,28 @@ export default function OverviewView() {
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
   <div id="hs">Business + AI @ Carnegie Mellon</div>
 </div></section>
+
+<section id="experience" aria-labelledby="experience-heading">
+  <div className="experience-inner">
+    <h2 id="experience-heading">Experience</h2>
+    <div className="experience-grid">
+      {experiences.map(experience => (
+        <article className="experience-entry" key={`${experience.company}-${experience.title}`}>
+          <img className="experience-logo" src={experience.logo} alt={`${experience.company} logo`} width="80" height="80" loading="lazy" />
+          <div className="experience-copy">
+            <h3>{experience.title}</h3>
+            <p className="experience-company">{experience.company}{experience.employment && ` · ${experience.employment}`}</p>
+            <p className="experience-dates">{experience.dates}</p>
+            {experience.location && <p className="experience-location">{experience.location}</p>}
+            <div className="experience-notes">
+              {experience.notes.map(note => <p key={note}>{note}</p>)}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
 <section id="contact" aria-label="Get in touch">
   <div className="contact-intro"><span>Get in touch</span></div>
