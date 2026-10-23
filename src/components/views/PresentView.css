@@ -48,21 +48,13 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .build-projects{display:grid;gap:64px;min-width:0}
 .role{border-top:1px solid var(--h)}
 .role:last-child{border-bottom:1px solid var(--h)}
-.role>button{width:100%;display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:22px 0;align-items:baseline}
-.role b{font-weight:500;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.045em;text-transform:none;line-height:1;transition:color .2s}
-.role>button:hover b{color:var(--a)}
+.role-header{width:100%;display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:22px 0;align-items:baseline}
+.role-header h2{font-weight:500;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.045em;text-transform:none;line-height:1}
 .role .yr{color:var(--g);justify-self:end}
-.role .ttl{grid-column:1;display:flex;align-items:center;gap:10px;color:var(--g)}
-.role .ic{grid-column:2;justify-self:end;width:14px;height:14px;position:relative;margin-top:2px}
-.role .ic:before,.role .ic:after{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:var(--c);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.role .ic:after{transform:rotate(90deg)}
-.role.open .ic:after{transform:rotate(0)}
+.role .ttl{grid-column:1/-1;color:var(--g)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
-.pn{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1)}
-.role.open .pn{grid-template-rows:1fr}
-.pn>div{overflow:hidden}
-.pn ul{list-style:none;text-transform:none;font-size:14px;line-height:1.55;padding:0 0 22px;max-width:640px}
-.pn li{padding:9px 0;border-top:1px solid var(--h)}
+.role-details{list-style:none;text-transform:none;font-size:14px;line-height:1.55;padding:0 0 22px;max-width:640px}
+.role-details li{padding:9px 0;border-top:1px solid var(--h)}
 .proj .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
 .proj .st{display:flex;align-items:center;gap:8px}
 .proj h2{font-weight:500;font-size:clamp(30px,4.6vw,60px);letter-spacing:-.045em;text-transform:none;line-height:1;max-width:820px}
@@ -84,6 +76,6 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .vp span{display:inline-block;transition:transform .25s}
 .vp:hover{color:var(--a)}.vp:hover span{transform:translate(3px,-3px)}
 @media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.demo{aspect-ratio:16/10}}
-@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role>button{gap:10px}.role .yr{font-size:10px}.tabs{gap:22px}}
+@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role-header{gap:10px}.role .yr{font-size:10px}.tabs{gap:22px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 }

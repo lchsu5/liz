@@ -17,6 +17,12 @@ import "./PresentView.css";
 const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
+  { company: "Workiva", dates: "January 4 - May 14, 2027", title: "Incoming Sales Development Intern — Account Intelligence", details: [
+    "Joining Workiva's Sales Development team remotely for Spring 2027.",
+    "Will research current and prospective accounts to identify key contacts, business needs, and new business opportunities.",
+    "Will organize account intelligence and collaborate on engagement strategies, supporting outreach campaigns and sales pipeline growth with accurate data and insights.",
+    "Will build knowledge of Workiva's products and market dynamics to strengthen account research.",
+  ] },
   { company: "Workiva", dates: "May - August 2026", title: "Product Management Intern", details: [
     "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
     "Building AI agentic products on the Sustainability Strategy and Product team, within Solution Development.",
@@ -26,6 +32,11 @@ const roles = [
     "Selected from 35,000+ applicants as 1 of 100 students in Google's first U.S. ambassador cohort.",
     "Spent three days at Google HQ in Mountain View learning from product leaders, including Chrome and Consumer Apps VPs.",
     "Creating opportunities for CMU students to build with and use Google's AI tools.",
+  ] },
+  { company: "Canva", dates: "", title: "Ambassador", details: [] },
+  { company: "Adobe", dates: "", title: "Ambassador", details: [] },
+  { company: "Notion", dates: "August 2026 - Present", title: "Campus Lead", details: [
+    "1 of 5 CMU campus leads.",
   ] },
 ];
 const story = [
@@ -42,7 +53,6 @@ const cmusedStory = [
 const cmusedStack = ["Product Strategy", "Product Management", "UI/UX", "GTM", "Firebase", "Firestore", "Algolia", "Expo", "React Native"];
 
 export default function PresentView() {
-  const [expanded, setExpanded] = useState<string[]>(["Workiva"]);
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [cmusedSelected, setCmusedSelected] = useState(0);
@@ -66,16 +76,15 @@ export default function PresentView() {
     <div className="present-content">
       <section className="sec" aria-labelledby="present-now">
         <h1 className="lab" id="present-now">Right now</h1>
-        <div className="body">{roles.map(role => {
-          const open = expanded.includes(role.company);
-          return <article className={`role ${open ? "open" : ""}`} key={role.company}>
-            <button type="button" aria-expanded={open} aria-controls={`present-${role.company}`} onClick={() => setExpanded(current => open ? current.filter(company => company !== role.company) : [...current, role.company])}>
-              <b>{role.company}</b><span className="yr">{role.dates}</span>
-              <span className="ttl">{role.title}</span><i className="ic" aria-hidden="true" />
-            </button>
-            <div className="pn" id={`present-${role.company}`} aria-hidden={!open}><div><ul>{role.details.map(detail => <li key={detail}>{detail}</li>)}</ul></div></div>
-          </article>;
-        })}</div>
+        <div className="body">{roles.map(role => (
+          <article className="role" key={`${role.company}-${role.title}`}>
+            <header className="role-header">
+              <h2>{role.company}</h2>{role.dates && <span className="yr">{role.dates}</span>}
+              <p className="ttl">{role.title}</p>
+            </header>
+            {role.details.length > 0 && <ul className="role-details">{role.details.map(detail => <li key={detail}>{detail}</li>)}</ul>}
+          </article>
+        ))}</div>
       </section>
 <section className="sec campus-leadership" aria-labelledby="present-leadership">
   <h2 className="lab" id="present-leadership">Campus leadership</h2>
