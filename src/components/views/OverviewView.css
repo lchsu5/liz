@@ -39,21 +39,13 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .overview-section{padding:28px 20px 36px;background:var(--c);color:var(--k)}
 .overview-section-inner{width:100%}
 .overview-section-heading{font-size:12px;font-weight:500;letter-spacing:normal;line-height:1.45;padding-bottom:18px;color:#686860}
-#education .overview-section-heading{margin-bottom:18px}
-.eb{color:var(--c)}
-.eb{position:relative;min-height:420px;aspect-ratio:16/8;border-radius:4px;overflow:hidden}
-.eb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.eb .sh{position:absolute;inset:0;background:rgba(24,24,23,.5)}
-.eb .tx{position:absolute;left:28px;right:28px;bottom:26px}
-.eb h2{font-size:clamp(32px,6.4vw,92px);white-space:normal;line-height:.98;margin-bottom:14px}
-.eb .dg{text-transform:none;font-size:16px;margin-top:6px}
 @media (max-width:700px){
  #hm span:last-child{display:none}
 }
 @media (prefers-reduced-motion:reduce){.strip .tr{animation:none}}
 
 #ck{color:var(--c)}
-@media(max-width:480px){#hm{top:100px}.eb{min-height:440px}}
+@media(max-width:480px){#hm{top:100px}}
 @media(prefers-reduced-motion:reduce){#hero{height:100vh}}
 .experience-grid{display:grid;grid-template-columns:minmax(0,1fr)}
 .experience-entry{display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;align-items:start;padding:18px 0}

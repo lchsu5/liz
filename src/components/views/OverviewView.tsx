@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import pinkWallPhoto from "@/assets/optimized/elizabeth-pink-wall.jpeg";
-import cmuCampus from "@/assets/cmucampus.jpeg";
 import cmuLogo from "@/assets/cmu.webp";
 import eyLogo from "@/assets/ey.jpg";
 import { useOverviewEffects } from "./useOverviewEffects";
 import { useHeroPhotoTrail } from "./useHeroPhotoTrail";
+import LatestBuild from "./LatestBuild";
 import "./OverviewView.css";
 
 const logoPath = (name: string) => `${import.meta.env.BASE_URL}logos/${name}.png`;
@@ -96,20 +96,12 @@ export default function OverviewView() {
 
 
 
-<section id="education" className="overview-section" aria-labelledby="education-heading">
-  <div className="overview-section-inner">
-  <h2 id="education-heading" className="overview-section-heading">Education</h2>
-  <div className="eb">
-    <img id="imgC" alt="Carnegie Mellon campus" src={cmuCampus} loading="lazy" />
-    <div className="sh"></div>
-    <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
-  </div>
-  </div>
-</section>
 
 
 
 
 
+
+<LatestBuild />
 </main>;
 }
