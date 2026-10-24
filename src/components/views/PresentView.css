@@ -20,12 +20,22 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .eb h2{font-weight:500;letter-spacing:-.055em;text-transform:none;font-size:clamp(30px,4.5vw,60px);white-space:normal;line-height:.98;margin-bottom:14px}
 .eb .dg{text-transform:none;font-size:16px;margin-top:6px}
 .college-life{border-top:0}
-.college-life-gallery{grid-column:2;max-width:1000px;min-width:0;display:grid;width:100%;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.college-life-photo{min-width:0;min-height:0;aspect-ratio:4/3;overflow:hidden;border-radius:8px}
+.college-life-gallery{grid-column:2;max-width:1000px;min-width:0;display:grid;width:100%;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(3,clamp(85px,10vw,130px));grid-template-areas:"six six one two three three" "six six one four five seven" "eight eight nine nine ten ten";gap:10px}
+.college-life-photo{min-width:0;min-height:0;overflow:hidden;border-radius:8px}
+.college-life-photo:nth-child(1){grid-area:one}
+.college-life-photo:nth-child(2){grid-area:two}
+.college-life-photo:nth-child(3){grid-area:three}
+.college-life-photo:nth-child(4){grid-area:four}
+.college-life-photo:nth-child(5){grid-area:five}
+.college-life-photo:nth-child(6){grid-area:six}
+.college-life-photo:nth-child(7){grid-area:seven}
+.college-life-photo:nth-child(8){grid-area:eight}
+.college-life-photo:nth-child(9){grid-area:nine}
+.college-life-photo:nth-child(10){grid-area:ten}
 .college-life-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 200ms ease}
 @media(hover:hover){.college-life-photo:hover img{transform:scale(1.03)}}
-@media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:600px){.college-life-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}}
+@media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,clamp(75px,12vw,110px));grid-template-areas:"six six one two" "six six one three" "four five seven seven" "eight eight nine ten"}}
+@media(max-width:600px){.college-life-gallery{gap:8px}}
 .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
 .lc{border:1px solid var(--h);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
 .lc:hover{border-color:rgba(24,24,23,.4)}
