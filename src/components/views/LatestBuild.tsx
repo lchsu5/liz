@@ -36,11 +36,11 @@ export default function LatestBuild() {
         <article className="proj">
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
-          <div className="cmused-demo">
             <div className="mockup-controls" role="group" aria-label="CMUsed mockups">
               {cmusedMockups.map((mockup, index) => <button type="button" key={mockup.label} aria-pressed={mockupSelected === index} aria-controls="cmused-mockup" onClick={() => setMockupSelected(index)}>{mockup.label}</button>)}
               <a href={cmusedMockups[mockupSelected].src} target="_blank" rel="noopener noreferrer">View full image</a>
             </div>
+          <div className="cmused-demo">
             <div className="mockup-frame" id="cmused-mockup" role="region" aria-label={cmusedMockups[mockupSelected].label + " mockup, scroll to see full screen"} tabIndex={0} key={mockupSelected}>
               <img src={cmusedMockups[mockupSelected].src} alt={cmusedMockups[mockupSelected].alt} loading="lazy" />
             </div>
