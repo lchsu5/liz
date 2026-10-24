@@ -63,18 +63,20 @@ export default function OverviewView() {
   <div id="hs">Business + AI @ Carnegie Mellon</div>
 </div></section>
 
-<section id="contact" aria-label="Get in touch">
-  <div className="contact-intro"><span>Get in touch</span></div>
+<section id="contact" className="overview-section" aria-labelledby="contact-heading">
+  <div className="overview-section-inner">
+  <h2 id="contact-heading" className="overview-section-heading">Get in touch</h2>
   <div className="contact-links">
     <a className="contact-link" href="mailto:lchsu@andrew.cmu.edu" aria-label="LCHSU@ANDREW.CMU.EDU"><span className="contact-title" aria-hidden="true">LCHSU@ANDREW.CMU.EDU</span></a>
     <a className="contact-link" href="https://linkedin.com/in/lizhhsu" target="_blank" rel="noopener noreferrer" aria-label="LINKEDIN / LIZHHSU"><span className="contact-title" aria-hidden="true">LINKEDIN / LIZHHSU</span></a>
     <a className="contact-link" href="https://elizabeth-hsu-portfolio.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="AMBASSADOR PORTFOLIO"><span className="contact-title" aria-hidden="true">AMBASSADOR PORTFOLIO</span></a>
   </div>
+  </div>
 </section>
 
-<section id="experience" aria-labelledby="experience-heading">
-  <div className="experience-inner">
-    <h2 id="experience-heading">Experience</h2>
+<section id="experience" className="overview-section" aria-labelledby="experience-heading">
+  <div className="overview-section-inner">
+    <h2 id="experience-heading" className="overview-section-heading">Experience</h2>
     <div className="experience-grid">
       {experiences.map(experience => (
         <article className="experience-entry" key={`${experience.company}-${experience.title}`}>
@@ -94,12 +96,14 @@ export default function OverviewView() {
 
 
 
-<section id="education">
+<section id="education" className="overview-section" aria-labelledby="education-heading">
+  <div className="overview-section-inner">
+  <h2 id="education-heading" className="overview-section-heading">Education</h2>
   <div className="eb">
     <img id="imgC" alt="Carnegie Mellon campus" src={cmuCampus} loading="lazy" />
     <div className="sh"></div>
-    <div className="gl scr et">Education</div>
     <div className="tx"><h2 className="big">Carnegie Mellon University</h2><p>Tepper School of Business · May 2028 · Pittsburgh, PA</p><p className="dg">B.S. Business Administration, minor in Artificial Intelligence.</p></div>
+  </div>
   </div>
 </section>
 
