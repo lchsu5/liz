@@ -11,7 +11,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .present-content{padding-top:calc(96px + env(safe-area-inset-top,0px))}
 .sec{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:48px 20px 64px;border-top:1px solid var(--h)}
 .leadership-body{max-width:1000px;width:100%;min-width:0}
-.leadership-intro{text-transform:none;font-size:16px;margin-bottom:34px;max-width:380px}
+.leadership-intro{text-transform:none;font-size:16px;margin-bottom:34px;max-width:none}
 .eb{color:#eceae3;max-width:1000px;width:100%;min-width:0}
 .eb{position:relative;height:clamp(240px,24vw,300px);border-radius:4px;overflow:hidden}
 .eb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
@@ -20,7 +20,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .eb h2{font-weight:500;letter-spacing:-.055em;text-transform:none;font-size:clamp(30px,4.5vw,60px);white-space:normal;line-height:.98;margin-bottom:14px}
 .eb .dg{text-transform:none;font-size:16px;margin-top:6px}
 .college-life{border-top:0}
-.college-life-gallery{grid-column:2;max-width:1000px;min-width:0}
+.college-life-gallery{grid-column:2;max-width:760px;min-width:0}
 .college-life-gallery{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"six six one two" "six six one three" "four five seven eight" "nine nine ten ten";gap:10px}
 .college-life-photo{min-width:0;min-height:0;overflow:hidden;border-radius:12px}
 .college-life-photo:nth-child(1){grid-area:one}
