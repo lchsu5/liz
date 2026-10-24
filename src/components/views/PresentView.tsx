@@ -17,11 +17,6 @@ import "./PresentView.css";
 const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
-  { company: "Workiva", dates: "May 2026 - August 2026", title: "Product Management Intern", team: "Solution Development & Sustainability Strategy", focus: "Product Strategy · AI Agentic Products · Discovery & Synthesis", details: [
-    "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
-    "Building AI agentic products on the Sustainability Strategy and Product team, within Solution Development.",
-    "Owning the product lifecycle from discovery through launch for Fortune 500 finance teams.",
-  ] },
   { company: "Google", dates: "August 2026 - Present", title: "Student Ambassador", team: "Campus Innovation & Developer Engagement", focus: "Google AI · Campus Engagement · Product Adoption", details: [
     "Selected from 35,000+ applicants as 1 of 100 students in Google's first U.S. ambassador cohort.",
     "Spent three days at Google HQ in Mountain View learning from product leaders, including Chrome and Consumer Apps VPs.",

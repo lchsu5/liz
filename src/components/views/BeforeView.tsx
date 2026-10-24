@@ -14,6 +14,17 @@ import photoTieShadowDay from "@/assets/photo-tie-shadow-day.webp";
 import photoGroup from "@/assets/photo-group.jpeg";
 
 const archive: { src: string; caption: string; sub: string; area: string }[] = [
+  {
+    company: "Workiva",
+    title: "Product Management Intern",
+    dates: "May 2026 - August 2026",
+    note: [
+      "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
+      "Built AI agentic products on the Sustainability Strategy and Product team, within Solution Development.",
+      "Owned the product lifecycle from discovery through launch for Fortune 500 finance teams.",
+    ],
+    logo: `${import.meta.env.BASE_URL}logos/workiva.png`,
+  },
   { src: photoGraduation, caption: "Beckman High School", sub: "Commencement", area: "hero" },
   { src: photoTieShadowDay, caption: "TIE Shadow Day", sub: "Avasant", area: "top-a" },
   { src: photoGroup, caption: "Industry Info Session", sub: "Group Visit", area: "top-b" },
