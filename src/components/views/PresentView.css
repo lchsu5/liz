@@ -46,15 +46,19 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 @media (max-width:900px){.cols{grid-template-columns:1fr}.lc .rr{min-height:0}}
 .body,.proj{max-width:1000px;width:100%}
 .build-projects{display:grid;gap:64px;min-width:0}
-.role{border-top:1px solid var(--h)}
-.role:last-child{border-bottom:1px solid var(--h)}
-.role-header{width:100%;display:grid;grid-template-columns:1fr auto;gap:8px 16px;padding:22px 0;align-items:baseline}
-.role-header h2{font-weight:500;font-size:clamp(26px,3.6vw,46px);letter-spacing:-.045em;text-transform:none;line-height:1}
-.role .yr{color:var(--g);justify-self:end}
-.role .ttl{grid-column:1/-1;color:var(--g)}
+.appointments.sec{display:block;max-width:1120px;margin:0 auto;padding:36px 48px 64px;border-top:0}
+.appointments>.lab{font-size:10px;font-weight:400;letter-spacing:.16em;padding-bottom:18px;border-bottom:1px solid rgba(24,24,23,.08)}
+.appointments>.body{max-width:none}
+.role{padding:44px 0;border-bottom:1px solid rgba(24,24,23,.08)}
+.role-header{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:baseline}
+.role-header h2{font-weight:400;font-size:18px;letter-spacing:-.015em;text-transform:none;line-height:1.4}
+.role-company{font-weight:500}
+.role-separator,.role-title{color:var(--g)}
+.role .yr{color:var(--g);justify-self:end;font:400 10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none;white-space:nowrap}
+.role-team{margin-top:9px;color:var(--g);font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
-.role-details{list-style:none;text-transform:none;font-size:14px;line-height:1.55;padding:0 0 22px;max-width:640px}
-.role-details li{padding:9px 0;border-top:1px solid var(--h)}
+.role-details{text-transform:none;font-size:14px;font-weight:400;line-height:1.7;margin-top:12px;max-width:760px}
+.role-focus{margin-top:12px;color:var(--g);font-size:11px;font-weight:400;line-height:1.6;text-transform:none}
 .proj .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
 .proj .st{display:flex;align-items:center;gap:8px}
 .proj h2{font-weight:500;font-size:clamp(30px,4.6vw,60px);letter-spacing:-.045em;text-transform:none;line-height:1;max-width:820px}
@@ -76,6 +80,6 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .vp span{display:inline-block;transition:transform .25s}
 .vp:hover{color:var(--a)}.vp:hover span{transform:translate(3px,-3px)}
 @media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.demo{aspect-ratio:16/10}}
-@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role-header{gap:10px}.role .yr{font-size:10px}.tabs{gap:22px}}
+@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.appointments.sec{padding:28px 20px 40px}.role{padding:30px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}.tabs{gap:22px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 }
