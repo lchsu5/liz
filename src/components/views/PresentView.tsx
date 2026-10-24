@@ -28,8 +28,8 @@ const roles = [
     "Will organize account intelligence and collaborate on engagement strategies, supporting outreach campaigns and sales pipeline growth with accurate data and insights.",
     "Will build knowledge of Workiva's products and market dynamics to strengthen account research.",
   ] },
-  { company: "Canva", dates: "August 2026 - Present", title: "Ambassador", details: [] },
-  { company: "Adobe", dates: "August 2026 - Present", title: "Ambassador", details: [] },
+  { company: "Canva", dates: "August 2026 - Present", title: "Ambassador", details: ["1 of 2 ambassadors."] },
+  { company: "Adobe", dates: "August 2026 - Present", title: "Ambassador", details: ["First Adobe ambassador at CMU."] },
   { company: "Notion", dates: "August 2026 - Present", title: "Campus Lead", details: [
     "1 of 5 CMU campus leads.",
   ] },
