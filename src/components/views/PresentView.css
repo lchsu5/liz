@@ -65,7 +65,6 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .role-team{margin-top:9px;color:var(--g);font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
 .role-details{text-transform:none;font-size:14px;font-weight:400;line-height:1.7;margin-top:12px;max-width:760px}
-.role-focus{margin-top:12px;color:var(--g);font-size:11px;font-weight:400;line-height:1.6;text-transform:none}
 @media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.college-life-gallery{grid-column:1}}
 @media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role{padding:30px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

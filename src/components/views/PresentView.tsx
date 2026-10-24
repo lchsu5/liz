@@ -18,29 +18,60 @@ import "./PresentView.css";
 const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
-  { company: "Google", dates: "August 2026 - Present", title: "Student Ambassador", team: "Campus Innovation & Developer Engagement", focus: "Google AI · Campus Engagement · Product Adoption", details: [
-    "Selected from 35,000+ applicants as 1 of 100 students in Google's first U.S. ambassador cohort.",
-    "Spent three days at Google HQ in Mountain View learning from product leaders, including Chrome and Consumer Apps VPs.",
-    "Creating opportunities for CMU students to build with and use Google's AI tools.",
-  ] },
-  { company: "Workiva", dates: "January 2027 - May 2027", title: "Incoming Sales Development Intern", team: "Account Intelligence & Sales Development", focus: "Account Research · Prospect Insights · Engagement Strategy", details: [
-    "Joining Workiva's Sales Development team remotely for Spring 2027.",
-    "Will research current and prospective accounts to identify key contacts, business needs, and new business opportunities.",
-    "Will organize account intelligence and collaborate on engagement strategies, supporting outreach campaigns and sales pipeline growth with accurate data and insights.",
-    "Will build knowledge of Workiva's products and market dynamics to strengthen account research.",
-  ] },
-  { company: "Carnegie Mellon University", dates: "September 8 - December 6, 2026", title: "Brand and Marketing Ambassador", team: "Division of Enrollment Management", details: [
-    "Part-time student position for the Fall 2026 semester.",
-  ] },
-  { company: "Canva", dates: "August 2026 - May 15, 2027", title: "Campus Canvassador", team: "Campus Canvassadors Program (United States)", focus: "Campus Engagement / Design Education / Community Building", details: [
-    "1 of 2 ambassadors at CMU.",
-    "Campus outreach focuses on Canva workshops, student events, promotional materials, and creative collaborations with student organizations.",
-    "Program participation includes opportunities to share tutorials and resources, exchange feedback with the Canva team, and propose campus events for Canva Community Fund support.",
-  ] },
-  { company: "Adobe", dates: "August 2026 - Present", title: "Ambassador", details: ["First Adobe ambassador at CMU."] },
-  { company: "Notion", dates: "August 2026 - Present", title: "Campus Lead", details: [
-    "1 of 5 CMU campus leads.",
-  ] },
+  {
+    "company": "Google",
+    "dates": "August 2026 - Present",
+    "title": "Student Ambassador",
+    "team": "Campus Innovation & Developer Engagement",
+    "details": [
+      "Selected as 1 of 100 students from 35,000+ applicants for Google's founding U.S. cohort. Spent three days at Google HQ learning from product leaders, and create opportunities for CMU students to explore and build with Google's AI tools."
+    ]
+  },
+  {
+    "company": "Workiva",
+    "dates": "January 2027 - May 2027",
+    "title": "Incoming Sales Development Intern",
+    "team": "Account Intelligence & Sales Development",
+    "details": [
+      "Joining Workiva remotely for Spring 2027 to research prospective accounts, identify key contacts and business needs, and organize account intelligence. Will collaborate on outreach and engagement strategies, supporting sales pipeline growth with accurate research and product knowledge."
+    ]
+  },
+  {
+    "company": "Carnegie Mellon University",
+    "dates": "September 8 - December 6, 2026",
+    "title": "Brand and Marketing Ambassador",
+    "team": "Division of Enrollment Management",
+    "details": [
+      "Part-time Brand and Marketing Ambassador with CMU's Division of Enrollment Management for Fall 2026. The student appointment runs from September 8 through December 6, with a schedule of 5-10 hours per week."
+    ]
+  },
+  {
+    "company": "Canva",
+    "dates": "August 2026 - May 15, 2027",
+    "title": "Campus Canvassador",
+    "team": "Campus Canvassadors Program (United States)",
+    "details": [
+      "1 of 2 ambassadors at CMU. Program activities include workshops, campus events, and creative collaborations with student organizations, alongside sharing tutorials and resources. Opportunities include exchanging product feedback and proposing campus events for Canva Community Fund support."
+    ]
+  },
+  {
+    "company": "Adobe",
+    "dates": "August 2026 - Present",
+    "title": "Ambassador",
+    "team": "Student Ambassador Program",
+    "details": [
+      "First Adobe ambassador at CMU. The program centers on helping students explore Adobe tools through hands-on workshops, creative events, and student-group collaborations. Campus outreach includes sharing design tips, templates, and social content for coursework, clubs, and career projects."
+    ]
+  },
+  {
+    "company": "Notion",
+    "dates": "August 2026 - Present",
+    "title": "Campus Lead",
+    "team": "Campus Leaders Program",
+    "details": [
+      "1 of 5 CMU campus leads. The program focuses on helping peers learn and use Notion through campus events, student-organization partnerships, templates, and social content. Campus Leaders collaborate with one another and Notion's Community Team to build student communities."
+    ]
+  }
 ];
 export default function PresentView() {
   const progress = useRef<HTMLDivElement>(null);
@@ -71,7 +102,6 @@ export default function PresentView() {
             </header>
             {"team" in role && <p className="role-team">{role.team}</p>}
             {role.details.length > 0 && <p className="role-details">{role.details.join(" ")}</p>}
-            {"focus" in role && <p className="role-focus">Focus: {role.focus}</p>}
           </article>
         ))}</div>
       </section>

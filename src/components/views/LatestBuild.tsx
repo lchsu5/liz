@@ -21,7 +21,7 @@ export default function LatestBuild() {
   const cmusedTabs = useRef<(HTMLButtonElement | null)[]>([]);
   return <section id="latest-build" className="overview-section latest-build" aria-labelledby="overview-build">
         <div className="overview-section-inner">
-        <h2 className="overview-section-heading" id="overview-build">Latest build</h2>
+        <h2 className="overview-section-heading" id="overview-build">Projects</h2>
         <div className="build-projects">
         <article className="proj">
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
