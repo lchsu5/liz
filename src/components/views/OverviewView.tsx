@@ -78,15 +78,13 @@ export default function OverviewView() {
     <div className="experience-grid">
       {experiences.map(experience => (
         <article className="experience-entry" key={`${experience.company}-${experience.title}`}>
-          <img className="experience-logo" src={experience.logo} alt={`${experience.company} logo`} width="56" height="56" loading="lazy" />
+          <img className="experience-logo" src={experience.logo} alt={experience.company + " logo"} width="28" height="28" loading="lazy" />
           <div className="experience-copy">
-            <h3>{experience.title}</h3>
-            <p className="experience-company">{experience.company}{experience.employment && ` · ${experience.employment}`}</p>
-            <p className="experience-dates">{experience.dates}</p>
-            {experience.location && <p className="experience-location">{experience.location}</p>}
-            <div className="experience-notes">
-              {experience.notes.map(note => <p key={note}>{note}</p>)}
-            </div>
+            <header className="experience-header">
+              <h3><span className="experience-company">{experience.company}</span><span className="experience-title"> / {experience.title}</span></h3>
+              <p className="experience-dates">{experience.dates}</p>
+            </header>
+            <p className="experience-notes">{experience.notes.join(" / ")}</p>
           </div>
         </article>
       ))}
