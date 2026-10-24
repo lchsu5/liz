@@ -36,9 +36,9 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .strip .strip-portrait{object-position:50% 30%}
 @keyframes mq{to{transform:translateX(50%)}}
 .ft{display:flex;justify-content:space-between;margin-top:56px;gap:12px;flex-wrap:wrap}
-.overview-section{padding:28px 20px 36px;background:var(--c);color:var(--k);border-top:1px solid rgba(24,24,23,.15)}
-.overview-section-inner{width:100%;max-width:1120px;margin:0 auto}
-.overview-section-heading{font-size:10px;font-weight:400;letter-spacing:.16em;line-height:1.45;padding-bottom:18px;border-bottom:1px solid rgba(24,24,23,.1)}
+.overview-section{padding:28px 20px 36px;background:var(--c);color:var(--k)}
+.overview-section-inner{width:100%}
+.overview-section-heading{font-size:10px;font-weight:400;letter-spacing:.16em;line-height:1.45;padding-bottom:18px}
 #education .overview-section-heading{margin-bottom:18px}
 .eb{color:var(--c)}
 .eb{position:relative;min-height:420px;aspect-ratio:16/8;border-radius:4px;overflow:hidden}
@@ -56,7 +56,7 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 @media(max-width:480px){#hm{top:100px}.eb{min-height:440px}}
 @media(prefers-reduced-motion:reduce){#hero{height:100vh}}
 .experience-grid{display:grid;grid-template-columns:minmax(0,1fr)}
-.experience-entry{display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;align-items:start;padding:18px 0;border-bottom:1px solid rgba(24,24,23,.1)}
+.experience-entry{display:grid;grid-template-columns:28px minmax(0,1fr);gap:16px;align-items:start;padding:18px 0}
 .experience-logo{width:28px;height:28px;object-fit:contain;mix-blend-mode:multiply}
 .experience-copy{min-width:0;font:inherit}
 .experience-header{display:flex;justify-content:space-between;align-items:baseline;gap:8px 24px}
