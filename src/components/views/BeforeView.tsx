@@ -16,7 +16,7 @@ import photoGroup from "@/assets/photo-group.jpeg";
 const archive: { src: string; caption: string; sub: string; area: string }[] = [
   { src: photoGraduation, caption: "Beckman High School", sub: "Commencement", area: "hero" },
   { src: photoTieShadowDay, caption: "TIE Shadow Day", sub: "Avasant", area: "top-a" },
-  { src: photoGroup, caption: "Industry Info Session", sub: "Group Visit", area: "top-b" },
+  { src: photoGroup, caption: "Management Consulting Internship Kickoff", sub: "Ernst & Young", area: "top-b" },
   { src: photoEaton, caption: "Eaton", sub: "emPOWER U Leadership Summit", area: "wide" },
 ];
 
