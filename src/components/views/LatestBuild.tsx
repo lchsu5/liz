@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import cmusedLogin from "@/assets/LOGIN.png";
-import cmusedPreview from "@/assets/preview.png";
+import cmusedListing from "@/assets/LISTING.png";
 import cmusedProfile from "@/assets/selfview.png";
 import "./LatestBuild.css";
 
 const cmusedMockups = [
   { label: "Sign in", src: cmusedLogin, alt: "CMUsed sign-in screen with Carnegie Mellon single sign-on" },
-  { label: "Listing preview", src: cmusedPreview, alt: "CMUsed listing preview showing chair photos, price, condition, and seller contact" },
+  { label: "Listing preview", src: cmusedListing, alt: "CMUsed listing preview showing chair photos, price, condition, and seller contact" },
   { label: "Profile", src: cmusedProfile, alt: "CMUsed seller profile with active listings, sold items, and account tabs" },
 ];
 
