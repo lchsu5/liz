@@ -1,5 +1,5 @@
 ﻿@scope (.present-reference) {
-:scope{--k:#ECEAE3;--c:#181817;--g:#686860;--a:#b53c59;--h:rgba(24,24,23,.16);background:var(--k);color:var(--c);font:500 12px/1.45 'Inter Tight',system-ui,sans-serif;text-transform:uppercase;-webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;padding-bottom:30vh;color-scheme:light}
+:scope{--k:#ECEAE3;--c:#181817;--g:#686860;--a:#b53c59;--h:rgba(24,24,23,.16);background:var(--k);color:var(--c);font:500 12px/1.45 'Inter Tight',system-ui,sans-serif;text-transform:uppercase;-webkit-font-smoothing:antialiased;overflow-x:clip;min-height:100vh;padding-bottom:0;color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0}
 h1,h2,h3,p{font-family:inherit;line-height:inherit;letter-spacing:inherit}
 a{color:inherit;text-decoration:none}
@@ -12,7 +12,8 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .sec{display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:48px 20px 64px;border-top:1px solid var(--h)}
 .leadership-body{max-width:1000px;width:100%;min-width:0}
 .leadership-intro{text-transform:none;font-size:16px;margin-bottom:34px;max-width:380px}
-.college-life{display:block;border-top:0}
+.college-life{border-top:0}
+.college-life-gallery{grid-column:2;max-width:1000px;min-width:0}
 .college-life-gallery{display:grid;width:100%;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-areas:"six six one two" "six six one three" "four five seven eight" "nine nine ten ten";gap:10px}
 .college-life-photo{min-width:0;min-height:0;overflow:hidden;border-radius:12px}
 .college-life-photo:nth-child(1){grid-area:one}
@@ -44,11 +45,11 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .lc li{padding:0 0 12px 16px;position:relative}
 .lc li:before{content:"";position:absolute;left:0;top:.6em;width:5px;height:5px;border-radius:50%;background:var(--a)}
 @media (max-width:900px){.cols{grid-template-columns:1fr}.lc .rr{min-height:0}}
-.body,.proj{max-width:1000px;width:100%}
-.build-projects{display:grid;gap:64px;min-width:0}
-.appointments.sec{display:block;max-width:1120px;margin:0 auto;padding:36px 48px 64px;border-top:0}
-.appointments>.lab{font-size:10px;font-weight:400;letter-spacing:.16em;padding-bottom:18px;border-bottom:1px solid rgba(24,24,23,.08)}
-.appointments>.body{max-width:none}
+.body,.proj{max-width:1000px;width:100%;min-width:0}
+.build-projects{display:grid;gap:64px;min-width:0;max-width:1000px;width:100%}
+.appointments.sec{border-top:0}
+.role:first-child{padding-top:0}
+.role:last-child{border-bottom:0;padding-bottom:0}
 .role{padding:44px 0;border-bottom:1px solid rgba(24,24,23,.08)}
 .role-header{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:baseline}
 .role-header h2{font-weight:400;font-size:18px;letter-spacing:-.015em;text-transform:none;line-height:1.4}
@@ -79,7 +80,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .vp{display:inline-block;margin-top:22px;transition:color .2s}
 .vp span{display:inline-block;transition:transform .25s}
 .vp:hover{color:var(--a)}.vp:hover span{transform:translate(3px,-3px)}
-@media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.demo{aspect-ratio:16/10}}
-@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.appointments.sec{padding:28px 20px 40px}.role{padding:30px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}.tabs{gap:22px}}
+@media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.college-life-gallery{grid-column:1}.demo{aspect-ratio:16/10}}
+@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role{padding:30px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}.tabs{gap:22px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 }

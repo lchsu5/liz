@@ -88,7 +88,7 @@ const Index = () => {
       case "visionboard": return <VisionBoardView />;
     }
   };
-  return <div className="view-shell" data-theme={displayedView === "overview" || displayedView === "visionboard" ? "dark" : "light"}>
+  return <div className="view-shell" data-view={displayedView} data-theme={displayedView === "overview" || displayedView === "visionboard" ? "dark" : "light"}>
     <ViewNavigation view={view} onNavigate={navigate} />
     <AnimatePresence initial={false} mode="wait" custom={viewTransition}
       onExitComplete={() => {

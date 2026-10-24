@@ -14,6 +14,21 @@ export default function ViewNavigation({ view, onNavigate }: {
   onNavigate: (view: ViewKey) => void;
 }) {
   const reducedMotion = useReducedMotion();
+  const [overHero, setOverHero] = useState(true);
+  useEffect(() => {
+    if (view !== "overview") return;
+    const update = () => {
+      const hero = document.getElementById("hero");
+      setOverHero(!hero || hero.getBoundingClientRect().bottom > 60);
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [view]);
   const [time, setTime] = useState(() => new Date().toLocaleTimeString("en-US", {
     timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit",
   }));
@@ -23,7 +38,7 @@ export default function ViewNavigation({ view, onNavigate }: {
     })), 10000);
     return () => clearInterval(interval);
   }, []);
-  return <header className="view-navigation" data-theme={view === "overview" || view === "visionboard" ? "dark" : "light"} data-view={view}>
+  return <header className="view-navigation" data-theme={view === "overview" || view === "visionboard" ? "dark" : "light"} data-view={view} data-over-hero={overHero}>
     <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
     <LayoutGroup id="primary-navigation"><nav aria-label="Primary">
       {items.map(item => <button type="button" key={item.key}
