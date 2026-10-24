@@ -70,7 +70,7 @@ export default function PresentView() {
 
     <div className="present-content">
       <section className="sec appointments" aria-labelledby="present-now">
-        <h1 className="lab" id="present-now">Experience &amp; appointments</h1>
+        <h1 className="lab" id="present-now">Experience</h1>
         <div className="body">{roles.map(role => (
           <article className="role" key={`${role.company}-${role.title}`}>
             <header className="role-header">
