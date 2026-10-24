@@ -55,17 +55,17 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .body{max-width:1000px;width:100%;min-width:0}
 .appointments.sec{border-top:0}
 .role:first-child{padding-top:0}
-.role:last-child{border-bottom:0;padding-bottom:0}
-.role{padding:44px 0;border-bottom:1px solid rgba(24,24,23,.08)}
-.role-header{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px 24px;align-items:baseline}
+.role:last-child{padding-bottom:0}
+.role{padding:18px 0}
+.role-header{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;align-items:baseline}
 .role-header h2{font-weight:400;font-size:18px;letter-spacing:-.015em;text-transform:none;line-height:1.4}
 .role-header .role-company{font-weight:500}
 .role-title{grid-column:1/-1;color:var(--g);font-size:15px;font-weight:400;line-height:1.4;text-transform:none}
 .role .yr{color:var(--g);justify-self:end;font:400 10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none;white-space:nowrap}
-.role-team{margin-top:9px;color:var(--g);font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none}
+.role-team{margin-top:6px;color:var(--g);font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
-.role-details{text-transform:none;font-size:14px;font-weight:400;line-height:1.7;margin-top:12px;max-width:760px}
+.role-details{text-transform:none;font-size:13px;font-weight:400;line-height:1.55;margin-top:8px;max-width:760px}
 @media(max-width:700px){.sec{grid-template-columns:1fr;padding:36px 20px 48px}.college-life-gallery{grid-column:1}}
-@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role{padding:30px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}}
+@media(max-width:600px){.present-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.role{padding:16px 0}.role-header{grid-template-columns:minmax(0,1fr);gap:6px}.role .yr{justify-self:start}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 }
