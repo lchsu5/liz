@@ -17,7 +17,7 @@ import "./PresentView.css";
 const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
-  { company: "Workiva", dates: "May - August 2026", title: "Product Management Intern", team: "Solution Development & Sustainability Strategy", focus: "Product Strategy · AI Agentic Products · Discovery & Synthesis", details: [
+  { company: "Workiva", dates: "May 2026 - August 2026", title: "Product Management Intern", team: "Solution Development & Sustainability Strategy", focus: "Product Strategy · AI Agentic Products · Discovery & Synthesis", details: [
     "Youngest intern and sole undergraduate PM intern at Workiva, Summer 2026.",
     "Building AI agentic products on the Sustainability Strategy and Product team, within Solution Development.",
     "Owning the product lifecycle from discovery through launch for Fortune 500 finance teams.",
@@ -27,14 +27,14 @@ const roles = [
     "Spent three days at Google HQ in Mountain View learning from product leaders, including Chrome and Consumer Apps VPs.",
     "Creating opportunities for CMU students to build with and use Google's AI tools.",
   ] },
-  { company: "Workiva", dates: "January 4 - May 14, 2027", title: "Incoming Sales Development Intern", team: "Account Intelligence & Sales Development", focus: "Account Research · Prospect Insights · Engagement Strategy", details: [
+  { company: "Workiva", dates: "January 2027 - May 2027", title: "Incoming Sales Development Intern", team: "Account Intelligence & Sales Development", focus: "Account Research · Prospect Insights · Engagement Strategy", details: [
     "Joining Workiva's Sales Development team remotely for Spring 2027.",
     "Will research current and prospective accounts to identify key contacts, business needs, and new business opportunities.",
     "Will organize account intelligence and collaborate on engagement strategies, supporting outreach campaigns and sales pipeline growth with accurate data and insights.",
     "Will build knowledge of Workiva's products and market dynamics to strengthen account research.",
   ] },
-  { company: "Canva", dates: "", title: "Ambassador", details: [] },
-  { company: "Adobe", dates: "", title: "Ambassador", details: [] },
+  { company: "Canva", dates: "August 2026 - Present", title: "Ambassador", details: [] },
+  { company: "Adobe", dates: "August 2026 - Present", title: "Ambassador", details: [] },
   { company: "Notion", dates: "August 2026 - Present", title: "Campus Lead", details: [
     "1 of 5 CMU campus leads.",
   ] },
@@ -79,8 +79,9 @@ export default function PresentView() {
         <div className="body">{roles.map(role => (
           <article className="role" key={`${role.company}-${role.title}`}>
             <header className="role-header">
-              <h2><span className="role-company">{role.company}</span><span className="role-separator"> — </span><span className="role-title">{role.title}</span></h2>
+              <h2 className="role-company">{role.company}</h2>
               {role.dates && <span className="yr">{role.dates}</span>}
+              <p className="role-title">{role.title}</p>
             </header>
             {"team" in role && <p className="role-team">{role.team}</p>}
             {role.details.length > 0 && <p className="role-details">{role.details.join(" ")}</p>}
