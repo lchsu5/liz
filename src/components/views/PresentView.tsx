@@ -28,6 +28,9 @@ const roles = [
     "Will organize account intelligence and collaborate on engagement strategies, supporting outreach campaigns and sales pipeline growth with accurate data and insights.",
     "Will build knowledge of Workiva's products and market dynamics to strengthen account research.",
   ] },
+  { company: "Carnegie Mellon University", dates: "September 8 - December 6, 2026", title: "Brand and Marketing Ambassador", team: "Division of Enrollment Management", details: [
+    "Part-time student position for the Fall 2026 semester.",
+  ] },
   { company: "Canva", dates: "August 2026 - Present", title: "Ambassador", details: ["1 of 2 ambassadors."] },
   { company: "Adobe", dates: "August 2026 - Present", title: "Ambassador", details: ["First Adobe ambassador at CMU."] },
   { company: "Notion", dates: "August 2026 - Present", title: "Campus Lead", details: [
