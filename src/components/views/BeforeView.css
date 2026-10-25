@@ -7,13 +7,16 @@
 .past-content>section:first-child{display:flex;flex-direction:column}
 .past-content>section:first-child .past-label{margin-bottom:8px}
 .past-label{font:500 12px/1.45 'Inter Tight',system-ui,sans-serif;text-transform:uppercase;color:var(--past-muted);margin:0 0 18px}
-.past-bento{display:grid;width:100%;grid-template-columns:1.1fr .9fr 1.2fr 1.5fr;grid-template-areas:"hero top-a top-b wide";align-items:start;gap:12px}
+.past-bento{display:grid;width:100%;grid-template-columns:1fr 1fr 1.15fr;grid-template-rows:repeat(2,clamp(150px,17vw,220px));grid-template-areas:"hero top-a top-b" "hero wide wide";gap:10px}
 .past-photo{position:relative;margin:0;min-width:0;min-height:0;overflow:hidden;border-radius:6px}
 .past-photo-hero{grid-area:hero}
 .past-photo-top-a{grid-area:top-a}
 .past-photo-top-b{grid-area:top-b}
 .past-photo-wide{grid-area:wide}
-.past-photo img{display:block;width:100%;height:auto}
+.past-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.past-photo-hero img{object-position:60% 45%}
+.past-photo-top-b img{object-position:center 58%}
+.past-photo-wide img{object-position:center 55%}
 .past-photo figcaption{position:absolute;inset:auto 0 0;padding:12px;background:rgba(236,234,227,.92);transform:translateY(100%);transition:transform .4s;color:var(--past-text)}
 .past-photo.is-active figcaption{transform:none}
 .past-photo figcaption span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--past-accent)}
@@ -39,7 +42,7 @@
 .past-role-details li+li{margin-top:6px}
 .past-role-details li::marker{color:var(--past-accent)}
 @keyframes past-fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@media(max-width:900px){.past-content{grid-template-columns:1fr;gap:28px}.past-bento{grid-template-columns:1.1fr 1fr;grid-template-areas:"hero top-a" "top-b wide";gap:10px}}
+@media(max-width:600px){.past-bento{grid-template-columns:1fr 1.2fr;grid-template-rows:150px 150px 125px;grid-template-areas:"hero top-a" "hero top-b" "wide wide";gap:8px}}
 @media(max-width:600px){.past-content{padding-top:calc(116px + env(safe-area-inset-top,0px))}.past-reference{padding:0 20px 40px}.past-role-trigger{flex-wrap:wrap;gap:10px 14px}.past-role-copy{flex-basis:calc(100% - 60px)}.past-role-meta{width:100%;flex-direction:row;justify-content:space-between;padding-left:58px}.past-company{font-size:24px}.past-title{font-size:10px}.past-photo figcaption{padding:8px}.past-photo figcaption span{font-size:9px}.past-photo figcaption p{font-size:12px}}
 @media(hover:none){.past-photo figcaption{transform:none}}
 @media(prefers-reduced-motion:reduce){.past-reference *{animation:none!important;transition:none!important}}
