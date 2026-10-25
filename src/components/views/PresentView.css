@@ -33,6 +33,8 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .college-life-photo:nth-child(9){grid-area:nine}
 .college-life-photo:nth-child(10){grid-area:ten}
 .college-life-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 200ms ease}
+.college-life-photo:nth-child(3) img{object-position:center 65%}
+.college-life-photo:nth-child(8) img{object-position:center 35%}
 @media(hover:hover){.college-life-photo:hover img{transform:scale(1.03)}}
 @media(max-width:900px){.college-life-gallery{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(4,clamp(75px,12vw,110px));grid-template-areas:"six six one two" "six six one three" "four five seven seven" "nine nine eight ten"}}
 @media(max-width:600px){.college-life-gallery{gap:8px}}
