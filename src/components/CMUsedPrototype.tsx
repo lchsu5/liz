@@ -144,7 +144,6 @@ export default function CMUsedPrototype({ fullPage = false }: { fullPage?: boole
         <img src={`${import.meta.env.BASE_URL}cmused/${encodeURIComponent(screens[screen][1])}.jpg`} alt={`CMUsed ${screens[screen][0]} design exported from Figma`} />
         {hotspots.map((spot, i) => <button type="button" className="cmu-hotspot" key={i} aria-label={spot.label} style={{ left: `${spot.x}%`, top: `${spot.y}%`, width: `${Math.min(spot.w, 100 - spot.x)}%`, height: `${spot.h}%` }} onClick={() => spot.action ? spot.action() : spot.to && go(spot.to)} />)}
       </div>
-    </div>
     {selection && <p className="cmu-feedback" role="status">Selected: {selection}. Choose Next to continue.</p>}
     {screen === "search" && <form className="cmu-form" onSubmit={e => { e.preventDefault(); go("results"); setNotice(`Showing the supplied sample results${search ? ` for “${search}”` : ""}.`); }}><label>Search the demo<input value={search} onChange={e => setSearch(e.target.value)} placeholder="Try big sofa" /></label><button type="submit">Search</button></form>}
     {(screen === "contact" || screen === "messages") && <div className="cmu-chat">
@@ -163,5 +162,6 @@ export default function CMUsedPrototype({ fullPage = false }: { fullPage?: boole
       {preview && <button type="button" onClick={() => setPreview(false)}>Edit</button>}<button type="submit">{preview ? "Publish demo listing" : "Preview listing"}</button>
     </form>}
     {notice && <p className="cmu-feedback" role="status">{notice}</p>}
+    </div>
   </section>;
 }
