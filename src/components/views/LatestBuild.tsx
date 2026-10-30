@@ -40,10 +40,11 @@ export default function LatestBuild() {
           </div>
           </div>
         </article>
-        <div className="proj">
+        <article className="proj secondlook-project">
           <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
+          <div className="secondlook-layout">
+          <div className="secondlook-description">
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
-          <div className="demo"><div className="demo-placeholder"><strong>SecondLook</strong><p>Demo clip coming soon</p></div></div>
           <div className="tabs" role="tablist" aria-label="SecondLook story">{story.map((item, index) => <button type="button" key={item.label} ref={element => { tabs.current[index] = element; }} role="tab" id={`secondlook-tab-${index}`} aria-selected={selected === index} aria-controls={`secondlook-story-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => {
             const next = event.key === "ArrowRight" ? (index + 1) % story.length : event.key === "ArrowLeft" ? (index + story.length - 1) % story.length : event.key === "Home" ? 0 : event.key === "End" ? story.length - 1 : -1;
             if (next >= 0) { event.preventDefault(); setSelected(next); tabs.current[next]?.focus(); }
@@ -51,7 +52,10 @@ export default function LatestBuild() {
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`secondlook-story-${index}`} role="tabpanel" aria-labelledby={`secondlook-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           <a className="vp" href="https://trae4d3ed8mx.vercel.app" target="_blank" rel="noopener noreferrer">View project</a>
-        </div>
+          </div>
+          <div className="demo secondlook-preview"><div className="demo-placeholder"><strong>SecondLook</strong><p>Demo clip coming soon</p></div></div>
+          </div>
+        </article>
         </div>
         </div>
       </section>;
