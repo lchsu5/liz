@@ -25,16 +25,20 @@ export default function LatestBuild() {
         <div className="overview-section-inner">
         <h2 className="overview-section-heading" id="overview-build">Projects</h2>
         <div className="build-projects">
-        <article className="proj">
+        <article className="proj cmused-project">
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
+          <div className="cmused-layout">
+          <div className="cmused-preview"><CMUsedPrototype /></div>
+          <div className="cmused-description">
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
-          <CMUsedPrototype />
           <div className="tabs" role="tablist" aria-label="CMUsed story">{cmusedStory.map((item, index) => <button type="button" key={item.label} ref={element => { cmusedTabs.current[index] = element; }} role="tab" id={`cmused-tab-${index}`} aria-selected={cmusedSelected === index} aria-controls={`cmused-story-${index}`} tabIndex={cmusedSelected === index ? 0 : -1} onClick={() => setCmusedSelected(index)} onKeyDown={event => {
             const next = event.key === "ArrowRight" ? (index + 1) % cmusedStory.length : event.key === "ArrowLeft" ? (index + cmusedStory.length - 1) % cmusedStory.length : event.key === "Home" ? 0 : event.key === "End" ? cmusedStory.length - 1 : -1;
             if (next >= 0) { event.preventDefault(); setCmusedSelected(next); cmusedTabs.current[next]?.focus(); }
           }}>{item.label}</button>)}</div>
           {cmusedStory.map((item, index) => <p key={item.label} className={`tp ${cmusedSelected === index ? "in" : ""}`} id={`cmused-story-${index}`} role="tabpanel" aria-labelledby={`cmused-tab-${index}`} hidden={cmusedSelected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{cmusedStack.map(technology => <span key={technology}>{technology}</span>)}</div>
+          </div>
+          </div>
         </article>
         <div className="proj">
           <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
