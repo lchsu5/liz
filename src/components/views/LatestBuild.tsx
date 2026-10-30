@@ -1,14 +1,7 @@
+import CMUsedPrototype from "../CMUsedPrototype";
 import { useRef, useState } from "react";
-import cmusedLogin from "@/assets/LOGIN.png";
-import cmusedListing from "@/assets/LISTING.png";
-import cmusedProfile from "@/assets/selfview.png";
 import "./LatestBuild.css";
 
-const cmusedMockups = [
-  { label: "Sign in", src: cmusedLogin, alt: "CMUsed sign-in screen with Carnegie Mellon single sign-on" },
-  { label: "Listing preview", src: cmusedListing, alt: "CMUsed listing preview showing chair photos, price, condition, and seller contact" },
-  { label: "Profile", src: cmusedProfile, alt: "CMUsed seller profile with active listings, sold items, and account tabs" },
-];
 
 const story = [
   { label: "Problem", text: "Students often understand advanced concepts but carry foundational misconceptions that were never corrected. Many are too embarrassed to ask about things they feel they should already know, so small errors compound into long-term habits." },
@@ -24,7 +17,6 @@ const cmusedStory = [
 const cmusedStack = ["Product Strategy", "Product Management", "UI/UX", "GTM", "Firebase", "Firestore", "Algolia", "Expo", "React Native"];
 
 export default function LatestBuild() {
-  const [mockupSelected, setMockupSelected] = useState(0);
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [cmusedSelected, setCmusedSelected] = useState(0);
@@ -36,15 +28,7 @@ export default function LatestBuild() {
         <article className="proj">
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
-            <div className="mockup-controls" role="group" aria-label="CMUsed mockups">
-              {cmusedMockups.map((mockup, index) => <button type="button" key={mockup.label} aria-pressed={mockupSelected === index} aria-controls="cmused-mockup" onClick={() => setMockupSelected(index)}>{mockup.label}</button>)}
-              <a href={cmusedMockups[mockupSelected].src} target="_blank" rel="noopener noreferrer">View full image</a>
-            </div>
-          <div className="cmused-demo">
-            <div className="mockup-frame" id="cmused-mockup" role="region" aria-label={cmusedMockups[mockupSelected].label + " mockup, scroll to see full screen"} tabIndex={0} key={mockupSelected}>
-              <img src={cmusedMockups[mockupSelected].src} alt={cmusedMockups[mockupSelected].alt} loading="lazy" />
-            </div>
-          </div>
+          <CMUsedPrototype />
           <div className="tabs" role="tablist" aria-label="CMUsed story">{cmusedStory.map((item, index) => <button type="button" key={item.label} ref={element => { cmusedTabs.current[index] = element; }} role="tab" id={`cmused-tab-${index}`} aria-selected={cmusedSelected === index} aria-controls={`cmused-story-${index}`} tabIndex={cmusedSelected === index ? 0 : -1} onClick={() => setCmusedSelected(index)} onKeyDown={event => {
             const next = event.key === "ArrowRight" ? (index + 1) % cmusedStory.length : event.key === "ArrowLeft" ? (index + cmusedStory.length - 1) % cmusedStory.length : event.key === "Home" ? 0 : event.key === "End" ? cmusedStory.length - 1 : -1;
             if (next >= 0) { event.preventDefault(); setCmusedSelected(next); cmusedTabs.current[next]?.focus(); }
