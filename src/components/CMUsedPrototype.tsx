@@ -137,10 +137,9 @@ export default function CMUsedPrototype({ fullPage = false }: { fullPage?: boole
       <div className="cmu-tools">
         <button type="button" onClick={back} disabled={!history.length}>← Back</button>
         <button type="button" onClick={() => { go("login"); setHistory([]); }}>Restart</button>
-        {!fullPage && <a href={`${import.meta.env.BASE_URL}cmused.html`} target="_blank" rel="noreferrer">Open full screen ↗</a>}
       </div>
     </div>
-    <div className="cmu-viewport" ref={viewport} tabIndex={0} aria-label={`${screens[screen][0]} screen; scroll to explore`}>
+    <div className={`cmu-viewport${screen === "login" ? " cmu-opening" : ""}`} ref={viewport} tabIndex={screen === "login" ? undefined : 0} aria-label={`${screens[screen][0]} screen${screen === "login" ? "" : "; scroll to explore"}`}>
       <div className="cmu-canvas" key={screen}>
         <img src={`${import.meta.env.BASE_URL}cmused/${encodeURIComponent(screens[screen][1])}.jpg`} alt={`CMUsed ${screens[screen][0]} design exported from Figma`} />
         {hotspots.map((spot, i) => <button type="button" className="cmu-hotspot" key={i} aria-label={spot.label} style={{ left: `${spot.x}%`, top: `${spot.y}%`, width: `${Math.min(spot.w, 100 - spot.x)}%`, height: `${spot.h}%` }} onClick={() => spot.action ? spot.action() : spot.to && go(spot.to)} />)}

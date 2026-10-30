@@ -24,6 +24,6 @@ The project uses npm; `package-lock.json` records its dependencies. `node_module
 
 ## CMUsed prototype
 
-The Overview CMUsed project section includes a clickable walkthrough of the supplied Figma screen exports. Open `/liz/cmused.html` for the standalone version, or use **Open full screen** in the embedded prototype. Start at sign-in and click through the screens to explore. The heading and description update with the current screen; Back and Restart let you retrace the flow.
+The Overview CMUsed project section includes a clickable walkthrough of the supplied Figma screen exports. The opening sign-in screen fits the embed without scrolling; subsequent screens remain scrollable. Start at sign-in and click through the screens to explore. The heading updates with the current screen; Back and Restart let you retrace the flow.
 
 The walkthrough preserves the desktop designs and scrolls horizontally on small screens. Search opens sample results; messages and listing forms are session-only demonstrations without authentication or a backend. Optimized screen images are in `public/cmused`; the original ZIP is not included. Both HTML entry points are included in the production build and existing GitHub Pages deployment workflow.
