@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useId, useState } from "react";
 import "./CMUsedPrototype.css";
 
 const screens = {
@@ -22,6 +22,27 @@ const screens = {
   listing: ["Create a listing", "Listing - 12"],
 } as const;
 type Screen = keyof typeof screens;
+// Source dimensions and a reviewed crop: x, y, width, height, in source pixels.
+const framing: Record<Screen, [number, number, number, number, number, number]> = {
+  login: [1280, 954, 0, 0, 1280, 954],
+  interests: [1280, 953, 0, 0, 1280, 830],
+  categories: [1280, 953, 0, 0, 1280, 830],
+  media: [1280, 953, 0, 0, 1280, 830],
+  policy: [1280, 953, 0, 0, 1280, 830],
+  discover: [1600, 2731, 0, 0, 1600, 1430],
+  search: [1280, 533, 0, 0, 1280, 533],
+  results: [1318, 1424, 0, 0, 1318, 800],
+  filters: [1318, 1559, 0, 0, 1318, 1320],
+  product: [1600, 1648, 0, 0, 1600, 1400],
+  review: [1600, 1641, 380, 530, 850, 580],
+  contact: [1600, 1641, 380, 460, 850, 730],
+  messages: [1600, 1083, 0, 0, 1600, 1083],
+  profile: [1600, 1736, 0, 0, 1600, 1280],
+  active: [1258, 1351, 0, 0, 1258, 1020],
+  previous: [1258, 1351, 0, 0, 1258, 1020],
+  wishlist: [1600, 1737, 0, 0, 1600, 1580],
+  listing: [1356, 1212, 0, 0, 1356, 1040],
+};
 const screenDescriptions: Record<Screen, string> = {
   discover: "Explore recent listings and find your next campus essential.",
   login: "A marketplace just for Carnegie Mellon. Sign in to get started.",
@@ -56,15 +77,15 @@ export default function CMUsedPrototype({ fullPage = false }: { fullPage?: boole
   const [listingForm, setListingForm] = useState(false);
   const [listing, setListing] = useState({ name: "", price: "", category: "Furniture", description: "" });
   const [preview, setPreview] = useState(false);
-  const viewport = useRef<HTMLDivElement>(null);
+  const cropId = useId();
+  const [imageWidth, imageHeight, cropX, cropY, cropWidth, cropHeight] = framing[screen];
   const go = (next: Screen) => {
     if (next !== screen) setHistory(previous => [...previous, screen]);
     setScreen(next); setNotice(""); setSelection(""); setListingForm(false);
-    viewport.current?.scrollTo({ top: 0 });
   };
   const back = () => {
     const previous = history[history.length - 1];
-    if (previous) { setHistory(history.slice(0, -1)); setScreen(previous); setNotice(""); viewport.current?.scrollTo({ top: 0 }); }
+    if (previous) { setHistory(history.slice(0, -1)); setScreen(previous); setNotice(""); setSelection(""); setListingForm(false); }
   };
   const save = () => { setSaved(!saved); setNotice(saved ? "Removed from your demo wishlist." : "Saved to your demo wishlist."); };
   const hotspots: Hotspot[] = [];
@@ -139,15 +160,21 @@ export default function CMUsedPrototype({ fullPage = false }: { fullPage?: boole
         <button type="button" onClick={() => { go("login"); setHistory([]); }}>Restart</button>
       </div>
     </div>
-    <div className={`cmu-viewport${screen === "login" ? " cmu-opening" : ""}`} ref={viewport} tabIndex={screen === "login" ? undefined : 0} aria-label={`${screens[screen][0]} screen${screen === "login" ? "" : "; scroll to explore"}`}>
-      <div className="cmu-canvas" key={screen}>
-        <img src={`${import.meta.env.BASE_URL}cmused/${encodeURIComponent(screens[screen][1])}.jpg`} alt={`CMUsed ${screens[screen][0]} design exported from Figma`} />
-        {hotspots.map((spot, i) => <button type="button" className="cmu-hotspot" key={i} aria-label={spot.label} style={{ left: `${spot.x}%`, top: `${spot.y}%`, width: `${Math.min(spot.w, 100 - spot.x)}%`, height: `${spot.h}%` }} onClick={() => spot.action ? spot.action() : spot.to && go(spot.to)} />)}
-      </div>
+    <div className="cmu-viewport" aria-label={`${screens[screen][0]} screen`}>
+      <svg className="cmu-canvas" key={screen} viewBox={`${cropX} ${cropY} ${cropWidth} ${cropHeight}`} preserveAspectRatio="xMidYMid meet" aria-label={`CMUsed ${screens[screen][0]} design`}>
+        <defs><clipPath id={cropId}><rect x={cropX} y={cropY} width={cropWidth} height={cropHeight} /></clipPath></defs>
+        <g clipPath={`url(#${cropId})`}>
+        <image href={`${import.meta.env.BASE_URL}cmused/${encodeURIComponent(screens[screen][1])}.jpg`} width={imageWidth} height={imageHeight} />
+        {hotspots.filter(spot => spot.x * imageWidth / 100 < cropX + cropWidth && (spot.x + spot.w) * imageWidth / 100 > cropX && spot.y * imageHeight / 100 < cropY + cropHeight && (spot.y + spot.h) * imageHeight / 100 > cropY).map((spot, i) => {
+          const activate = () => spot.action ? spot.action() : spot.to && go(spot.to);
+          return <g role="button" tabIndex={0} className="cmu-hotspot" key={i} aria-label={spot.label} onClick={activate} onKeyDown={event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); activate(); } }}><rect x={spot.x * imageWidth / 100} y={spot.y * imageHeight / 100} width={Math.min(spot.w, 100 - spot.x) * imageWidth / 100} height={spot.h * imageHeight / 100} /></g>;
+        })}
+        </g>
+      </svg>
     {selection && <p className="cmu-feedback" role="status">Selected: {selection}. Choose Next to continue.</p>}
     {screen === "search" && <form className="cmu-form" onSubmit={e => { e.preventDefault(); go("results"); setNotice(`Showing the supplied sample results${search ? ` for “${search}”` : ""}.`); }}><label>Search the demo<input value={search} onChange={e => setSearch(e.target.value)} placeholder="Try big sofa" /></label><button type="submit">Search</button></form>}
     {(screen === "contact" || screen === "messages") && <div className="cmu-chat">
-      <div aria-live="polite">{messages.map((message, i) => <p key={i} className="cmu-message">{message}</p>)}</div>
+      <div className="cmu-sr" aria-live="polite">{messages.slice(-1).map((message, i) => <p key={i}>{message}</p>)}</div>
       <form className="cmu-form" onSubmit={e => { e.preventDefault(); send(); }}><label>Message seller<input required value={draft} onChange={e => setDraft(e.target.value)} placeholder="Hi! Is this still available?" /></label><button type="submit">Send demo message</button></form>
     </div>}
     {screen === "listing" && !listingForm && <button className="cmu-start" type="button" onClick={() => { setListingForm(true); setPreview(false); }}>Try creating a listing</button>}
