@@ -3,19 +3,9 @@ import cmuCampus from "@/assets/cmucampus.jpeg";
 import btgPhoto from "@/assets/btg.jpg";
 import tsaPhoto from "@/assets/tsa.jpg";
 import foundryPhoto from "@/assets/foundry.jpg";
-import collegeLife1 from "@/assets/1.1.jpeg";
-import collegeLife2 from "@/assets/1.2.JPG?url";
-import collegeLife3 from "@/assets/1.3.jpeg";
-import collegeLife4 from "@/assets/1.4.JPG?url";
-import collegeLife5 from "@/assets/1.5.JPEG?url";
-import collegeLife6 from "@/assets/1.6.JPG?url";
-import collegeLife7 from "@/assets/1.7.jpg";
-import collegeLife8 from "@/assets/1.8.JPEG?url";
-import psbtg from "@/assets/psbtg.jpeg";
-import btgBoard from "@/assets/btgboard.jpeg";
+import communityCollage from "@/assets/community-cmu.jpg";
 import "./PresentView.css";
 
-const collegeLifePhotos = [collegeLife1, collegeLife2, collegeLife3, collegeLife4, collegeLife5, collegeLife6, collegeLife7, collegeLife8, psbtg, btgBoard];
 
 const roles = [
   {
@@ -125,11 +115,7 @@ export default function PresentView() {
 </section>
       <section className="sec college-life" aria-labelledby="present-community">
         <h2 className="lab" id="present-community">Community @CMU</h2>
-        <div className="college-life-gallery">
-          {collegeLifePhotos.map(photo => <div className="college-life-photo" key={photo}>
-            <img src={photo} alt="" loading="lazy" />
-          </div>)}
-        </div>
+        <img className="college-life-gallery" src={communityCollage} alt="A collage of friends, student organizations, and community moments at Carnegie Mellon University" width={2000} height={792} loading="lazy" decoding="async" />
       </section>
 
     </div>
