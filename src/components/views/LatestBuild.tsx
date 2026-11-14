@@ -37,6 +37,7 @@ export default function LatestBuild() {
           }}>{item.label}</button>)}</div>
           {cmusedStory.map((item, index) => <p key={item.label} className={`tp ${cmusedSelected === index ? "in" : ""}`} id={`cmused-story-${index}`} role="tabpanel" aria-labelledby={`cmused-tab-${index}`} hidden={cmusedSelected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{cmusedStack.map(technology => <span key={technology}>{technology}</span>)}</div>
+          <a className="vp" href="https://cmused.com" target="_blank" rel="noopener noreferrer">View project</a>
           </div>
           </div>
         </article>
@@ -51,9 +52,9 @@ export default function LatestBuild() {
           }}>{item.label}</button>)}</div>
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`secondlook-story-${index}`} role="tabpanel" aria-labelledby={`secondlook-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
-          <a className="vp" href="https://trae4d3ed8mx.vercel.app" target="_blank" rel="noopener noreferrer">View project</a>
+          <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
           </div>
-          <div className="demo secondlook-preview"><div className="demo-placeholder"><strong>SecondLook</strong><p>Demo clip coming soon</p></div></div>
+          <div className="demo secondlook-preview"><video controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}secondlook-preview.png`} aria-label="SecondLook captioned product walkthrough: interactive examples of guided math review"><source src={`${import.meta.env.BASE_URL}secondlook-demo.webm`} type="video/webm" />Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}secondlook-demo.webm`}>Download the demo</a>.</video></div>
           </div>
         </article>
         </div>
