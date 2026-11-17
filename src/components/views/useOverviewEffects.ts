@@ -15,19 +15,10 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     const get = <T extends HTMLElement = HTMLElement>(selector: string) => page.querySelector<T>(selector)!;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const cleanups: (() => void)[] = [];
-    const timers = new Set<ReturnType<typeof setTimeout>>();
     let alive = true;
-    const later = (fn: () => void, ms: number) => {
-      const id = setTimeout(() => { timers.delete(id); if (alive) fn(); }, ms);
-      timers.add(id);
-    };
     const listen = (target: EventTarget, event: string, handler: EventListener) => {
       target.addEventListener(event, handler, { passive: true });
       cleanups.push(() => target.removeEventListener(event, handler));
-    };
-    const animateAway = (el: HTMLElement, keyframes: Keyframe[], duration: number) => {
-      const animation = el.animate(keyframes, { duration, easing: "ease-out", fill: "forwards" });
-      later(() => { animation.cancel(); el.remove(); }, duration + 50);
     };
     const track = get("#tr2");
     for (let group = 0; group < 2; group++) {
@@ -145,7 +136,10 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
     const contact = get("#contact");
     const observer = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        contact.classList.toggle("is-visible", entry.isIntersecting);
+        if (entry.isIntersecting) {
+          contact.classList.add("is-visible");
+          observer.unobserve(contact);
+        }
       }
     }, { threshold: .15 });
     observer.observe(contact);
@@ -154,37 +148,8 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       contact.classList.remove("is-visible");
     });
 
-    page.querySelectorAll<HTMLElement>(".scr").forEach(el => {
-      const original = el.textContent || "";
-      let running = false;
-      listen(el, "mouseenter", () => {
-        if (reduced.matches || running) return;
-        running = true;
-        let iteration = 0;
-        const tick = () => {
-          iteration++;
-          el.textContent = original.split("").map((letter, index) => index < iteration / 2 || /[^A-Za-z]/.test(letter) ? letter : "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math.floor(Math.random() * 26)]).join("");
-          if (iteration < original.length * 2 && !reduced.matches) later(tick, 35);
-          else { el.textContent = original; running = false; }
-        };
-        tick();
-      });
-      cleanups.push(() => { el.textContent = original; });
-    });
-
-    listen(page, "click", event => {
-      const e = event as MouseEvent;
-      if (reduced.matches || (e.target as Element).closest("a, button")) return;
-      for (let i = 0; i < 8; i++) {
-        const particle = document.createElement("div"), angle = i / 8 * Math.PI * 2;
-        Object.assign(particle.style, { position: "fixed", width: "6px", height: "6px", borderRadius: "50%", background: "#ECEAE3", pointerEvents: "none", zIndex: "90", left: `${e.clientX - 3}px`, top: `${e.clientY - 3}px` });
-        page.appendChild(particle);
-        animateAway(particle, [{ opacity: 1, transform: "translate(0,0)" }, { opacity: 0, transform: `translate(${Math.cos(angle) * 32}px,${Math.sin(angle) * 32}px)` }], 550);
-      }
-    });
     return () => {
       alive = false;
-      timers.forEach(clearTimeout);
       cleanups.forEach(cleanup => cleanup());
     };
   }, [root]);

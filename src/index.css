@@ -19,6 +19,7 @@
   isolation: isolate;
   overflow-x: clip;
   min-height: 100vh;
+  min-height: 100dvh;
   background: #eceae3;
   transition: background-color 280ms ease;
 }
@@ -73,11 +74,14 @@
   font: inherit;
   text-transform: inherit;
   cursor: pointer;
-  transition: color 180ms ease;
+  min-height: 44px;
+  transition: color 200ms ease, transform 180ms cubic-bezier(.2,.7,.2,1);
 }
+.view-navigation .site-name.site-name { align-self: center; }
+.view-navigation button:active { transform: scale(.97); }
 .view-navigation .nav-underline {
   position: absolute;
-  inset: auto 0 -5px;
+  inset: auto 0 3px;
   height: 1px;
   background: #e0607e;
 }
@@ -86,7 +90,7 @@
 .view-navigation button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
 
 @media (max-width: 600px) {
-  .view-navigation { flex-wrap: wrap; gap: 14px; }
+  .view-navigation { flex-wrap: wrap; gap: 0 14px; padding-top: calc(8px + env(safe-area-inset-top, 0px)); padding-bottom: 8px; }
   .view-navigation .location-time { margin-left: auto; }
   .view-navigation > div { order: 1; width: 100%; }
   .view-navigation nav { width: 100%; justify-content: space-between; gap: 14px; }
@@ -95,6 +99,7 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   .view-shell, .view-navigation, .view-navigation button { transition: none; }
+  .view-navigation button:active { transform: none; }
 }
 
 @layer base {

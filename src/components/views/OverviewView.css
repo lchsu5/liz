@@ -1,5 +1,5 @@
 @scope (.overview-reference) {
-:scope{--k:#181817;--c:#ECEAE3;--g:#76766f;--a:#E0607E;--h:rgba(255,255,255,.14); min-height:100vh;}
+:scope{--k:#181817;--c:#ECEAE3;--g:#76766f;--a:#E0607E;--h:rgb(255 255 255 / .14); min-height:100vh;min-height:100dvh;}
 h1,h2,h3,p{font-family:inherit;line-height:inherit;letter-spacing:inherit;}
 
 
@@ -14,7 +14,7 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .gl{color:var(--g)}
 #bar{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:var(--a);z-index:60}
 #hero{height:135vh;position:relative}
-.stick{position:sticky;top:0;height:100vh;overflow:hidden}
+.stick{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden}
 #ph{position:absolute;overflow:hidden;background:#2b2b29;z-index:2;transform-origin:top right;will-change:transform,opacity}
 #ph img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block}
 #imgP{position:absolute;top:0;left:0;transform-origin:top left;will-change:transform}
@@ -59,14 +59,15 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .experience-notes{margin-top:6px;color:#686860;font-size:13px;font-weight:400;line-height:1.5;text-transform:none;overflow-wrap:anywhere}
 @media(max-width:700px){.experience-header{flex-direction:column;gap:4px}.experience-entry{gap:12px;padding:16px 0}.experience-copy h3{font-size:15px}.experience-title{font-size:13px}.experience-notes{font-size:12px}}
 .contact-links{padding-top:18px;display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:24px}
-.contact-link{display:block;min-width:0;transition:color .25s}
+.contact-link{display:flex;align-items:center;min-height:44px;min-width:0;transition:color .2s ease,transform .2s cubic-bezier(.2,.7,.2,1)}
 .contact-title{display:block;font-size:clamp(18px,2.2vw,36px);font-weight:500;letter-spacing:-.035em;line-height:1.2;overflow-wrap:anywhere}
 .contact-link:hover,.contact-link:focus-visible{color:#b53c59}
+.contact-link:active{transform:scale(.99)}
 #contact.is-visible .contact-link{animation:contact-reveal .8s cubic-bezier(.2,.7,.2,1) both}
 #contact.is-visible .contact-link:nth-child(2){animation-delay:.12s}
 #contact.is-visible .contact-link:nth-child(3){animation-delay:.24s}
-@keyframes contact-reveal{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes contact-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:700px){.contact-links{grid-template-columns:1fr;gap:28px}.contact-title{font-size:clamp(20px,5.5vw,36px)}}
-@media(prefers-reduced-motion:reduce){#contact.is-visible .contact-link{animation:none}.contact-link{transition:none}}
+@media(prefers-reduced-motion:reduce){#contact.is-visible .contact-link{animation:none}.contact-link{transition:none}.contact-link:active{transform:none}}
 
 }

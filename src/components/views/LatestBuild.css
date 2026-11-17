@@ -35,7 +35,8 @@
 .demo-placeholder strong{font-size:clamp(30px,5vw,64px);font-weight:500;letter-spacing:-.045em;text-transform:none}
 .demo-placeholder p{color:var(--g);text-transform:none;font-size:13px}
 .tabs{display:flex;gap:26px;margin-top:30px;border-top:1px solid var(--h)}
-.tabs button{padding:16px 0 12px;color:var(--g);border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .2s}
+.tabs button{min-height:44px;padding:16px 0 12px;color:var(--g);border-bottom:1px solid transparent;margin-bottom:-1px;transition:color .2s,transform .2s cubic-bezier(.2,.7,.2,1)}
+.tabs button:active{transform:scale(.97)}
 .tabs button:hover{color:#181817}
 .tabs button[aria-selected="true"]{color:#181817;border-bottom-color:var(--a)}
 .tp{padding:20px 0 4px;text-transform:none;font-size:clamp(16px,1.6vw,20px);line-height:1.5;max-width:680px;min-height:96px}
@@ -44,7 +45,8 @@
 @keyframes present-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .stk{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}
 .stk span{border:1px solid var(--h);border-radius:99px;padding:3px 10px;color:var(--g)}
-.vp{display:inline-block;margin-top:22px;transition:color .2s}
+.vp{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;transition:color .2s,transform .2s cubic-bezier(.2,.7,.2,1)}
+.vp:active{transform:scale(.97)}
 .vp span{display:inline-block;transition:transform .25s}
 .vp:hover{color:var(--a)}.vp:hover span{transform:translate(3px,-3px)}
 
@@ -53,5 +55,5 @@
 @media(max-width:850px){.secondlook-layout{grid-template-columns:minmax(0,1fr);gap:28px}.secondlook-description{padding-top:0}.demo.secondlook-preview{grid-row:1;height:clamp(320px,60vw,460px)}}
 @media(max-width:600px){.tabs{gap:22px}}
 @media(max-width:700px){.proj h2{font-size:15px}.cmused-description .tp,.secondlook-description .tp{font-size:12px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tabs button:active,.vp:active{transform:none}}
 }
