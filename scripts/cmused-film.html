@@ -1,54 +1,40 @@
-<!doctype html>
+﻿<!doctype html>
 <meta charset="utf-8">
-<title>CMUsed film renderer</title>
-<canvas id="film" width="1920" height="1080"></canvas>
+<title>CMUsed journey renderer</title>
+<canvas id="film" width="1600" height="900"></canvas>
 <script>
 const canvas = document.querySelector('canvas'), c = canvas.getContext('2d');
-const sources = ['Discovery feed', 'Search Result - with filters', 'Product Detail-1', 'Contact Seller Pop-up', 'Seller Profile', 'Listing - 12'];
-const images = sources.map(name => { const image = new Image(); image.src = '/cmused/' + encodeURIComponent(name + '.jpg'); return image; });
-const duration = 31;
-const ease = x => { x = Math.max(0, Math.min(1, x)); return x*x*(3-2*x); };
-const fade = (t, a, b) => ease((t-a)/.7) * (1-ease((t-b+.7)/.7));
-function text(value, x, y, size, color = '#f6f4ef', weight = 600, align = 'left') {
-  c.fillStyle=color; c.font=`${weight} ${size}px "Arial", sans-serif`; c.textAlign=align; c.fillText(value,x,y);
+// Each frame is an existing prototype screen. Coordinates match its clickable hotspots.
+const scenes = [
+  {file:'Log in', crop:[0,0,1280,720], from:[800,580], to:[290,500], end:3.8},
+  {file:'Onboarding (buyer-seller)', crop:[0,0,1280,720], from:[780,600], to:[590,650], end:7.6},
+  {file:'Onboarding (categories)', crop:[0,0,1280,720], from:[650,500], to:[590,630], end:11.4},
+  {file:'Onboarding (Media)', crop:[0,0,1280,720], from:[720,480], to:[650,640], end:14.5},
+  {file:'Onboarding (policy)', crop:[0,0,1280,720], from:[720,480], to:[650,590], end:17.6},
+  {file:'Discovery feed', crop:[0,0,1600,900], from:[800,650], to:[1160,450], end:22},
+  {file:'Search Result - no filters', crop:[0,0,1318,741], from:[650,600], to:[400,410], end:26},
+  {file:'Product Detail-1', crop:[0,0,1600,900], from:[650,650], to:[1040,630], end:30},
+  {file:'Contact Seller Pop-up', crop:[0,0,1600,900], from:[1040,630], to:[800,650], end:34}
+];
+const images=scenes.map(s=>{const i=new Image();i.src='/cmused/'+encodeURIComponent(s.file+'.jpg');return i;});
+const ease=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
+function draw(t){
+ let index=scenes.findIndex(s=>t<s.end); if(index<0)index=scenes.length-1;
+ const s=scenes[index], start=index?scenes[index-1].end:0, local=t-start, length=s.end-start;
+ const img=images[index], [x,y,w,h]=s.crop;
+ c.fillStyle='#fffbf6';c.fillRect(0,0,1600,900);
+ if(img.complete&&img.naturalWidth)c.drawImage(img,x,y,w,h,0,0,1600,900);
+ const p=ease((local-.6)/Math.max(.1,length-1.7));
+ const px=(s.from[0]+(s.to[0]-s.from[0])*p)*1600/w, py=(s.from[1]+(s.to[1]-s.from[1])*p)*900/h;
+ c.save();c.translate(px,py);c.shadowColor='#0005';c.shadowBlur=5;c.shadowOffsetY=2;
+ c.beginPath();c.moveTo(0,0);c.lineTo(0,30);c.lineTo(8,23);c.lineTo(14,35);c.lineTo(19,32);c.lineTo(13,20);c.lineTo(24,20);c.closePath();c.fillStyle='white';c.fill();c.lineWidth=2;c.strokeStyle='#222';c.stroke();c.restore();
 }
-function screen(img, x, y, w, h, zoom = 1) {
-  if (!img.complete || !img.naturalWidth) return;
-  c.save(); c.shadowColor='rgba(0,0,0,.65)'; c.shadowBlur=80; c.shadowOffsetY=26;
-  c.fillStyle='#171719'; c.beginPath(); c.roundRect(x-10,y-10,w+20,h+20,24); c.fill(); c.shadowColor='transparent';
-  c.beginPath(); c.roundRect(x,y,w,h,15); c.clip();
-  const scale = w/img.width*zoom; c.drawImage(img,x-(img.width*scale-w)/2,y,img.width*scale,img.height*scale);
-  c.restore();
-}
-function render(t) {
-  c.fillStyle='#090909'; c.fillRect(0,0,1920,1080);
-  let g=c.createRadialGradient(1350,420,10,1350,420,1000); g.addColorStop(0,'#28201d'); g.addColorStop(1,'#090909'); c.fillStyle=g; c.fillRect(0,0,1920,1080);
-  if(t<5.1) { c.globalAlpha=fade(t,0,5.1); text('A better way to',960,460,72,'#e7e4e0',500,'center'); text('do secondhand.',960,565,110,'#fff',700,'center'); c.globalAlpha=1; }
-  const scenes=[
-    {a:5.1,b:10.3, img:0, kicker:'DISCOVER', lines:['Your campus.', 'Your next find.'], sub:'Explore what’s already around you.'},
-    {a:10.3,b:15.2,img:1,kicker:'FIND',lines:['Find exactly', 'what you need.'],sub:'Search and filter campus listings.'},
-    {a:15.2,b:20.3,img:2,kicker:'CONNECT',lines:['A closer look.', 'A direct connection.'],sub:'Explore the details and contact the seller.'},
-    {a:20.3,b:25.5,img:5,kicker:'SELL',lines:['Make room for', 'what’s next.'],sub:'Give your things another chapter.'}
-  ];
-  for(const s of scenes) if(t>=s.a && t<s.b) {
-    const p=(t-s.a)/(s.b-s.a); c.globalAlpha=fade(t,s.a,s.b);
-    text(s.kicker,130,300,21,'#e77a75',700); text(s.lines[0],130,417,70); text(s.lines[1],130,506,70); text(s.sub,133,585,27,'#bcb5b1',400);
-    screen(images[s.img],850-30*p,120-12*p,1050+60*p,840,1.02); c.globalAlpha=1;
-  }
-  if(t>=25.5) { c.globalAlpha=fade(t,25.5,31.3); text('CMUsed',960,470,142,'#fff',700,'center'); text('Good finds. Right here.',960,557,36,'#c5bfbb',400,'center'); text('A MARKETPLACE FOR THE CMU COMMUNITY',960,670,19,'#e77a75',700,'center'); c.globalAlpha=1; }
-}
-async function start() {
- await Promise.all(images.map(i => i.decode().catch(()=>{})));
- const stream=canvas.captureStream(30);
- const audio=new AudioContext(), dest=audio.createMediaStreamDestination(), master=audio.createGain(); master.gain.value=.07; master.connect(dest);
- // A restrained, original ambient score.
- const notes=[130.81,164.81,196,261.63,146.83,174.61,220,293.66];
- for(let i=0;i<32;i++){const at=audio.currentTime+i*.95; const o=audio.createOscillator(), gain=audio.createGain(); o.type='sine'; o.frequency.value=notes[i%notes.length]; gain.gain.setValueAtTime(0,at); gain.gain.linearRampToValueAtTime(.23,at+.12); gain.gain.exponentialRampToValueAtTime(.001,at+2.3); o.connect(gain).connect(master); o.start(at); o.stop(at+2.4);}
- stream.addTrack(dest.stream.getAudioTracks()[0]);
- const recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9,opus',videoBitsPerSecond:6500000}); const chunks=[];
- recorder.ondataavailable=e=>{if(e.data.size) chunks.push(e.data)};
- recorder.onstop=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));a.download='cmused-demo.webm';a.click();document.title='RENDER COMPLETE';};
- recorder.start(); const start=performance.now(); function frame(now){const t=(now-start)/1000; render(t); if(t<duration) requestAnimationFrame(frame); else recorder.stop();} requestAnimationFrame(frame);
+async function start(){
+ await Promise.all(images.map(i=>i.decode().catch(()=>{})));
+ const stream=canvas.captureStream(30), recorder=new MediaRecorder(stream,{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:6500000}), chunks=[];
+ recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ recorder.onstop=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));a.download='cmused-journey.webm';a.click();document.title='RENDER COMPLETE';};
+ recorder.start();const start=performance.now();function frame(now){const t=(now-start)/1000;draw(t);if(t<34)requestAnimationFrame(frame);else recorder.stop()}requestAnimationFrame(frame);
 }
 start();
 </script>

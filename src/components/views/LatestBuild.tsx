@@ -29,9 +29,9 @@ export default function LatestBuild() {
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <div className="cmused-layout">
           <div className="cmused-preview">
-            <video className="cmused-film" controls playsInline preload="metadata" aria-label="CMUsed product film: discover, find, connect, and sell on campus">
-              <source src={`${import.meta.env.BASE_URL}cmused-demo.webm`} type="video/webm" />
-              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-demo.webm`}>Download the CMUsed film</a>.
+            <video className="cmused-film" controls playsInline preload="metadata" aria-label="CMUsed prototype journey from sign-in to contacting a seller">
+              <source src={`${import.meta.env.BASE_URL}cmused-journey.webm`} type="video/webm" />
+              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey.webm`}>Download the CMUsed demo</a>.
             </video>
             <CMUsedPrototype />
           </div>
