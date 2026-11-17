@@ -30,8 +30,8 @@ export default function LatestBuild() {
           <div className="cmused-layout">
           <div className="cmused-preview">
             <video className="cmused-film" controls playsInline preload="metadata" aria-label="CMUsed prototype journey from sign-in to contacting a seller">
-              <source src={`${import.meta.env.BASE_URL}cmused-journey.webm`} type="video/webm" />
-              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey.webm`}>Download the CMUsed demo</a>.
+              <source src={`${import.meta.env.BASE_URL}cmused-journey-v2.webm`} type="video/webm" />
+              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey-v2.webm`}>Download the CMUsed demo</a>.
             </video>
             <CMUsedPrototype />
           </div>
