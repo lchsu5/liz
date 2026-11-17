@@ -28,7 +28,13 @@ export default function LatestBuild() {
         <article className="proj cmused-project">
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <div className="cmused-layout">
-          <div className="cmused-preview"><CMUsedPrototype /></div>
+          <div className="cmused-preview">
+            <video className="cmused-film" controls playsInline preload="metadata" aria-label="CMUsed product film: discover, find, connect, and sell on campus">
+              <source src={`${import.meta.env.BASE_URL}cmused-demo.webm`} type="video/webm" />
+              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-demo.webm`}>Download the CMUsed film</a>.
+            </video>
+            <CMUsedPrototype />
+          </div>
           <div className="cmused-description">
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
           <div className="tabs" role="tablist" aria-label="CMUsed story">{cmusedStory.map((item, index) => <button type="button" key={item.label} ref={element => { cmusedTabs.current[index] = element; }} role="tab" id={`cmused-tab-${index}`} aria-selected={cmusedSelected === index} aria-controls={`cmused-story-${index}`} tabIndex={cmusedSelected === index ? 0 : -1} onClick={() => setCmusedSelected(index)} onKeyDown={event => {
