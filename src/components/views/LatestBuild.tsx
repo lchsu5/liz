@@ -1,4 +1,3 @@
-import CMUsedPrototype from "../CMUsedPrototype";
 import { useRef, useState } from "react";
 import "./LatestBuild.css";
 
@@ -29,11 +28,10 @@ export default function LatestBuild() {
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <div className="cmused-layout">
           <div className="cmused-preview">
-            <video className="cmused-film" controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}cmused/${encodeURIComponent("Log in.jpg")}`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
+            <video className="cmused-film" controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
               <source src={`${import.meta.env.BASE_URL}cmused-journey-v3.webm`} type="video/webm" />
               Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey-v3.webm`}>Download the CMUsed demo</a>.
             </video>
-            <CMUsedPrototype />
           </div>
           <div className="cmused-description">
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
