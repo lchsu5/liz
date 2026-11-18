@@ -1,7 +1,7 @@
 ﻿<!doctype html>
 <meta charset="utf-8">
 <title>CMUsed journey renderer</title>
-<canvas id="film" width="1600" height="900"></canvas>
+<canvas id="film" width="1280" height="720"></canvas>
 <script>
 const canvas=document.querySelector('canvas'), c=canvas.getContext('2d');
 // Source coordinates are measured against the supplied prototype screens.
@@ -19,6 +19,7 @@ const scenes=[
 const images=scenes.map(s=>{const i=new Image();i.src='/cmused/'+encodeURIComponent(s.file+'.jpg');return i});
 const ease=x=>{x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
 function draw(t){
+ c.setTransform(.8,0,0,.8,0,0);
  let index=scenes.findIndex(s=>t<s.end);if(index<0)index=scenes.length-1;
  const s=scenes[index], start=index?scenes[index-1].end:0, local=t-start, length=s.end-start;
  const img=images[index], [x,y,w,h]=s.crop, scale=Math.min(1600/w,900/h), dw=w*scale,dh=h*scale, left=(1600-dw)/2,top=(900-dh)/2;
@@ -31,9 +32,9 @@ function draw(t){
 }
 async function start(){
  await Promise.all(images.map(i=>i.decode().catch(()=>{})));
- const recorder=new MediaRecorder(canvas.captureStream(30),{mimeType:'video/webm;codecs=vp9',videoBitsPerSecond:6500000}),chunks=[];
+ const recorder=new MediaRecorder(canvas.captureStream(30),{mimeType:'video/webm;codecs=vp8',videoBitsPerSecond:2500000}),chunks=[];
  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
- recorder.onstop=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));a.download='cmused-journey-v2.webm';a.click();document.title='RENDER COMPLETE'};
+ recorder.onstop=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(chunks,{type:'video/webm'}));a.download='cmused-journey-v3.webm';a.click();document.title='RENDER COMPLETE'};
  recorder.start();const start=performance.now();function frame(now){const t=(now-start)/1000;draw(t);if(t<21.5)requestAnimationFrame(frame);else recorder.stop()}requestAnimationFrame(frame);
 }
 start();

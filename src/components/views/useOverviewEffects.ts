@@ -26,8 +26,7 @@ export function useOverviewEffects(root: RefObject<HTMLElement>) {
       div.className = "grp";
       for (const src of [...rotatingPhotos, ...rotatingPhotos]) {
         const img = document.createElement("img");
-        img.src = src; img.alt = ""; img.loading = "eager"; img.decoding = "async";
-        void img.decode().catch(() => {});
+        img.src = src; img.alt = ""; img.loading = group === 0 ? "eager" : "lazy"; img.decoding = "async";
         if (src === mainPhoto) {
           img.className = "strip-portrait";
           img.loading = "eager";
