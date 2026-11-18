@@ -58,7 +58,7 @@ export default function LatestBuild() {
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
           </div>
-          <div className="demo secondlook-preview"><video controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}secondlook-preview.png`} aria-label="SecondLook captioned product walkthrough: interactive examples of guided math review"><source src={`${import.meta.env.BASE_URL}secondlook-demo.webm`} type="video/webm" />Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}secondlook-demo.webm`}>Download the demo</a>.</video></div>
+          <div className="demo secondlook-preview"><video controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}secondlook-preview.png`} aria-label="SecondLook demo showing an incorrect factoring step, a guided hint, and the verified correction"><source src={`${import.meta.env.BASE_URL}secondlook-demo.webm`} type="video/webm" />Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}secondlook-demo.webm`}>Download the demo</a>.</video></div>
           </div>
         </article>
         </div>

@@ -1,4 +1,4 @@
-.past-reference{--past-bg:#ECEAE3;--past-text:#181817;--past-muted:#686860;--past-accent:#b53c59;--past-border:rgba(24,24,23,.16);background:var(--past-bg);color:var(--past-text);min-height:100vh;padding:0 20px 64px;font:400 14px/1.45 'Inter Tight',system-ui,sans-serif;color-scheme:light}
+.past-reference{--past-bg:#fff;--past-text:#181817;--past-muted:#686860;--past-accent:#b53c59;--past-border:rgba(24,24,23,.16);background:var(--past-bg);color:var(--past-text);min-height:100vh;padding:0 20px 64px;font:400 14px/1.45 'Inter Tight',system-ui,sans-serif;color-scheme:light}
 .past-reference *{box-sizing:border-box}
 .past-reference button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;text-align:left}
 .past-reference :focus-visible{outline:2px solid var(--past-accent);outline-offset:4px}

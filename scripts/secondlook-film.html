@@ -1,0 +1,157 @@
+﻿<!doctype html>
+<meta charset="utf-8">
+<title>SecondLook demo renderer</title>
+<style>body { margin: 0; background: #edf2f8; } canvas { display: block; width: 100vw; }</style>
+<canvas width="1600" height="900"></canvas>
+<script>
+const canvas = document.querySelector('canvas');
+const ctx = canvas.getContext('2d');
+const duration = 22;
+const ink = '#152437';
+const muted = '#50637a';
+const blue = '#006bdc';
+const red = '#a63326';
+const green = '#14703c';
+
+function box(x, y, width, height, fill, border = fill, radius = 16) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, width, height, radius);
+  ctx.fillStyle = fill;
+  ctx.fill();
+  ctx.strokeStyle = border;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+}
+
+function text(value, x, y, size, color = ink, weight = 400, family = 'Arial') {
+  ctx.fillStyle = color;
+  ctx.font = `${weight} ${size}px "${family}"`;
+  ctx.fillText(value, x, y);
+}
+
+function cursor(x, y, t) {
+  ctx.save();
+  ctx.translate(x, y);
+  if (t >= 13 && t < 13.45) {
+    const progress = (t - 13) / .45;
+    ctx.globalAlpha = 1 - progress;
+    ctx.beginPath();
+    ctx.arc(0, 0, 10 + progress * 27, 0, Math.PI * 2);
+    ctx.strokeStyle = blue;
+    ctx.lineWidth = 3;
+    ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, 29);
+  ctx.lineTo(8, 22);
+  ctx.lineTo(14, 34);
+  ctx.lineTo(19, 31);
+  ctx.lineTo(13, 19);
+  ctx.lineTo(25, 19);
+  ctx.closePath();
+  ctx.fillStyle = 'white';
+  ctx.fill();
+  ctx.strokeStyle = ink;
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function draw(t) {
+  const flagged = t >= 4;
+  const hint = t >= 7;
+  const corrected = t >= 13.2;
+  const resumed = t >= 17;
+  ctx.fillStyle = '#edf2f8';
+  ctx.fillRect(0, 0, 1600, 900);
+  text('SecondLook', 76, 86, 46, ink, 700);
+  text('Differential calculus', 1265, 82, 26, muted);
+
+  box(76, 125, 1448, 698, '#ffffff', '#ced9e7', 28);
+  text('Find the local extrema', 120, 195, 42, ink, 700);
+  text('f(x) = x³ − 6x² + 9x + 2', 120, 248, 35, ink, 600, 'Consolas');
+  text('01', 120, 333, 24, muted, 700);
+  text('Differentiate', 184, 326, 25, muted);
+  text('f′(x) = 3x² − 12x + 9', 184, 371, 36, ink, 600, 'Consolas');
+  text('02', 120, 442, 24, muted, 700);
+  text('Set the derivative equal to zero', 184, 435, 25, muted);
+  text('0 = 3(x² − 4x + 3)', 184, 480, 36, ink, 600, 'Consolas');
+
+  const accent = corrected ? green : flagged ? red : muted;
+  box(108, 523, 794, 139, corrected ? '#eaf7ee' : flagged ? '#fff1ed' : '#f4f7fb',
+    corrected ? '#a5d8b5' : flagged ? '#ecb1a6' : '#dbe4ee');
+  text('03', 126, 566, 24, accent, 700);
+  text('Factor the quadratic', 184, 561, 25, accent);
+  text(corrected ? 'Verified' : flagged ? 'Needs review' : '', corrected ? 770 : 720, 561, 25, accent, 700);
+  text(corrected ? '0 = 3(x − 3)(x − 1)' : '0 = 3(x − 3)(x + 1)', 184, 621, 39, ink, 700, 'Consolas');
+
+  if (resumed) {
+    text('04', 126, 720, 24, green, 700);
+    text('Continue with the corrected factors', 184, 714, 25, muted);
+    text('Critical points: x = 1 and x = 3', 184, 760, 32, ink, 600, 'Consolas');
+  } else if (flagged && !corrected) {
+    box(112, 704, 370, 67, blue);
+    text('Simulate student correction', 137, 746, 25, 'white', 700);
+  }
+
+  box(950, 290, 530, 482, '#f7f9fc', '#dbe4ee');
+  text('Reasoning feedback', 988, 354, 33, ink, 700);
+  if (corrected) {
+    text('Reasoning verified', 988, 430, 30, green, 700);
+    text('(x − 3)(x − 1) expands to', 988, 501, 30, ink);
+    text('x² − 4x + 3', 988, 550, 38, ink, 700, 'Consolas');
+    text('The factors match step 02.', 988, 619, 28, muted);
+    if (resumed) text('The student can keep solving.', 988, 676, 28, muted);
+  } else if (flagged) {
+    text('Take a second look at step 03', 988, 423, 29, red, 700);
+    text('(x − 3)(x + 1) expands to', 988, 476, 29, ink);
+    text('x² − 2x − 3', 988, 526, 37, ink, 700, 'Consolas');
+    if (hint) {
+      box(978, 573, 474, 157, '#eaf3ff');
+      text('A question to consider', 1000, 614, 25, blue, 700);
+      text('What two integers multiply', 1000, 659, 30, ink, 600);
+      text('to +3 and add to −4?', 1000, 701, 30, ink, 600);
+    }
+  } else {
+    text('Reviewing the student’s work…', 988, 428, 29, muted);
+  }
+
+  if (t >= 9 && !resumed) {
+    const progress = Math.max(0, Math.min(1, (t - 10) / 2.8));
+    const ease = progress * progress * (3 - 2 * progress);
+    cursor(1035 - 710 * ease, 696 + 39 * ease, t);
+  }
+}
+
+draw(0);
+
+window.recordFilm = () => new Promise((resolve, reject) => {
+  const stream = canvas.captureStream(30);
+  const recorder = new MediaRecorder(stream, {
+    mimeType: 'video/webm;codecs=vp9',
+    videoBitsPerSecond: 1800000,
+  });
+  const chunks = [];
+  recorder.ondataavailable = event => chunks.push(event.data);
+  recorder.onerror = event => reject(event.error);
+  recorder.onstop = () => {
+    stream.getTracks().forEach(track => track.stop());
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(new Blob(chunks, { type: 'video/webm' }));
+    link.download = 'secondlook-demo.webm';
+    link.click();
+    resolve();
+  };
+  recorder.start();
+  const start = performance.now();
+  function frame(now) {
+    const elapsed = (now - start) / 1000;
+    draw(elapsed);
+    if (elapsed < duration) requestAnimationFrame(frame);
+    else recorder.stop();
+  }
+  requestAnimationFrame(frame);
+});
+</script>
