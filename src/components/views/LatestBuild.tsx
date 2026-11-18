@@ -47,7 +47,6 @@ export default function LatestBuild() {
         </article>
         <article className="proj secondlook-project">
           <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
-          <div className="secondlook-layout">
           <div className="secondlook-description">
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
           <div className="tabs" role="tablist" aria-label="SecondLook story">{story.map((item, index) => <button type="button" key={item.label} ref={element => { tabs.current[index] = element; }} role="tab" id={`secondlook-tab-${index}`} aria-selected={selected === index} aria-controls={`secondlook-story-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => {
@@ -57,8 +56,6 @@ export default function LatestBuild() {
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`secondlook-story-${index}`} role="tabpanel" aria-labelledby={`secondlook-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
-          </div>
-          <div className="demo secondlook-preview"><video controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}secondlook-preview.png`} aria-label="SecondLook demo showing an incorrect factoring step, a guided hint, and the verified correction"><source src={`${import.meta.env.BASE_URL}secondlook-demo.webm`} type="video/webm" />Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}secondlook-demo.webm`}>Download the demo</a>.</video></div>
           </div>
         </article>
         </div>
