@@ -1,6 +1,5 @@
 import type { ViewKey } from "@/lib/navigation";
-import { useEffect, useState } from "react";
-import { LayoutGroup, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const items: { key: ViewKey; label: string }[] = [
   { key: "overview", label: "Overview" },
@@ -13,13 +12,13 @@ export default function ViewNavigation({ view, onNavigate }: {
   view: ViewKey;
   onNavigate: (view: ViewKey) => void;
 }) {
-  const reducedMotion = useReducedMotion();
+  const header = useRef<HTMLElement>(null);
   const [overHero, setOverHero] = useState(true);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (view !== "overview") return;
     const update = () => {
       const hero = document.getElementById("hero");
-      setOverHero(!hero || hero.getBoundingClientRect().bottom > 60);
+      setOverHero(!hero || hero.getBoundingClientRect().bottom > (header.current?.getBoundingClientRect().bottom ?? 0));
     };
     update();
     window.addEventListener("scroll", update, { passive: true });
@@ -38,16 +37,14 @@ export default function ViewNavigation({ view, onNavigate }: {
     })), 10000);
     return () => clearInterval(interval);
   }, []);
-  return <header className="view-navigation" data-theme={view === "overview" || view === "visionboard" ? "dark" : "light"} data-view={view} data-over-hero={overHero}>
+  return <header ref={header} className="view-navigation" data-theme={view === "overview" || view === "visionboard" ? "dark" : "light"} data-view={view} data-over-hero={overHero}>
     <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
-    <LayoutGroup id="primary-navigation"><nav aria-label="Primary">
+    <nav aria-label="Primary">
       {items.map(item => <button type="button" key={item.key}
         aria-current={view === item.key ? "page" : undefined}
         onClick={() => onNavigate(item.key)}>{item.label}
-        {view === item.key && <motion.span className="nav-underline" layoutId="active-tab" aria-hidden="true"
-          transition={{ duration: reducedMotion ? 0 : 0.45, ease: [0.7, 0, 0.3, 1] }} />}
       </button>)}
-    </nav></LayoutGroup>
+    </nav>
     <span className="location-time">Irvine, CA <span>{time}</span></span>
   </header>;
 }

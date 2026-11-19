@@ -149,8 +149,8 @@ export default function BeforeView() {
         <div className="past-role-list">
           {past.map((role, index) => {
             const open = openKey === role.company;
-            const panelId = `past-role-${past.indexOf(role)}`;
-            return <article key={role.company} className={`past-role ${open ? "is-open" : ""}`} style={{ animationDelay: `${index * 45}ms` }}>
+            const panelId = `past-role-${index}`;
+            return <article key={role.company} className={`past-role ${open ? "is-open" : ""}`}>
               <button type="button" className="past-role-trigger" aria-expanded={open} aria-controls={panelId} onClick={() => setOpenKey(open ? null : role.company)}>
                 <img className="past-role-logo" src={role.logo} alt="" loading={index > 2 ? "lazy" : undefined} />
                 <span className="past-role-copy"><span className="past-company">{role.company}</span><span className="past-title">{role.title}</span></span>

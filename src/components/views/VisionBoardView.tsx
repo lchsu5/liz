@@ -5,7 +5,7 @@ import "./VisionBoardView.css";
 
 // Add future boards here; each image gets a bookmark and a section on the page.
 const boards = [
-  { id: "board-2026-year", term: "2026 Year", image: visionBoard2026 },
+  { id: "board-2026-year", term: "2026 Year", image: visionBoard2026, width: 2400, height: 1396 },
   { id: "board-2026-summer", term: "2026 Summer", image: visionBoardSummer2026, width: 2400, height: 1210 },
   { id: "board-2026-fall", term: "2026 Fall", image: visionBoardFall2026, width: 6831, height: 3897 },
 ];
@@ -21,7 +21,7 @@ export default function VisionBoardView() {
       {boards.map((board, index) => <section key={board.id} id={board.id} className="future-section" aria-labelledby={`${board.id}-title`}>
         <h2 id={`${board.id}-title`}>{board.term}</h2>
         <div className="future-mat">
-          <img className="future-board" src={board.image} alt={`${board.term} Vision Board`} width={index > 0 ? board.width : undefined} height={index > 0 ? board.height : undefined} loading={index > 0 ? "lazy" : undefined} />
+          <img className="future-board" src={board.image} alt={`${board.term} Vision Board`} width={board.width} height={board.height} loading={index > 0 ? "lazy" : undefined} />
         </div>
       </section>)}
     </div>
