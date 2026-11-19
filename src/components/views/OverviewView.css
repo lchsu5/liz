@@ -58,7 +58,7 @@ button{font:inherit;text-transform:inherit;color:inherit;background:none;border:
 .experience-dates{flex:none;color:#686860;font:400 10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none;white-space:nowrap}
 .experience-notes{margin-top:6px;color:#686860;font-size:13px;font-weight:400;line-height:1.5;text-transform:none;overflow-wrap:anywhere}
 @media(max-width:700px){.experience-header{flex-direction:column;gap:4px}.experience-entry{gap:12px;padding:16px 0}.experience-copy h3{font-size:15px}.experience-title{font-size:13px}.experience-notes{font-size:12px}}
-.contact-links{padding-top:18px;display:grid;grid-template-columns:1.2fr 1fr 1.2fr;gap:24px}
+.contact-links{padding-top:18px;display:grid;grid-template-columns:1.2fr 1fr 1.2fr .5fr;gap:24px}
 .contact-link{display:flex;align-items:center;min-height:44px;min-width:0;transition:color .2s ease,transform .2s cubic-bezier(.2,.7,.2,1)}
 .contact-title{display:block;font-size:clamp(18px,2.2vw,36px);font-weight:500;letter-spacing:-.035em;line-height:1.2;overflow-wrap:anywhere}
 .contact-link:hover,.contact-link:focus-visible{color:#b53c59}
