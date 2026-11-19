@@ -38,7 +38,7 @@
 }
 .resume-view button:hover { background: #96354d; }
 .resume-view :focus-visible { outline: 2px solid #b53c59; outline-offset: 3px; }
-#resume-hint { margin-top: -10px; color: #686860; font-size: 13px; }
+.resume-status { margin-top: 16px; color: #686860; font-size: 13px; }
 
 @media (max-width: 600px) {
   .resume-view { padding-top: calc(116px + env(safe-area-inset-top, 0px)); }
