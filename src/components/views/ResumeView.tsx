@@ -1,4 +1,4 @@
-﻿import type { FormEvent } from "react";
+import type { FormEvent } from "react";
 import "./ResumeView.css";
 
 export default function ResumeView() {
@@ -7,12 +7,11 @@ export default function ResumeView() {
     const fields = new FormData(event.currentTarget);
     const context = String(fields.get("context")).trim();
     const body = [
-      "Hi Elizabeth, could you send me your resume?",
+      context ? `Someone requested your resume for ${context}.` : "Someone requested your resume.",
       `Email: ${fields.get("email")}`,
-      context && `Context: ${context}`,
     ].filter(Boolean).join("\r\n\r\n");
 
-    window.location.href = `mailto:lchsu@andrew.cmu.edu?subject=Resume%20request&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:lchsu@andrew.cmu.edu?subject=RESUME%20REQUEST&body=${encodeURIComponent(body)}`;
   };
 
   return (
