@@ -6,6 +6,11 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   base: "/liz/",
+  build: {
+    rollupOptions: {
+      input: [path.resolve(__dirname, "index.html"), path.resolve(__dirname, "resume/index.html")],
+    },
+  },
   server: {
     host: "::",
     port: 8080,

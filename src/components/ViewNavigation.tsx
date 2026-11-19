@@ -9,7 +9,7 @@ const items: { key: ViewKey; label: string }[] = [
 ];
 
 export default function ViewNavigation({ view, onNavigate }: {
-  view: ViewKey;
+  view: ViewKey | "resume";
   onNavigate: (view: ViewKey) => void;
 }) {
   const header = useRef<HTMLElement>(null);

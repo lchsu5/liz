@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -6,6 +6,7 @@ const App = () => (
   <BrowserRouter basename="/liz">
     <Routes>
       <Route path="/" element={<Index />} />
+      <Route path="/resume" element={<Index />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   </BrowserRouter>
