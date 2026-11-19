@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import "./LatestBuild.css";
 
 
@@ -16,6 +17,7 @@ const cmusedStory = [
 const cmusedStack = ["Product Strategy", "Product Management", "UI/UX", "GTM", "Firebase", "Firestore", "Algolia", "Expo", "React Native"];
 
 export default function LatestBuild() {
+  const reducedMotion = useReducedMotion();
   const [selected, setSelected] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const [cmusedSelected, setCmusedSelected] = useState(0);
@@ -28,10 +30,10 @@ export default function LatestBuild() {
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <div className="cmused-layout">
           <div className="cmused-preview">
-            <video className="cmused-film" controls playsInline preload="none" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
-              <source src={`${import.meta.env.BASE_URL}cmused-journey-v3.webm`} type="video/webm" />
-              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey-v3.webm`}>Download the CMUsed demo</a>.
-            </video>
+            {reducedMotion ? <img className="cmused-film" src={`${import.meta.env.BASE_URL}cmused-preview.jpg`} alt="CMUsed sign-in screen" /> : <video className="cmused-film" autoPlay muted loop playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
+              <source src={`${import.meta.env.BASE_URL}cmused-journey-v4.webm`} type="video/webm" />
+              Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey-v4.webm`}>Download the CMUsed demo</a>.
+            </video>}
           </div>
           <div className="cmused-description">
           <h2>A campus-exclusive marketplace making secondhand buying and selling easier, safer, and more accessible.</h2>
