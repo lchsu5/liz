@@ -1,9 +1,10 @@
 ﻿.resume-view {
   display: grid;
-  grid-template-columns: 140px minmax(0, 640px);
+  grid-template-columns: minmax(0, 480px);
+  justify-content: center;
   align-content: start;
   align-items: start;
-  gap: 16px;
+  gap: 28px;
   min-height: calc(100dvh - 66px);
   padding: calc(144px + env(safe-area-inset-top, 0px)) 20px 64px;
   background: #fff;
@@ -17,6 +18,7 @@
   margin: 0;
   color: #686860;
   font: inherit;
+  text-align: center;
   text-transform: uppercase;
 }
 
@@ -52,7 +54,7 @@
 .resume-view textarea::placeholder { color: #686860; opacity: 1; }
 .resume-pdf-link {
   grid-column: 1 / -1;
-  justify-self: start;
+  justify-self: center;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -73,20 +75,18 @@
 .resume-view :focus-visible { outline: 1px solid #b53c59; outline-offset: 4px; }
 
 .resume-view > p {
-  grid-column: 2;
   margin: 0;
   color: #686860;
   font-size: 13px;
+  text-align: center;
 }
 .resume-view > [role="alert"] { color: #b53c59; }
 
 @media (max-width: 700px) {
   .resume-view {
-    grid-template-columns: minmax(0, 640px);
     padding-top: calc(132px + env(safe-area-inset-top, 0px));
     padding-bottom: 48px;
   }
-  .resume-view > p { grid-column: 1; }
 }
 
 @media (max-width: 600px) {
