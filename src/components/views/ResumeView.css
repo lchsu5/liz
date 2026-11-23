@@ -24,6 +24,7 @@
   font: 400 16px/1.5 'Inter Tight', system-ui, sans-serif;
 }
 .resume-view textarea { resize: vertical; }
+.resume-view textarea::placeholder { color: #686860; opacity: 1; }
 .resume-view button {
   justify-self: center;
   min-height: 44px;

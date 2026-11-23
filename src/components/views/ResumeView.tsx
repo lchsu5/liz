@@ -6,21 +6,20 @@ export default function ResumeView() {
   return (
     <main className="resume-view" aria-labelledby="resume-heading">
       <h1 id="resume-heading">Resume</h1>
-      <p>Fill out this form to open my resume as a PDF. Your responses will be emailed to me.</p>
       <form action="https://formsubmit.co/lchsu@andrew.cmu.edu" method="post">
         <input type="hidden" name="_subject" value="RESUME REQUEST" />
         <input type="hidden" name="_next" value={resumeUrl} />
         <label>
-          Name (required)
+          <span>Name <span title="*Required" aria-hidden="true">*</span></span>
           <input name="name" type="text" autoComplete="name" required />
         </label>
         <label>
-          Email (required)
+          <span>Email <span title="*Required" aria-hidden="true">*</span></span>
           <input name="email" type="email" autoComplete="email" required />
         </label>
         <label>
-          Why do you need my resume? (required)
-          <textarea name="message" rows={4} required />
+          <span>Why do you need my resume? <span title="*Required" aria-hidden="true">*</span></span>
+          <textarea name="message" rows={4} placeholder="A role, project, event…" required />
         </label>
         <button type="submit">Open resume PDF</button>
       </form>
