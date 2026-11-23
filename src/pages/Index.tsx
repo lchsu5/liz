@@ -40,7 +40,7 @@ const Index = () => {
     <div className="view-panel">{isResume ? <ResumeView /> : renderView()}</div>
     <footer className="site-footer">
       <span>©2026</span>
-      <a href="mailto:lchsu@andrew.cmu.edu">CONTACT: LCHSU@ANDREW.CMU.EDU</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lchsu%40andrew.cmu.edu" target="_blank" rel="noopener noreferrer">CONTACT: LCHSU@ANDREW.CMU.EDU</a>
     </footer>
   </div>;
 };
