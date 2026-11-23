@@ -30,7 +30,7 @@ export default function LatestBuild() {
           <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
           <div className="cmused-layout">
           <div className="cmused-preview">
-            {reducedMotion ? <img className="cmused-film" src={`${import.meta.env.BASE_URL}cmused-preview.jpg`} alt="CMUsed sign-in screen" /> : <video className="cmused-film" autoPlay muted loop playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
+            {reducedMotion ? <img className="project-film" src={`${import.meta.env.BASE_URL}cmused-preview.jpg`} alt="CMUsed sign-in screen" /> : <video className="project-film" autoPlay muted loop playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
               <source src={`${import.meta.env.BASE_URL}cmused-journey-v4.webm`} type="video/webm" />
               Your browser does not support embedded video. <a href={`${import.meta.env.BASE_URL}cmused-journey-v4.webm`}>Download the CMUsed demo</a>.
             </video>}
@@ -49,6 +49,7 @@ export default function LatestBuild() {
         </article>
         <article className="proj secondlook-project">
           <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
+          <div className="secondlook-layout">
           <div className="secondlook-description">
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
           <div className="tabs" role="tablist" aria-label="SecondLook story">{story.map((item, index) => <button type="button" key={item.label} ref={element => { tabs.current[index] = element; }} role="tab" id={`secondlook-tab-${index}`} aria-selected={selected === index} aria-controls={`secondlook-story-${index}`} tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => {
@@ -58,6 +59,11 @@ export default function LatestBuild() {
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`secondlook-story-${index}`} role="tabpanel" aria-labelledby={`secondlook-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
+          </div>
+          <picture className="secondlook-preview">
+            <source media="(prefers-reduced-motion: reduce)" srcSet={`${import.meta.env.BASE_URL}secondlook-preview.jpg`} />
+            <img className="project-film" src={`${import.meta.env.BASE_URL}secondlook-demo.gif`} alt="SecondLook demo of its real-time STEM tutoring interface" loading="lazy" />
+          </picture>
           </div>
         </article>
         </div>
