@@ -60,7 +60,10 @@ export default function OverviewView() {
   <div id="ph"><img id="imgP" alt="Elizabeth Hsu" src={pinkWallPhoto} /><div id="ov"></div><div className="hero-photo-trail" aria-hidden="true"></div></div>
   <div className="strip" id="strip"><div className="tr" id="tr2"></div></div>
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
-  <div id="hs">Business + AI @ Carnegie Mellon</div>
+  <div className="hero-caption">
+    <div>Business + AI @ Carnegie Mellon</div>
+    <p className="hero-opportunities">Currently searching for Summer 2027 opportunities across PM, AI, Business, and Sales roles.</p>
+  </div>
 </div></section>
 
 <section id="contact" className="overview-section" aria-labelledby="contact-heading">
@@ -73,6 +76,8 @@ export default function OverviewView() {
   </div>
   </div>
 </section>
+
+<LatestBuild />
 
 <section id="experience" className="overview-section" aria-labelledby="experience-heading">
   <div className="overview-section-inner">
@@ -93,15 +98,5 @@ export default function OverviewView() {
     </div>
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-<LatestBuild />
 </main>;
 }
