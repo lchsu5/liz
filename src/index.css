@@ -53,17 +53,15 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: calc(6px + env(safe-area-inset-top, 0px)) 20px 6px;
+  padding: calc(2px + env(safe-area-inset-top, 0px)) 20px 2px;
   background: #fff;
   color: #181817;
   font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
   text-transform: uppercase;
-  transition: transform 220ms ease;
 }
 
 .view-navigation[data-theme="dark"] { background: #1a1a1a; color: #eeebe4; }
 .view-navigation[data-view="overview"][data-at-top="true"] { background: transparent; color: #fff; }
-.view-navigation[data-hidden="true"]:not(:has(:focus-visible)) { transform: translateY(-100%); pointer-events: none; }
 .view-navigation nav { display: flex; gap: 26px; }
 .view-navigation button {
   position: relative;
@@ -74,7 +72,7 @@
   font: inherit;
   text-transform: inherit;
   cursor: pointer;
-  min-height: 44px;
+  min-height: 36px;
   transition: color 200ms ease, transform 180ms cubic-bezier(.2,.7,.2,1);
 }
 .view-navigation .site-name.site-name { align-self: center; }
@@ -93,6 +91,7 @@
 
 @media (max-width: 600px) {
   .view-navigation { flex-wrap: wrap; gap: 0 14px; padding-top: env(safe-area-inset-top, 0px); padding-bottom: 0; }
+  .view-navigation .site-name { min-height: 28px; }
   .view-navigation .location-time { margin-left: auto; }
   .view-navigation nav { order: 1; width: 100%; justify-content: space-between; gap: clamp(6px, 2vw, 14px); }
 }
@@ -100,7 +99,6 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
   .view-panel { animation: none; }
-  .view-navigation { transition: none; }
   .view-navigation button { transition: none; }
   .view-navigation button:active { transform: none; }
 }

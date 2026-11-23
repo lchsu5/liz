@@ -15,27 +15,10 @@ export default function ViewNavigation({ view, onNavigate }: {
   view: NavigationView;
   onNavigate: (view: NavigationView) => void;
 }) {
-  const [{ hidden, atTop }, setScrollState] = useState({ hidden: false, atTop: true });
+  const [atTop, setAtTop] = useState(true);
   useLayoutEffect(() => {
-    const scrollPosition = () => Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
-    let anchor = scrollPosition();
-    let hidden = false;
-    let atTop = anchor <= 8;
-    setScrollState({ hidden, atTop });
-
-    const update = () => {
-      const position = scrollPosition();
-      const nextAtTop = position <= 8;
-      const nextHidden = !nextAtTop && (hidden ? anchor - position < 12 : position - anchor >= 24);
-      if (nextHidden !== hidden || nextAtTop) anchor = position;
-      else anchor = hidden ? Math.max(anchor, position) : Math.min(anchor, position);
-
-      if (nextHidden !== hidden || nextAtTop !== atTop) {
-        hidden = nextHidden;
-        atTop = nextAtTop;
-        setScrollState({ hidden, atTop });
-      }
-    };
+    const update = () => setAtTop(window.scrollY <= 8);
+    update();
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, [view]);
@@ -48,7 +31,7 @@ export default function ViewNavigation({ view, onNavigate }: {
     })), 10000);
     return () => clearInterval(interval);
   }, []);
-  return <header className="view-navigation" data-theme={view === "visionboard" ? "dark" : "light"} data-view={view} data-at-top={atTop} data-hidden={hidden}>
+  return <header className="view-navigation" data-theme={view === "visionboard" ? "dark" : "light"} data-view={view} data-at-top={atTop}>
     <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
     <nav aria-label="Primary">
       {items.map(item => <button type="button" key={item.key}
