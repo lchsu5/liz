@@ -6,7 +6,7 @@ export default function ResumeView() {
   return (
     <main className="resume-view" aria-labelledby="resume-heading">
       <h1 id="resume-heading">Resume</h1>
-      <a className="resume-pdf-link" href={resumeUrl}>Open resume PDF</a>
+      <a className="resume-pdf-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume PDF</a>
     </main>
   );
 }
