@@ -17,9 +17,13 @@ const Index = () => {
   const isResume = pathname.startsWith("/resume");
   const activeView = isResume ? "resume" : view;
 
-  const navigate = (next: ViewKey) => {
-    if (!isResume && next === view) return;
+  const navigate = (next: ViewKey | "resume") => {
+    if (next === activeView) return;
     window.scrollTo({ top: 0, behavior: "instant" });
+    if (next === "resume") {
+      navigateTo("/resume");
+      return;
+    }
     setView(next);
     if (isResume) navigateTo("/");
   };

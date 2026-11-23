@@ -70,7 +70,6 @@ export default function OverviewView() {
     <a className="contact-link" href="https://mail.google.com/mail/?view=cm&fs=1&to=lchsu%40andrew.cmu.edu" target="_blank" rel="noopener noreferrer" aria-label="LCHSU@ANDREW.CMU.EDU"><span className="contact-title" aria-hidden="true">LCHSU@ANDREW.CMU.EDU</span></a>
     <a className="contact-link" href="https://linkedin.com/in/lizhhsu" target="_blank" rel="noopener noreferrer" aria-label="LINKEDIN / LIZHHSU"><span className="contact-title" aria-hidden="true">LINKEDIN / LIZHHSU</span></a>
     <a className="contact-link" href="https://elizabeth-hsu-portfolio.lovable.app/" target="_blank" rel="noopener noreferrer" aria-label="AMBASSADOR PORTFOLIO"><span className="contact-title" aria-hidden="true">AMBASSADOR PORTFOLIO</span></a>
-    <a className="contact-link" href={`${import.meta.env.BASE_URL}resume/`}><span className="contact-title">Resume</span></a>
   </div>
   </div>
 </section>

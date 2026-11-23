@@ -1,37 +1,28 @@
-﻿import type { FormEvent } from "react";
-import { useLocation } from "react-router-dom";
-import "./ResumeView.css";
+﻿import "./ResumeView.css";
 
 export default function ResumeView() {
-  const { search } = useLocation();
-  const submitted = new URLSearchParams(search).get("submitted") === "1";
-
-  const prepareRequest = (event: FormEvent<HTMLFormElement>) => {
-    const form = event.currentTarget;
-    const context = (form.elements.namedItem("resume-context") as HTMLTextAreaElement).value.trim();
-    (form.elements.namedItem("message") as HTMLInputElement).value = context
-      ? `Someone requested your resume for ${context}.`
-      : "Someone requested your resume.";
-  };
+  const resumeUrl = new URL(`${import.meta.env.BASE_URL}Elizabeth_Hsu_Resume.pdf`, window.location.origin).href;
 
   return (
     <main className="resume-view" aria-labelledby="resume-heading">
       <h1 id="resume-heading">Resume</h1>
-      <p>Drop your email and I'll send it to you.</p>
-      {submitted && <p className="resume-status" role="status">Thanks for requesting my resume.</p>}
-      <form action="https://formsubmit.co/lchsu@andrew.cmu.edu" method="post" onSubmit={prepareRequest}>
+      <p>Fill out this form to open my resume as a PDF. Your responses will be emailed to me.</p>
+      <form action="https://formsubmit.co/lchsu@andrew.cmu.edu" method="post">
         <input type="hidden" name="_subject" value="RESUME REQUEST" />
-        <input type="hidden" name="_next" value={new URL(`${import.meta.env.BASE_URL}resume/?submitted=1`, window.location.origin).href} />
-        <input type="hidden" name="message" defaultValue="Someone requested your resume." />
+        <input type="hidden" name="_next" value={resumeUrl} />
+        <label>
+          Name (required)
+          <input name="name" type="text" autoComplete="name" required />
+        </label>
         <label>
           Email (required)
           <input name="email" type="email" autoComplete="email" required />
         </label>
         <label>
-          Context
-          <textarea id="resume-context" rows={4} />
+          Why do you need my resume? (required)
+          <textarea name="message" rows={4} required />
         </label>
-        <button type="submit">Send me the resume</button>
+        <button type="submit">Open resume PDF</button>
       </form>
     </main>
   );

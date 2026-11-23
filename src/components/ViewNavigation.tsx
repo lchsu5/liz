@@ -1,16 +1,19 @@
 import type { ViewKey } from "@/lib/navigation";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const items: { key: ViewKey; label: string }[] = [
+type NavigationView = ViewKey | "resume";
+
+const items: { key: NavigationView; label: string }[] = [
   { key: "overview", label: "Overview" },
   { key: "present", label: "Present" },
   { key: "past", label: "Past" },
   { key: "visionboard", label: "Future" },
+  { key: "resume", label: "Resume" },
 ];
 
 export default function ViewNavigation({ view, onNavigate }: {
-  view: ViewKey | "resume";
-  onNavigate: (view: ViewKey) => void;
+  view: NavigationView;
+  onNavigate: (view: NavigationView) => void;
 }) {
   const header = useRef<HTMLElement>(null);
   const [overHero, setOverHero] = useState(true);
