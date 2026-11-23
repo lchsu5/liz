@@ -3,9 +3,23 @@ import "./ResumeView.css";
 
 const requestEndpoint = "https://script.google.com/macros/s/AKfycbxgROJv8-aqhFkHiVzP2LSL9wBYA12rsxo2T04aujKjD_NV2r9ElMLzKp61Ab3w1ZXmXg/exec";
 
+function getFieldErrors(form: HTMLFormElement) {
+  const name = form.elements.namedItem("name") as HTMLInputElement;
+  const email = form.elements.namedItem("email") as HTMLInputElement;
+  const reason = form.elements.namedItem("reason") as HTMLTextAreaElement;
+
+  return {
+    name: name.value.trim() ? undefined : "Enter your name.",
+    email: email.validity.valueMissing ? "Enter your email address."
+      : email.validity.valid ? undefined : "Enter a valid email address.",
+    reason: reason.value.trim() ? undefined : "Tell me why you need my resume.",
+  };
+}
+
 export default function ResumeView() {
   const resumeUrl = new URL(`${import.meta.env.BASE_URL}Elizabeth_Hsu_Resume.pdf`, window.location.origin).href;
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [errors, setErrors] = useState<ReturnType<typeof getFieldErrors>>();
   const pending = useRef(false);
 
   async function submitRequest(event: FormEvent<HTMLFormElement>) {
@@ -13,11 +27,16 @@ export default function ResumeView() {
     if (pending.current || status === "saved") return;
 
     const form = event.currentTarget;
-    const reason = form.elements.namedItem("reason") as HTMLTextAreaElement;
-    reason.value = reason.value.trim();
-    if (!form.reportValidity()) return;
+    const fieldErrors = getFieldErrors(form);
+    setErrors(fieldErrors);
+    const firstInvalid = Object.entries(fieldErrors).find(([, message]) => message);
+    if (firstInvalid) {
+      (form.elements.namedItem(firstInvalid[0]) as HTMLElement).focus();
+      return;
+    }
 
     const fields = new FormData(form);
+    const reason = String(fields.get("reason")).trim();
     const tab = window.open("about:blank", "_blank");
     if (tab) tab.opener = null;
     pending.current = true;
@@ -31,8 +50,8 @@ export default function ResumeView() {
           requestId: crypto.randomUUID(),
           name: fields.get("name"),
           email: fields.get("email"),
-          reason: reason.value,
-          message: reason.value,
+          reason,
+          message: reason,
         }),
         signal: AbortSignal.timeout(25000),
       });
@@ -53,18 +72,26 @@ export default function ResumeView() {
   return (
     <main className="resume-view" aria-labelledby="resume-heading">
       <h1 id="resume-heading">Resume</h1>
-      <form method="post" onSubmit={submitRequest}>
+      <form method="post" noValidate onSubmit={submitRequest} onInput={event => {
+        if (errors) setErrors(getFieldErrors(event.currentTarget));
+      }}>
         <label>
-          <span>Name</span>
-          <input name="name" type="text" autoComplete="name" maxLength={120} pattern=".*\S.*" required />
+          <span id="resume-name-label">Name</span>
+          <input name="name" type="text" autoComplete="name" maxLength={120} required
+            aria-labelledby="resume-name-label" aria-invalid={!!errors?.name} aria-describedby={errors?.name ? "resume-name-error" : undefined} />
+          {errors?.name && <span className="resume-field-error" id="resume-name-error">{errors.name}</span>}
         </label>
         <label>
-          <span>Email</span>
-          <input name="email" type="email" autoComplete="email" maxLength={254} pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required />
+          <span id="resume-email-label">Email</span>
+          <input name="email" type="email" autoComplete="email" maxLength={254} pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required
+            aria-labelledby="resume-email-label" aria-invalid={!!errors?.email} aria-describedby={errors?.email ? "resume-email-error" : undefined} />
+          {errors?.email && <span className="resume-field-error" id="resume-email-error">{errors.email}</span>}
         </label>
         <label>
-          <span>Why do you need my resume?</span>
-          <textarea name="reason" rows={4} maxLength={2000} placeholder="A role, project, event…" required />
+          <span id="resume-reason-label">Why do you need my resume?</span>
+          <textarea name="reason" rows={4} maxLength={2000} placeholder="A role, project, event…" required
+            aria-labelledby="resume-reason-label" aria-invalid={!!errors?.reason} aria-describedby={errors?.reason ? "resume-reason-error" : undefined} />
+          {errors?.reason && <span className="resume-field-error" id="resume-reason-error">{errors.reason}</span>}
         </label>
         {status === "saved" ? (
           <a className="resume-pdf-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume PDF</a>
