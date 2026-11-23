@@ -74,11 +74,11 @@ export default function ResumeView() {
       <main className="resume-view" aria-labelledby="resume-saved">
         <div className="resume-confirmation">
           <h1 id="resume-saved" role="status">Request saved</h1>
-          {showPdfLink && <a href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume PDF</a>}
+          {showPdfLink && <a href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume</a>}
           <button type="button" onClick={() => {
             setErrors(undefined);
             setStatus("idle");
-          }}>Resubmit the form</button>
+          }}>Resubmit form</button>
         </div>
       </main>
     );
@@ -109,7 +109,7 @@ export default function ResumeView() {
           {errors?.reason && <span className="resume-field-error" id="resume-reason-error">{errors.reason}</span>}
         </label>
         <button className="resume-pdf-link" disabled={status === "saving"} type="submit">
-          {status === "saving" ? "Saving request…" : "Open resume PDF"}
+          {status === "saving" ? "Saving request…" : "Open resume"}
         </button>
       </form>
       {status === "error" && <p role="alert">Couldn’t confirm your request was saved. Please try again.</p>}
