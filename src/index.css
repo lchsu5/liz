@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: calc(18px + env(safe-area-inset-top, 0px)) 20px 18px;
+  padding: calc(6px + env(safe-area-inset-top, 0px)) 20px 6px;
   background: #fff;
   color: #181817;
   font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
@@ -92,7 +92,7 @@
 .view-navigation button:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
 
 @media (max-width: 600px) {
-  .view-navigation { flex-wrap: wrap; gap: 0 14px; padding-top: calc(8px + env(safe-area-inset-top, 0px)); padding-bottom: 8px; }
+  .view-navigation { flex-wrap: wrap; gap: 0 14px; padding-top: env(safe-area-inset-top, 0px); padding-bottom: 0; }
   .view-navigation .location-time { margin-left: auto; }
   .view-navigation nav { order: 1; width: 100%; justify-content: space-between; gap: clamp(6px, 2vw, 14px); }
 }
