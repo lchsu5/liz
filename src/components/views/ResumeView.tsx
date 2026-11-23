@@ -55,15 +55,15 @@ export default function ResumeView() {
       <h1 id="resume-heading">Resume</h1>
       <form method="post" onSubmit={submitRequest}>
         <label>
-          <span>Name <span title="*Required" aria-hidden="true">*</span></span>
+          <span>Name</span>
           <input name="name" type="text" autoComplete="name" maxLength={120} pattern=".*\S.*" required />
         </label>
         <label>
-          <span>Email <span title="*Required" aria-hidden="true">*</span></span>
+          <span>Email</span>
           <input name="email" type="email" autoComplete="email" maxLength={254} pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required />
         </label>
         <label>
-          <span>Why do you need my resume? <span title="*Required" aria-hidden="true">*</span></span>
+          <span>Why do you need my resume?</span>
           <textarea name="reason" rows={4} maxLength={2000} placeholder="A role, project, event…" required />
         </label>
         {status === "saved" ? (

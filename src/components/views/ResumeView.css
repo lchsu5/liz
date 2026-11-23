@@ -1,48 +1,95 @@
-.resume-view {
+﻿.resume-view {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 640px);
+  align-content: start;
+  align-items: start;
+  gap: 16px;
   min-height: calc(100dvh - 66px);
-  padding: calc(96px + env(safe-area-inset-top, 0px)) 20px 40px;
+  padding: calc(144px + env(safe-area-inset-top, 0px)) 20px 64px;
+  background: #fff;
   color: #181817;
-  text-align: center;
-  font: 400 16px/1.45 'Inter Tight', system-ui, sans-serif;
+  color-scheme: light;
+  font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 .resume-view h1 {
-  margin-bottom: 8px;
-  font: 500 clamp(26px, 4vw, 48px)/1.15 'Inter Tight', system-ui, sans-serif;
-  letter-spacing: -.035em;
+  margin: 0;
+  color: #686860;
+  font: inherit;
   text-transform: uppercase;
 }
 
-.resume-view form { display: grid; gap: 20px; width: min(100%, 480px); margin: 24px auto 0; }
-.resume-view label { display: grid; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase; }
-.resume-view input, .resume-view textarea {
+.resume-view form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgb(24 24 23 / .16);
+}
+
+.resume-view label {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.resume-view label:last-of-type { grid-column: 1 / -1; }
+
+.resume-view input,
+.resume-view textarea {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid rgba(24, 24, 23, .25);
+  border: 1px solid rgb(24 24 23 / .16);
   border-radius: 4px;
   background: #fff;
-  font: 400 16px/1.5 'Inter Tight', system-ui, sans-serif;
+  color: #181817;
+  font: 400 16px/1.45 'Inter Tight', system-ui, sans-serif;
 }
+
 .resume-view textarea { resize: vertical; }
 .resume-view textarea::placeholder { color: #686860; opacity: 1; }
 .resume-pdf-link {
-  justify-self: center;
+  grid-column: 1 / -1;
+  justify-self: start;
   display: inline-flex;
   align-items: center;
   min-height: 44px;
   padding: 8px 14px;
-  border: 1px solid transparent;
-  background: #b53c59;
-  color: #fff;
+  border: 1px solid rgb(24 24 23 / .16);
   border-radius: 4px;
-  font-size: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
+  background: #fff;
+  color: #b53c59;
+  font: inherit;
+  letter-spacing: .06em;
   text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
 }
-.resume-pdf-link:hover { background: #96354d; }
-.resume-view :focus-visible { outline: 2px solid #b53c59; outline-offset: 3px; }
+
+.resume-pdf-link:hover:not(:disabled) { border-color: #b53c59; }
+.resume-pdf-link:disabled { color: #686860; cursor: wait; }
+.resume-view :focus-visible { outline: 1px solid #b53c59; outline-offset: 4px; }
+
+.resume-view > p {
+  grid-column: 2;
+  margin: 0;
+  color: #686860;
+  font-size: 13px;
+}
+.resume-view > [role="alert"] { color: #b53c59; }
+
+@media (max-width: 700px) {
+  .resume-view {
+    grid-template-columns: minmax(0, 640px);
+    padding-top: calc(132px + env(safe-area-inset-top, 0px));
+    padding-bottom: 48px;
+  }
+  .resume-view > p { grid-column: 1; }
+}
 
 @media (max-width: 600px) {
-  .resume-view { padding-top: calc(116px + env(safe-area-inset-top, 0px)); }
+  .resume-view { padding-top: calc(152px + env(safe-area-inset-top, 0px)); }
+  .resume-view form { grid-template-columns: 1fr; gap: 18px; }
 }
