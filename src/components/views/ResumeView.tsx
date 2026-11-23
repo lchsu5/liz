@@ -92,13 +92,13 @@ export default function ResumeView() {
       }}>
         <label>
           <span id="resume-name-label">Name</span>
-          <input name="name" type="text" autoComplete="name" maxLength={120} required
+          <input name="name" type="text" autoComplete="name" maxLength={120} placeholder="Liz Hsu" required
             aria-labelledby="resume-name-label" aria-invalid={!!errors?.name} aria-describedby={errors?.name ? "resume-name-error" : undefined} />
           {errors?.name && <span className="resume-field-error" id="resume-name-error">{errors.name}</span>}
         </label>
         <label>
           <span id="resume-email-label">Email</span>
-          <input name="email" type="email" autoComplete="email" maxLength={254} pattern="[^\s@]+@[^\s@]+\.[^\s@]+" required
+          <input name="email" type="email" autoComplete="email" maxLength={254} pattern="[^\s@]+@[^\s@]+\.[^\s@]+" placeholder="lchsu@andrew.cmu.edu" required
             aria-labelledby="resume-email-label" aria-invalid={!!errors?.email} aria-describedby={errors?.email ? "resume-email-error" : undefined} />
           {errors?.email && <span className="resume-field-error" id="resume-email-error">{errors.email}</span>}
         </label>

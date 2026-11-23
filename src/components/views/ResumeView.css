@@ -53,7 +53,9 @@
 }
 
 .resume-view textarea { resize: vertical; }
+.resume-view input::placeholder,
 .resume-view textarea::placeholder { color: #686860; opacity: 1; }
+.resume-view textarea::placeholder { font-size: 13px; }
 .resume-view [aria-invalid="true"] { border-color: #b53c59; }
 .resume-field-error { color: #b53c59; font-size: 12px; font-weight: 400; }
 .resume-pdf-link {
