@@ -1,5 +1,5 @@
 import type { ViewKey } from "@/lib/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 type NavigationView = ViewKey | "resume";
 
@@ -15,21 +15,29 @@ export default function ViewNavigation({ view, onNavigate }: {
   view: NavigationView;
   onNavigate: (view: NavigationView) => void;
 }) {
-  const header = useRef<HTMLElement>(null);
-  const [overHero, setOverHero] = useState(true);
+  const [{ hidden, atTop }, setScrollState] = useState({ hidden: false, atTop: true });
   useLayoutEffect(() => {
-    if (view !== "overview") return;
+    const scrollPosition = () => Math.max(0, Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight));
+    let anchor = scrollPosition();
+    let hidden = false;
+    let atTop = anchor <= 8;
+    setScrollState({ hidden, atTop });
+
     const update = () => {
-      const hero = document.getElementById("hero");
-      setOverHero(!hero || hero.getBoundingClientRect().bottom > (header.current?.getBoundingClientRect().bottom ?? 0));
+      const position = scrollPosition();
+      const nextAtTop = position <= 8;
+      const nextHidden = !nextAtTop && (hidden ? anchor - position < 12 : position - anchor >= 24);
+      if (nextHidden !== hidden || nextAtTop) anchor = position;
+      else anchor = hidden ? Math.max(anchor, position) : Math.min(anchor, position);
+
+      if (nextHidden !== hidden || nextAtTop !== atTop) {
+        hidden = nextHidden;
+        atTop = nextAtTop;
+        setScrollState({ hidden, atTop });
+      }
     };
-    update();
     window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
+    return () => window.removeEventListener("scroll", update);
   }, [view]);
   const [time, setTime] = useState(() => new Date().toLocaleTimeString("en-US", {
     timeZone: "America/Los_Angeles", hour: "numeric", minute: "2-digit",
@@ -40,7 +48,7 @@ export default function ViewNavigation({ view, onNavigate }: {
     })), 10000);
     return () => clearInterval(interval);
   }, []);
-  return <header ref={header} className="view-navigation" data-theme={view === "overview" || view === "visionboard" ? "dark" : "light"} data-view={view} data-over-hero={overHero}>
+  return <header className="view-navigation" data-theme={view === "visionboard" ? "dark" : "light"} data-view={view} data-at-top={atTop} data-hidden={hidden}>
     <button type="button" className="site-name" onClick={() => onNavigate("overview")}>Elizabeth Hsu</button>
     <nav aria-label="Primary">
       {items.map(item => <button type="button" key={item.key}

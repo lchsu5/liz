@@ -57,11 +57,12 @@
   color: #181817;
   font: 500 12px/1.45 'Inter Tight', system-ui, sans-serif;
   text-transform: uppercase;
+  transition: transform 220ms ease;
 }
 
 .view-navigation[data-theme="dark"] { background: #1a1a1a; color: #eeebe4; }
-.view-navigation[data-view="overview"] { background: transparent; color: #fff; }
-.view-navigation[data-view="overview"][data-over-hero="false"] { background: #fff; color: #181817; }
+.view-navigation[data-view="overview"][data-at-top="true"] { background: transparent; color: #fff; }
+.view-navigation[data-hidden="true"]:not(:has(:focus-visible)) { transform: translateY(-100%); pointer-events: none; }
 .view-navigation nav { display: flex; gap: 26px; }
 .view-navigation button {
   position: relative;
@@ -96,6 +97,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
+  .view-navigation { transition: none; }
   .view-navigation button { transition: none; }
   .view-navigation button:active { transform: none; }
 }
