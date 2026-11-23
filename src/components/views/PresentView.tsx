@@ -28,16 +28,16 @@ const roles = [
   },
   {
     "company": "Carnegie Mellon University",
-    "dates": "September 8 - December 6, 2026",
+    "dates": "September 2026 - Present",
     "title": "Brand and Marketing Ambassador",
     "team": "Division of Enrollment Management",
     "details": [
-      "Part-time Brand and Marketing Ambassador with CMU's Division of Enrollment Management for Fall 2026. The student appointment runs from September 8 through December 6, with a schedule of 5-10 hours per week."
+      "Part-time Brand and Marketing Ambassador with CMU's Division of Enrollment Management."
     ]
   },
   {
     "company": "Canva",
-    "dates": "August 2026 - May 15, 2027",
+    "dates": "August 2026 - Present",
     "title": "Campus Canvassador",
     "team": "Campus Canvassadors Program (United States)",
     "details": [

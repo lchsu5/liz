@@ -14,11 +14,22 @@ export default function VisionBoardView() {
   return <main className="future-gallery">
 
     <h1 className="sr-only">Future vision boards</h1>
-    <div className="future-selectors" role="group" aria-label="Vision board">
-      {boards.map(board => <button type="button" key={board.id} aria-controls={board.id} onClick={() => document.getElementById(board.id)?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" })}>{board.term}</button>)}
-    </div>
+    <nav className="future-timeline" aria-label="Vision board timeline">
+      <ol>
+        {boards.map(board => <li key={board.id}>
+          <a href={`#${board.id}`} onClick={event => {
+            if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            const section = document.getElementById(board.id);
+            if (!section) return;
+            event.preventDefault();
+            section.focus({ preventScroll: true });
+            section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth", block: "start" });
+          }}>{board.term}</a>
+        </li>)}
+      </ol>
+    </nav>
     <div className="future-boards">
-      {boards.map((board, index) => <section key={board.id} id={board.id} className="future-section" aria-labelledby={`${board.id}-title`}>
+      {boards.map((board, index) => <section key={board.id} id={board.id} className="future-section" aria-labelledby={`${board.id}-title`} tabIndex={-1}>
         <h2 id={`${board.id}-title`}>{board.term}</h2>
         <div className="future-mat">
           <img className="future-board" src={board.image} alt={`${board.term} Vision Board`} width={board.width} height={board.height} loading={index > 0 ? "lazy" : undefined} />

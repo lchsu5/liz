@@ -27,7 +27,7 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .lc .im{overflow:hidden;aspect-ratio:3/2}
 .lc .im img{width:100%;height:100%;object-fit:cover;display:block}
 .lc .bd{padding:22px 20px 8px;display:flex;flex-direction:column;flex:1}
-.lc .og{color:var(--a);letter-spacing:.12em;margin-bottom:16px}
+.lc .og{color:#000;font-weight:700;letter-spacing:.12em;margin-bottom:16px}
 .lc .rr{text-transform:none;font-size:16px;line-height:1.5;margin-bottom:20px;min-height:48px}
 .lc .rr b{font-weight:500}
 .lc ul{list-style:none;text-transform:none;font-size:14px;line-height:1.55;margin-top:auto}
