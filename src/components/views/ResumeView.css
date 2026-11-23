@@ -86,6 +86,30 @@
 }
 .resume-view > [role="alert"] { color: #b53c59; }
 
+.resume-confirmation {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+}
+
+.resume-confirmation h1 {
+  color: #181817;
+  font-size: 18px;
+  text-transform: none;
+}
+
+.resume-confirmation button,
+.resume-confirmation a {
+  border: 0;
+  padding: 4px;
+  background: transparent;
+  color: #b53c59;
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
 @media (max-width: 700px) {
   .resume-view {
     padding-top: calc(132px + env(safe-area-inset-top, 0px));

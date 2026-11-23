@@ -20,6 +20,7 @@ export default function ResumeView() {
   const resumeUrl = new URL(`${import.meta.env.BASE_URL}Elizabeth_Hsu_Resume.pdf`, window.location.origin).href;
   const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">("idle");
   const [errors, setErrors] = useState<ReturnType<typeof getFieldErrors>>();
+  const [showPdfLink, setShowPdfLink] = useState(false);
   const pending = useRef(false);
 
   async function submitRequest(event: FormEvent<HTMLFormElement>) {
@@ -37,8 +38,6 @@ export default function ResumeView() {
 
     const fields = new FormData(form);
     const reason = String(fields.get("reason")).trim();
-    const tab = window.open("about:blank", "_blank");
-    if (tab) tab.opener = null;
     pending.current = true;
     setStatus("saving");
 
@@ -59,14 +58,30 @@ export default function ResumeView() {
       if (!response.ok || result.status !== "success" || result.saved !== true) {
         throw new Error("Request save was not confirmed");
       }
-      if (tab && !tab.closed) tab.location.replace(resumeUrl);
+      const tab = window.open(resumeUrl, "_blank");
+      if (tab) tab.opener = null;
+      setShowPdfLink(!tab);
       setStatus("saved");
     } catch {
-      tab?.close();
       setStatus("error");
     } finally {
       pending.current = false;
     }
+  }
+
+  if (status === "saved") {
+    return (
+      <main className="resume-view" aria-labelledby="resume-saved">
+        <div className="resume-confirmation">
+          <h1 id="resume-saved" role="status">Request saved</h1>
+          {showPdfLink && <a href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume PDF</a>}
+          <button type="button" onClick={() => {
+            setErrors(undefined);
+            setStatus("idle");
+          }}>Resubmit the form</button>
+        </div>
+      </main>
+    );
   }
 
   return (
@@ -93,16 +108,11 @@ export default function ResumeView() {
             aria-labelledby="resume-reason-label" aria-invalid={!!errors?.reason} aria-describedby={errors?.reason ? "resume-reason-error" : undefined} />
           {errors?.reason && <span className="resume-field-error" id="resume-reason-error">{errors.reason}</span>}
         </label>
-        {status === "saved" ? (
-          <a className="resume-pdf-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">Open resume PDF</a>
-        ) : (
-          <button className="resume-pdf-link" disabled={status === "saving"} type="submit">
-            {status === "saving" ? "Saving request…" : "Open resume PDF"}
-          </button>
-        )}
+        <button className="resume-pdf-link" disabled={status === "saving"} type="submit">
+          {status === "saving" ? "Saving request…" : "Open resume PDF"}
+        </button>
       </form>
       {status === "error" && <p role="alert">Couldn’t confirm your request was saved. Please try again.</p>}
-      {status === "saved" && <p role="status">Request saved.</p>}
     </main>
   );
 }
