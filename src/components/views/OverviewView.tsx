@@ -62,7 +62,7 @@ export default function OverviewView() {
   <h1 id="hn" className="big">Elizabeth Hsu</h1>
   <div className="hero-caption">
     <div>Business + AI @ Carnegie Mellon</div>
-    <p className="hero-opportunities">Currently searching for Summer 2027 opportunities across PM, AI, Business, and Sales roles.</p>
+    <p className="hero-opportunities"><strong>Currently searching for Summer 2027 opportunities across PM, AI, Tech, Business, and Sales roles.</strong></p>
   </div>
 </div></section>
 
