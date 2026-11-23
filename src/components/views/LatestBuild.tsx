@@ -27,7 +27,10 @@ export default function LatestBuild() {
         <h2 className="overview-section-heading" id="overview-build">Projects</h2>
         <div className="build-projects">
         <article className="proj cmused-project">
-          <div className="meta"><span className="gl">CMUsed · Sep 2025 – Present</span></div>
+          <div className="meta">
+            <span className="gl">CMUsed · Sep 2025 – Present</span>
+            <a className="vp" href="https://cmused.com" target="_blank" rel="noopener noreferrer">View project</a>
+          </div>
           <div className="cmused-layout">
           <div className="cmused-preview">
             {reducedMotion ? <img className="project-film" src={`${import.meta.env.BASE_URL}cmused-preview.jpg`} alt="CMUsed sign-in screen" /> : <video className="project-film" autoPlay muted loop playsInline preload="metadata" poster={`${import.meta.env.BASE_URL}cmused-preview.jpg`} aria-label="CMUsed prototype journey from sign-in to contacting a seller">
@@ -43,12 +46,14 @@ export default function LatestBuild() {
           }}>{item.label}</button>)}</div>
           {cmusedStory.map((item, index) => <p key={item.label} className={`tp ${cmusedSelected === index ? "in" : ""}`} id={`cmused-story-${index}`} role="tabpanel" aria-labelledby={`cmused-tab-${index}`} hidden={cmusedSelected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{cmusedStack.map(technology => <span key={technology}>{technology}</span>)}</div>
-          <a className="vp" href="https://cmused.com" target="_blank" rel="noopener noreferrer">View project</a>
           </div>
           </div>
         </article>
         <article className="proj secondlook-project">
-          <div className="meta"><span className="gl">SecondLook · Jan 2026</span></div>
+          <div className="meta">
+            <span className="gl">SecondLook · Jan 2026</span>
+            <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
+          </div>
           <div className="secondlook-layout">
           <div className="secondlook-description">
           <h2>A vision-powered STEM tutor that catches mistakes as you make them.</h2>
@@ -58,7 +63,6 @@ export default function LatestBuild() {
           }}>{item.label}</button>)}</div>
           {story.map((item, index) => <p key={item.label} className={`tp ${selected === index ? "in" : ""}`} id={`secondlook-story-${index}`} role="tabpanel" aria-labelledby={`secondlook-tab-${index}`} hidden={selected !== index} tabIndex={0}>{item.text}</p>)}
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
-          <a className="vp" href="https://lizhhsu.github.io/SecondLook/" target="_blank" rel="noopener noreferrer">View project</a>
           </div>
           <picture className="secondlook-preview">
             <source media="(prefers-reduced-motion: reduce)" srcSet={`${import.meta.env.BASE_URL}secondlook-preview.jpg`} />
