@@ -13,10 +13,22 @@
   text-transform: uppercase;
 }
 
+.resume-view form { display: grid; gap: 20px; width: min(100%, 480px); margin: 24px auto 0; }
+.resume-view label { display: grid; gap: 6px; font-size: 12px; font-weight: 500; text-transform: uppercase; }
+.resume-view input, .resume-view textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba(24, 24, 23, .25);
+  border-radius: 4px;
+  background: #fff;
+  font: 400 16px/1.5 'Inter Tight', system-ui, sans-serif;
+}
+.resume-view textarea { resize: vertical; }
+.resume-view textarea::placeholder { color: #686860; opacity: 1; }
 .resume-pdf-link {
+  justify-self: center;
   display: inline-flex;
   align-items: center;
-  margin-top: 16px;
   min-height: 44px;
   padding: 8px 14px;
   border: 1px solid transparent;
