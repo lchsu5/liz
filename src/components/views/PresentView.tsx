@@ -30,6 +30,7 @@ const roles = [
     "company": "Carnegie Mellon University",
     "dates": "September 2026 - Present",
     "title": "Brand and Marketing Ambassador",
+    "url": "https://www.instagram.com/reel/DfpizymTHh6/?utm_source=ig_web_copy_link&knvt=MzRlODBiNWFlZA==&avpt=MzRlODBiNWFlZA==",
     "team": "Division of Enrollment Management",
     "details": [
       "Part-time Brand and Marketing Ambassador with CMU's Division of Enrollment Management."
@@ -88,7 +89,9 @@ export default function PresentView() {
             <header className="role-header">
               <h2 className="role-company">{role.company}</h2>
               {role.dates && <span className="yr">{role.dates}</span>}
-              <p className="role-title">{role.title}</p>
+              <p className="role-title">{role.url ? (
+                <a href={role.url} target="_blank" rel="noopener noreferrer">{role.title}</a>
+              ) : role.title}</p>
             </header>
             {"team" in role && <p className="role-team">{role.team}</p>}
             {role.details.length > 0 && <p className="role-details">{role.details.join(" ")}</p>}

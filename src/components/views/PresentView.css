@@ -43,6 +43,8 @@ button{font:inherit;color:inherit;text-transform:inherit;background:none;border:
 .role-header h2{font-weight:400;font-size:18px;letter-spacing:-.015em;text-transform:none;line-height:1.4}
 .role-header .role-company{font-weight:500}
 .role-title{grid-column:1/-1;color:var(--g);font-size:15px;font-weight:400;line-height:1.4;text-transform:none}
+.role-title a{text-decoration:underline;text-underline-offset:3px}
+.role-title a:hover,.role-title a:focus-visible{color:var(--a)}
 .role .yr{color:var(--g);justify-self:end;font:400 10px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none;white-space:nowrap}
 .role-team{margin-top:6px;color:var(--g);font:400 11px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;text-transform:none}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--a);flex:none}
