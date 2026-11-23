@@ -34,7 +34,9 @@
   display: grid;
   align-content: start;
   gap: 8px;
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .resume-view label:last-of-type { grid-column: 1 / -1; }
