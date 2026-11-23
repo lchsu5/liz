@@ -65,8 +65,8 @@ export default function LatestBuild() {
           <div className="stk">{stack.map(technology => <span key={technology}>{technology}</span>)}</div>
           </div>
           <picture className="secondlook-preview">
-            <source media="(prefers-reduced-motion: reduce)" srcSet={`${import.meta.env.BASE_URL}secondlook-preview.jpg`} />
-            <img className="project-film" src={`${import.meta.env.BASE_URL}secondlook-demo.gif`} alt="SecondLook demo of its real-time STEM tutoring interface" loading="lazy" />
+            <source media="(prefers-reduced-motion: reduce)" srcSet={`${import.meta.env.BASE_URL}secondlook-preview.jpg?v=2`} />
+            <img className="project-film" src={`${import.meta.env.BASE_URL}secondlook-demo.gif?v=2`} alt="SecondLook demo of its real-time STEM tutoring interface" loading="lazy" />
           </picture>
           </div>
         </article>
