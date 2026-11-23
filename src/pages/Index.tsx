@@ -37,7 +37,7 @@ const Index = () => {
   };
   return <div className="view-shell" data-view={activeView} data-theme={activeView === "overview" || activeView === "visionboard" ? "dark" : "light"}>
     <ViewNavigation view={activeView} onNavigate={navigate} />
-    <div className="view-panel">{isResume ? <ResumeView /> : renderView()}</div>
+    <div className="view-panel" key={activeView}>{isResume ? <ResumeView /> : renderView()}</div>
     <footer className="site-footer">
       <span>©2026</span>
       <a href="https://mail.google.com/mail/?view=cm&fs=1&to=lchsu%40andrew.cmu.edu" target="_blank" rel="noopener noreferrer">CONTACT: LCHSU@ANDREW.CMU.EDU</a>

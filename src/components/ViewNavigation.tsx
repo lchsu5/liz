@@ -53,7 +53,7 @@ export default function ViewNavigation({ view, onNavigate }: {
     <nav aria-label="Primary">
       {items.map(item => <button type="button" key={item.key}
         aria-current={view === item.key ? "page" : undefined}
-        onClick={() => onNavigate(item.key)}>{item.label}
+        onClick={() => onNavigate(item.key)}><span>{item.label}</span>
       </button>)}
     </nav>
     <span className="location-time">Irvine, CA <span>{time}</span></span>

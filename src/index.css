@@ -23,7 +23,8 @@
   background: #fff;
 }
 
-.view-panel { position: relative; z-index: 1; }
+.view-panel { position: relative; z-index: 1; animation: view-enter 240ms ease-out; }
+@keyframes view-enter { from { opacity: 0; } to { opacity: 1; } }
 
 .site-footer {
   display: flex;
@@ -78,10 +79,11 @@
 }
 .view-navigation .site-name.site-name { align-self: center; }
 .view-navigation button:active { transform: scale(.97); }
-.view-navigation button[aria-current="page"]::after {
+.view-navigation nav button span { position: relative; display: inline-block; }
+.view-navigation nav button[aria-current="page"] span::after {
   content: "";
   position: absolute;
-  inset: auto 0 3px;
+  inset: auto 0 -2px;
   height: 1px;
   background: #e0607e;
 }
@@ -97,6 +99,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
+  .view-panel { animation: none; }
   .view-navigation { transition: none; }
   .view-navigation button { transition: none; }
   .view-navigation button:active { transform: none; }
